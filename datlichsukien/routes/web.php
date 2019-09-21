@@ -12,5 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts/app');
+});
+Route::get('/admin','AdminController@index')->name('admin');
+Route::get('/admin', function () {
+    return view('layouts/admin');
+});
+Route::group(['prefix'=>'admin'],function(){
+     
 });
