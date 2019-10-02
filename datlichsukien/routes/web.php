@@ -11,13 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('layouts/app');
+// Route::get('/', function () {
+//     return view('auth/register');
+// });
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/', 'AdminController@index')->name('admin.index');
+    Route::group(['prefix'=>'user'],function(){
+    
+    });
 });
-Route::get('/admin','AdminController@index')->name('admin');
-Route::get('/admin', function () {
-    return view('layouts/admin');
+Route::group(['namespace'=>'Front'],function(){
+  Route::get('/', 'FrontController@index');
 });
-Route::group(['prefix'=>'admin'],function(){
-     
-});
+
+Route::post('/register', 'Auth\RegisterController@store')->name('register');
