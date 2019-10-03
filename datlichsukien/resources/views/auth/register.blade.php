@@ -1,3 +1,4 @@
+
 <head>
     <title>Đăng kí</title>
     <link rel="stylesheet" type="text/css" href="/css/custom/login.css">
@@ -12,7 +13,7 @@
 <body class="text-center">
     <div class="body">
     <form class="form-signin" action="{{route('register')}}" method="post" id="formregister">
-        <input type="hidden" name="_token" value="{{ csrf_token()}}">
+        <input name="_method" type="hidden" value="PATCH">
         <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
 
       <!--   @if(count($errors)>0)
@@ -24,7 +25,7 @@
         </div>
         @endif
         @endif -->
-        <a class="btn btn-block btn-social btn-google"  href="{{route('login.social')}}" >
+        <a class="btn btn-block btn-social btn-google"  >
 
         <i class="fab fa-google"></i>
 
@@ -59,3 +60,6 @@
    
     </div>
 </body>
+
+
+

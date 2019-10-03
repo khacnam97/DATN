@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use App\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Redirect;
 class RegisterController extends Controller
 {
     /*
@@ -69,6 +70,10 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+    public function showFormRegister(){
+        return view('auth.register');
+    }
+
     public function store(Request $request)
     {
         $this->validate($request,
@@ -94,6 +99,6 @@ class RegisterController extends Controller
         $user->role=$request->role;
         $user->status=1;
         $user->save();
-        return view('auth.register')->with('thongbao','Đăng kí thành công');
+       return redirect('/')->with('thongbao','Đăng kí thành công');
     }
 }

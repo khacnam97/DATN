@@ -53,7 +53,7 @@
                         </form>
                     </li>
                     <li><a href="#" class="btn-search-toggle"><i class="fa fa-search"></i></a></li>
-                    <li><a href="{{ route('register') }}"><i class="fa fa-file-text-o"></i> Register Now</a></li>
+                    <li><a  href=""><i class="fa fa-file-text-o"></i> Register Now</a></li>
                     <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
                 </ul>
             </nav>

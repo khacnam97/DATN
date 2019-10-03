@@ -1,5 +1,7 @@
 <?php
-
+use Illuminate\Routing\Controller;
+//use App\Http\Controllers\HomeController;
+// use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,5 +26,5 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['namespace'=>'Front'],function(){
   Route::get('/', 'FrontController@index');
 });
-
-Route::post('/register', 'Auth\RegisterController@store')->name('register');
+Route::get('show-register', 'Auth\RegisterController@showFormRegister')->name('show.register');
+Route::post('register', 'Auth\RegisterController@store')->name('auth.register');
