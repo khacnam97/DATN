@@ -33,7 +33,7 @@
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" >Administrator</a>
+    <a class="navbar-brand mr-1" href="{{ route('admin.index') }}">Administrator</a>
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
@@ -85,7 +85,7 @@
           <a class="dropdown-item" href="#">Profile</a>
           <a class="dropdown-item" href="#">Change Password</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">Logout</a>
         </div>
       </li>
     </ul>
@@ -97,33 +97,33 @@
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" >
+        <a class="nav-link" href="{{ route('admin.index') }}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" >
+        <a class="nav-link" href="{{ route('admin.user.index') }}">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>User</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" >
+          <a class="nav-link" href="{{ route('admin.post.index') }}">
             <i class="fas fa-fw fa-table"></i>
             <span>Post</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" >
+            <a class="nav-link" href="">
               <i class="fas fa-fw fa-table"></i>
               <span>Category</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" >
+              <a class="nav-link" href="">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Place</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" >
+                <a class="nav-link" href="">
                   <i class="fas fa-fw fa-table"></i>
                   <span>Rating</span></a>
                 </li>
@@ -180,7 +180,7 @@
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
                       <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                      <a class="btn btn-primary" >Logout</a>
+                      <a class="btn btn-primary" href="">Logout</a>
                     </div>
                   </div>
                 </div>

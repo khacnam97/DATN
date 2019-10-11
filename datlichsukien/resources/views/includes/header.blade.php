@@ -52,14 +52,21 @@
                             <input type="submit" hidden="hidden"/>
                         </form>
                     </li>
-                    <li><a href="#" class="btn-search-toggle"><i class="fa fa-search"></i></a></li>
-                    <li><a  href=""><i class="fa fa-file-text-o"></i> Register Now</a></li>
-                    <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
+                    <li><a href="" class="btn-search-toggle"><i class="fa fa-search"></i></a></li>
+                  
+                 <li><a  href="{{ route('show.register') }}"><i class="fa fa-file-text-o"></i> Register Now</a></li>
+                    <li><a href="{{ route('show.login') }}"><i class="fa fa-user"></i> Login</a></li>
                 </ul>
+
             </nav>
+
+            
             <!-- /Navigation -->
 
             </div>
         </div>
+       
     </header>
+
+
     <!-- /HEADER -->
