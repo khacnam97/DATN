@@ -1,65 +1,204 @@
+<!DOCTYPE html>
+<html lang="en"><!--<![endif]-->
+
 
 <head>
-    <title>Đăng kí</title>
-    <link rel="stylesheet" type="text/css" href="/css/custom/login.css">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!--Fontawesome CDN-->
-<link rel="stylesheet" href="/css/bootstrap-social.css">
-<!--Custom styles-->
-<link rel="stylesheet" href="/css/fontawesome.min.css">
+    <title>im Event</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+
+    <!-- CSS Global -->
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/plugins/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
+    <link href="assets/plugins/owlcarousel2/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="assets/plugins/owlcarousel2/assets/owl.theme.default.min.css" rel="stylesheet">
+    <link href="assets/plugins/prettyphoto/css/prettyPhoto.css" rel="stylesheet">
+    <link href="assets/plugins/animate/animate.min.css" rel="stylesheet">
+    <link href="assets/plugins/countdown/jquery.countdown.css" rel="stylesheet">
+
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/custom.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/bootstrap-social.css">
+    <!--Custom styles-->
+    <link rel="stylesheet" href="css/fontawesome.css">
+    
+    
 </head>
+<body id="home" class="wide body-light coming-soon">
 
-<body class="text-center">
-    <div class="body">
-    <form class="form-signin" action="{{route('register')}}" method="post" id="formregister">
-        <input name="_method" type="hidden" value="PATCH">
-        <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
-
-      <!--   @if(count($errors)>0)
-        @if($errors->all()[0] == "The password must be at least 8 characters.")
-        <div class="alert alert-danger">
-          @foreach($errors->all() as $err)
-          {{$err}} <br>
-          @endforeach
-        </div>
-        @endif
-        @endif -->
-        <a class="btn btn-block btn-social btn-google"  >
-
-        <i class="fab fa-google"></i>
-
-            Sign in with Google
-        </a>
-        <a class="btn btn-block btn-social btn-facebook">
-        <i class="fab fa-facebook-f"></i>
-            Sign in with Facebook
-        </a>
-        <p class="divider-text">
-            <span class="bg-light">OR</span>
-        </p>
-        <label for="inputName" class="sr-only">Name</label>
-        <input type="text" id="inputName" class="form-control" name="name" value="{{old('name')}}" placeholder="  Name" required autofocus>
-        <label for="inputEmail" class="sr-only" >Email address</label>
-        <input type="email" id="inputEmail" class="form-control" name="email" value="{{old('email')}}" placeholder="Email address" required >
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
-        <div class="form-group col-md-8">
-            <label for="inputState">Role</label>
-            <select id="inputState" class="form-control" name="role">
-                <option selected value="3">Người xem</option>
-                <option  value="2">Người đăng bài</option>
-                
-                
-            </select>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" form="formregister" type="submit">Sign up</button>
-        <hr id="hr1">
-        <p>Have an account? <button type="button" class="btn-link btn" id="signin">Login</button></p>
-    </form>
-   
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status">
+        <div class="spinner"></div>
     </div>
+</div>
+
+<!-- Wrap all content -->
+<div class="wrapper">
+
+    <!-- HEADER -->
+    <header class="header fixed">
+        <div class="container">
+            <div class="header-wrapper clearfix">
+
+            <!-- Logo -->
+            <div class="logo">
+                 <a href="{{route('index')}}" class="scroll-to">
+                    <span class="fa-stack">
+                        <i class="fa logo-hex fa-stack-2x"></i>
+                        <i class="fa logo-fa fa-map-marker fa-stack-1x"></i>
+                    </span>
+                    im Event
+                </a>
+            </div>
+            <!-- /Logo -->
+
+            </div>
+        </div>
+    </header>
+    <!-- /HEADER -->
+
+    <!-- Content area -->
+    <div class="content-area">
+
+        <div id="main">
+        <!-- SLIDER -->
+        <section class="page-section no-padding background-img-slider">
+            <div class="container">
+
+            <div id="main-slider" class="owl-carousel owl-theme">
+
+                <!-- Slide -->
+                <div class="item page slide2 slide3">
+                    <div class="caption">
+                        <div class="container">
+                            <div class="div-table">
+                                <div class="div-cell">
+
+                                    <div class="form-background">
+                                        <div class="form-header color">
+                                            <h1 class="section-title">
+                                                <span class="icon-inner"><span class="fa-stack"><i class="fa rhex fa-stack-2x"></i><i class="fa fa-ticket fa-stack-1x"></i></span></span>
+                                                <span class="title-inner"> Register</span>
+                                            </h1>
+                                        </div>
+                              
+                                        <form id="registration-form-alt" name="registration-form-alt" class="registration-form alt" action="{{ route('auth.register') }}" method="post">
+                                             <input type="hidden" name="_token" value="{{ csrf_token()}}">
+                                            <div class="row">
+                                                <!-- <div class="col-sm-12 form-alert"></div> -->
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <input type="text" id="name" class="form-control" value="{{ old('name') }}" name="name" placeholder="Name" required >
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                     <div class="form-group">
+                                                        <input type="email" id="inputEmail" class="form-control" value="{{ old('email') }}" name="email" placeholder="Email " required >
+                                                        @error('email')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password"  placeholder=" Password">
+
+                                                        @error('password')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="form-group selectpicker-wrapper">
+                                                       <select id="inputState" class="form-control" name="role">
+                                                        <option selected value="3">Người đặt lịch</option>
+                                                        <option  value="2">Chủ sự kiện</option>
+
+                                                    </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="text-center">
+                                                         <button class="btn btn-theme btn-block "  type="submit">Sign up</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+
+                                    <!-- Event description -->
+                                    <!-- /Event description -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+
+        </section>
+        <!-- /SLIDER -->
+        </div>
+
+    </div>
+    <!-- /Content area -->
+
+</div>
+<!-- /Wrap all content -->
+
+<!-- JS Global -->
+
+<!--[if lt IE 9]><script src="assets/plugins/jquery/jquery-1.11.1.min.js"></script><![endif]-->
+<!--[if gte IE 9]><!--><script src="assets/plugins/jquery/jquery-2.1.1.min.js"></script><!--<![endif]-->
+<script src="assets/plugins/modernizr.custom.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+<script src="assets/plugins/superfish/js/superfish.js"></script>
+<script src="assets/plugins/prettyphoto/js/jquery.prettyPhoto.js"></script>
+<script src="assets/plugins/placeholdem.min.js"></script>
+<script src="assets/plugins/jquery.smoothscroll.min.js"></script>
+<script src="assets/plugins/jquery.easing.min.js"></script>
+<script src="assets/plugins/smooth-scrollbar.min.js"></script>
+
+<!-- JS Page Level -->
+<script src="assets/plugins/owlcarousel2/owl.carousel.min.js"></script>
+<script src="assets/plugins/waypoints/waypoints.min.js"></script>
+<script src="assets/plugins/countdown/jquery.plugin.min.js"></script>
+<script src="assets/plugins/countdown/jquery.countdown.min.js"></script>
+
+<script src="assets/js/theme-ajax-mail.js"></script>
+<script src="assets/js/theme.js"></script>
+<script src="assets/js/custom.js"></script>
+
+<!-- <script type="text/javascript">
+    "use strict";
+    jQuery(document).ready(function () {
+        theme.init();
+    });
+
+    jQuery(document).ready(function () { theme.onResize(); });
+    jQuery(window).load(function(){ theme.onResize(); });
+    jQuery(window).resize(function(){ theme.onResize(); });
+
+</script> -->
+
 </body>
 
-
-
+<!-- Mirrored from eazzy.me/html/imevent-multipage/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Sep 2015 01:30:47 GMT -->
+</html>
