@@ -1,10 +1,6 @@
 @extends('layouts.admin')
 @section('title', '/ User')
-@section('content')
-
-@if (Session ::has('success'))
-    {{Session :: get('success')}}
-@endif 
+@section('content') 
 
 <div class="card mb-3">
   <div class="card-header">

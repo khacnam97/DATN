@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePhacesHasCategoriesTable extends Migration
+class CreateRestaurantsHasCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreatePhacesHasCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('places_has_catagories', function (Blueprint $table) {
-             $table->unsignedBigInteger('places_id');
-              $table->unsignedBigInteger('categories_id');
-
-            $table->timestamps();
+        Schema::create('restaurants_has_categories', function (Blueprint $table) {
+            $table->unsignedBigInteger('restaurant_id');
+              $table->unsignedBigInteger('category_id');
         });
     }
 
@@ -28,6 +26,6 @@ class CreatePhacesHasCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('places_has_catagories');
+        Schema::dropIfExists('restaurants_has_categories');
     }
 }

@@ -113,14 +113,14 @@
             <span>Post</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link"  href="{{ route('admin.restaurant.index') }}">
               <i class="fas fa-fw fa-table"></i>
-              <span>Category</span></a>
+              <span>Restaurant</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="">
                 <i class="fas fa-fw fa-table"></i>
-                <span>Place</span></a>
+                <span>Category</span></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="">

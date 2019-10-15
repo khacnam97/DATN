@@ -16,10 +16,10 @@ class CreateShedulesTable extends Migration
         Schema::create('schedules', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date("date_schedules")->nullable();
-             $table->unsignedBigInteger('places_id');
-              $table->unsignedBigInteger('users_id');
-               $table->unsignedBigInteger('detailes_id');
-                $table->unsignedBigInteger('scales_id');
+             $table->unsignedBigInteger('restaurant_id');
+              $table->unsignedBigInteger('user_id');
+               $table->unsignedBigInteger('detaile_id');
+                $table->unsignedBigInteger('scale_id');
             $table->timestamps();
         });
     }

@@ -128,27 +128,27 @@ class UserController extends Controller
             return redirect()->back()->with('error' , Config::get('constant.user.deleteAdminUser'));
         }
         else{
-            $postid = Post::where('user_id', $id)->get();
+            $postid = Post::where('users_id', $id)->get();
             foreach ($postid as $p) {  
-                $photo = Photo::where('post_id', $p->id);      
-                $rating2 = Rating::where('post_id', $p->id);  
+                $photo = Photo::where('posts_id', $p->id);      
+                // $rating2 = Rating::where('post_id', $p->id);  
                 $path = "/picture/admin/post/".$p->id;         
-                $rating2->delete();     
+                // $rating2->delete();     
                 $photo->delete();
                 File::deleteDirectory(public_path($path));    
             }
-            $rating =DB::table('ratings')  
-            ->where([
-                ['user_id','=',$id],
-            ])
-            ->delete();
+            // $rating =DB::table('ratings')  
+            // ->where([
+            //     ['user_id','=',$id],
+            // ])
+            // ->delete();
             $social =DB::table('socials')  
             ->where([
-                ['user_id','=',$id],
+                ['users_id','=',$id],
             ])
             ->delete();
             $post = DB::table('posts')
-            ->where('user_id','=',$id)
+            ->where('users_id','=',$id)
             ->delete();
             $user->delete();
             return redirect()->back()->with('success',Config::get('constant.user.deleteUser'));

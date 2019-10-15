@@ -1,140 +1,144 @@
 @extends('layouts.admin')
-<!-- @section('title', '/ User') -->
+@section('title', '/ Post')
 @section('content')
-
-
-
+ @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+  @endif
 <div class="card mb-3">
-  <div class="card-header">
-    <em class="fas fa-table"></em>
-  Data Table User </div>
+	<div class="card-header">
+		<i class="fas fa-table"></i>
+	Data Table Post</div>
+	<div class="card-body">
+		<div style="margin-bottom: 15px">
+			<button data-toggle="modal" data-target="#myModal3" class="btn btn-success "><i class="fas fa-plus"></i> ADD</button>
+		</div>
+		<div class="table-responsive">
+			<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Title</th>
+						<th>Author</th>
+						<th>Status approved</th>
+						<th>Restaurant</th>
+						<th>Time create</th>
+						<th>Time modify</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<th>ID</th>
+						<th>Title</th>
+						<th>Author</th>
+						<th>Status approved</th>
+						<th>Restaurant</th>
+						<th>Time create</th>
+						<th>Time modify</th>
+						<th>Action</th>
+					</tr>
+				</tfoot>
+				<tbody style="font-weight: normal;">
+					@if($posts->count()==0)
+							k có dư liêu
+					@else
+					@foreach($posts as $post)
+					<tr style="font-weight: normal;">
+						<th style="font-weight: normal;">{{ $post-> id }}</th>
+						<th style="font-weight: normal;">{{ $post->title }}</th>
+						<th style="font-weight: normal;">{{ $post->user->name}}</th>
+						<th style="font-weight: normal;">@if($post->is_approved ==1)
+							<div style="display: flex;">
+								Approved  
+								<a href="{{route('admin.post.unapproved', $post->id)}}" onclick="return confirm('Xác nhận hủy đăng bài này?')" role="button" class="btn btn-danger nav-link" style="width: 50px; height: 40px; margin-left: 10px;" > Un</a>
+							</div>
+							@else 
+							<div style="display: flex;">
+								Unapproved  
+								<a href="{{route('admin.post.approved', $post->id)}}" onclick="return confirm('Xác nhận đăng bài này?')" role="button" class="btn btn-success nav-link" style="width: 50px; height: 40px; margin-left: 10px;" > En</a>
+							</div>
+						@endif </th>
+						<th style="font-weight: normal;">{{ $post->restaurant->name }}</th>
+						<th style="font-weight: normal;">{{ $post->created_at }}</th>
+						<th style="font-weight: normal;">{{ $post->updated_at }}</th>
 
-  <div class="container">
+						<td align="center" style="display: flex;">
+							<a href="{{route('admin.post.detail', $post->id)}}" class=" btn btn-success nav-link"> Detail</a>
 
-    <!-- The Modal -->
-    <div class="modal" id="myModal1">
-      <div class="modal-dialog">
-        <div class="modal-content">
+							<a href="{{route('admin.post.showedit', $post->id)}}" class="btn btn-info nav-link " role='button' style="margin-left: 5px;"> Edit</a>
+							<form method="post" action="{{ route('admin.post.delete', $post->id)}}">
+								@csrf
+								<button class="btn btn-danger nav-link" role='button' onclick="return confirm('Bạn có muốn xóa bản ghi này?')" style="margin-left: 5px;"> Delete</button>
+							</form>
+						</td>
+					</tr>
 
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h4 class="modal-title">Thêm User </h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          
+					@endforeach
+					@endif
 
-          <!-- Modal body -->
-          <div class="modal-body">
-            <form action="" method="post">
-              <input type="hidden" name="_token" value="{{ csrf_token()}}">
-              <div class="form-group">
-                <label for="">Username </label>
-                <input id="name" type="text" class="form-control" name="name" value="{{old('name')}}"    required autofocus >
-              </div>
-              <div class="form-group">
-                <label for="inputEmail4">Email</label>
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email"  >
-              </div>
-              <div class="form-group">
-                <label for="">Passwword</label>
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"   >
-              </div>
-              <div class="form-row">
-                
-                <div class="form-group col-md-5">
-                  <label for="inputState">Role</label>
-                  <select id="inputState" class="form-control" name="role">
-                    <option selected value="3">Người xem</option>
-                    <option value="2">Người đăng bài</option>
-                    <option value="1">admin</option>
-                  </select>
-                </div>
-                
-              </div>
-              
-                <button type="submit" class="btn btn-primary">Add</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              
-            </form>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="modal" id="myModal3">
+		<div class="modal-dialog">
+			<div class="modal-content">
 
-          </div>
+				<!-- Modal Header -->
+				<div class="modal-header" style="">
+					<h4 class="modal-title " style="width: 100%; text-align: center;">Add new post</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				@if ($errors->count() > 0)
+	              <script type="text/javascript">
+	                $( window ).on("load", function() {
+	                  $("#myModal3").modal("toggle");
+	                });
+	              </script>
+	                
+	            @endif
+				@include('admin.post.add')
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div></div>
+				</div>
 
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            
-          </div>
+				<!-- Modal footer -->
+{{--       <div class="modal-footer">
+        <a type="button" class="btn btn-success" href="{{route('admin.post.add')}}">Add</a>
+    </div> --}}
 
-        </div>
-      </div>
-    
-    </div>
-  </div>
-    
-  <div class="card-body">
-    <div style="margin-bottom: 15px">
-      <button data-toggle="modal" data-target="#myModal1" class="btn btn-success "><i class="fas fa-plus"></i> ADD</button>
-    </div>
-    <div class="table-responsive">
-      <table class="table table-bordered" id="dataTable">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Status</th>
-            <th>Role</th>
-            <th>Create day</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tfoot>
-          <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Status</th>
-            <th>Role</th>
-            <th>Create day</th>
-            <th>Action</th>
-          </tr>
-        </tfoot>
-        <tbody>
-       
-        <tr>
-         
-            <td align="center">
-              
-              
-                      <button class="btn-success">
-                       
-                      <a href="" onclick="return confirm('Bạn có muốn block user này?')" role="button"  style="color: white;text-decoration: none;" > Block</a>
-                    </button>
-                   
-                    <button class="btn-success">
-                     
-                      <a href="" onclick="return confirm('Bạn có muốn unblock user này??')" role="button" style="color: white;text-decoration: none;" > UnBlock</a>
-                    </button>
-                    
-                
-              <button type="button" class="btn-info " data-toggle="modal" data-target="#myModal">
-                 <a class="btn-info" href="" style="color: white;text-decoration: none;">Edit</a>
-              </button>
-
-              <!-- The Modal -->
-              
-              <button type="button" class="btn-danger" >
-              <a href="" style="color: white;text-decoration: none;" onclick="return confirm ('bạn có muốn xóa user ')">Delete</a>
-              </button>
-                            
-              
-            
-            </td>
-        </tr>
-       
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 </div>
+</div>
+</div>
+
+<div class="modal" id="myModal4">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<!-- Modal Header -->
+			<div class="modal-header" style="">
+				<h4 class="modal-title">Detail</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+{{--       		@include('admin.post.detail')
+--}}      <!-- Modal body -->
+<div class="modal-body">
+	<div></div>
+</div>
+
+<!-- Modal footer -->
+{{--       <div class="modal-footer">
+        <a type="button" class="btn btn-success" href="{{route('admin.post.add')}}">Add</a>
+    </div> --}}
+
+</div>
+</div>
+</div>
+<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script type="text/javascript" src="{{asset('ckeditor/adapters/jquery.js') }}"></script>
 @endsection
