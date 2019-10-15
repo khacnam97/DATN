@@ -18,7 +18,7 @@ class CreateRestaurantsTable extends Migration
             $table->string('name')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
-            $table->unsignedBigInteger('districts_id');
+            $table->unsignedBigInteger('district_id');
             $table->float('lat')->nullable();
             $table->float('longt')->nullable();
             $table->timestamps();

@@ -15,7 +15,7 @@ class CreateSocialsTable extends Migration
     {
         Schema::create('socials', function (Blueprint $table) {
             $table->bigIncrements('id');
-             $table->unsignedBigInteger('users_id');
+             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

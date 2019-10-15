@@ -32,9 +32,31 @@ Route::group(['prefix' => 'admin'], function () {
     });
     Route::group(['prefix' => 'post','namespace'=>'post'], function(){
 		Route::get('/', 'PostController@index')->name('admin.post.index');
+		Route::post('/delete/{id}', 'PostController@destroy')->name('admin.post.delete');
+		Route::get('/approved/{id}', 'PostController@approved')->name('admin.post.approved');
+		Route::get('/unapproved/{id}', 'PostController@unapproved')->name('admin.post.unapproved');
+		Route::post('/add', 'PostController@store')->name('admin.post.add');
+		Route::get('/{id}/detail', 'PostController@detail')->name('admin.post.detail');
+		Route::get('/{id}/edit', 'PostController@showformedit')->name('admin.post.showedit');
+		Route::post('/{id}/edit', 'PostController@edit')->name('admin.post.edit');
+		Route::get('/{id}/edit/deletephoto', 'PostController@deletephoto')->name('admin.post.deletephoto');
+		Route::get('/autocompleteUser', 'PostController@autocompleteUser')->name('post.autocompleteUser');
+		Route::get('/autocompleteRestaurant', 'PostController@autocompleteRestaurant')->name('post.autocompleteRestaurant');
 
 	});
-    
+    Route::group(['prefix' => 'restaurant','namespace'=>'restaurant'], function(){
+		Route::get('/', 'RestaurantController@index')->name('admin.restaurant.index');
+		Route::get('/delete/{id}', 'RestaurantController@xoa')->name('admin.restaurant.delete');
+
+		Route::get('/edit/{id}', 'RestaurantController@getedit')->name('admin.restaurant.edit');
+		Route::post('/edit/{id}', 'RestaurantController@postedit')->name('admin.restaurant.edit');
+
+        Route::get('/detail/{id}', 'RestaurantController@getdetail')->name('admin.restaurant.detail');
+
+		Route::get('/add', 'RestaurantController@getadd')->name('admin.restaurant.add');
+		Route::post('/add', 'RestaurantController@store')->name('admin.restaurant.add');
+		Route::get('/get-city-list', 'RestaurantController@getCityList')->name('admin.restaurant.getcity');
+	});
 });
 Route::group(['namespace'=>'Front'],function(){
 Route::get('/', 'FrontController@index')->name('index'); 
