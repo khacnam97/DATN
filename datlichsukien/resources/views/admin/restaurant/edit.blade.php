@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-<h1>Chỉnh sửa địa điểm</h1>
+<h1>Chỉnh sửa địa điểm tổ chức</h1>
  @if (session('thongbao'))
 
  	{{session('thongbao')}}
@@ -20,26 +20,31 @@
 </div>
 @endif
 
-<form action="{{route('admin.place.edit', $place->id)}}" method="post">
+<form action="{{route('admin.restaurant.edit', $restaurant->id)}}" method="post">
 	{{csrf_field()}}
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
   
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" name="name" value="{{ $place->name }}" class="form-control" required autocomplete="name">
+    <input type="text" name="name" value="{{ $restaurant->name }}" class="form-control" required autocomplete="name">
   </div>
   
   <div class="form-group">
     <label for="">Address</label>
-    <input id="text" type="text" name="address" value="{{ $place->address }}" class="form-control" required autocomplete="address">
+    <input id="text" type="text" name="address" value="{{ $restaurant->address }}" class="form-control" required autocomplete="address">
   </div>
   <div class="form-row">
-    <div class="form-group col-md-4">
-      <label for="">Category</label>
-      <select class="custom-select" name="category_id">
-        <option value="{{$place->category_id}}">{{$place->category->name}}</option>
-        @if($category)
-        @foreach ($category as $ca)
+   
+    <div class="form-group col-md-3">
+      <label for="">Phone</label>
+       <input id="text" type="text" name="phone" value="{{ $restaurant->phone }}" class="form-control" required autocomplete="address">
+    </div>
+    <div class="form-group col-md-3">
+      <label for="">District</label>
+      <select class="custom-select" name="district_id" id="district">
+        <option value="{{$restaurant->district_id}}">{{$restaurant->district->name}}</option>
+        @if($district)
+        @foreach ($district as $ca)
         <option value="{{$ca->id}}">{{$ca->name}}</option>
         @endforeach
         @endif
@@ -47,70 +52,27 @@
     </div>
     <div class="form-group col-md-3">
       <label for="">City</label>
-      <select class="custom-select" name="" id="city">
-        <option value="{{$place->cities_id}}">{{$place->districts->cities->name}}</option>
-        @if($city)
-        @foreach ($city as $ci)
-        <option value="{{$ci->id}}">{{$ci->name}}</option>
-        @endforeach
-        @endif
-      </select>
-    </div>
-    <div class="form-group col-md-3">
-      <label for="">District</label>
-      <select class="custom-select" name="districts_id" id="district">
-        <option value="{{$place->districts_id}}">{{$place->districts->name}}</option>
-
-
-
-      </select>
+       <input id="text" type="text" name="city" value="Đà Nẵng" class="form-control" disabled="">
     </div>
   </div>
   <div class="form-group ">
     <label for="">Map</label>
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <input id="pac-input" class="controls" type="text" restaurantholder="Search Box">
     <div id="map"> </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-3">
-      <input type="hidden" value="{{$place->lat}}" class="form-control input-sm" name="lat" id="lat" required="">
+      <input type="hidden" value="{{$restaurant->lat}}" class="form-control input-sm" name="lat" id="lat" required="">
     </div>
     <div class="form-group col-md-3">
-      <input type="hidden" value="{{$place->longt}}" class="form-control input-sm" name="lng" id="lng" required="">
+       <input type="hidden" value="{{$restaurant->lng}}" class="form-control input-sm" name="lng" id="lng" required="">
     </div>
   </div>
   <button type="submit" class="btn btn-primary">
     <i class="fa fa-btn fa-sign-in"></i>Update
   </button>
-    <a href="/admin/place" class="btn btn-danger" style="color: white">Cancel</a>
+    <a href="/admin/restaurant" class="btn btn-danger" style="color: white">Cancel</a>
 </form>
-
-<script type="text/javascript">
-  $('#city').change(function(){
-    var cityID = $(this).val();    
-    if(cityID){
-      $.ajax({
-       type:"GET",
-       url:"{{route('admin.place.getcity')}}?cities_id="+cityID,
-       success:function(res){               
-        if(res){
-          $("#district").empty();
-          
-          $.each(res,function(key,value){
-            $("#district").append('<option value="'+key+'">'+value+'</option>');
-          });
-        }else{
-         $("#district").empty();
-       }
-     }
-   });
-    }else
-    {
-      $("#district").empty();    
-    }      
-  });
-  
-</script>
 <style type="text/css">
   #map{
     border:1px solid red;
@@ -134,15 +96,15 @@
       
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-rW15K4v7WHlCWmnCYMLzyR0pU1cPpeI&libraries=places&callback=initAutocomplete"
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBt5tJTim4lOO3ojbGARhPd1Z3O3CnE-C8&libraries=places&callback=initAutocomplete"
 async defer></script>
 
 
 <script type="text/javascript">
-  var latvalue = {!! json_encode($place->lat) !!}; 
-  var lngvalue = {!! json_encode($place->longt) !!};
-  var namevalue = {!! json_encode($place->name) !!};
-  var addressvalue = {!! json_encode($place->address) !!};
+  var latvalue = {!! json_encode($restaurant->lat) !!}; 
+  var lngvalue = {!! json_encode($restaurant->lng) !!};
+  var namevalue = {!! json_encode($restaurant->name) !!};
+  var addressvalue = {!! json_encode($restaurant->address) !!};
   var infowindow = new google.maps.InfoWindow;
   
   function initAutocomplete() {
