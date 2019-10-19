@@ -55,7 +55,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 		Route::get('/add', 'RestaurantController@getadd')->name('admin.restaurant.add');
 		Route::post('/add', 'RestaurantController@store')->name('admin.restaurant.add');
-		Route::get('/get-city-list', 'RestaurantController@getCityList')->name('admin.restaurant.getcity');
+		
 	});
 });
 Route::group(['namespace'=>'Front'],function(){

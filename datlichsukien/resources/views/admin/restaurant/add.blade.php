@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-<h1>Thêm địa điểm</h1>
+<h1>Thêm địa điểm tổ chức</h1>
 @if(count($errors)>0)
 <div class="alert alert-danger">
 	@foreach($errors->all() as $err)
@@ -16,7 +16,7 @@
 <form action="{{route('admin.restaurant.add')}}" method="post" >
 	<input type="hidden" name="_token" value="{{ csrf_token()}}">
 	<div class="form-group">
-		<label for="">Tên địa điểm </label>
+		<label for="">Tên địa điểm tổ chức </label>
 		<input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}"  required autofocus >
 	</div >
 	
@@ -25,11 +25,19 @@
 		<input id="address" type="text" class="form-control" name="address" value="{{old('address')}}"    required autofocus >
 	</div>
 	<div class="form-row">
-		
+		<div class="form-group col-md-3">
+			<label for="">Phone</label>
+			<input id="phone" type="text" class="form-control" name="phone" value="{{old('phone')}}"    required autofocus   >
+		</div>
 		<div class="form-group col-md-3">
 			<label for="">District</label>
-			<select class="custom-select" name="districts_id" id="district">
-				<option value="">District</option>
+			<select class="custom-select" name="district_id" id="district">
+				
+				@if($district)
+				@foreach ($district as  $record)
+				<option value="{{$record->id}}">{{$record->name}}</option>
+				@endforeach
+				@endif
 				
 			</select>
 		</div>
@@ -83,7 +91,7 @@
       
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAm9QBqYqfJovt19U-kImI2c9bKe_geNI&libraries=places&callback=initAutocomplete"
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBt5tJTim4lOO3ojbGARhPd1Z3O3CnE-C8&libraries=places&callback=initAutocomplete"
 async defer></script>
 
 
