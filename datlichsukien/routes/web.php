@@ -61,7 +61,11 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['namespace'=>'Front'],function(){
 Route::get('/', 'FrontController@index')->name('index'); 
 });
-Route::get('register', 'Auth\RegisterController@showFormRegister')->name('show.register');
-Route::post('register', 'Auth\RegisterController@register')->name('auth.register');
-Route::get('login', 'Auth\LoginController@showFormLogin')->name('show.login');
-Route::post('login', 'Auth\LoginController@login')->name('auth.login');
+// Route::get('register', 'Auth\RegisterController@showFormRegister')->name('show.register');
+// Route::post('register', 'Auth\RegisterController@register')->name('auth.register');
+// Route::get('login', 'Auth\LoginController@showFormLogin')->name('show.login');
+// Route::post('login', 'Auth\LoginController@login')->name('auth.login');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
