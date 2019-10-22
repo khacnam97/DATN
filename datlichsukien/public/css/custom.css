@@ -1,32 +1,132 @@
+
 header {
   position: relative;
   width: 100%;
-  height: 800px;
+  height: 680px;
   min-height: auto;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
-  background-image: url('http://www.pullman-danang.com/wp-content/uploads/sites/86/2019/05/DJI_0004.jpg');
+  background-image: url('../picture/front/header3.jpg');
+  background-repeat: no-repeat;
   text-align: center;
   color: white;
 }
+
+#app{
+  overflow: 
+}
+#btnsearch{
+    width: 120px;
+}
+#searchhead{
+/*  justify-content: center;
+  display: flex;*/
+  margin: 50px;
+  display: flex;
+  justify-content: center;
+}
+#inputsearch {
+
+}
+#logo5{
+  width: 100px; height: 40px; margin-left: 50px;
+}
+#homeHeading{
+  font-size: 45px; margin-left: 20%; margin-right: 20%;
+}
+@media only screen and (max-width: 600px) {
+  header {
+    height : 700px;
+  }
+  .header-content {
+    height: 500px;
+  }
+  #homeHeading{
+    font-size: 25px; margin-left: 10%; margin-right: 10%;
+  }
+  #navbarSupportedContent{ 
+    background-color: #666666;
+    text-align: right;
+    margin: 0px;
+    padding-right:  10%;
+  }
+  #searchhead {
+  }
+  #btnsearch {
+    width: 60px;
+  }
+  #inputsearch {
+    width: 140px;
+    margin-right: 20px;
+  }
+  #invite {
+    display: none;
+  }
+  #logo5{
+    margin-left:10px;
+
+  }
+}
+@media only screen and (max-width: 400px) {
+  header {
+    height : 700px;
+  }
+
+  .header-content {
+    height: 500px;
+  }
+  #homeHeading{
+    font-size: 25px; margin-left: 10%; margin-right: 10%;
+  }
+  #navbarSupportedContent{ 
+    background-color: #666666;
+    text-align: right;
+    margin: 0px;
+    padding-right:  10%;
+  }
+
+  #searchhead {
+  }
+  #btnsearch {
+    width: 60px;
+  }
+  #inputsearch {
+    width: 120px;
+    margin-right: 10px;
+  }
+  #invite {
+    display: none;
+  }
+  #logo5{
+    margin-left: 10px;
+    
+  }
+}
 .header-content {
-  background-color: rgba(0,0,0.1,0.3);
+  background-color: rgba(0,0,0.5,0.4);
   position: absolute;
-  top:100px;
-  text-align: center;
-  padding: 100px 15px 100px;
+  top:50px;
+
+  /* text-align: center; */
+  padding: 10px 15px ;
   width: 100%;
 }
 
 .header-content .header-content-inner
 {
-  margin: 50px 20px;
+  margin: 10px 20px;
 }
 
+#scr1:hover{
+  color: black;
+}
+#main-footer {
+  width: 100%;
+}
 #main-footer .contactnumber {
-  color: #9b9b9b;
+  color: #3997A6;
   margin-top: 10px;
   font-size: 1.5em;
   font-weight: 300;
@@ -39,7 +139,7 @@ header {
 }
 #main-footer .social {
   margin-bottom: 10px;
-  color: #9b9b9b;
+  color: #3997A6;
 }
 
 ul .inline-list-style {
@@ -52,4 +152,70 @@ ul .inline-list-style {
 #main-footer .column
 {
   margin-top:20px;
+}
+
+#main-footer  div ul li a
+{
+  margin-top:20px;
+  color: #3997A6;
+}
+
+#card-img {
+  width:100%;
+  height:280px;
+  float:left;
+  overflow:hidden;
+  position:relative;
+  text-align:center;
+  cursor:default;
+}
+#card-img img{
+  display:block;
+  height: 200px;
+  position:relative;
+  -webkit-transition:all .4s linear;
+  transition:all .4s linear;
+}
+#card-img:hover img{
+  
+transform:scale(1.1);
+}
+
+#card-img:hover {
+
+  filter:alpha(opacity=50);
+-ms-transform:translatey(0);
+-webkit-transform:translatey(0);
+transform:translatey(0);
+}
+
+#scr2 {
+  color: white ;
+  cursor:pointer;
+}
+#scr1 {
+  color: white ;
+  cursor:pointer;
+}
+#scr3 {
+  color: white ;
+  cursor:pointer;
+}
+#scr2:hover {
+  font-size: 16px;
+  color: yellow ;
+  cursor:pointer;
+}
+#scr1:hover {
+  font-size: 16px;
+  color: yellow ;
+  cursor:pointer;
+}
+#scr3:hover {
+  font-size: 16px;
+  color: yellow ;
+  cursor:pointer;
+}
+.navbar-light .navbar-nav .nav-link{
+  color: white;
 }

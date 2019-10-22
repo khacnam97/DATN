@@ -9,124 +9,103 @@
     <title>im Event</title>
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap&subset=vietnamese" rel="stylesheet">
+      <!-- Scripts -->
+  <script src="{{ asset('js/app.js') }}" defer></script>
+  <link rel="shortcut icon" type="image/png" href="/picture/front/favicon.png">
 
-    <!-- CSS Global -->
-    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/plugins/fontawesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
-    <link href="assets/plugins/owlcarousel2/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="assets/plugins/owlcarousel2/assets/owl.theme.default.min.css" rel="stylesheet">
-    <link href="assets/plugins/prettyphoto/css/prettyPhoto.css" rel="stylesheet">
-    <link href="assets/plugins/animate/animate.min.css" rel="stylesheet">
-    <link href="assets/plugins/countdown/jquery.countdown.css" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap&subset=latin-ext,vietnamese" rel="stylesheet">
 
-    <link href="assets/css/theme.css" rel="stylesheet">
-    <link href="assets/css/custom.css" rel="stylesheet">
-   
+  <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+
+
+  <link rel="stylesheet" href=" {{ asset('fonts/fontawesome/css/font-awesome.min.css') }}">
+
+  <!-- Styles -->
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
+  <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+  <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+
+  <!-- Rating -->
+  <link href="{{ asset('css/bootstrap-rating.css') }}" rel="stylesheet">
+  <script type="text/javascript" src="{{ asset('js/bootstrap-rating.js') }}"></script>
+  @stack('css')
+
+  {{-- multi up image --}}
+  <script src="{{asset('js/dropzone.js')}}"></script>
+  <script src="{{asset('js/index.js')}}"></script>
+  <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+  <script type="text/javascript" src="{{asset('ckeditor/adapters/jquery.js') }}"></script>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body id="home" class="wide body-light multipage multipage-sub">
 
 <!-- Wrap all content -->
 <div class="wrapper">
       <!-- Modal login -->
+    <nav class="navbar navbar-expand-md navbar-light bg-inverse shadow-sm  fixed-top" style="font-family: 'Roboto', sans-serif; background-size: cover;   background-color: rgba(0,0,0,0.6);height: 60px; width: 100%; padding: 0px; box-sizing: border-box;"  id="nav-top">
 
-    <!-- HEADER -->
-    <header class=" fixed">
+      <div class="container-fluid" style="color: white; margin: 0px; padding: 0; width: 100%">
+        <a href=" "><img src="/picture/front/logo5.png" style="" id="logo5" alt="avatar"></a>
 
-        <div class="container">
-            <div class="header-wrapper clearfix">
 
-            <!-- Logo -->
-            <div class="logo">
-                <a href="index.html" class="scroll-to">
-                    <span class="fa-stack">
-                        <i class="fa logo-hex fa-stack-2x"></i>
-                        <i class="fa logo-fa fa-map-marker fa-stack-1x"></i>
-                    </span>
-                    Event
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="{{ __('Toggle navigation') }}">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Left Side Of Navbar -->
+          <ul class="navbar-nav mr-auto">
+            <li><a class="nav-link  border-0" style="cursor:pointer; " id="scr2"> About Us </a></li>
+            <li><a class="nav-link  border-0" style=" cursor:pointer;" id="scr3"> Địa điểm </a></li>
+            <li><a class="nav-link  border-0" style=" cursor:pointer;" id="scr1"> Liên hệ </a></li>
+
+          </ul>
+
+          <!-- Right Side Of Navbar -->
+          <ul class="nav navbar-nav ml-auto " style="display: flex; justify-content:flex-end; margin-left: 2000px">
+            <!-- Authentication Links -->
+            @guest
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="modal" data-target="#myModal" href="{{ route('login') }}" style="color: white; ">{{ __('Đăng nhập') }}</a>
+
+            </li>
+
+            @if (Route::has('register'))
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="modal" data-target="#myModal2" href="{{ route('register') }}" style="color: white; ">{{ __('Đăng kí') }} </a>
+            </li>
+            @endif
+            @else
+            <li class="nav-item dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    {{ Auth::user()->name }} <span class="caret"></span>
                 </a>
+
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </div>
-            <!-- /Logo -->
+        </li>
+        @endguest
 
-            <!-- Navigation -->
-            <div id="mobile-menu"></div>
-            <nav class="navigation closed clearfix">
-                <a href="#" class="menu-toggle btn"><i class="fa fa-bars"></i></a>
-                <ul class="sf-menu nav">
-                    <li>
-                        <a href="index.html">Home</a>
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="index-2.html">Home 2</a></li>
-                        </ul>
-                    </li>
-                    <li class="active">
-                        <a href="event-list.html">Events</a>
-                        <ul>
-                            <li><a href="event-list.html">Event List</a></li>
-                            <li><a href="event-grid.html">Event Grid</a></li>
-                            <li><a href="event-single.html">Single Event</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="blog.html">Pages</a>
-                        <ul>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="blog-single.html">Blog Single</a></li>
-                            <li><a href="coming-soon-1.html">Coming Soon 1</a></li>
-                            <li><a href="coming-soon-2.html">Coming Soon 2</a></li>
-                            <li><a href="coming-soon-3.html">Coming Soon 3</a></li>
-                            <li><a href="error-page.html">404</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="contact-us.html">Contact Us</a></li>
-                    <li class="header-search-wrapper">
-                        <form action="#" class="header-search-form">
-                            <input type="text" class="form-control header-search" placeholder="Search"/>
-                            <input type="submit" hidden="hidden"/>
-                        </form>
-                    </li>
-                    <li><a href="#" class="btn-search-toggle"><i class="fa fa-search"></i></a></li>
-                   
-                    
-                     @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="" data-toggle="modal" data-target="#exampleModalCenter">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="" data-toggle="modal" data-target="#exampleModalCenter2">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-
-                </ul>
-            </nav>
-            <!-- /Navigation -->
-
-            </div>
+          </ul>
         </div>
-    </header>
+      </div>
+    </nav>
+    <!-- HEADER -->
+   
     <!-- /HEADER -->
   
     <!-- Content area -->
@@ -136,109 +115,56 @@
 
     </div>
     <!-- /Content area -->
-
-    <!-- Modal login-->
-    <div class="modal fade" id="exampleModalCenter"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog" >
+    
+    <!-- MOdal login -->
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
         <div class="modal-content">
+
+          <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title" id="exampleModalLongTitle" >Login </h4>
+            <h4 class="modal-title">Sign in</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-            @include('auth.login')  
-        </div>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            
+            @include('auth.login')
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+          </div>
 
         </div>
-       </div>
-    </div>
-    <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
-      <div class="modal-body">
-        <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+    </div>
+    <!-- Modal register -->
+   <div class="modal" id="myModal2">
+      <div class="modal-dialog">
+        <div class="modal-content">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title ">Sign up</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+          <!-- Modal body -->
+          <div class="modal-body">
+           
+            @include('auth.register')
+          </div>
+         
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+          </div>
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
-    </div>      
+      </div>
     </div>
-      
-    </div>
-  </div>
-</div>
 
 
 
@@ -252,67 +178,7 @@
     <div class="to-top"><i class="fa fa-angle-up"></i></div>
 
 </div>
-<script src="assets/plugins/jquery/jquery-2.1.1.min.js"></script>
-<script src="assets/plugins/modernizr.custom.js"></script>
-<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
-<script src="assets/plugins/superfish/js/superfish.js"></script>
-<script src="assets/plugins/prettyphoto/js/jquery.prettyPhoto.js"></script>
-<script src="assets/plugins/placeholdem.min.js"></script>
-<script src="assets/plugins/jquery.smoothscroll.min.js"></script>
-<script src="assets/plugins/jquery.easing.min.js"></script>
-<script src="assets/plugins/smooth-scrollbar.min.js"></script>
 
-
-<script src="assets/plugins/owlcarousel2/owl.carousel.min.js"></script>
-<script src="assets/plugins/waypoints/waypoints.min.js"></script>
-<script src="assets/plugins/countdown/jquery.plugin.min.js"></script>
-<script src="assets/plugins/countdown/jquery.countdown.min.js"></script>
-<script src="assets/plugins/isotope/jquery.isotope.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
-
-<script src="assets/js/theme-ajax-mail.js"></script>
-<script src="assets/js/theme.js"></script>
-<script src="assets/js/custom.js"></script>
-
-<script type="text/javascript">
-    "use strict";
-    jQuery(document).ready(function () {
-        theme.init();
-        theme.initMainSlider();
-        theme.initCountDown();
-        theme.initPartnerSlider2();
-        theme.initImageCarousel();
-        theme.initTestimonials();
-        theme.initGoogleMap();
-    });
-    jQuery(window).load(function () {
-        theme.initAnimation();
-    });
-
-    jQuery(window).load(function () { jQuery('body').scrollspy({offset: 100, target: '.navigation'}); });
-    jQuery(window).load(function () { jQuery('body').scrollspy('refresh'); });
-    jQuery(window).resize(function () { jQuery('body').scrollspy('refresh'); });
-
-    jQuery(document).ready(function () { theme.onResize(); });
-    jQuery(window).load(function(){ theme.onResize(); });
-    jQuery(window).resize(function(){ theme.onResize(); });
-
-    jQuery(window).load(function() {
-        if (location.hash != '') {
-            var hash = '#' + window.location.hash.substr(1);
-            if (hash.length) {
-                jQuery('html,body').delay(0).animate({
-                    scrollTop: jQuery(hash).offset().top - 44 + 'px'
-                }, {
-                    duration: 1200,
-                    easing: "easeInOutExpo"
-                });
-            }
-        }
-    });
-
-</script>
 
 </body>
 
