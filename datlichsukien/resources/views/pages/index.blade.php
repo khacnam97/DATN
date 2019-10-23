@@ -35,8 +35,8 @@
         </span>
     </a>
 </div>
-<div class="row" style="height: 1000px; width: 100%">
-    <div class="col-3" style="background-color:  #969582;">
+<div class="row" style="height: 1000px; width: 100%; margin-top: 20px;" >
+    <div class="col-3" style="background-color:  #e9ecef;">
         
         <div  style="width: 90%; margin-left: 5%; margin-top: 30px;">
             <div class="map-responsive">
@@ -158,7 +158,7 @@
 		</div>
 		<div class="col-sm-4 text-center">
 			<a href="info@travelbrewery.com"><em style="color: #3997A6;" class="fa fa-envelope fa-3x sr-contact"></em></a>
-			<p>Namoccho@travelViet.com</p>
+			<p>Nam@gmail.com</p>
 		</div>
 	</div>
 </div>

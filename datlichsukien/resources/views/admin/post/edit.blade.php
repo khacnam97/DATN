@@ -85,7 +85,7 @@
    <h5>All photo</h5>
    <div class="form-group">
     <div  class="d-flex">
-
+    
       @foreach($post->photos as $p)
 
       <div id="xxx" class="{{$p->id}}" style="display: flex; width: 150px; height: 150px; background-image: url({{"/".$p->photo_path}}); background-repeat: no-repeat; background-size: cover; margin-left: 10px;" >
@@ -122,7 +122,8 @@
   </div>
   <div class="clone">
     <div class="control-group input-group" style="margin-top:10px">
-      <input type="file" name="filename[]" class="form-control" accept="image/x-png,image/jpeg">
+      <input type="file" name="filename[]" class="form-control" accept="image/x-png,image/jpeg" >
+
       <div class="input-group-btn"> 
         <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove" id="removed"></i> Remove</button>
       </div>
@@ -130,7 +131,6 @@
     </div>
   </div>
 </div>
-
 
 <!-- </div>  -->
 
