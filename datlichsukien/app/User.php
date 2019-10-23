@@ -2,6 +2,8 @@
 
 namespace App;
 use app\Post;
+use App\Social;
+use App\Rating;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -36,7 +38,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-     public function posts(){
+     public function socials()
+    {
+        return $this->hasMany(Social::class);
+    }
+
+    public function posts(){
         return $this->hasMany('App\Post');
+    }
+     public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+
     }
 }

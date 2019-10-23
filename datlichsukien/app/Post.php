@@ -4,6 +4,7 @@ namespace App;
 use App\User;
 use App\Restaurant;
 use App\Photo;
+use App\Rating;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -19,5 +20,9 @@ class Post extends Model
     public function restaurant()
     {
         return $this->belongsTo(Restaurant::class);
+    }
+    public function ratings()
+    {
+        return $this->hasMany('App\Rating');
     }
 }

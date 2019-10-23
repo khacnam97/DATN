@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-<h1>Chỉnh sửa User</h1>
+<h1>Edit User</h1>
  @if (session('thongbao'))
  	{{session('thongbao')}}
 
@@ -55,9 +55,10 @@
     <input type="address" name="address" value="{{ $user->address }}" class="form-control" required autocomplete="address">
   </div>
   </div>
-    <div class="form-group ">
+  
+  <div class="form-group col-md-4 ">
     <label for="">Birthday:</label>
-    <input  type="date" name="birthday" value="{{ $user->birthday }}" required autocomplete="birthday">
+    <input id="datepicker" name="birthday" value="{{ $user->birthday }}" required autocomplete="birthday">
   </div>
   @if($user->role !=1 )
   <div class="form-group ">
@@ -75,12 +76,15 @@
   @endif
   <h5>Avatar</h5>
   <div class="form-group">
-      <img src="{{  $user->avatar }}" alt="{{ $user->avatar }}" style="width: 100px; height: 100px; background-repeat: no-repeat;" />
+      <img src="{{  $user->avatar }}" alt="{{ $user->avatar }}" id="output" style="width: 100px; height: 100px; background-repeat: no-repeat;" />
   </div>
    <div class="form-group">
     <label for="">Chọn ảnh mới</label>
-    <input  type="file" name="avatar" value="{{$user->avatar}}" accept="image/x-png,image/jpeg"   autocomplete="file">
+    <input  type="file" name="avatar" value="{{$user->avatar}}" accept="image/x-png,image/jpeg"   autocomplete="file" onchange="loadFile(event)">
   </div>
+  <script>
+  
+</script>
   @if($user->role !=1 )
   <div class="form-group">
     <label for="">Role:</label>
@@ -105,6 +109,12 @@
     <a href="/admin/user" class="btn btn-danger" style="color: white">Cancel</a>
   
 </form>
+ <script>
+        $('#datepicker').datepicker({
+            format: 'yyyy-dd-mm',
+            uiLibrary: 'bootstrap4'
+        });
+    </script>
 <script>
   $(document).ready(function(){
    $("#changePasword").change(function(){

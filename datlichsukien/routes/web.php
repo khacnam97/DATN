@@ -57,6 +57,14 @@ Route::group(['prefix' => 'admin'], function () {
 		Route::post('/add', 'RestaurantController@store')->name('admin.restaurant.add');
 		
 	});
+	Route::group(['prefix' => 'rating','namespace'=>'rating'], function(){
+		Route::get('/', 'RatingController@index')->name('admin.rating.index');
+		Route::post('/add','RatingController@add')->name('admin.rating.add');
+		Route::get('edit/{id}', 'RatingController@edit')->name('admin.rating.edit');
+		Route::get('/select', 'RatingController@select')->name('admin.rating.select');
+		Route::post('update/{id}', 'RatingController@update')->name('admin.rating.update');
+		Route::post('/delete/{id}', 'RatingController@delete')->name('admin.rating.delete');
+	});
 });
 Route::group(['namespace'=>'Front'],function(){
 Route::get('/', 'FrontController@index')->name('index'); 

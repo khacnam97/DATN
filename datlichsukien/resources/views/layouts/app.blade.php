@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -46,12 +46,11 @@
 
 <!-- Wrap all content -->
 <div class="wrapper">
-      <!-- Modal login -->
+      
     <nav class="navbar navbar-expand-md navbar-light bg-inverse shadow-sm  fixed-top" style="font-family: 'Roboto', sans-serif; background-size: cover;   background-color: rgba(0,0,0,0.6);height: 60px; width: 100%; padding: 0px; box-sizing: border-box;"  id="nav-top">
 
       <div class="container-fluid" style="color: white; margin: 0px; padding: 0; width: 100%">
-        <a href=" "><img src="/picture/front/logo5.png" style="" id="logo5" alt="avatar"></a>
-
+        <a href=" "><img src="/picture/front/logo.png" style="" id="logo5" alt="avatar"></a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="{{ __('Toggle navigation') }}">
           <span class="navbar-toggler-icon"></span>

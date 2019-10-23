@@ -13,7 +13,6 @@ use App\Rating;
 use File;
 use Image;
 use Config;
-
 class UserController extends Controller
 {
     public function index()
