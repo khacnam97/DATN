@@ -1,4 +1,4 @@
-<footer class="bg-dark fixed-bottom " >
+<footer class="bg-dark  " >
   <section id="main-footer" style="margin-top: 100px; font-family: 'Raleway', sans-serif; 
  padding: 0px ; margin-left:  0px 20%;" >
     <div class=" row align-middle" style=" color: white; margin-top: 50px; margin: 0px;">
