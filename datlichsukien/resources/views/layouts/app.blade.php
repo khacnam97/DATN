@@ -40,6 +40,8 @@
   <script src="{{asset('js/index.js')}}"></script>
   <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
   <script type="text/javascript" src="{{asset('ckeditor/adapters/jquery.js') }}"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body id="home" class="wide body-light multipage multipage-sub">
@@ -109,7 +111,7 @@
     <!-- /HEADER -->
   
     <!-- Content area -->
-    <div class="content-area">
+    <div class="">
 
      @yield('content')
 
