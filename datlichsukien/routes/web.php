@@ -68,12 +68,21 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 });
 Route::group(['namespace'=>'Front'],function(){
 Route::get('/', 'FrontController@index')->name('index'); 
+Route::get('/home', function(){
+		return view('pages.index');
+	})->name('home');
+    Route::get('profile', 'ProfileController@show')->name('profile');
+	Route::get('/edit', 'ProfileController@edit')->name('profile.edit');
+	Route::get('/post/{id}', 'FrontController@showPosts')->name('show.posts');
+	Route::post('/update', 'ProfileController@update')->name('profile.update');
+	Route::post('/update_avatar', 'ProfileController@update_avatar')->name('avatar.update');
 });
 //Route::get('register', 'Auth\RegisterController@showFormRegister')->name('show.register');
 Route::post('signup', 'Auth\RegisterController@register')->name('signup');
 // Route::get('login', 'Auth\LoginController@showFormLogin')->name('show.login');
 // Route::post('login', 'Auth\LoginController@login')->name('auth.login');
-
+Route::get('/change_password', 'Auth\ChangePasswordController@show')->name('show_changePass');
+Route::post('/update_password', 'Auth\ChangePasswordController@update')->name('update_changePass');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
