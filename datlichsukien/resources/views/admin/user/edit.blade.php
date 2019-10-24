@@ -2,7 +2,7 @@
 @section('content')
 <h1>Edit User</h1>
  @if (session('thongbao'))
- 	{{session('thongbao')}}
+  {{session('thongbao')}}
 
  @endif
 
@@ -16,13 +16,13 @@
 
 @if(Session::has('message'))
 <div class="alert alert-success">
-	{{Session::get('message')}}
+  {{Session::get('message')}}
 </div>
 @endif
 
 <form action="{{route('admin.user.edit1', $user->id)}}" method="post" enctype="multipart/form-data">
-	{{csrf_field()}}
-	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+  {{csrf_field()}}
+  <input type="hidden" name="_token" value="{{ csrf_token() }}">
   <div class="row">
     <div class="form-group col-md-4">
     <label for="name">Name</label>

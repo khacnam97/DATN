@@ -3,7 +3,7 @@
 @section('content')
 <!-- SLIDER -->
 
-<main class="container" >
+<main class="" style="width: 100%;margin: 0px;padding: 0px" > 
   @yield('content-section')
 </main>
 @endsection
