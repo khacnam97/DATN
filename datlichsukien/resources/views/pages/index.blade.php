@@ -1,6 +1,6 @@
 @extends('pages.home')
 @section('content-section')
-<div class="carousel slide" data-ride="carousel" id="demo">
+<div class="carousel slide" data-ride="carousel" id="demo" style="position: relative;">
     <!-- Indicators -->
     <ul class="carousel-indicators">
         <li class="active" data-slide-to="0" data-target="#demo">

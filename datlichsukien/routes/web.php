@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Auth;
 //     return view('auth/register');
 // });
 
-Route::group(['prefix' => 'admin'], function () {
-    Route::get('/', 'AdminController@index')->name('admin.index');
+Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
+    Route::get('/', 'AdminController@index')->name('admin.index')->middleware('admin');
     Route::group(['prefix'=>'user','namespace'=>'user'],function(){
     	Route::get('/', 'UserController@index')->name('admin.user.index');
     	Route::post('/add', 'UserController@store')->name('admin.user.add');
