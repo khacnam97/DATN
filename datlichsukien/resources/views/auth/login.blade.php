@@ -1,9 +1,19 @@
+<head>
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" type="text/css" href="/css/custom/login.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap&subset=latin-ext,vietnamese" rel="stylesheet">
 
+<!--Fontawesome CDN-->
+<link rel="stylesheet" href="/css/bootstrap-social.css">
+<!--Custom styles-->
+<link rel="stylesheet" href="/css/fontawesome.min.css">
+</head>
 
 @section('content')
-<div class="card-body" style="text-align:center;">
+<div class="card-body" style="text-align:center;" >
 
-    <form method="POST" action="{{ route('login') }}" id="formlogin">
+    <form method="POST" action="{{ route('login') }}" id="formlogin"  class="form-signin" style="background-color: #dee2e6;">
         @csrf
         <a href="" class="btn btn-block btn-social btn-google">
             <i class="fab fa-google"></i>
@@ -18,32 +28,27 @@
         <p class="divider-text">
             <span class="bg-light">OR</span>
         </p>
-        <div class="form-group row">
-            <label for="email" class="col-md-3 col-form-label text-md-right">{{ __('E-Mail ') }}</label>
-
-            <div class="col-md-7">
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+        <div class="">
+            
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
 
                 @error('email')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
-            </div>
         </div>
 
-        <div class="form-group row">
-            <label for="password" class="col-md-3 col-form-label text-md-right">{{ __('Password') }}</label>
-
-            <div class="col-md-7">
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required >
+        <div class="" style="margin-top: 10px;">
+        
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="Password">
 
                 @error('password')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
-            </div>
+            
         </div>
 
         <div class="form-group row">
@@ -71,7 +76,7 @@
                 @endif  -->
             </div>
         </div>
-       <!--  <div class="form-group row mb-0" style="text-align:center;">
+        <!-- <div class="form-group row mb-0" style="text-align:center;">
             <div class="col-md-8 offset-md-2">
 
 
@@ -82,7 +87,7 @@
                 @endif
             </div>
         </div> -->
-        <!-- <div class="form-group row mb-0">
+        <div class="form-group row mb-0">
             <div class="col-md-8 offset-md-2">
                 
                 <button class="btn btn-link" type="button"  id="createacc">
@@ -91,6 +96,6 @@
                 </button>
                 
             </div>
-        </div> -->
+        </div>
     </form>
 </div>

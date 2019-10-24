@@ -49,11 +49,10 @@
 <!-- Wrap all content -->
 <div class="wrapper">
       
-    <nav class="navbar navbar-expand-md navbar-light bg-inverse shadow-sm  fixed-top" style="font-family: 'Roboto', sans-serif; background-size: cover;   background-color: rgba(0,0,0,0.6);height: 60px; width: 100%; padding: 0px; box-sizing: border-box;"  id="nav-top">
+    <nav class="navbar navbar-expand-md navbar-light bg-inverse shadow-sm  fixed-top" style="font-family: 'Roboto', sans-serif; background-size: cover;   background-color: #6cb2eb;height: 60px; width: 100%; padding: 0px; box-sizing: border-box;"  id="nav-top">
 
       <div class="container-fluid" style="color: white; margin: 0px; padding: 0; width: 100%">
-        <a href=" "><img src="/picture/front/logo.png" style="" id="logo5" alt="avatar"></a>
-
+        <a href="{{route('index')}}"><img src="/picture/front/logo.png" style="" id="logo5" alt="avatar"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="{{ __('Toggle navigation') }}">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -83,21 +82,52 @@
             @endif
             @else
             <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" style="color: white; " role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }} <span class="caret"></span>
-                </a>
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;font-size: 13px;" v-pre>
 
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item"  href="{{ route('logout') }}"
+                <img @if(!empty(Auth::user()->avatar)) src="{{Auth::user()->avatar}}" @else src="/picture/images.png" @endif alt="Avatar" style="border-radius: 50%;margin-right: 10px; width: 30px; height: 30px;">
+                @if (!empty(Auth::user()->name))
+                {{Auth::user()->name}}
+                @else
+                Noname
+                @endif
+                @if (empty(Auth::user()->name)|| empty(Auth::user()->avatar) || empty(Auth::user()->email))
+                <span class="badge badge-danger">1+</span>
+                @endif
+                <span class="caret"> </span>
+
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                <a class="dropdown-item" href="{{route('profile')}}">Trang cá nhân
+                  <span class="badge badge-danger" style="">
+                    @if (empty(Auth::user()->name)|| empty(Auth::user()->avatar) || empty(Auth::user()->email))
+                    1+
+                    @endif
+                  </span>
+                </a>
+                <a class="dropdown-item" href="">Quản lí đặt lịch</a>
+                <a class="dropdown-item" href="{{route('show_changePass')}}">Đổi mật khẩu</a>
+                @if (Auth::user()->role == 1)
+                <a class="dropdown-item" href="">Bài đăng của tôi</a>
+                <a class="dropdown-item" href="">Phê duyệt bài đăng</a>
+                <a class="dropdown-item" href="">Quản lí user</a>
+                <a class="dropdown-item" href="{{route('admin.index')}}"><span style="font-weight: bold;">Trang quản lí</span></a>
+
+
+                @elseif (Auth::user()->role == 2)
+                <a class="dropdown-item" href="">Bài đăng của tôi</a>
+                @else
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#upgradeModal">Cập nhật tài khoản</a>
+                @endif
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item"  href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
                     {{ __('Logout') }}
                 </a>
-
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
-            </div>
         </li>
         @endguest
 

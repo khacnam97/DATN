@@ -11,10 +11,10 @@
 
 <body class="text-center">
     <div class="body">
-    <form class="form-signin" action="{{route('signup')}}" method="post" id="formregister">
+    <form class="form-signin" action="{{route('signup')}}" method="post" id="formregister" style="background-color: #dee2e6;">
         <input type="hidden" name="_token" value="{{ csrf_token()}}">
-        <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
-
+       <!--  <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+ -->
         @if(count($errors)>0)
         @if($errors->all()[0] == "The password must be at least 8 characters.")
         <div class="alert alert-danger">

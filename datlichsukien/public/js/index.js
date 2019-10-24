@@ -2,11 +2,9 @@ $(document).ready(function(){
 	//scroll to top
 	$(window).scroll(function() {    
 		var scroll = $(window).scrollTop();
-		if (scroll >= 600) {
-			$("#nav-top").css({'background-color' :'rgb(237, 0, 90)','color' : 'black'});
-		}
+		
 		if (scroll == 0){
-			$("#nav-top").css({'background-color' :'rgba(0,0,0,0.6)','color' : 'white-space'})
+			$("#nav-top").css({'background-color' :'#6cb2eb','color' : 'white-space'})
 		}
 
 		if( ($(document).height() - $(window).height()) - scroll <50 ){

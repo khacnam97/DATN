@@ -1,6 +1,6 @@
 @extends('pages.home')
 @section('content-section')
-<div class="carousel slide" data-ride="carousel" id="demo" style="position: relative;">
+<div class="carousel slide" data-ride="carousel" id="demo" >
     <!-- Indicators -->
     <ul class="carousel-indicators">
         <li class="active" data-slide-to="0" data-target="#demo">
@@ -38,7 +38,7 @@
 <div class="row" style="height: 1000px; width: 100%; margin-top: 20px;" >
     <div class="col-3" style="background-color:  #e9ecef;">
         
-        <div  style="width: 90%; margin-left: 5%; margin-top: 30px;">
+        <div  style="width:150px; margin-left: 5%; ">
             <div class="map-responsive">
                 <iframe allowfullscreen="" frameborder="0" height="200" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=ĐaNang" style="border:0" width="300">
                 </iframe>
