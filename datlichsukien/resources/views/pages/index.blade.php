@@ -1,6 +1,10 @@
+@push('css')
+<link href="{{asset('css/custom/front.css')}}" rel="stylesheet">
 @extends('pages.home')
 @section('content-section')
-<div class="carousel slide" data-ride="carousel" id="demo" >
+<style type="text/css" media="screen"></style>
+
+<div class="carousel slide" data-ride="carousel" id="demo"  >
     <!-- Indicators -->
     <ul class="carousel-indicators">
         <li class="active" data-slide-to="0" data-target="#demo">
@@ -35,9 +39,9 @@
         </span>
     </a>
 </div>
-<div class="row" style="height: 1000px; width: 100%; margin-top: 20px;" >
-    <div class="col-3" style="background-color:  #e9ecef;">
-        
+<div class="row" style=" width: 100%; margin-top: 20px;  " >
+    <div class="col-3" style="background-color:  #f8f9fa; " >
+        <div style="background-color: #e9ecef; height: 500px;" >
         <div  style="width:150px; margin-left: 5%; ">
             <div class="map-responsive">
                 <iframe allowfullscreen="" frameborder="0" height="200" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=ĐaNang" style="border:0" width="300">
@@ -53,99 +57,95 @@
                 </input>
             </form>
         </div>
+        </div>
     </div>
-
     <div class="col-9">
-    	<div class="row">
-    		<div class="col-4">
-    			<div class="card">
-				  <img src="https://d1nabgopwop1kh.cloudfront.net/hotel-asset/1625503371011059215_wh_135" alt="Avatar" style="width:100%">
-				  <div class="container">
-				    <h4><b>John Doe</b></h4> 
-				    <p>Architect & Engineer</p> 
-				  </div>
-				</div>
-    		</div>
-    		<div class="col-4">
-    			<div class="card">
-				  <img src="https://d1nabgopwop1kh.cloudfront.net/hotel-asset/1625503371011059215_wh_135" alt="Avatar" style="width:100%">
-				  <div class="container">
-				    <h4><b>John Doe</b></h4> 
-				    <p>Architect & Engineer</p> 
-				  </div>
-				</div>
-    		</div>
-    		<div class="col-4">
-    			<div class="card">
-				  <img src="https://d1nabgopwop1kh.cloudfront.net/hotel-asset/1625503371011059215_wh_135" alt="Avatar" style="width:100%">
-				  <div class="container">
-				    <h4><b>John Doe</b></h4> 
-				    <p>Architect & Engineer</p> 
-				  </div>
-				</div>
-    		</div>
-    	</div>
-    	<div class="row">
-    		<div class="col-4">
-    			<div class="card">
-				  <img src="https://d1nabgopwop1kh.cloudfront.net/hotel-asset/1625503371011059215_wh_135" alt="Avatar" style="width:100%">
-				  <div class="container">
-				    <h4><b>John Doe</b></h4> 
-				    <p>Architect & Engineer</p> 
-				  </div>
-				</div>
-    		</div>
-    		<div class="col-4">
-    			<div class="card">
-				  <img src="https://d1nabgopwop1kh.cloudfront.net/hotel-asset/1625503371011059215_wh_135" alt="Avatar" style="width:100%">
-				  <div class="container">
-				    <h4><b>John Doe</b></h4> 
-				    <p>Architect & Engineer</p> 
-				  </div>
-				</div>
-    		</div>
-    		<div class="col-4">
-    			<div class="card">
-				  <img src="https://d1nabgopwop1kh.cloudfront.net/hotel-asset/1625503371011059215_wh_135" alt="Avatar" style="width:100%">
-				  <div class="container">
-				    <h4><b>John Doe</b></h4> 
-				    <p>Architect & Engineer</p> 
-				  </div>
-				</div>
-    		</div>
-    	</div>
-    	<div class="row">
-    		<div class="col-4">
-    			<div class="card">
-				  <img src="https://d1nabgopwop1kh.cloudfront.net/hotel-asset/1625503371011059215_wh_135" alt="Avatar" style="width:100%">
-				  <div class="container">
-				    <h4><b>John Doe</b></h4> 
-				    <p>Architect & Engineer</p> 
-				  </div>
-				</div>
-    		</div>
-    		<div class="col-4">
-    			<div class="card">
-				  <img src="https://d1nabgopwop1kh.cloudfront.net/hotel-asset/1625503371011059215_wh_135" alt="Avatar" style="width:100%">
-				  <div class="container">
-				    <h4><b>John Doe</b></h4> 
-				    <p>Architect & Engineer</p> 
-				  </div>
-				</div>
-    		</div>
-    		<div class="col-4">
-    			<div class="card">
-				  <img src="https://d1nabgopwop1kh.cloudfront.net/hotel-asset/1625503371011059215_wh_135" alt="Avatar" style="width:100%">
-				  <div class="container">
-				    <h4><b>John Doe</b></h4> 
-				    <p>Architect & Engineer</p> 
-				  </div>
-				</div>
-    		</div>
-    	</div>
-    </div>
+    	<div class="container-fluid" id="topplace">
+        <div style="text-align: center;margin-top:50px;color: #b3b3ba;" ><h2>NHỮNG ĐỊA ĐIỂM TỔ CHỨC ĐƯỢC ĐÁNH GIÁ CAO</h2></div>
 
-</div>
+        <div class="row" style="justify-content: center;">
+            @if($top_rating->count() !== 0)
+            @foreach ($top_rating as $record)
+            <div class="col-sm-3" style="margin:50px 0;">
+                <div class="card-img" style="height:280px;" id="card-img" >
+                    <a href='{{route("detail",$record->id)}}' title="" style="text-decoration: none;">
+                        <div style="height: 200px;">
+                            <img class="card-img-top list_images" src="{{ $record->photo_path }}" alt="{{$record->title}}" style="height: 200px;" alt="avatar">
+                        </div>
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">
+
+                                <span style="display:block;text-overflow: ellipsis;overflow: hidden; white-space: nowrap; font-size: 16px;color: black;">
+                                    {{$record->title}}
+                                </span>
+                            </h5>
+                            <div class="rating">
+                                @for($i=0;$i< ceil($record->avg_rating);$i++)
+                                <span class="fa fa-star checked"></span>
+                                @endfor
+                                @for($i=ceil($record->avg_rating);$i< 5;$i++)
+                                <span class="fa fa-star unchecked"></span>
+                                @endfor
+                            </div>
+
+                            <p class="card-text">
+                            </p>
+
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+            @endforeach
+            @else
+            <div class="col-sm">
+                <p>Không có dữ liệu</p>
+            </div>
+            @endif
+        </div>
+    </div>
+        <div class="row" style="justify-content: center;">
+            
+            @foreach ($new_post as $record)
+            <div class="col-sm-4" style="margin:50px 0;">
+                <div class="card-img" id="card-img" >
+                    <a href='{{route("detail",$record->id)}}' title="" style="text-decoration: none;"id="pic">
+                        <div style="height: 200px;">
+                            <img class="card-img-top list_images" src="{{ $record->photo_path }}" alt="{{$record->title}} " >
+                        </div>
+
+                        <div class="card-body">
+
+                            <h5 class="card-title text-primary">
+
+                                <span style="display:block;text-overflow: ellipsis;overflow: hidden; white-space: nowrap;font-size: 16px;color: black;">
+                                    {{$record->title}}
+                                </span>
+                            </h5>
+                            <div class="rating">
+                                @for($i=0;$i< ceil($record->avg_rating);$i++)
+                                <span class="fa fa-star checked" ></span>
+                                @endfor
+                                @for($i=ceil($record->avg_rating);$i< 5;$i++)
+                                <span class="fa fa-star unchecked" ></span>
+                                @endfor
+                            </div>
+
+                            <p class="card-text">
+                            </p>
+
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+            @endforeach
+        </div>
+
+    </div>
+ </div>   
 <div class="container">
 	<div style="text-align: center;margin-top:50px;" id="contact">
 		<h2 class="section-heading" style="color: #b3b3ba;">Contact Us</h2>
