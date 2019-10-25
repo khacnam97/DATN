@@ -71,7 +71,7 @@ class PostController extends Controller
         else{
         $posts -> is_approved =0;
         }
-        // $posts ->slug = Str::slug($request->title, '-');
+         $posts ->slug = Str::slug($request->title, '-');
         //make folder chứa photo
         $path = 'picture/admin/post/'.$posts->id;
         if(!File::exists($path)){
@@ -268,12 +268,9 @@ class PostController extends Controller
     public function detail($id)
     {
         $posts = POST::find($id);
-        // chu y dặt tên biến
         return view('admin.post.detail', ['post'=>$posts] );
   
     }
-
-
     public function deletephoto($id)
     {
         $photos = PHOTO::find($id);
