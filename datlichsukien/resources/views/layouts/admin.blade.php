@@ -56,37 +56,16 @@
 
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
-      <li class="nav-item dropdown no-arrow mx-1">
-        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-bell fa-fw"></i>
-          <span class="badge badge-danger">9+</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown no-arrow mx-1">
-        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-envelope fa-fw"></i>
-          <span class="badge badge-danger">7</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
+      
+      
       <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user-circle fa-fw"></i>
+          <img alt="Avatarx" @if(!empty(Auth::user()->avatar)) src="{{Auth::user()->avatar}}" @else src="/picture/images.png" @endif  style="border-radius: 50%;margin-right: 10px; width: 30px; height: 30px;">
+          {{Auth::user()->name}} 
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
           <a class="dropdown-item" href="#">Profile</a>
-          <a class="dropdown-item" href="#">Change Password</a>
+          <a class="dropdown-item" href="{{route('index')}}">Home</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">Logout</a>
         </div>

@@ -76,6 +76,9 @@ Route::get('/home', function(){
 	Route::get('/post/{id}', 'FrontController@showPosts')->name('show.posts');
 	Route::post('/update', 'ProfileController@update')->name('profile.update');
 	Route::post('/update_avatar', 'ProfileController@update_avatar')->name('avatar.update');
+
+	Route::get('/detail/{id}','FrontController@detail')->name('detail');
+	Route::post('/detail/rate','FrontController@rate');
 });
 //Route::get('register', 'Auth\RegisterController@showFormRegister')->name('show.register');
 Route::post('signup', 'Auth\RegisterController@register')->name('signup');
