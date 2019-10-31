@@ -18,7 +18,7 @@ class CreateShedulesTable extends Migration
             $table->date("date_schedules")->nullable();
              $table->unsignedBigInteger('restaurant_id');
               $table->unsignedBigInteger('user_id');
-               $table->unsignedBigInteger('detaile_id');
+               $table->unsignedBigInteger('detail_id');
                 $table->unsignedBigInteger('scale_id');
             $table->timestamps();
         });

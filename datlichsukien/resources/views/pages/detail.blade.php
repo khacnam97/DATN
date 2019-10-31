@@ -17,7 +17,7 @@
   var map;
   // var infoWindow = new google.maps.InfoWindow();
   var latvalue = {{json_encode($data[0]->lat)}};
-  var longvalue = {{json_encode($data[0]->lng)}};
+  var longvalue = {{json_encode($data[0]->longt)}};
   var namevalue = {!! json_encode($data[0]->restaurant) !!};
   var addressvalue = {!! json_encode($data[0]->address) !!};
   var directionsDisplay;
@@ -98,8 +98,8 @@ $photo_path = $data->unique('photo_path')->values();
   <div class="row">
     <div class="col-6">
       <div style="margin: 20px 0;" class="rating">
-        @for($i=1;$i<= $rating;$i++) <span style="color:orange;font-size: 50px" class="fa fa-star "></span>
-          @if($rating -$i >= 0.5 && $rating -$i < 1)<span style="color:orange;font-size: 50px" class="fa fa-star-half-alt "></span>
+        @for($i=1;$i<= $rating;$i++) <span style="color:orange;font-size: 30px" class="fa fa-star "></span>
+          @if($rating -$i >= 0.5 && $rating -$i < 1)<span style="color:orange;font-size: 30px" class="fa fa-star-half-alt "></span>
 
             @endif
             @endfor
@@ -123,6 +123,14 @@ $photo_path = $data->unique('photo_path')->values();
         </div>
       </div>
 
+    </div>
+    <div >
+      @if(Auth::check())
+      <a href="{{route('schedule')}}" class="btn btn-primary" style="width: 200px;"> Đặt lịch</a>
+      @else
+
+      <a style="width:200px;" class="btn btn-primary" data-toggle="modal" data-target="#myModal" href="{{ route('login') }}">Đặt lịch</a>
+        @endif
     </div>
     <div style="margin: 20px 0 100px 0;width: 100%;">
       <ul class="nav nav-tabs" role="tablist">
@@ -159,8 +167,8 @@ $photo_path = $data->unique('photo_path')->values();
         @if(Auth::check())
         @if($user_rate)
         <p>Your rate:
-          @for($i=1;$i<= $user_rate->rating;$i++) <span style="color:orange;font-size: 50px" class="fa fa-star "></span>
-            @if($user_rate->rating -$i >= 0.5 && $user_rate->rating -$i < 1)<span style="color:orange;font-size: 50px" class="fa fa-star-half-alt "></span>
+          @for($i=1;$i<= $user_rate->rating;$i++) <span style="color:orange;font-size: 30px" class="fa fa-star "></span>
+            @if($user_rate->rating -$i >= 0.5 && $user_rate->rating -$i < 1)<span style="color:orange;font-size: 30px" class="fa fa-star-half-alt "></span>
 
               @endif
               @endfor

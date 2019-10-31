@@ -79,6 +79,8 @@ Route::get('/home', function(){
 
 	Route::get('/detail/{id}','FrontController@detail')->name('detail');
 	Route::post('/detail/rate','FrontController@rate');
+
+	Route::get('/schedule','ScheduleController@index')->name('schedule');
 });
 //Route::get('register', 'Auth\RegisterController@showFormRegister')->name('show.register');
 Route::post('signup', 'Auth\RegisterController@register')->name('signup');
