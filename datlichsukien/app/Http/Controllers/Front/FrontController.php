@@ -45,7 +45,8 @@ class FrontController extends Controller
 		])
 		->take(Config::get('constant.numberRecord1'))
 		->get();
-        return view('pages.index',['new_post'=>$new_post,'top_rating'=>$top_rating]);
+		$restaurant = DB::table('restaurants')->get();
+        return view('pages.index',['new_post'=>$new_post,'top_rating'=>$top_rating,'restaurant'=>$restaurant]);
     }
     public function detail($id)
 	{
