@@ -23,26 +23,19 @@
 <!-- ///////////edit profile///////////// -->
 <div class="container"  id="show_profile" style="margin-top: 100px; margin-bottom: 50px;display:flex;justify-content: center;">
 	<div style="width: 800px;border-style: ridge;">
-		<div style="display: flex;justify-content: center;margin-top: 10px;margin-bottom: 10px;">
-			<form action="{{route('avatar.update')}}" method="post" enctype="multipart/form-data" id="hh">
-				{{csrf_field()}}
-				<div class="image-upload">
+		<div class="row" style="justify-content: center;">
+			
+			<div class="col-9">
+				<form class="form" role="form" autocomplete="off" enctype="multipart/form-data" style=" margin-bottom: 50px;" action="{{route('profile.update')}}" method="POST">
+
+					{{csrf_field()}}
+					<div class="image-upload" style="display: flex;justify-content: center;margin-top: 10px;margin-bottom: 10px;">
 					<label for="file-input">
 						<img @if(!empty(Auth::user()->avatar)) src="{{Auth::user()->avatar}}" @else src="/picture/images.png" @endif alt="avatar" class="user-avatar" id="avatar">
 					</label>
 
 					<input id="file-input" type="file"  name="avatar" style="display: none;" {{-- onchange="readURL(this);" --}} />
 				</div>
-				<button  class="btn-sm btn btn-primary" id="change_avatar">Update</button>
-
-			</form>
-		</div>
-		<div class="row" style="justify-content: center;">
-			
-			<div class="col-9">
-				<form class="form" role="form" autocomplete="off"  style=" margin-bottom: 50px;" action="{{route('profile.update')}}" method="POST">
-
-					{{csrf_field()}}
 					<div class="form-group row">
 						<label class="col-sm-3 col-form-label form-control-label">Name</label>
 						<div class="col-sm-6">
@@ -74,9 +67,9 @@
 						</div>
 					</div>
 					<div class="form-group row" style="margin-bottom: 30px;">
-						<div class="col">
+						<div class="col" style="margin-left: 180px;">
 							<button class="btn btn-info" >Update</button>
-							<a href="{{ url('profile') }}" title=""  id="edit_button"class="btn btn-info">Cancel</a>
+							<a href="{{ url('profile') }}" title=""  id="edit_button"class="btn btn-danger">Cancel</a>
 						</div>
 					</div>
 				</form>

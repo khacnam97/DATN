@@ -62,7 +62,7 @@ class FrontController extends Controller
 		->join('restaurants', 'posts.restaurant_id', '=', 'restaurants.id')
 		->leftJoin('ratings', 'posts.id', '=', 'ratings.post_id')
 		->leftJoin('users as userscmt', 'ratings.user_id', '=', 'userscmt.id')
-		->select('posts.id', 'posts.restaurant_id', 'posts.title', 'posts.user_id', 'posts.describer','posts.id','posts.created_at as create_at', 'photos.photo_path', 'users.name', 'restaurants.name as restaurant', 'restaurants.lat', 'restaurants.lng','restaurants.address','ratings.id as rating_id' , 'ratings.rating as rate', 'ratings.created_at', 'userscmt.id as cmtid', 'userscmt.name as cmtname', 'userscmt.avatar')
+		->select('posts.id', 'posts.restaurant_id', 'posts.title', 'posts.user_id', 'posts.describer','posts.id','posts.created_at as create_at', 'photos.photo_path', 'users.name', 'restaurants.name as restaurant', 'restaurants.lat', 'restaurants.longt','restaurants.address','ratings.id as rating_id' , 'ratings.rating as rate', 'ratings.created_at', 'userscmt.id as cmtid', 'userscmt.name as cmtname', 'userscmt.avatar')
 		->where('posts.id', '=', $post_id)
 		->get();
 		$rating = DB::table('ratings')

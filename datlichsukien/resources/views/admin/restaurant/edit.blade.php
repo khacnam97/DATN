@@ -65,7 +65,7 @@
       <input type="hidden" value="{{$restaurant->lat}}" class="form-control input-sm" name="lat" id="lat" required="">
     </div>
     <div class="form-group col-md-3">
-       <input type="hidden" value="{{$restaurant->lng}}" class="form-control input-sm" name="lng" id="lng" required="">
+       <input type="hidden" value="{{$restaurant->longt}}" class="form-control input-sm" name="lng" id="lng" required="">
     </div>
   </div>
   <button type="submit" class="btn btn-primary">
@@ -102,7 +102,7 @@ async defer></script>
 
 <script type="text/javascript">
   var latvalue = {!! json_encode($restaurant->lat) !!}; 
-  var lngvalue = {!! json_encode($restaurant->lng) !!};
+  var lngvalue = {!! json_encode($restaurant->longt) !!};
   var namevalue = {!! json_encode($restaurant->name) !!};
   var addressvalue = {!! json_encode($restaurant->address) !!};
   var infowindow = new google.maps.InfoWindow;

@@ -30,20 +30,15 @@ class ProfileController extends Controller
 		$user->birthday = $request->get('birthday');
 		$user->address = $request->get('address');
 		$user->phone = $request->get('phone');
-		$user->save();
-		return redirect('profile');
-	}
-	public function update_avatar(Request $request)
-	{
 		if ($request->has('avatar')) {
 			$user = Auth::user();
 			$avatar = $request->avatar;
 			$avatarName = "/picture/avatar/" . $request->avatar->getClientOriginalName();
 			Image::make($avatar)->save(public_path($avatarName));
 			$user->avatar = $avatarName;
-			$user->save();
 		}
-		return redirect('edit');
+		$user->save();
+		return redirect('profile');
 	}
 	public function mypost()
 	{

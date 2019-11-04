@@ -45,7 +45,7 @@ class RestaurantController extends Controller
         $restaurant->phone=$request->phone;
         $restaurant->district_id=$request->district_id;  
         $restaurant->lat=$request->lat;
-        $restaurant->lng=$request->lng;     
+        $restaurant->longt=$request->lng;     
         $restaurant->save();
         $restaurant=Restaurant::all();
         // $category=Category::all();
@@ -80,7 +80,7 @@ class RestaurantController extends Controller
         // $restaurant->category_id = $request->get('category_id');
         $restaurant->district_id = $request->get('district_id');
         $restaurant->lat=$request->get('lat');
-        $restaurant->lng=$request->get('lng');
+        $restaurant->longt=$request->get('lng');
         $restaurant->save();
 
         return \Redirect::route('admin.restaurant.edit', [$restaurant->id,'restaurant'=>$restaurant])->with('message',  Config::get('constant.restaurant.editPlace'));

@@ -49,16 +49,31 @@
             </div>
         </div>
         <div style="width: 90%; margin-left: 5%; margin-top: 30px;">
-            <form class="form-inline">
-                <input aria-label="Search" class="form-control" placeholder="Search" type="search">
-                    <button class="btn btn-outline-success " type="submit">
-                        Search
-                    </button>
-                </input>
-            </form>
+            <form class="form-inline" action="{{route('search.list')}}" method="get">   
+            <div class="row">        
+            <div>
+               <input class="typeahead form-control mr-sm-2" type="text" placeholder="Search" name="search" required="" id="inputsearch" autocomplete="off">
+            </div>
+                 
+            <div>
+              <button class="btn " type="submit" style="background: #FB8B34; color: white; " id="btnsearch"> <span class="font-weight-bold" >Search </span></button>
+            </div>
+            </div>
+          </form>
         </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+    <script type="text/javascript">
+      var path = "{{ route('autocomplete') }}";
+      $('input.typeahead').typeahead({
+        source:  function (query, process) {
+          return $.get(path, { query: query }, function (data) {
+            return process(data);
+          });
+        }
+      });
+    </script>
     <div class="col-9">
     	<div class="container-fluid" id="topplace">
         <div style="text-align: center;margin-top:50px;color: #b3b3ba;" ><h2>NHỮNG ĐỊA ĐIỂM TỔ CHỨC ĐƯỢC ĐÁNH GIÁ CAO</h2></div>
