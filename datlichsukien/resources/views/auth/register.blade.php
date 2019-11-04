@@ -43,7 +43,7 @@
         <input type="email" id="inputEmail" class="form-control" name="email" value="{{old('email')}}" placeholder="Email address" required >
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
-        <div class="form-group col-md-8">
+        <div class="form-group ">
             <label for="inputState">Role</label>
             <select id="inputState" class="form-control" name="role">
                 <option selected value="3">Người đặt lịch</option>
