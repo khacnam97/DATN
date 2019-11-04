@@ -42,6 +42,14 @@
   <script type="text/javascript" src="{{asset('ckeditor/adapters/jquery.js') }}"></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  
+  <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+  <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+
+
   <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body id="home" class="wide body-light multipage multipage-sub">
@@ -108,14 +116,14 @@
                 <a class="dropdown-item" href="">Quản lí đặt lịch</a>
                 <a class="dropdown-item" href="{{route('show_changePass')}}">Đổi mật khẩu</a>
                 @if (Auth::user()->role == 1)
-                <a class="dropdown-item" href="">Bài đăng của tôi</a>
+                <a class="dropdown-item" href="{{route('mypost')}}">Bài đăng của tôi</a>
                 <a class="dropdown-item" href="">Phê duyệt bài đăng</a>
                 <a class="dropdown-item" href="">Quản lí user</a>
                 <a class="dropdown-item" href="{{route('admin.index')}}"><span style="font-weight: bold;">Trang quản lí</span></a>
 
 
                 @elseif (Auth::user()->role == 2)
-                <a class="dropdown-item" href="">Bài đăng của tôi</a>
+                <a class="dropdown-item" href="{{route('mypost')}}">Bài đăng của tôi</a>
                 @else
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#upgradeModal">Cập nhật tài khoản</a>
                 @endif

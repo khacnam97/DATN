@@ -81,6 +81,18 @@ Route::get('/home', function(){
 	Route::post('/detail/rate','FrontController@rate');
 
 	Route::get('/schedule','ScheduleController@index')->name('schedule');
+
+	Route::get('/search_list', 'SearchListController@getsearch')->name('search.list');
+	Route::get('/autocomplete', 'SearchListController@autocomplete')->name('autocomplete');
+
+	Route::get('/mypost','ProfileController@mypost')->name('mypost');
+
+	Route::group(['prefix' => 'account', 'middleware' => 'auth'],function(){
+		Route::get('/post', 'PostController@showformAddPost')->name('account.addpost');
+		Route::post('/post', 'PostController@add')->name('account.addpost');
+		Route::get('/autocomplete', 'PostController@autocomplete')->name('post.autocomplete');
+		Route::get('/autocompleteAddress', 'PostController@autocompleteAddress')->name('post.autocompleteAddress');
+	});
 });
 //Route::get('register', 'Auth\RegisterController@showFormRegister')->name('show.register');
 Route::post('signup', 'Auth\RegisterController@register')->name('signup');

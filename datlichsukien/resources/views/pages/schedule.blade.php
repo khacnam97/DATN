@@ -4,8 +4,8 @@
 @endsection
 @section('content')
 
-<div class="container"  id="show_profile" style="margin-top: 100px; margin-bottom: 50px;display:flex;justify-content: center;">
-	<div style="width: 800px; height: 500px; border-style: ridge;">
+<div class="container"  id="show_profile" style="margin-top: 100px; margin-bottom: 50px;display:flex; justify-content: center;">
+	<div style="width: 800px; height: 500px; border-style: ridge;background-color: #dee2e6;">
 		
 		<div class="row" style="justify-content: center;">
 			<div class="col-9">
@@ -35,17 +35,24 @@
 					<div class="form-group row">
 						<label class="col-sm-3 col-form-label form-control-label">Mức giá mỗi bàn</label>
 						<div class="col-sm-6">
-							<input class="form-control" type="text" value="{{Auth::user()->birthday}}" >
+							<input class="form-control" type="text" value="" >
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-sm-3 col-form-label form-control-label">Addess</label>
+						<label class="col-sm-3 col-form-label form-control-label">Địa chỉ</label>
 						<div class="col-sm-6">
-							<input class="form-control" type="text" value="{{Auth::user()->address}}"  >
+							<input class="form-control" type="text" value="" >
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-sm-3 col-form-label form-control-label">Phone</label>
+						<label class="col-sm-3 col-form-label form-control-label">Thời gian</label>
+						
+						<div class='col-sm-6' id='datetimepicker1'>
+		                    <input id="datepicker" name="" value="" required autocomplete="">
+                		</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label form-control-label">Số điện thoại</label>
 						<div class="col-sm-6">
 							<input class="form-control" type="text" value="{{Auth::user()->phone}}" >
 						</div>
@@ -61,5 +68,10 @@
 		</div>
 	</div>
 </div>
-
+<script>
+        $('#datepicker').datepicker({
+            format: 'mm-dd-yyyy  ',
+            uiLibrary: 'bootstrap4'
+        });
+    </script>
 @endsection
