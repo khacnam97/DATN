@@ -9,7 +9,7 @@
 		
 		<div class="row" style="justify-content: center;">
 			<div class="col-9">
-				<form class="form" role="form" action="{{route('order.add',$restaurant->id)}}" method="post" autocomplete="off" style="margin-bottom: 30px;">
+				<form class="form" role="form" action="{{route('order.add')}}" method="post" autocomplete="off" style="margin-bottom: 30px;">
 					<div >
 						<h1 style="text-align: center;"></h1>
 					</div>
