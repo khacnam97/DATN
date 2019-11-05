@@ -94,27 +94,27 @@
         </span>
     </a>
 </div>
-<div class="row" style=" width: 100%; margin-top: 20px;  " >
-    <div  style="background-color:  #f8f9fa; width: 340px;" >
-        <div style="background-color: #e9ecef; height: 500px;" >
-        <!-- <div  > -->
-                <div id="map" style="width:300px; margin-left: 25px;height: 300px; " ></div>       
-        <!-- </div> -->
-        <div style="width: 90%; margin-left: 5%; margin-top: 30px;">
+<div class="row">
+    <div class="col-3"  style="background-color:  #f8f9fa" >
+        <div id="map" style="width:96%; margin-left: 3%;height: 300px;margin-top: 10px;"  >
+          
+        </div>       
+        <div style="width: 100%; margin-left: 10px; margin-top: 30px;">
             <form class="form-inline" action="{{route('search.list')}}" method="get">   
             <div class="">        
             <div>
-               <input class="typeahead form-control mr-sm-2" type="text" placeholder="Search" name="search" required="" id="inputsearch" autocomplete="off">
+               <input class="typeahead form-control" type="text" placeholder="Search" name="search" required="" id="inputsearch" autocomplete="off" style="margin-bottom: 10px">
             </div>
                  
             <div>
-              <button class="btn btn-outline-success " type="submit" style="background: #FB8B34; color: white; " id="btnsearch"> Search </button>
+              <button class="btn btn-success" type="submit" id="btnsearch"> Search </button>
             </div>
             </div>
           </form>
         </div>
-        </div>
     </div>
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
     <script type="text/javascript">
       var path = "{{ route('autocomplete') }}";
@@ -126,9 +126,9 @@
         }
       });
     </script>
-    <div class="col-8" style="margin-left: 90px;">
-    	<div class="container-fluid" id="topplace">
-        <div style="text-align: center;margin-top:50px;color: #b3b3ba;" ><h2>NHỮNG ĐỊA ĐIỂM TỔ CHỨC ĐƯỢC ĐÁNH GIÁ CAO</h2></div>
+    <div class="col-9">
+      <div class="" id="topplace">
+        <div style="text-align: center;margin-top:50px;color: #b3b3ba;" ><h4>NHỮNG ĐỊA ĐIỂM TỔ CHỨC ĐƯỢC ĐÁNH GIÁ CAO</h4></div>
 
         <div class="row" style="justify-content: center;">
             @if($top_rating->count() !== 0)
@@ -210,8 +210,11 @@
             </div>
             @endforeach
         </div>
-
     </div>
+{{--     <div class="col-9" style="margin-left: 10px;">
+    	
+
+    </div> --}}
  </div>   
 <div class="container">
 	<div style="text-align: center;margin-top:50px;" id="contact">

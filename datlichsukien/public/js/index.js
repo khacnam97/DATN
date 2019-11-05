@@ -48,5 +48,7 @@ $(document).ready(function(){
 		$('#myModal2').modal('hide');
 	    $("#myModal").modal("show");
 	})
+
+	
 })		
 
