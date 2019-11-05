@@ -24,7 +24,7 @@ class OrderController extends Controller
 		// ->where('restaurants.id','=',$id);
 		return view('pages.order',['order_time'=>$order_time]);
 	}
-	public function addOrder(Request $request,$id)
+	public function addOrder(Request $request)
     {
         // $this->validate($request,
         //     [   'name'=>'required',
