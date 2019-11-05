@@ -216,7 +216,7 @@ $photo_path = $data->unique('photo_path')->values();
       @foreach ($post_relate as $record)
       <div class="col-sm-3" style="margin:50px 0;">
         <div class="card-img" style="height:280px;">
-          <a href="{{route('detail',$record->slug)}}" title="" style="text-decoration: none;">
+          <a href="{{route('detail',$record->id)}}" title="" style="text-decoration: none;">
             <div style="height: 200px;">
               <img class="card-img-top list_images" src="/{{ $record->photo_path }}" alt="{{$record->title}}" style="height: 200px;">
             </div>
