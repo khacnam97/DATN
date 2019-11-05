@@ -2,6 +2,7 @@
 @section('header')
 <link rel="stylesheet" type="text/css" href="/css/custom/rating.css">
 <link rel="stylesheet" type="text/css" href="/css/custom/front.css">
+
 <style>
   #map {
     height: 500px;
@@ -11,7 +12,6 @@
 
 @endsection
 @section('content')
-
 
 <script>
   var map;
@@ -124,14 +124,18 @@ $photo_path = $data->unique('photo_path')->values();
       </div>
 
     </div>
-    <div >
-      @if(Auth::check())
-      <a href="{{route('schedule')}}" class="btn btn-primary" style="width: 200px;"> Đặt lịch</a>
-      @else
+ 
+        <div class="row">
+            <div class="form-group col-md-4" >
+               @if(Auth::check())
+              <a href="{{route('order',$data[0]->restaurant_id)}}" class="btn btn-primary"  style="width: 200px;"> Đặt lịch</a>
+                @else
 
-      <a style="width:200px;" class="btn btn-primary" data-toggle="modal" data-target="#myModal" href="{{ route('login') }}">Đặt lịch</a>
-        @endif
-    </div>
+                <a style="width:200px;" class="btn btn-primary" data-toggle="modal" data-target="#myModal" href="{{ route('login') }}">Đặt lịch</a>
+                @endif
+           </div>
+        </div>
+
     <div style="margin: 20px 0 100px 0;width: 100%;">
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
@@ -216,7 +220,7 @@ $photo_path = $data->unique('photo_path')->values();
       @foreach ($post_relate as $record)
       <div class="col-sm-3" style="margin:50px 0;">
         <div class="card-img" style="height:280px;">
-          <a href="{{route('detail',$record->slug)}}" title="" style="text-decoration: none;">
+          <a href="{{route('detail',$record->id)}}" title="" style="text-decoration: none;">
             <div style="height: 200px;">
               <img class="card-img-top list_images" src="/{{ $record->photo_path }}" alt="{{$record->title}}" style="height: 200px;">
             </div>

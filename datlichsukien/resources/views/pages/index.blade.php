@@ -58,6 +58,7 @@
       }
       
     </script>
+    
 <div class="carousel slide" data-ride="carousel" id="demo"  >
     <!-- Indicators -->
     <ul class="carousel-indicators">
@@ -101,7 +102,7 @@
         <!-- </div> -->
         <div style="width: 90%; margin-left: 5%; margin-top: 30px;">
             <form class="form-inline" action="{{route('search.list')}}" method="get">   
-            <div >        
+            <div class="">        
             <div>
                <input class="typeahead form-control mr-sm-2" type="text" placeholder="Search" name="search" required="" id="inputsearch" autocomplete="off">
             </div>
