@@ -71,7 +71,7 @@ class PostController extends Controller
         else{
         $posts -> is_approved =0;
         }
-         $posts ->slug = Str::slug($request->title, '-');
+         // $posts ->slug = Str::slug($request->title, '-');
         //make folder chứa photo
         $path = 'picture/admin/post/'.$posts->id;
         if(!File::exists($path)){
