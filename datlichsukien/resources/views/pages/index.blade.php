@@ -3,7 +3,61 @@
 @extends('pages.home')
 @section('content-section')
 <style type="text/css" media="screen"></style>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBt5tJTim4lOO3ojbGARhPd1Z3O3CnE-C8&libraries=places&callback=initMap"async defer></script>
+<script type="text/javascript">
+   var map, infoWindow;
+   var markers = [];
+   function initMap(){
+     map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: -34.397, lng: 150.644},
+      zoom: 16,
+    });
+     infoWindow = new google.maps.InfoWindow;
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            
+             var restaurant = <?php print_r(json_encode($restaurant)) ?>;
+             var marker = new GMaps({
+              el: '#map',
+              center: pos,
+              zoom:12
+            });
+            
+            marker.addMarker({
+             position: pos,
+             title:'vị trí của bạn',
+             infoWindow: {
+              content: 'vị trí của bạn'
+            }  
+          });
+            $.each( restaurant, function( index, value ){
+              marker.addMarker({
+                lat: value.lat,
+                lng: value.longt,
+                title: value.name,
+                infoWindow: {
+                  content: 'Tên địa điểm :'+value.name+'<br>Địa chỉ :'+value.address
+                }       
+              });
+             });
+            
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
+      
+    </script>
 <div class="carousel slide" data-ride="carousel" id="demo"  >
     <!-- Indicators -->
     <ul class="carousel-indicators">
@@ -40,23 +94,20 @@
     </a>
 </div>
 <div class="row" style=" width: 100%; margin-top: 20px;  " >
-    <div class="col-3" style="background-color:  #f8f9fa; " >
+    <div  style="background-color:  #f8f9fa; width: 340px;" >
         <div style="background-color: #e9ecef; height: 500px;" >
-        <div  style="width:150px; margin-left: 5%; ">
-            <div class="map-responsive">
-                <iframe allowfullscreen="" frameborder="0" height="200" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=ĐaNang" style="border:0" width="300">
-                </iframe>
-            </div>
-        </div>
+        <!-- <div  > -->
+                <div id="map" style="width:300px; margin-left: 25px;height: 300px; " ></div>       
+        <!-- </div> -->
         <div style="width: 90%; margin-left: 5%; margin-top: 30px;">
             <form class="form-inline" action="{{route('search.list')}}" method="get">   
-            <div class="row">        
+            <div >        
             <div>
                <input class="typeahead form-control mr-sm-2" type="text" placeholder="Search" name="search" required="" id="inputsearch" autocomplete="off">
             </div>
                  
             <div>
-              <button class="btn " type="submit" style="background: #FB8B34; color: white; " id="btnsearch"> <span class="font-weight-bold" >Search </span></button>
+              <button class="btn btn-outline-success " type="submit" style="background: #FB8B34; color: white; " id="btnsearch"> Search </button>
             </div>
             </div>
           </form>
@@ -74,7 +125,7 @@
         }
       });
     </script>
-    <div class="col-9">
+    <div class="col-8" style="margin-left: 90px;">
     	<div class="container-fluid" id="topplace">
         <div style="text-align: center;margin-top:50px;color: #b3b3ba;" ><h2>NHỮNG ĐỊA ĐIỂM TỔ CHỨC ĐƯỢC ĐÁNH GIÁ CAO</h2></div>
 

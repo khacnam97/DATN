@@ -62,7 +62,7 @@
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script> 
 <script type="text/javascript">
-    CKEDITOR.replace('editor1');
+    //CKEDITOR.replace('editor1');
     var $input1 = $("#name");
     var $input2= $("#title");
     var route1 = "{{route('admin.rating.select')}}";
