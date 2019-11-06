@@ -10,25 +10,26 @@
 		<div class="row" style="justify-content: center;">
 			<div class="col-9">
 				<form class="form" role="form" action="{{route('order.add')}}" method="post" autocomplete="off" style="margin-bottom: 30px;">
+					<input type="hidden" name="_token" value="{{ csrf_token()}}">
 					<div >
-						<h1 style="text-align: center;"></h1>
+						<h1 style="text-align: center;">{{$restaurant->name}}</h1>
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-3 col-form-label form-control-label">Ngày tổ chức </label>
 						
 						<div class='col-sm-6' id='datetimepicker1'>
-		                    <input id="datepicker" name="date" value=""  required autocomplete="">
+		                    <input id="datepicker" name="order_date" value=""  required autocomplete="">
                 		</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-3 col-form-label form-control-label">Thời gian tổ chức</label>
 						<div class="col-sm-6">
-							<select class="custom-select" name="" id="">
-						        @if($order_time)
+						  <select class="custom-select" name="order_time_id" id="order_time_id">
+						    	@if($order_time)
 								@foreach ($order_time as  $record)
 								<option value="{{$record->id}}">{{$record->time}}</option>
 								@endforeach
-								@endif
+								@endif   
 						       
 					      </select>
 						</div>
@@ -66,6 +67,16 @@
 							<input class="form-control" name="phone" type="text" value="{{Auth::user()->phone}}" required="">
 						</div>
 					</div>
+					
+							<!-- <input class="form-control" name="user_id" type="text" value="{{Auth::user()->id}}" required="" hidden=""> -->
+						
+							
+							<input class="form-control" name="restaurant_id" type="text" value="{{$restaurant->id}}" required="" hidden="">
+							
+						
+					
+
+						
 					<div class="form-group row" style="margin-bottom: 30px;">
 						<div class="col" style="margin-left: 150px;">
 							<button class="btn btn-info" type="submit" >Đặt lịch</button>
@@ -79,7 +90,7 @@
 </div>
 <script>
         $('#datepicker').datepicker({
-            format: 'mm-dd-yyyy  ',
+            format: 'yyyy-mm-dd',
             uiLibrary: 'bootstrap4'
         });
     </script>

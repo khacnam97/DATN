@@ -1,5 +1,5 @@
 <head>
-	<title>Add new post</title>
+	<title>Thêm bài viết</title>
 	<link rel="stylesheet" type="text/css" href="{{asset('css/dropzone.css')}}">
 	<style type="text/css">
 		.gallery img{
@@ -36,7 +36,7 @@
 <div class="container" style="margin-top: 60px; text-align: left;">
 
 
-	<h3 class="text-center"> Add new Post</h3>
+	<h3 class="text-center"> Thêm bài viết </h3>
 	@if (session('success'))
 	<div class="alert alert-success">
 		{{ session('success') }}
@@ -47,17 +47,9 @@
 		{{ session('error') }}
 	</div>
 	@endif
-	<FORM   action="{{route('account.addpost')}}" method="post" enctype="multipart/form-data">
-		@csrf
+	<form action="{{route('account.addpost')}}" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="_token" value="{{ csrf_token()}}">
 		<div class="form-row">
-			<div class="form-group col-md-6">
-				<label for="cate1" class="col-md-4 col-form-label"  > Category </label>
-				<select class="custom-select" class="col-md-2" id="cete1" name="category">
-					@foreach($category as $ca)
-					<option> {{$ca->name}} </option>
-					@endforeach
-				</select>
-			</div>	
 			<div class="form-group col-md-6">
 				<label  for="name" class="col-form-label" > Tên địa điểm(<span style="color: red">*</span>) </label>
 				<input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" required="" value="{{ old('name') }}" placeholder="Tên địa điểm" autocomplete="off">
@@ -67,27 +59,10 @@
 				</span>
 				@enderror
 			</div>
-			<div class="form-group col-md-6">
-				<label  for="name" class="col-form-label" > Tỉnh - Thành phố (<span style="color: red">*</span>) </label>
-				<input type="text" autocomplete="off"  class="form-control" name="city" id="city" required="" value="{{ old('city') }}" placeholder="Tỉnh-Thành phố" >
-				<div id="errotinh" style="display: none;">
-					<span style="color: red;">Không tìm thấy kết quả</span>
-				</div>
-			</div>
-			
-			<div class="form-group col-md-6" style="display: none" id="showquan">
-				<label  for="name" class="col-form-label" > Quận - Huyện (<span style="color: red">*</span>)</label>
-				<input type="text" autocomplete="off"  class="form-control" name="districts_id" id="district" required="" value="{{ old('city') }}" placeholder="Quận-Huyện" >
-				<div id="errohuyen" style="display: none;">
-					<span style="color: red;">Không tìm thấy kết quả</span>
-				</div>
-			</div>
-		</div>
 
-		<div class="form-row " >
 			<div class="form-group col-md-6">
-				<label  for="address" class="col-form-label col-md-4 "> Địa chỉ </label>
-				<input type="text"  class="form-control col-md-8 @error('address') is-invalid @enderror" placeholder="Full address" name="address" id="address" required="" value="{{ old('address') }}">
+				<label  for="name" class="col-form-label" > Địa chỉ(<span style="color: red">*</span>) </label>
+				<input type="text"  class="form-control @error('address') is-invalid @enderror" placeholder="Full address" name="address" id="address" required="" value="{{ old('address') }}">
 				@error('address')
 				<span class="invalid-feedback" role="alert">
 					<strong>{{ $message }}</strong>
@@ -96,9 +71,29 @@
 
 			</div>
 		</div>
+		<div class="form-row">
+			<div class="form-group col-md-6"  >
+				<label  for="name" class="col-form-label" > Quận - Huyện (<span style="color: red">*</span>)</label>
+				<select class="custom-select" name="district_id" id="district">
+				
+					@if($district)
+					@foreach ($district as  $record)
+					<option value="{{$record->id}}">{{$record->name}}</option>
+					@endforeach
+					@endif
+					
+			   </select>
+			</div>
+			<div class="form-group col-md-6">
+				<label  for="name" class="col-form-label" > Tỉnh - Thành phố (<span style="color: red">*</span>) </label>
+				<input type="text" autocomplete="off"  class="form-control" name="city" id="city" required="" value="Đà Nẵng " placeholder="Tỉnh-Thành phố" disabled="">
+			</div>
+		</div>
+
+		
 		<div class="form-group ">
 			<label for="">Map</label>
-			<input id="pac-input" style="width: 200px;" class="controls" type="text" placeholder="Search Box" >
+			<input id="pac-input" style="width: 500px;" class="controls" type="text" placeholder="Search Box" >
 			<div id="map"></div>
 		</div>
 		<div class="form-row">
@@ -119,7 +114,7 @@
 			@enderror
 		</div>
 		<div class="form-group">
-			<label class="col-sm-2 col-form-label @error('title') is-invalid @enderror">Title bài đăng (<span style="color: red">*</span>)</label>
+			<label class=" col-form-label @error('title') is-invalid @enderror">Title bài đăng (<span style="color: red">*</span>)</label>
 			<input type="text" class="form-control col-md-8" placeholder="Tiêu đề bài viết" name="title" id="title" required="" value="{{ old('title') }}" >
 			@error('title')
 			<span class="invalid-feedback" role="alert">
@@ -151,10 +146,10 @@
 		</div>				
 
 		<div style=" margin-top: 100px; margin-bottom: 50px;">
-			<button type="submit" class="btn btn-primary" style="width: 100px;" id="submit">Đăng bài</button>
+			<button type="submit" class="btn btn-primary" style="width: 100px;" id="">Đăng bài</button>
 			<button type="reset" class="btn btn-dark" style="width: 100px;" id="reset"> Reset</button>
 		</div>
-	</FORM>
+	</form>
 
 
 </div>
@@ -168,14 +163,8 @@
 			$('.gallery img').hide();		
 		})
 
-		//ckeck lỗi nhập trk khi submit
-	    $('#submit').on('click', function(){
-	    	$('#errotinh').css('display') ;
-	    	if($('#errotinh').css('display') == "block" || $('#errohuyen').css('display') == 'block'){
-	    		alert("Erro, vui lòng kiểm tra lại thông tin");
-	    		return false;
-	    	}
-	    })
+		
+	    
 	});
 	$('#gallery-photo-add').on('click', function() {
 		$('.gallery img').hide();
@@ -291,7 +280,7 @@
 	}
 </script>
         <script type="text/javascript" src="{{asset('ckeditor/adapters/jquery.js') }}"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-rW15K4v7WHlCWmnCYMLzyR0pU1cPpeI&libraries=places&callback=initAutocomplete"async defer></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBt5tJTim4lOO3ojbGARhPd1Z3O3CnE-C8&libraries=places&callback=initAutocomplete"async defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 
 <script type="text/javascript">

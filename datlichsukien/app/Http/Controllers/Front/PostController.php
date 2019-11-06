@@ -24,13 +24,12 @@ use Config;
 class PostController extends Controller
 {
      public function showformAddPost() {
-    	$category = Category::all();
-		$Restaurant = Restaurant::all();
+		$restaurant = Restaurant::all();
 		$district = District::all();
-    	return view('pages.addpost',['category' => $category, 'Restaurant' => $Restaurant,  'district' => $district]);
+    	return view('pages.addpost',[ 'restaurant' => $restaurant,  'district' => $district]);
     }
     //function add one Post
-    public function Add(Request $request){
+    public function add(Request $request){
     	$request-> validate([
             'name' => 'required',
             'phone' => 'required|min:10 ',
@@ -41,43 +40,39 @@ class PostController extends Controller
                 'required',            ]
         ]);
         // Transaction database
-        // DB:transaction(function(){
+         
         	$restaurant = Restaurant::all();
+            dd($request);
         	$post = new Post;
-        	$post -> user_id = Auth::id();
-        	$post -> phone = $request ->phone;
+        	$post ->user_id = Auth::id();
 
+        	$post ->phone = $request ->phone;
             //check again  input tỉnh huyên
-            if(District::where('name' , $request->districts_id)->first() == null){
-                return redirect()->back()->with(config::get('constant.error'), constant::get('constant.message_fail_input'))->withInput($request->input());
-            }
-            else{
-                if(City::where('id',District::where('name' , $request->districts_id)->first()->cities_id)->first()->id == City::where('name',$request->city)->first()->id){
-                        $findIdPDistrict = District::where('name' , $request->districts_id)->first()->id;
-                }
-                else{
-                    return redirect()->back()->with(config::get('constant.error'), config::get('constant.message_fail_input'))->withInput($request->input());
-                }
-            }
+            // if(District::where('name' , $request->districts_id)->first() == null){
+            //     return redirect()->back()->with(config::get('constant.error'), constant::get('constant.message_fail_input'))->withInput($request->input());
+            // }
+            // else{
+            //     if(City::where('id',District::where('name' , $request->districts_id)->first()->cities_id)->first()->id == City::where('name',$request->city)->first()->id){
+            //             $findIdPDistrict = District::where('name' , $request->districts_id)->first()->id;
+            //     }
+            //     else{
+            //         return redirect()->back()->with(config::get('constant.error'), config::get('constant.message_fail_input'))->withInput($request->input());
+            //     }
+            // }
         	//check Restaurant exist
-        	$findRestaurant = Restaurant::where([
-                ['name', '=', $request->name],
-                ['districts_id', '=', $findIdPDistrict]
-                ])->first();
-        	if($findRestaurant){
-        	    $post ->Restaurant_id = $findRestaurant->id;
-        	}
-        	else{
+        	// $findRestaurant = Restaurant::where([
+         //        ['name', '=', $request->name],
+         //        ['districts_id', '=', $findIdPDistrict]
+         //        ])->first();
+        	
         		$newRestaurant = new Restaurant;
         		$newRestaurant->name = $request->name;
         		$newRestaurant->address = $request->address;
                 $newRestaurant->lat = $request->lat;
-                $newRestaurant->longt = $request->lng;
-        		$newRestaurant->category_id = Category::where('name', $request->category)->first()->id;
-                
-                $newRestaurant->districts_id = $findIdPDistrict;
+                $newRestaurant->longt = $request->lng;                
+                $newRestaurant->districts_id =$request->$district_id;
 
-        	}
+        	
 
             $post ->title = $request ->title;
             $post ->is_approved = 0;
@@ -100,11 +95,11 @@ class PostController extends Controller
             }
 
             //save new Restaurant
-            if($findRestaurant == null){
+            // if($findRestaurant == null){
                 $newRestaurant -> save();
-                $post ->Restaurant_id = $newRestaurant->id;
+                $post ->restaurant_id = $newRestaurant->id;
 
-            }
+            // }
             //save post
             $post ->save();
             event(new CreatePostHandler($post));
@@ -131,7 +126,6 @@ class PostController extends Controller
             $photoflag = Photo::where('post_id', $post->id)->first();
             $photoflag->flag =1;
             $photoflag->save();
-        // });
         return redirect()->route('mypost')->with(config::get('constant.success'), config::get('constant.message_add_success'));
     }
      public function autocomplete(Request $request)
@@ -147,4 +141,143 @@ class PostController extends Controller
                 ->first();
         return response()->json($result);
     }
+    //show form edit post
+    public function showformEditPost($idPost)
+    {
+
+        $id = Auth::id();
+        //check  
+        if(Post::where('id', $idPost)->first() == null){
+            return view('includes.erro404');
+        }
+        if( Post::where('id', $idPost)->first()->user_id != $id){
+            return view('includes.erro404');            
+        }
+        $post = Post::where('id',$idPost)->first();
+        $category = Category::all();
+        $place = Place::all();
+        $city = City::all();
+        $district = District::all();
+        return view('pages.editPost',['category' => $category, 'place' => $place, 'city' =>$city, 'district' => $district, 'post' => $post]);
+    }
+
+    //edit post
+    public function edit(Request $request, $idpost){
+        //validate dữ liiêu
+        $request-> validate([
+            'phone' => 'required ',
+            'title' => 'required',
+            'descrice' => 'required',
+            'districts_id' => 'required',
+            'address' => [
+                'required',            ]
+        ]);
+        //check input dia diem
+        //check idpost input 
+        if(POST::find($idpost) == null || POST::find($idpost)->user_id != Auth::id()){
+            return redirect()->back()->with(config::get('constant.error'), config::get('constant.message_edit_fail'));
+        }
+        $posts = POST::find($idpost);
+        $posts ->phone = $request->phone;
+        if($request->approved != null){
+            $posts ->is_approved = $request->approved;
+        }
+        $posts ->title = $request ->title;
+        $posts ->describer= $request->input('descrice');
+
+        //edit place
+        $place = Place::where([
+            ['name', $request->name],
+            ['districts_id', District::where('name',$request->districts_id)->first()->id]
+            ])->first();
+        $place ->address = $request->address;
+        $place->districts_id = District::where('name', $request->districts_id)->first()->id; 
+        //edit photos
+        $path = 'picture/admin/post/'.$posts->id;
+        if($request->has('filename')){
+            foreach($request->file('filename') as $image)
+            {   
+                $name=$image->getClientOriginalName();
+
+                //check photo exit
+                $namet=$path."/".$name;                
+                $t = DB::table('photos')
+                ->where("post_id", "=", $idpost)->get();
+                foreach ($t as $key => $value) {
+                        if($value->photo_path ==  $namet  )
+                        return redirect()->back()->with(config::get('constant.error'),'Photo does exitst');
+
+                }  
+                $thumbnailImage = Image::make($image);
+                if($thumbnailImage->width() < 800 || $thumbnailImage->height()<500)
+                {
+                    return redirect()->back()->with(config::get('constant.error'), config::get('constant.message_fail_photo'));
+                }
+                if($thumbnailImage->width() > 2500 && $thumbnailImage->height()>1300)
+                {
+                    return redirect()->back()->with(config::get('constant.error'), config::get('constant.message_fail_photo'));
+                }
+                $image->move($path, $name);  
+                $photo = new photo;
+                $photo->photo_path = $path."/".$name;
+                $photo->flag = 0;
+                $photo->post_id=$posts->id;
+                $photo ->save ();
+            }
+        }
+
+        $posts -> save();
+        $place->save();
+        //delete photo
+        $photoedit = $request->p1; // This will get all the request data.
+        $edit = explode('/',$photoedit);
+        foreach ($edit as $da => $value) {
+            if(PHOTO::find($value))
+            {
+                $findphoto = PHOTO::find($value);
+                $path =$findphoto->photo_path; 
+                File::delete($path);
+                $findphoto ->delete();
+                
+            }
+        }
+
+        $photocheck = Photo::where('post_id', $posts->id);
+        if($photocheck->count() == 0){
+            return "NOT Image chosed";
+        }
+        $photoflag = Photo::where('post_id', $posts->id)->first();
+        $photoflag->flag =1;
+        $photoflag->save();
+
+        return redirect()->route('mypost')->with(config::get('constant.success'), config::get('constant.message_edit_success'));
+
+    }
+    //Delete myposst
+    public function delete($id)
+    {
+        //Check input
+        if(POST::where('id', $id)->first() == null){
+            return redirect()->back()->with(config::get('constant.error'), config::get('constant.message_delete_fail'));            
+        }
+        $check = POST::where('id', $id)->first()->user_id;
+        if($check != Auth::id()) {
+            return redirect()->back()->with(config::get('constant.error'), config::get('constant.message_delete_fail'));
+        }
+        else
+        {
+            //transaction database
+            // DB::transaction(function(){
+                $posts = DB::table('posts')
+                    ->where('id' , '=' ,$id)->delete();
+                $photo =DB::table('photos')
+                    ->where('post_id', '=' ,$id)->delete();
+                $path = "/picture/admin/post/".$id;
+                $rating = Rating::where('post_id', $id)->delete(); 
+                File::deleteDirectory(public_path($path));
+            // });
+            return redirect()->route('mypost')->with(config::get('constant.success'), config::get('constant.message_delete_success'));
+        }
+    }
+
 }
