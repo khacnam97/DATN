@@ -87,12 +87,15 @@ Route::get('/home', function(){
 	Route::get('/autocomplete', 'SearchListController@autocomplete')->name('autocomplete');
 
 	Route::get('/mypost','ProfileController@mypost')->name('mypost');
+	Route::post('/mypost/{id}/delete','PostController@delete')->name('mypost.delete');
 
 	Route::group(['prefix' => 'account', 'middleware' => 'auth'],function(){
 		Route::get('/post', 'PostController@showformAddPost')->name('account.addpost');
 		Route::post('/post', 'PostController@add')->name('account.addpost');
 		Route::get('/autocomplete', 'PostController@autocomplete')->name('post.autocomplete');
 		Route::get('/autocompleteAddress', 'PostController@autocompleteAddress')->name('post.autocompleteAddress');
+		Route::get('/edit/{idpost}', 'PostController@showformEditPost')->name('account.editpost');
+		Route::post('/edit/{idpost}', 'PostController@edit')->name('account.editpost');
 	});
 });
 //Route::get('register', 'Auth\RegisterController@showFormRegister')->name('show.register');
