@@ -144,21 +144,20 @@ class PostController extends Controller
     //show form edit post
     public function showformEditPost($idPost)
     {
-
+        //dd($idPost);
         $id = Auth::id();
         //check  
-        if(Post::where('id', $idPost)->first() == null){
-            return view('includes.erro404');
-        }
+        // if(Post::where('id', $idPost)->first() == null){
+        //     return view('includes.error404');
+        // }
         if( Post::where('id', $idPost)->first()->user_id != $id){
-            return view('includes.erro404');            
+            return view('includes.error404');            
         }
         $post = Post::where('id',$idPost)->first();
-        $category = Category::all();
-        $place = Place::all();
-        $city = City::all();
+
+        $restaurant = Restaurant::all();
         $district = District::all();
-        return view('pages.editPost',['category' => $category, 'place' => $place, 'city' =>$city, 'district' => $district, 'post' => $post]);
+        return view('pages.editPost',[ 'restaurant' => $restaurant,  'district' => $district, 'post' => $post]);
     }
 
     //edit post
@@ -168,7 +167,7 @@ class PostController extends Controller
             'phone' => 'required ',
             'title' => 'required',
             'descrice' => 'required',
-            'districts_id' => 'required',
+            'district_id' => 'required',
             'address' => [
                 'required',            ]
         ]);
@@ -178,20 +177,21 @@ class PostController extends Controller
             return redirect()->back()->with(config::get('constant.error'), config::get('constant.message_edit_fail'));
         }
         $posts = POST::find($idpost);
-        $posts ->phone = $request->phone;
+        //$posts ->phone = $request->phone;
         if($request->approved != null){
             $posts ->is_approved = $request->approved;
         }
         $posts ->title = $request ->title;
         $posts ->describer= $request->input('descrice');
-
-        //edit place
-        $place = Place::where([
+        
+        //edit restaurant
+        $restaurant = Restaurant::where([
             ['name', $request->name],
-            ['districts_id', District::where('name',$request->districts_id)->first()->id]
+            ['district_id', District::where('name',$request->district_id)->first()]
             ])->first();
-        $place ->address = $request->address;
-        $place->districts_id = District::where('name', $request->districts_id)->first()->id; 
+        $restaurant ->address = $request->address;
+        $restaurant->district_id = District::where('name', $request->district_id)->first(); 
+        //dd($restaurant->district_id);
         //edit photos
         $path = 'picture/admin/post/'.$posts->id;
         if($request->has('filename')){
@@ -227,7 +227,7 @@ class PostController extends Controller
         }
 
         $posts -> save();
-        $place->save();
+        $restaurant -> save();
         //delete photo
         $photoedit = $request->p1; // This will get all the request data.
         $edit = explode('/',$photoedit);
