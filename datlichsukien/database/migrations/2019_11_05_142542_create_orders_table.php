@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('restaurant_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('detail_id');
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }

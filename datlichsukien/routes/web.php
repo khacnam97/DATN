@@ -96,6 +96,7 @@ Route::get('/home', function(){
 		Route::get('/autocompleteAddress', 'PostController@autocompleteAddress')->name('post.autocompleteAddress');
 		Route::get('/edit/{idpost}', 'PostController@showformEditPost')->name('account.editpost');
 		Route::post('/edit/{idpost}', 'PostController@edit')->name('account.editpost');
+		Route::get('/myoder','OrderController@myOrder')->name('myOrder');
 	});
 });
 //Route::get('register', 'Auth\RegisterController@showFormRegister')->name('show.register');

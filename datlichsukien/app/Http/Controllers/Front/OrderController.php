@@ -42,7 +42,7 @@ class OrderController extends Controller
         // $restaurant = DB::table('restaurants')
         // ->select('restaurants.id')
         // ->where('restaurants.id','=',$id)->first()->id;
-        $order = new order;
+        $order = new Order;
  
         $order->people_number=$request->people_number;
         $order->address=$request->address;
@@ -52,8 +52,19 @@ class OrderController extends Controller
         $order->order_date=$request->order_date;
         $order->order_time_id=$request->order_time_id;
         $order->restaurant_id=$request->restaurant_id; 
-         dd($request);   
+        // dd($request);   
         $order->save();
         return view('pages.order',['order'=>$order]);
+    }
+    public function myOrder ()
+    {
+       $id = Auth::id();
+       $order =Order::join('restaurants','orders.restaurant_id','=','restaurants.id')
+               ->join('posts','posts.restaurant_id','=','restaurants.id')
+               ->select('orders.id','orders.user_id','orders.order_time_id','orders.phone','orders.people_number','orders.price_table','orders.order_date')
+               ->where('posts.user_id','=',$id)->get();
+      
+
+       return view('pages.myOrder',['order'=>$order]);
     }
 }
