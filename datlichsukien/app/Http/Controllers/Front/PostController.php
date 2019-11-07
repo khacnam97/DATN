@@ -30,23 +30,20 @@ class PostController extends Controller
     }
     //function add one Post
     public function add(Request $request){
+        // dd($request->all());
     	$request-> validate([
             'name' => 'required',
             'phone' => 'required|min:10 ',
             'title' => 'required',
             'descrice' => 'required',
-            'districts_id' => 'required',
-            'address' => [
-                'required',            ]
+            // 'districts_id' => 'required',
         ]);
         // Transaction database
-         
         	$restaurant = Restaurant::all();
-            dd($request);
         	$post = new Post;
         	$post ->user_id = Auth::id();
 
-        	$post ->phone = $request ->phone;
+        	// $post ->phone = $request ->phone;
             //check again  input tỉnh huyên
             // if(District::where('name' , $request->districts_id)->first() == null){
             //     return redirect()->back()->with(config::get('constant.error'), constant::get('constant.message_fail_input'))->withInput($request->input());
@@ -70,14 +67,13 @@ class PostController extends Controller
         		$newRestaurant->address = $request->address;
                 $newRestaurant->lat = $request->lat;
                 $newRestaurant->longt = $request->lng;                
-                $newRestaurant->districts_id =$request->$district_id;
+                $newRestaurant->district_id =$request->district_id;
 
         	
 
             $post ->title = $request ->title;
             $post ->is_approved = 0;
             $post ->describer = $request->descrice;
-    	    
             //check image
             if($request->has('filename')){
             	foreach ($request->file('filename') as $pho) {
@@ -95,16 +91,14 @@ class PostController extends Controller
             }
 
             //save new Restaurant
-            // if($findRestaurant == null){
                 $newRestaurant -> save();
                 $post ->restaurant_id = $newRestaurant->id;
 
             // }
             //save post
             $post ->save();
-            event(new CreatePostHandler($post));
+            // event(new CreatePostHandler($post));
             $toUsers = User::where('role','1')->get();
-            \Notification::send($toUsers, new CreatePost($post));
             //create folder
             $path="picture/admin/post/".$post->id;
             if (!file_exists($path)) {

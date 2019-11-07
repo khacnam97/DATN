@@ -23,6 +23,7 @@ $(document).ready(function(){
   
   /* 2. Action to perform on click */
   $('#stars li').on('click', function(){
+    $('#inputHidenRating').val(this.getAttribute('data-value'))
     var onStar = parseInt($(this).data('value'), 10); // The star currently selected
     var stars = $(this).parent().children('li.star');
     
@@ -43,10 +44,12 @@ $(document).ready(function(){
     else {
         msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
     }
-    responseMessage(msg);
+    // responseMessage(msg);
     
   });
-  
+  // $('#stars').on('click',function(){
+  //   alert($('#stars li.selected').val())
+  // })
   
 });
 

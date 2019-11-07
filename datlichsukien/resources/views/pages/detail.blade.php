@@ -202,6 +202,7 @@ $photo_path = $data->unique('photo_path')->values();
                 </li>
               </ul>
             </div>
+            <input type="" name="inputHidenRating" value="" id="inputHidenRating">
   
 
           <div class="form-group">
@@ -212,7 +213,7 @@ $photo_path = $data->unique('photo_path')->values();
 
 
           </div>
-          <button name="myButton">Send</button>
+          <button name="myButton" type="submit" id="btnRating">Send</button>
         </form>
         @else
         <a style="width:150px;" class="btn btn-primary" data-toggle="modal" data-target="#myModal" href="{{ route('login') }}">Please Login</a>
