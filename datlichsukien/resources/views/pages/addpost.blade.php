@@ -146,7 +146,7 @@
 		</div>				
 
 		<div style=" margin-top: 100px; margin-bottom: 50px;">
-			<button type="submit" class="btn btn-primary" style="width: 100px;" id="">Đăng bài</button>
+			<button type="submit" class="btn btn-primary" style="width: 100px;" >Đăng bài</button>
 			<button type="reset" class="btn btn-dark" style="width: 100px;" id="reset"> Reset</button>
 		</div>
 	</form>

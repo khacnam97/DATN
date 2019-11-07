@@ -35,20 +35,11 @@
 			<FORM   action="{{route('account.editpost', [$idpost=$post->id] )}}" method="post" enctype="multipart/form-data" id="formedit">
 				@csrf
 				<div class="form-row">
-					<div class="form-group col-md-6">
-						<label for="cate1" class="col-md-4 col-form-label"  > Category </label>
-						<select  class="custom-select form-control" id="cate1" onchange="" name="category"  >
-							<option> {{$post->place->category->name}}</option>
-							@foreach($category as $ca)
-								<option> {{$ca->name}}</option>
-							@endforeach
-							
-						</select>
-					</div>	
+					
 					<div class="form-group col-md-6">
 						<label  for="name" class="col-form-label" > Tên địa điểm </label>
 						<p class="form-control" style="
-						background-color: #e9ecef ;"> {{$post->place->name}}</p>
+						background-color: #e9ecef ;"> {{$post->restaurant->name}}</p>
 
 					</div>
 				</div>
@@ -56,7 +47,7 @@
 				<div class="form-row " >
 					<div class="form-group col-md-12">
 						<label  for="address" class="col-form-label col-md-4 "> Địa chỉ cụ thể</label>
-						<input type="text"  class="form-control col-md-8 @error('address') is-invalid @enderror"    value="{{$post->place->address}}" placeholder="Phường(Xã)-Quận(Huyện)-Tỉnh(ThànhPhố)" name="address" id="address" required="" >
+						<input type="text"  class="form-control col-md-8 @error('address') is-invalid @enderror"    value="{{$post->restaurant->address}}" placeholder="Phường(Xã)-Quận(Huyện)-Tỉnh(ThànhPhố)" name="address" id="address" required="" >
 							@error('address')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -66,24 +57,29 @@
 					</div>
 					<div class="form-group col-md-6">
 						<label  for="name" class="col-form-label" > Tỉnh - Thành phố </label>
-						<input type="text" autocomplete="off"  class="form-control" name="city" id="city" required="" value="{{ old('city',$post->place->districts->cities->name) }}" placeholder="Tỉnh-Thành phố" >
+						<input type="text" autocomplete="off"  class="form-control" name="city" id="city" required="" value="Đà Nẵng" placeholder="Tỉnh-Thành phố" disabled="">
 						<div id="errotinh" style="display: none;">
 							<span style="color: red;">Không tìm thấy kết quả</span>
 						</div>
 					</div>
 					<div class="form-group col-md-6">
 						<label  for="name" class="col-form-label" > Quận - Huyện </label>
-						<input type="text" autocomplete="off"  class="form-control" name="districts_id" id="district" required="" value="{{ old('city',$post->place->districts->name) }}" placeholder="Quận-Huyện"  readonly="" >
-						<div id="errohuyen" style="display: none;">
-							<span style="color: red;">Không tìm thấy kết quả</span>
-						</div>
+						
+						<select class="custom-select" name="district_id" id="district">
+				        <option value="{{$post->restaurant->district_id}}">{{$post->restaurant->district->name}}</option>
+				        @if($district)
+				        @foreach ($district as $ca)
+				        <option value="{{$ca->id}}">{{$ca->name}}</option>
+				        @endforeach
+				        @endif
+				      	</select>
 					</div>
 
 				</div>
 				
 				<div class="form-group">
 					<label class="col-form-label "> Số điện thoại </label>
-					<input type="tel" class="form-control col-md-8 @error('phone') is-invalid @enderror "  placeholder="034567890"  value="{{$post->phone}}" name="phone" id="phone">
+					<input type="tel" class="form-control col-md-8 @error('phone') is-invalid @enderror "  placeholder="034567890"  value="{{$post->restaurant->phone}}" name="phone" id="phone">
 						@error('phone')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -229,43 +225,10 @@ $(function() {
         }
     });
 
-    var route2 = "{{ route('post.autocompletetinh')}}";
-    $('#city').typeahead({
-        source:  function (term, process) {
-        return $.get(route2, { term: term }, function (data) {
-                if(data.length == 0){
-        			$('#errotinh').css('display', 'block');
-        		}
-        		else{
-        			$('#errotinh').css('display','none');
-        		}
-                return process(data);
-            });
-        }
-    });
+    
 
 
-    var tinh;
-    $("#city").blur(function(){
-    	tinh = $("#city").val();
-    })
-
-
-    var route3 = "{{ route('post.autocompletehuyen')}}";
-    $('#district').typeahead({
-        source:  function (term, process) {
-        return $.get(route3, { term : term , city : tinh }, function (data) {
-        	    if(data.length == 0){
-        			$('#errohuyen').css('display', 'block');
-				    console.log($("district").val());
-        		}
-        		else{
-        			$('#errohuyen').css('display', 'none');        			
-        		}
-                return process(data);
-            });
-        }
-    });
+    
    
 
    
