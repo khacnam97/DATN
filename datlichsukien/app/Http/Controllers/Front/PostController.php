@@ -29,7 +29,7 @@ class PostController extends Controller
     	return view('pages.addpost',[ 'restaurant' => $restaurant,  'district' => $district]);
     }
     //function add one Post
-    public function add(Request $request){
+    public function addpost(Request $request){
     	$request-> validate([
             'name' => 'required',
             'phone' => 'required|min:10 ',

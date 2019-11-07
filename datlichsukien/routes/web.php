@@ -91,7 +91,7 @@ Route::get('/home', function(){
 
 	Route::group(['prefix' => 'account', 'middleware' => 'auth'],function(){
 		Route::get('/post', 'PostController@showformAddPost')->name('account.addpost');
-		Route::post('/post', 'PostController@add')->name('account.addpost');
+		Route::post('/post', 'PostController@addpost')->name('account.addpost');
 		Route::get('/autocomplete', 'PostController@autocomplete')->name('post.autocomplete');
 		Route::get('/autocompleteAddress', 'PostController@autocompleteAddress')->name('post.autocompleteAddress');
 		Route::get('/edit/{idpost}', 'PostController@showformEditPost')->name('account.editpost');
