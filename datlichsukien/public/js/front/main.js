@@ -213,10 +213,12 @@
     responseMessage(msg);
     
   });
-  
+  //   $('#stars').change(function(){
+  //   alert("Hello")
+  // })
+
   
 });
-
 
 
 })(jQuery);

@@ -100,6 +100,7 @@ class FrontController extends Controller
 	public function rate(Request $request)
 	{
 		$rating = $request->get('rating');
+		$stars = $request->get('inputHidenRating');
 		if ($rating != NULL && $rating !=1 && $rating !=2 &&$rating !=3 && $rating !=4 && $rating !=5){
 			return back();
 		}
@@ -110,14 +111,14 @@ class FrontController extends Controller
 		//$rate->cmt = $cmt;
 		$rate->user_id = $user_id;
 		$rate->post_id = $post_id;
-		if ($rating === NULL) {
+		if ($stars === NULL) {
 			$rate->save();
 		} else {
 			DB::table('ratings')->where([
 				['user_id', '=', $user_id],
 				['post_id', '=', $post_id],
 			])->update(['rating' => null]);
-			$rate->rating = $rating;
+			$rate->rating = $stars;
 			$rate->save();
 		}
 		return back();

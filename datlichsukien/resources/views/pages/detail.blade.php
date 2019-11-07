@@ -184,7 +184,7 @@ $photo_path = $data->unique('photo_path')->values();
           <?php session(['post_id' => $data[0]->id]); ?>
 
             <span class="star-rating">
-              <!-- <ul id='stars'>
+              <ul id='stars'>
                 <li class='star' name="rating" title='Poor' value='1'>
                   <i class='fa fa-star fa-fw' name="rating"></i>
                 </li>
@@ -200,13 +200,9 @@ $photo_path = $data->unique('photo_path')->values();
                 <li class='star' title='WOW!!!' name="rating" value='5'>
                   <i class='fa fa-star fa-fw' name="rating"></i>
                 </li>
-              </ul> -->
-              <input  class='fa fa-star fa-fw' type="radio" name="rating" value="1">
-              <input  class='fa fa-star fa-fw' type="radio" name="rating" value="2">
-              <input  class='fa fa-star fa-fw' type="radio" name="rating" value="3">
-              <input  class='fa fa-star fa-fw' type="radio" name="rating" value="4">
-              <input  class='fa fa-star fa-fw' type="radio" name="rating" value="5">
-            </span>
+              </ul>
+            </div>
+            <input type="" name="inputHidenRating" value="" id="inputHidenRating">
   
 
           <div class="form-group">
@@ -217,7 +213,7 @@ $photo_path = $data->unique('photo_path')->values();
 
 
           </div>
-          <button name="myButton">Send</button>
+          <button name="myButton" type="submit" id="btnRating">Send</button>
         </form>
         @else
         <a style="width:150px;" class="btn btn-primary" data-toggle="modal" data-target="#myModal" href="{{ route('login') }}">Please Login</a>
