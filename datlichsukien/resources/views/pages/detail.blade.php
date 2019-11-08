@@ -3,13 +3,6 @@
 <link rel="stylesheet" type="text/css" href="/css/custom/rating.css">
 <link rel="stylesheet" type="text/css" href="/css/custom/front.css">
 
-<style>
-  #map {
-    height: 500px;
-  }
- 
-</style>
-
 @endsection
 @section('content')
 
@@ -46,7 +39,7 @@
     
 }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxqyb5cmgcv7j9hY-GcPZYcNQlwyfWaT0&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBt5tJTim4lOO3ojbGARhPd1Z3O3CnE-C8&callback=initMap" async defer></script>
 
 <?php
 $photo_path = $data->unique('photo_path')->values();
@@ -148,11 +141,12 @@ $photo_path = $data->unique('photo_path')->values();
       <div style="height:500px;" class="tab-content">
         <div id="description" class="container tab-pane active"><br>
           <h3>{{$data[0]->restaurant}}</h3>
+          <h5 style="color: #3490dc;"> <i class="fas fa-map-marker-alt " style="color: red;"></i> {{$data[0]->address}}</h5>
              {!!($data[0]->describer)!!}
         </div>
         <div id="location" class="container tab-pane fade"><br>
           <h3>Location</h3>         
-          <div id="map"></div>
+          <div id="map" style="height: 400px;"></div>
         </div>
 
       </div>
@@ -218,51 +212,9 @@ $photo_path = $data->unique('photo_path')->values();
       </div>
     </div>
   </div>
+  
 
-
-  @if($post_relate->count() !== 0)
-  <div class="container-fluid">
-    <div style="text-align: center;margin-top:50px;">
-      <h2>Những bài viết liên quan</h2>
-    </div>
-
-    <div class="row" style="justify-content: center;">
-      @foreach ($post_relate as $record)
-      <div class="col-sm-3" style="margin:50px 0;">
-        <div class="card-img" style="height:280px;">
-          <a href="{{route('detail',$record->id)}}" title="" style="text-decoration: none;">
-            <div style="height: 200px;">
-              <img class="card-img-top list_images" src="/{{ $record->photo_path }}" alt="{{$record->title}}" style="height: 200px;">
-            </div>
-
-            <div class="card-body">
-
-              <h5 class="card-title text-primary">
-
-                <span style="display:block;text-overflow: ellipsis;overflow: hidden; white-space: nowrap;font-size: 16px;color:black;">
-                  {{$record->title}}
-                </span>
-              </h5>
-              <div class="rating">
-                @for($i=0;$i< ceil($record->rate);$i++)
-                  <span class="fa fa-star checked"></span>
-                  @endfor
-                  @for($i=ceil($record->rate);$i< 5;$i++) <span class="fa fa-star unchecked"></span>
-                    @endfor
-              </div>
-
-              <p class="card-text">
-              </p>
-
-            </div>
-          </a>
-
-        </div>
-      </div>
-      @endforeach
-      @endif
-    </div>
-  </div>
+  
 
 </div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3"></script>
