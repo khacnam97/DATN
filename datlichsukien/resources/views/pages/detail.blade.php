@@ -25,18 +25,15 @@
   var stepDisplay;
   var markerArray = [];
   function initMap() {
-
     var uluru = {
       lat: latvalue,
       lng: longvalue
     };
-
     var map = new google.maps.Map(
       document.getElementById('map'), {
         zoom: 16,
         center: uluru
       });
-
     var marker = new google.maps.Marker({
       position: uluru,
       map: map
@@ -183,7 +180,7 @@ $photo_path = $data->unique('photo_path')->values();
           <label for="">Rating:</label>
           <?php session(['post_id' => $data[0]->id]); ?>
 
-            <div class='rating-stars text-center'>
+            <div class='rating-stars '>
               <ul id='stars'>
                 <li class='star' title='Poor' data-value='1'>
                   <i class='fa fa-star fa-fw'></i>
@@ -202,7 +199,7 @@ $photo_path = $data->unique('photo_path')->values();
                 </li>
               </ul>
             </div>
-            <input type="" name="inputHidenRating" value="" id="inputHidenRating">
+            <input type="" name="inputHidenRating" value="" id="inputHidenRating" hidden="">
   
 
           <div class="form-group">

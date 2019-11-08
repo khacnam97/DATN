@@ -29,8 +29,8 @@ class PostController extends Controller
     	return view('pages.addpost',[ 'restaurant' => $restaurant,  'district' => $district]);
     }
     //function add one Post
-    public function add(Request $request){
-        // dd($request->all());
+    public function addpost(Request $request){
+    
     	$request-> validate([
             'name' => 'required',
             'phone' => 'required|min:10 ',
@@ -42,29 +42,11 @@ class PostController extends Controller
         	$restaurant = Restaurant::all();
         	$post = new Post;
         	$post ->user_id = Auth::id();
-
-        	// $post ->phone = $request ->phone;
-            //check again  input tỉnh huyên
-            // if(District::where('name' , $request->districts_id)->first() == null){
-            //     return redirect()->back()->with(config::get('constant.error'), constant::get('constant.message_fail_input'))->withInput($request->input());
-            // }
-            // else{
-            //     if(City::where('id',District::where('name' , $request->districts_id)->first()->cities_id)->first()->id == City::where('name',$request->city)->first()->id){
-            //             $findIdPDistrict = District::where('name' , $request->districts_id)->first()->id;
-            //     }
-            //     else{
-            //         return redirect()->back()->with(config::get('constant.error'), config::get('constant.message_fail_input'))->withInput($request->input());
-            //     }
-            // }
-        	//check Restaurant exist
-        	// $findRestaurant = Restaurant::where([
-         //        ['name', '=', $request->name],
-         //        ['districts_id', '=', $findIdPDistrict]
-         //        ])->first();
         	
         		$newRestaurant = new Restaurant;
         		$newRestaurant->name = $request->name;
         		$newRestaurant->address = $request->address;
+                $newRestaurant->phone = $request->phone;
                 $newRestaurant->lat = $request->lat;
                 $newRestaurant->longt = $request->lng;                
                 $newRestaurant->district_id =$request->district_id;
@@ -179,12 +161,11 @@ class PostController extends Controller
         $posts ->describer= $request->input('descrice');
         
         //edit restaurant
-        $restaurant = Restaurant::where([
-            ['name', $request->name],
-            ['district_id', District::where('name',$request->district_id)->first()]
-            ])->first();
+        $restaurant = Restaurant::join('posts','posts.restaurant_id','=','restaurants.id')
+                      ->where('posts.restaurant_id','=','restaurants.id')->get();
         $restaurant ->address = $request->address;
-        $restaurant->district_id = District::where('name', $request->district_id)->first(); 
+        $restaurant->district_id = $request->district_id; 
+         dd( $request);
         //dd($restaurant->district_id);
         //edit photos
         $path = 'picture/admin/post/'.$posts->id;
@@ -219,9 +200,9 @@ class PostController extends Controller
                 $photo ->save ();
             }
         }
-
-        $posts -> save();
         $restaurant -> save();
+        $posts -> save();
+        
         //delete photo
         $photoedit = $request->p1; // This will get all the request data.
         $edit = explode('/',$photoedit);
