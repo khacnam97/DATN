@@ -17,27 +17,17 @@ class FrontController extends Controller
 {
      public function index()
     {
-    	//show post newest
-		$new_post = Post::join('photos', 'posts.id', '=', 'photos.post_id')
-		->leftjoin('ratings', 'posts.id', '=', 'ratings.post_id')
-		->select('posts.id', 'title', 'photos.photo_path', \DB::raw('avg(ratings.rating) as avg_rating'))
-		->orderBy('posts.id', 'desc')
-		->groupBy('posts.id')
-		->groupBy('title')
-		->groupBy('photos.photo_path')
-		->where([
-			['is_approved', '=', '1'],
-			['photos.flag', '=', '1']
-		])
-		->take(Config::get('constant.numberRecord2'))
-		->get();
+	
 		//show posts have rating highest
 		$top_rating = Post::join('ratings', 'posts.id', '=', 'ratings.post_id')
 		->join('photos', 'posts.id', '=', 'photos.post_id')
-		->select('posts.id', 'posts.title', 'photos.photo_path', \DB::raw('avg(ratings.rating) as avg_rating'))
+		->join('restaurants','posts.restaurant_id','=','restaurants.id')
+		->select('posts.id', 'posts.title', 'photos.photo_path','restaurants.name','restaurants.address', \DB::raw('avg(ratings.rating) as avg_rating'))
 		->orderBy('avg_rating', 'desc')
 		->groupBy('posts.id')
 		->groupBy('posts.title')
+		->groupBy('restaurants.name')
+		->groupBy('restaurants.address')
 		->groupBy('photos.photo_path')
 		->where([
 			['is_approved', '=', '1'],
@@ -45,8 +35,25 @@ class FrontController extends Controller
 		])
 		->take(Config::get('constant.numberRecord1'))
 		->get();
+        //show all post
+		$all_post = Post::join('photos', 'posts.id', '=', 'photos.post_id')
+		->leftjoin('ratings', 'posts.id', '=', 'ratings.post_id')
+		->join('restaurants','posts.restaurant_id','=','restaurants.id')
+		->select('posts.id', 'title', 'photos.photo_path','restaurants.name','restaurants.address', \DB::raw('avg(ratings.rating) as avg_rating'))
+		->orderBy('posts.id', 'desc')
+		->groupBy('posts.id')
+		->groupBy('title')
+		->groupBy('restaurants.name')
+		->groupBy('restaurants.address')
+		->groupBy('photos.photo_path')
+		->where([
+			['is_approved', '=', '1'],
+			['photos.flag', '=', '1']
+		])
+		->take(Config::get('constant.numberRecord3'))
+		->get();
 		$restaurant = DB::table('restaurants')->get();
-        return view('pages.index',['new_post'=>$new_post,'top_rating'=>$top_rating,'restaurant'=>$restaurant]);
+        return view('pages.index',['top_rating'=>$top_rating,'restaurant'=>$restaurant,'all_post'=>$all_post]);
     }
     public function detail($id)
 	{
@@ -77,25 +84,8 @@ class FrontController extends Controller
 		])->whereNotNull('rating')
 		->orderBy('id', 'desc')->first();
 		session()->put('link',  url()->current());
-		$data2 = DB::table('posts')
-		->join('photos', 'posts.id', '=', 'photos.post_id')
-		->join('restaurants', 'posts.restaurant_id', '=', 'restaurants.id')
-		->leftJoin('ratings', 'posts.id', '=', 'ratings.post_id')
-		->select('posts.id', 'posts.title','posts.id', 'photos.photo_path')
-		->where([
-			['posts.restaurant_id', '=', $data[0]->restaurant_id],
-			['photos.flag', '=', 1],
-			['posts.id', '<>', $post_id]
-		])
-		->distinct()
-		->take(Config::get('constant.numberRecord1'))
-		->get();
-		foreach ($data2 as $index => $value) {
-			$value->rate = DB::table('ratings')
-			->where('post_id', $value->id)
-			->avg('rating');
-		}
-		return view('pages/detail', ['data' => $data, 'rating' => $rating, 'user_rate' => $user_rate,'post_relate'=>$data2]);
+		
+		return view('pages/detail', ['data' => $data, 'rating' => $rating, 'user_rate' => $user_rate]);
 	}
 	public function rate(Request $request)
 	{
@@ -104,11 +94,11 @@ class FrontController extends Controller
 		if ($rating != NULL && $rating !=1 && $rating !=2 &&$rating !=3 && $rating !=4 && $rating !=5){
 			return back();
 		}
-		//$cmt = htmlspecialchars($request->get('commentarea'));
+		$cmt = htmlspecialchars($request->get('commentarea'));
 		$user_id = Auth::id();
 		$post_id = $request->session()->pull('post_id');
 		$rate = new Rating;
-		//$rate->cmt = $cmt;
+		$rate->cmt = $cmt;
 		$rate->user_id = $user_id;
 		$rate->post_id = $post_id;
 		if ($stars === NULL) {

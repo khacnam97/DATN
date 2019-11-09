@@ -134,7 +134,7 @@
             @if($top_rating->count() !== 0)
             @foreach ($top_rating as $record)
             <div class="col-sm-3" style="margin:50px 0;">
-                <div class="card-img" style="height:280px;" id="card-img" >
+                <div class="card-img" style="height:300px;" id="card-img" >
                     <a href='{{route("detail",$record->id)}}' title="" style="text-decoration: none;">
                         <div style="height: 200px;">
                             <img class="card-img-top list_images" src="{{ $record->photo_path }}" alt="{{$record->title}}" style="height: 200px;" alt="avatar">
@@ -145,8 +145,9 @@
                             <h5 class="card-title">
 
                                 <span style="display:block;text-overflow: ellipsis;overflow: hidden; white-space: nowrap; font-size: 16px;color: black;">
-                                    {{$record->title}}
+                                    {{$record->name}}
                                 </span>
+                                <div><span style="display:block;text-overflow: ellipsis;overflow: hidden; white-space: nowrap; font-size: 16px; "> <i class="fas fa-map-marker-alt " style="color: red;"></i> {{$record->address}}</span></div>
                             </h5>
                             <div class="rating">
                                 @for($i=0;$i< ceil($record->avg_rating);$i++)
@@ -166,18 +167,15 @@
                 </div>
             </div>
             @endforeach
-            @else
-            <div class="col-sm">
-                <p>Không có dữ liệu</p>
-            </div>
             @endif
         </div>
     </div>
+        <div style="text-align: center;margin-top:50px;color: #b3b3ba;"><h2>NHỮNG BÀI VIẾT MỚI NHẤT</h2></div>
         <div class="row" style="justify-content: center;">
             
-            @foreach ($new_post as $record)
+            @foreach ($all_post as $record)
             <div class="col-sm-4" style="margin:50px 0;">
-                <div class="card-img" id="card-img" >
+                <div class="card-img" id="card-img" style="height:300px;" >
                     <a href='{{route("detail",$record->id)}}' title="" style="text-decoration: none;"id="pic">
                         <div style="height: 200px;">
                             <img class="card-img-top list_images" src="{{ $record->photo_path }}" alt="{{$record->title}} " >
@@ -188,8 +186,9 @@
                             <h5 class="card-title text-primary">
 
                                 <span style="display:block;text-overflow: ellipsis;overflow: hidden; white-space: nowrap;font-size: 16px;color: black;">
-                                    {{$record->title}}
+                                    {{$record->name}}
                                 </span>
+                                <div><span style="display:block;text-overflow: ellipsis;overflow: hidden; white-space: nowrap; font-size: 16px; "> <i class="fas fa-map-marker-alt " style="color: red;"></i> {{$record->address}}</span></div>
                             </h5>
                             <div class="rating">
                                 @for($i=0;$i< ceil($record->avg_rating);$i++)
@@ -211,12 +210,8 @@
             @endforeach
         </div>
     </div>
-{{--     <div class="col-9" style="margin-left: 10px;">
-    	
-
-    </div> --}}
  </div>   
-<div class="container">
+<!-- <div class="container">
 	<div style="text-align: center;margin-top:50px;" id="contact">
 		<h2 class="section-heading" style="color: #b3b3ba;">Contact Us</h2>
 		<hr align="content" width="20%" color="#3997A6" size="0.1px" style="padding-bottom: 1px; margin-bottom: 40px;"> 
@@ -231,5 +226,5 @@
 			<p>Nam@gmail.com</p>
 		</div>
 	</div>
-</div>
+</div> -->
 @endsection

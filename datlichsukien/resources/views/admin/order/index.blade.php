@@ -1,7 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.admin')
+@section('title', '/ order')
 @section('content')
-
 <div class="card mb-3">
+	<div class="card-header">
+		<em class="fas fa-table"></em>
+	Data Table order </div>
 	@if(Session::has('message'))
 	<div class="alert alert-success">
 		{{Session::get('message')}}
@@ -12,9 +15,12 @@
 		{{Session::get('success')}}
 	</div>
 	@endif
-	<h1 style="margin-top:100px;margin-bottom: 50px; text-align: center;">Danh sách lịch đặt</h1>
 	<div class="card-body">
-		
+		<div style="margin-bottom: 15px">
+			
+			<a href="" class="btn btn-success" style="color: white"><em class="fas fa-plus"></em> ADD</a>
+			
+		</div>
 		<div class="table-responsive">
 			<table class="table table-bordered" id="dataTable" >
 				<thead>
@@ -42,14 +48,14 @@
 						<td>
 
 						@if($o->status ==1)
-		                      <button class="btn-danger" >
+		                     <button class="btn-danger" >
 		                       
-		                      <a href="{{route('myorder.cancel',$o->id)}}" onclick="return confirm('Bạn có muốn block user này?')" role="button"  style="color: white;text-decoration: none;" >Cancel</a>
+		                      <a href="" onclick="return confirm('Bạn có muốn block user này?')" role="button"  style="color: white;text-decoration: none;" >Cancel</a>
 		                    </button>
 		                    @else 
 		                    <button class="btn-success">
 		                     
-		                      <a data-toggle="modal" data-target="#myModal3" href="{{ route('confirm') }}"  style="color: white;text-decoration: none;" >Accept</a>
+		                      <a data-toggle="modal" data-target="#myModal3" href=""  style="color: white;text-decoration: none;" >Accept</a>
 		                    </button>
                         @endif
 							<button type="button" class="btn-info" data-toggle="modal" data-target="#myModal">
@@ -66,6 +72,6 @@
 			</table>
 		</div>
 	</div>
+	<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 </div>
-
 @endsection

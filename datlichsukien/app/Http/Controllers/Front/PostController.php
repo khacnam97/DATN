@@ -159,13 +159,13 @@ class PostController extends Controller
         }
         $posts ->title = $request ->title;
         $posts ->describer= $request->input('descrice');
-        
+        // dd( $request);
         //edit restaurant
         $restaurant = Restaurant::join('posts','posts.restaurant_id','=','restaurants.id')
-                      ->where('posts.restaurant_id','=','restaurants.id')->get();
+                      ->where('posts.restaurant_id','=','restaurants.id');
         $restaurant ->address = $request->address;
         $restaurant->district_id = $request->district_id; 
-         dd( $request);
+        // dd( $request);
         //dd($restaurant->district_id);
         //edit photos
         $path = 'picture/admin/post/'.$posts->id;

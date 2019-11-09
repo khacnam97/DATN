@@ -65,6 +65,10 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 		Route::post('update/{id}', 'RatingController@update')->name('admin.rating.update');
 		Route::post('/delete/{id}', 'RatingController@delete')->name('admin.rating.delete');
 	});
+	Route::group(['prefix' => 'order','namespace'=>'order'], function(){
+		Route::get('/', 'OrderController@index')->name('admin.order.index');
+		
+	});
 });
 Route::group(['namespace'=>'Front'],function(){
 Route::get('/', 'FrontController@index')->name('index'); 
@@ -97,6 +101,10 @@ Route::get('/home', function(){
 		Route::get('/edit/{idpost}', 'PostController@showformEditPost')->name('account.editpost');
 		Route::post('/edit/{idpost}', 'PostController@edit')->name('account.editpost');
 		Route::get('/myoder','OrderController@myOrder')->name('myOrder');
+		Route::get('/cancel/{id}', 'OrderController@cancel')->name('myorder.cancel');
+		Route::get('/accept/{id}', 'OrderController@accept')->name('myorder.accept');
+		Route::get('/confirm', 'OrderController@confirm')->name('confirm');
+		
 	});
 });
 //Route::get('register', 'Auth\RegisterController@showFormRegister')->name('show.register');

@@ -43,7 +43,9 @@ class OrderController extends Controller
         // ->select('restaurants.id')
         // ->where('restaurants.id','=',$id)->first()->id;
         $order = new Order;
- 
+        $order_time=Order_time::all();
+        $restaurant=Restaurant::all();
+
         $order->people_number=$request->people_number;
         $order->address=$request->address;
         $order->phone=$request->phone;
@@ -51,20 +53,46 @@ class OrderController extends Controller
         $order->price_table=$request->price_table;  
         $order->order_date=$request->order_date;
         $order->order_time_id=$request->order_time_id;
-        $order->restaurant_id=$request->restaurant_id; 
+        $order->restaurant_id=$request->restaurant_id;        
+        $order->status=0;
         // dd($request);   
         $order->save();
-        return view('pages.order',['order'=>$order]);
+        return view('pages.order',['order'=>$order,'order_time'=>$order_time,'restaurant'=>$restaurant]);
     }
     public function myOrder ()
     {
        $id = Auth::id();
        $order =Order::join('restaurants','orders.restaurant_id','=','restaurants.id')
                ->join('posts','posts.restaurant_id','=','restaurants.id')
-               ->select('orders.id','orders.user_id','orders.order_time_id','orders.phone','orders.people_number','orders.price_table','orders.order_date')
+               ->select('orders.id','orders.user_id','orders.order_time_id','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status')
                ->where('posts.user_id','=',$id)->get();
       
 
        return view('pages.myOrder',['order'=>$order]);
+    }
+     public function cancel($id,Request $request)
+    {
+        $order = Order::find($id);
+        // $check = $order->role;
+        // if($check == 1){
+
+        //     return redirect()->back()->with('error' , Config::get('constant.user.blockAdminUser'));
+        // }
+        // else{
+           $order->status=0;
+           $order->save();
+           return redirect()->back()->with('success',Config::get('constant.user.blockUser')); 
+      // }
+    }
+    public function accept($id,Request $request)
+    {
+        $order = Order::find($id);
+        $order->status=1;
+        $order->save();
+        return redirect()->back()->with('success',Config::get('constant.user.unblockUser'));
+    }
+    public function confirm ()
+    {
+       return view('pages.confirm');
     }
 }
