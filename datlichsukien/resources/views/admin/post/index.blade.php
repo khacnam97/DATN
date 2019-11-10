@@ -23,8 +23,6 @@
 						<th>Author</th>
 						<th>Status approved</th>
 						<th>Restaurant</th>
-						<th>Time create</th>
-						<th>Time modify</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -35,8 +33,6 @@
 						<th>Author</th>
 						<th>Status approved</th>
 						<th>Restaurant</th>
-						<th>Time create</th>
-						<th>Time modify</th>
 						<th>Action</th>
 					</tr>
 				</tfoot>
@@ -61,8 +57,6 @@
 							</div>
 						@endif </th>
 						<th style="font-weight: normal;">{{ $post->restaurant->name }}</th>
-						<th style="font-weight: normal;">{{ $post->created_at }}</th>
-						<th style="font-weight: normal;">{{ $post->updated_at }}</th>
 
 						<td align="center" style="display: flex;">
 							<a href="{{route('admin.post.detail', $post->id)}}" class=" btn btn-success nav-link"> Detail</a>

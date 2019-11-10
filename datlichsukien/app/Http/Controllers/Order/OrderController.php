@@ -12,4 +12,11 @@ class OrderController extends Controller
     	$order=Order::all();
     	return view('admin.order.index',['order'=>$order]);
     }
+    public function delete($id)
+    {
+        $order = Order::find($id);
+        $order->delete();
+        
+        return redirect()->back()->with('success', 'Xóa thành công ');
+    }
 }

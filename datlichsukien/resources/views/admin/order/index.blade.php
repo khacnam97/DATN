@@ -63,7 +63,7 @@
 							</button>
 
 							<button type="button" class="btn-danger" >
-								<a href="" style="color: white;text-decoration: none;" onclick="return confirm ('Bạn có muốn xóa ')">Delete</a>
+								<a href="{{route('admin.order.delete', $o->id)}}" style="color: white;text-decoration: none;" onclick="return confirm ('bạn có muốn xóa lịch đặt này')">Delete</a>
 							</button>
 						</td>
 					</tr>
