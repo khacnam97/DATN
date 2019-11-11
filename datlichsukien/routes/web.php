@@ -67,6 +67,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 	});
 	Route::group(['prefix' => 'order','namespace'=>'order'], function(){
 		Route::get('/', 'OrderController@index')->name('admin.order.index');
+		Route::get('/delete/{id}', 'OrderController@delete')->name('admin.order.delete');
 		
 	});
 });

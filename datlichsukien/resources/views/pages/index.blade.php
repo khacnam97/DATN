@@ -211,20 +211,4 @@
         </div>
     </div>
  </div>   
-<!-- <div class="container">
-	<div style="text-align: center;margin-top:50px;" id="contact">
-		<h2 class="section-heading" style="color: #b3b3ba;">Contact Us</h2>
-		<hr align="content" width="20%" color="#3997A6" size="0.1px" style="padding-bottom: 1px; margin-bottom: 40px;"> 
-	</div>
-	<div class="row"  style="justify-content: center;">
-		<div class="col-sm-4 text-center">
-			<a href="tel:+91-8238566835"><em style="color: #3997A6;" class="fa fa-phone fa-3x sr-contact"></em></a>
-			<p>+84-199001950</p>
-		</div>
-		<div class="col-sm-4 text-center">
-			<a href="info@travelbrewery.com"><em style="color: #3997A6;" class="fa fa-envelope fa-3x sr-contact"></em></a>
-			<p>Nam@gmail.com</p>
-		</div>
-	</div>
-</div> -->
 @endsection

@@ -28,20 +28,6 @@
         <input type="number" value="{{$post->is_approved}}" disabled="true" class="form-control" id="userid " name="userid">
       </div>
 	</div>
-	
-	  	
-  
-
-  	<div style="display: flex;">
-    	<div class="form-group" >
-	    	<label for="phone">Create at:</label>
-	    	<input type="" value="{{$post->created_at}}" disabled="true" class="form-control" id="number" name="number">
-	  	</div>
-	  	<div class="form-group" style="margin-left: 40px;">
-	    	<label >Upadate at:</label>
-	    	<input type="" value="{{$post->updated_at}}" disabled="true" class="form-control" id="userid " name="">
-	  	</div>
-  	</div>
 	<div class="form-group">
     	<label for="">Title:</label>
     	<input type="text" value="{{$post->title}}" disabled="true" class="form-control" id="title" name="title">
