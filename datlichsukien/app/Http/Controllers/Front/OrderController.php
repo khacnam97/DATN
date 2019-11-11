@@ -59,7 +59,7 @@ class OrderController extends Controller
         $order->save();
         return view('pages.order',['order'=>$order,'order_time'=>$order_time,'restaurant'=>$restaurant]);
     }
-    public function myOrder ()
+    public function manageOrder ()
     {
        $id = Auth::id();
        $order =Order::join('restaurants','orders.restaurant_id','=','restaurants.id')
@@ -68,7 +68,7 @@ class OrderController extends Controller
                ->where('posts.user_id','=',$id)->get();
       
 
-       return view('pages.myOrder',['order'=>$order]);
+       return view('pages.manageOrder',['order'=>$order]);
     }
      public function cancel($id,Request $request)
     {
@@ -94,5 +94,12 @@ class OrderController extends Controller
     public function confirm ()
     {
        return view('pages.confirm');
+    }
+    public function myorder()
+    {
+        $id=Auth::id();
+        $order =Order::select('orders.id','orders.user_id','orders.order_time_id','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status')
+               ->where('user_id','=',$id)->get();
+        return view('pages.myorder',['order'=>$order]);
     }
 }
