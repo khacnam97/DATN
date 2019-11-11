@@ -139,6 +139,9 @@ class PostController extends Controller
     //edit post
     public function edit(Request $request, $idpost){
         //validate dữ liiêu
+        // dd('aa');
+        $a = POST::select('title','id')->get();
+        dd($a);     
         $request-> validate([
             'phone' => 'required ',
             'title' => 'required',
@@ -153,18 +156,22 @@ class PostController extends Controller
             return redirect()->back()->with(config::get('constant.error'), config::get('constant.message_edit_fail'));
         }
         $posts = POST::find($idpost);
-        //$posts ->phone = $request->phone;
+        // dd($posts->restaurant_id);
         if($request->approved != null){
             $posts ->is_approved = $request->approved;
         }
         $posts ->title = $request ->title;
         $posts ->describer= $request->input('descrice');
-        // dd( $request);
+        // dd( $request->all());
         //edit restaurant
-        $restaurant = Restaurant::join('posts','posts.restaurant_id','=','restaurants.id')
-                      ->where('posts.restaurant_id','=','restaurants.id');
+        // $restaurant = Restaurant::join('posts','posts.restaurant_id','=','restaurants.id')
+        //               ->where('restaurants.id','=',$idpost)->get();
+        $restaurant = Restaurant::find($posts->restaurant_id);
+        // dd($restaurant);
         $restaurant ->address = $request->address;
-        $restaurant->district_id = $request->district_id; 
+        $restaurant->district_id = $request->district_id;
+        $restaurant ->phone = $request->phone;
+ 
         // dd( $request);
         //dd($restaurant->district_id);
         //edit photos
@@ -200,9 +207,11 @@ class PostController extends Controller
                 $photo ->save ();
             }
         }
+                        // dd( $restaurant);
+
         $restaurant -> save();
         $posts -> save();
-        
+
         //delete photo
         $photoedit = $request->p1; // This will get all the request data.
         $edit = explode('/',$photoedit);
