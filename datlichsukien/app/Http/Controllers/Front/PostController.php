@@ -140,8 +140,8 @@ class PostController extends Controller
     public function edit(Request $request, $idpost){
         //validate dữ liiêu
         // dd('aa');
-        $a = POST::select('title','id')->get();
-        dd($a);     
+        // $a = POST::select('title','id')->get();
+        // dd($a);     
         $request-> validate([
             'phone' => 'required ',
             'title' => 'required',

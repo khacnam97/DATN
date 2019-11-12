@@ -9,18 +9,24 @@
 		
 		<div class="row" style="justify-content: center;">
 			<div class="col-9">
-				<form class="form" role="form" action="{{route('order.add')}}" method="post" autocomplete="off" style="margin-bottom: 30px;">
-					<input type="hidden" name="_token" value="{{ csrf_token()}}">
-					<div >
-						<h1 style="text-align: center;">{{$restaurant->name}}</h1>
-					</div>
-					<div class="form-group row">
+				<div >
+					<h1 style="text-align: center;">{{$restaurant->name}}</h1>
+				</div>
+				<div class="form-group row">
+						<form action="{{route('order.check')}} " role="form"  method="post">
+						<input type="hidden" name="_token" value="{{ csrf_token()}}">
 						<label class="col-sm-3 col-form-label form-control-label">Ngày tổ chức </label>
 						
 						<div class='col-sm-6' id='datetimepicker1'>
 		                    <input id="datepicker" name="order_date" value=""  required autocomplete="">
                 		</div>
-					</div>
+                		<button type="submit">Xác nhận</button>
+                		</form>
+				</div>
+				<form class="form" role="form" action="{{route('order.add')}}" method="post" autocomplete="off" style="margin-bottom: 30px;">
+					<input type="hidden" name="_token" value="{{ csrf_token()}}">
+					
+
 					<div class="form-group row">
 						<label class="col-sm-3 col-form-label form-control-label">Thời gian tổ chức</label>
 						<div class="col-sm-6">
@@ -29,8 +35,7 @@
 								@foreach ($order_time as  $record)
 								<option value="{{$record->id}}">{{$record->time}}</option>
 								@endforeach
-								@endif   
-						       
+								@endif   			       
 					      </select>
 						</div>
 					</div>

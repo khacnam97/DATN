@@ -10,6 +10,7 @@ use App\User;
 use Auth;
 use Response;
 use Config;
+use App\Order;
 use App\Restaurant;
 use DB;
 
@@ -113,5 +114,14 @@ class FrontController extends Controller
 		}
 		return back();
 	}
-    
+    public function checkdate(Request $request){
+       $order_date =$request->order_date;
+        $order = DB::table('orders')->select('orders.order_date')->get();
+       // dd($order);
+        
+       if($order_date==$order ) {
+          printf('a');
+       }
+       else printf("format");
+    }
 }

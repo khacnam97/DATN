@@ -98,8 +98,19 @@ class OrderController extends Controller
     public function myorder()
     {
         $id=Auth::id();
-        $order =Order::select('orders.id','orders.user_id','orders.order_time_id','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status')
-               ->where('user_id','=',$id)->get();
-        return view('pages.myorder',['order'=>$order]);
+        $order =Order::join('restaurants','orders.restaurant_id','=','restaurants.id')
+                ->select('orders.id','orders.user_id','orders.order_time_id','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','orders.restaurant_id')
+                ->where('user_id','=',$id)->get();
+
+        return view('pages.myOrder',['order'=>$order]);
+    }
+    public function check(Request $request)
+    {
+       $order_date=$request->order_date;
+       if(Order::where('order_date')!== $order_date){
+          printf('a');
+       }
+       else printf("format");
+       
     }
 }

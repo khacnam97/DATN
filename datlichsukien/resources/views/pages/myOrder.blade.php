@@ -12,33 +12,34 @@
 		{{Session::get('success')}}
 	</div>
 	@endif
+	@if($order->count() == 0)
+		<h1 style="margin-top:100px;margin-bottom: 100px; font-size: 35px;">Bạn chưa có lịch đặt nào </h1>
+	
+
+	@else
 	<h1 style="margin-top:100px;margin-bottom: 50px; text-align: center;">Lịch đặt của tôi</h1>
+	
 	<div class="card-body">
 		
 		<div class="table-responsive">
 			<table class="table table-bordered" id="dataTable" >
 				<thead>
 					<tr>
-						<th >ID</th>
-						<th >Tên người đặt</th>
-						<th>Số điện thoại người đặt</th>
+						<th >Địa điểm đặt lịch</th>
+						<th>Số điện thoại </th>
 						<th>Thời gian tổ chức</th>
 						<th>Ngày tổ chức</th>
-						<th>Số lương người</th>
-						<th>Giá mỗi bàn </th>
 						<th>More</th>
 					</tr>
 				</thead>
 				<tbody>
+    @endif
 			    @foreach ($order as $key=> $o)
 					<tr >
-						<td >{{$o->id}}</td>
-						<td>{{$o->user->name}}</td>
-						<td>{{$o->phone}}</td>
+						<td >{{$o->restaurant->name}}</td>
+						<td>{{$o->restaurant->phone}}</td>
 						<td>{{$o->order_time->time}}</td>
 						<td>{{$o->order_date}}</td>
-						<td>{{$o->people_number}}</td>
-						<td>{{$o->price_table}}</td>
 						<td>
 
 						@if($o->status ==1)
