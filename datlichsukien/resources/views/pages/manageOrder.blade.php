@@ -12,6 +12,11 @@
 		{{Session::get('success')}}
 	</div>
 	@endif
+	@if($order->count() == 0)
+		<h1 style=" text-align: center; margin-top:100px;margin-bottom: 300px; font-size: 35px;">Bạn chưa có lịch đặt nào!!</h1>
+	
+
+	@else
 	<h1 style="margin-top:100px;margin-bottom: 50px; text-align: center;">Danh sách lịch đặt</h1>
 	<div class="card-body">
 		
@@ -29,7 +34,9 @@
 						<th>More</th>
 					</tr>
 				</thead>
+
 				<tbody>
+	@endif 
 			    @foreach ($order as $key=> $o)
 					<tr >
 						<td >{{$o->id}}</td>

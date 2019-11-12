@@ -114,16 +114,26 @@ $photo_path = $data->unique('photo_path')->values();
       </div>
 
     </div>
- 
-        <div class="row">
-            <div class="form-group col-md-4" >
+ <script>
+        $('#datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+            uiLibrary: 'bootstrap4'
+        });
+    </script>
+        <div class="col-8">
+               
                @if(Auth::check())
-              <a href="{{route('order',$data[0]->restaurant_id)}}" class="btn btn-primary"  style="width: 200px;"> Đặt lịch</a>
+               <form action="{{route('checkdate')}}" method="post">
+                <input type="hidden" name="_token" value="{{ csrf_token()}}">
+                <input id="datepicker" type="date" name="order_date" value=""  required autocomplete="">
+
+                <button class="btn btn-primary"  style="width: 100px;">Đặt lịch</button>
+                </form>
                 @else
 
                 <a style="width:200px;" class="btn btn-primary" data-toggle="modal" data-target="#myModal" href="{{ route('login') }}">Đặt lịch</a>
                 @endif
-           </div>
+          
         </div>
 
     <div style="margin: 20px 0 100px 0;width: 100%;">

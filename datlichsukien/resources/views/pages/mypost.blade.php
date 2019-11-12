@@ -15,7 +15,7 @@
 	</div>
 	@endif
 	@if($data->count() == 0)
-		<h1 style="margin-top:100px;margin-bottom: 100px; font-size: 35px;">Bạn chưa đăng bài nào cả !! <br>Hãy đăng bài để chia nào .</h1>
+		<h1 style="margin-top:100px;margin-bottom: 100px; font-size: 35px;">Bạn chưa đăng bài nào !! <br>Hãy chia sẽ địa điểm của bạn .</h1>
 		<div style="display: flex;width: 100%;" >
 			<a href="{{route('account.addpost')}}" title="" class="" style="justify-content: center;margin-bottom: 120px;">Tạo bài viết đầu tiên của bạn tại đây</a>
 		</div>
