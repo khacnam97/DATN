@@ -12,6 +12,7 @@ use Response;
 use Config;
 use App\Restaurant;
 use DB;
+use DateTime;
 
 class FrontController extends Controller
 {
@@ -85,7 +86,35 @@ class FrontController extends Controller
 		->orderBy('id', 'desc')->first();
 		session()->put('link',  url()->current());
 		
-		return view('pages/detail', ['data' => $data, 'rating' => $rating, 'user_rate' => $user_rate]);
+		$strNow =  date("Y-m-d");
+		$strDay7 = date('Y-m-d', strtotime($strNow. ' + 7 days'));
+		$strDay72 = new DateTime( $strDay7 );
+
+		$strDay14 = date('Y-m-d', strtotime($strNow. ' + 14 days'));
+		$strDay142 = new DateTime( $strDay14 );
+
+		$arrDay = array();
+		for($i = $strDay72; $i <= $strDay142; $i->modify('+1 day')){
+		    // $i->format("Y-m-d");
+		    array_push($arrDay,$i->format("Y-m-d"));
+		}
+		// dd($arrDay);
+
+		$dateAvalible = DB::table('orders')
+			->where('restaurant_id','=',$id)
+			->select('order_date')
+			->get();
+		// dd($dateAvalible);
+		 $arrDayNotAvalble = array();
+		foreach ($dateAvalible as $key => $value) {
+			array_push($arrDayNotAvalble,$value);
+
+		}
+		// dd($arrDayNotAvalble);
+		$result=array_diff($arrDay,$arrDayNotAvalble);
+
+		dd($result);
+		return view('pages/detail', ['data' => $data, 'rating' => $rating, 'user_rate' => $user_rate, 'strDay7' => $strDay7, 'dateAvalible' => $dateAvalible, 'arrDay' => $arrDay]);
 	}
 	public function rate(Request $request)
 	{

@@ -118,7 +118,19 @@ $photo_path = $data->unique('photo_path')->values();
         <div class="row">
             <div class="form-group col-md-4" >
                @if(Auth::check())
-              <a href="{{route('order',$data[0]->restaurant_id)}}" class="btn btn-primary"  style="width: 200px;"> Đặt lịch</a>
+<!--               <a href="{{route('order',$data[0]->restaurant_id)}}" class="btn btn-primary"  style="width: 200px;" > Đặt lịch</a>
+ -->              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22">
+                Đặt lịch
+              </button>
+<!--                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate" value="{{$strDay7}}">{{$strDay7}} </button>
+ -->              @foreach ($arrDay as  $day)
+                    
+                      @if($dateAvalible != $day)
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate" value="{{$day}}">{{$day}} </button>
+
+                      @endif
+                  
+              @endforeach
                 @else
 
                 <a style="width:200px;" class="btn btn-primary" data-toggle="modal" data-target="#myModal" href="{{ route('login') }}">Đặt lịch</a>
@@ -216,6 +228,29 @@ $photo_path = $data->unique('photo_path')->values();
 
   
 
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal22" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          @csrf
+          <input type="text" name="test" id="test">
+        </form>      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3"></script>
 <script async defer crossorigin="anonymous" src="{{asset('js/front/cmt.js')}}"></script>

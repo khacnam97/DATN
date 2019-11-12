@@ -51,6 +51,14 @@ $(document).ready(function(){
   //   alert($('#stars li.selected').val())
   // })
   
+  $('#btnDate').on('click',function(){
+    alert("namm")
+    $('#test').val($('#btnDate').val())
+  })
+  
+  // function Namoccho(){
+  //   alert("Nam óc chs")
+  // }
 });
 
 
