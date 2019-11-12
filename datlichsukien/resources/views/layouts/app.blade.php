@@ -115,8 +115,9 @@
                 </a>
                 
                 <a class="dropdown-item" href="{{route('show_changePass')}}">Đổi mật khẩu</a>
+                <a class="dropdown-item" href="{{route('myorder')}}">Lịch đặt của tôi</a>
                 @if (Auth::user()->role == 1)
-                <a class="dropdown-item" href="{{route('myOrder')}}">Quản lí đặt lịch</a>
+                <a class="dropdown-item" href="{{route('manage.order')}}">Quản lí đặt lịch</a>
                 <a class="dropdown-item" href="{{route('mypost')}}">Bài đăng của tôi</a>
                 <a class="dropdown-item" href="">Phê duyệt bài đăng</a>
                 <a class="dropdown-item" href="">Quản lí user</a>

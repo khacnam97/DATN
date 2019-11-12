@@ -12,7 +12,7 @@
 		{{Session::get('success')}}
 	</div>
 	@endif
-	<h1 style="margin-top:100px;margin-bottom: 50px; text-align: center;">Lịch đặt của tôi</h1>
+	<h1 style="margin-top:100px;margin-bottom: 50px; text-align: center;">Danh sách lịch đặt</h1>
 	<div class="card-body">
 		
 		<div class="table-responsive">
@@ -44,12 +44,12 @@
 						@if($o->status ==1)
 		                      <button class="btn-danger" >
 		                       
-		                      <a href="" onclick="return confirm('Bạn có muốn block user này?')" role="button"  style="color: white;text-decoration: none;" >Hủy</a>
+		                      <a href="{{route('myorder.cancel',$o->id)}}" onclick="return confirm('Bạn có muốn block user này?')" role="button"  style="color: white;text-decoration: none;" >Cancel</a>
 		                    </button>
 		                    @else 
 		                    <button class="btn-success">
 		                     
-		                      <a data-toggle="modal" data-target="#myModal3" href=""  style="color: white;text-decoration: none;" >Đang chờ </a>
+		                      <a data-toggle="modal" data-target="#myModal3" href="{{ route('confirm') }}"  style="color: white;text-decoration: none;" >Accept</a>
 		                    </button>
                         @endif
 							<button type="button" class="btn-info" data-toggle="modal" data-target="#myModal">
