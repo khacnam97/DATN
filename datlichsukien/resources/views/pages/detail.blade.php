@@ -114,9 +114,14 @@ $photo_path = $data->unique('photo_path')->values();
       </div>
 
     </div>
- 
-        <div class="row">
-            <div class="form-group col-md-4" >
+ <script>
+        $('#datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+            uiLibrary: 'bootstrap4'
+        });
+    </script>
+        <div class="col-8">
+               
                @if(Auth::check())
 <!--               <a href="{{route('order',$data[0]->restaurant_id)}}" class="btn btn-primary"  style="width: 200px;" > Đặt lịch</a>
  -->              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22">
@@ -131,11 +136,12 @@ $photo_path = $data->unique('photo_path')->values();
                       @endif
                   
               @endforeach
+
                 @else
 
                 <a style="width:200px;" class="btn btn-primary" data-toggle="modal" data-target="#myModal" href="{{ route('login') }}">Đặt lịch</a>
                 @endif
-           </div>
+          
         </div>
 
     <div style="margin: 20px 0 100px 0;width: 100%;">

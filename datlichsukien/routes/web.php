@@ -84,9 +84,11 @@ Route::get('/home', function(){
 
 	Route::get('/detail/{id}','FrontController@detail')->name('detail');
 	Route::post('/detail/rate','FrontController@rate');
+	Route::post('/checkdate','FrontController@checkdate')->name('checkdate');
 
 	Route::get('/order/{id}','OrderController@index')->name('order');
 	Route::post('/order','OrderController@addOrder')->name('order.add');
+    Route::post('/check','OrderController@check')->name('order.check');
 
 	Route::get('/search_list', 'SearchListController@getsearch')->name('search.list');
 	Route::get('/autocomplete', 'SearchListController@autocomplete')->name('autocomplete');

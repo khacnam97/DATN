@@ -89,7 +89,7 @@
             </li>
             @endif
             @else
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" >
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;font-size: 13px;" v-pre>
 
                 <img @if(!empty(Auth::user()->avatar)) src="{{Auth::user()->avatar}}" @else src="/picture/images.png" @endif alt="Avatar" style="border-radius: 50%;margin-right: 10px; width: 30px; height: 30px;">
@@ -104,7 +104,7 @@
                 <span class="caret"> </span>
 
               </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="background-color: #e9ecef">
 
                 <a class="dropdown-item" href="{{route('profile')}}">Trang cá nhân
                   <span class="badge badge-danger" style="">
@@ -125,7 +125,7 @@
 
 
                 @elseif (Auth::user()->role == 2)
-                <a class="dropdown-item" href="{{route('myOrder')}}">Quản lí đặt lịch</a>
+                <a class="dropdown-item" href="{{route('manage.order')}}">Quản lí đặt lịch</a>
                 <a class="dropdown-item" href="{{route('mypost')}}">Bài đăng của tôi</a>
                 @else
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#upgradeModal">Cập nhật tài khoản</a>
