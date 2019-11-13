@@ -46,6 +46,7 @@
               <input class="form-control" type="text" value="" name="price_table" required="">
             </div>
           </div>
+          @if(Auth::check()) 
           <div class="form-group row">
             <label class="col-sm-3 col-form-label form-control-label">Địa chỉ</label>
             <div class="col-sm-6">
@@ -59,8 +60,21 @@
               <input class="form-control" name="phone" type="text" value="{{Auth::user()->phone}}" required="">
             </div>
           </div>
+          @else
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label form-control-label">Địa chỉ</label>
+            <div class="col-sm-6">
+              <input class="form-control" type="text" name="address" value="" required="" >
+            </div>
+          </div>
           
-              <!-- <input class="form-control" name="user_id" type="text" value="{{Auth::user()->id}}" required="" hidden=""> -->
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label form-control-label">Số điện thoại</label>
+            <div class="col-sm-6">
+              <input class="form-control" name="phone" type="text" value="" required="">
+            </div>
+          </div>
+          @endif
             <input class="form-control" name="restaurant_id" type="text" value="{{$data[0]->restaurant_id}}" required="" hidden="">
           <div class="form-group row" style="margin-bottom: 30px;">
             <div class="col" style="margin-left: 300px;" >
