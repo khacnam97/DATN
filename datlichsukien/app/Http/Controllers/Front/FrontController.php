@@ -112,7 +112,7 @@ class FrontController extends Controller
                 ->where('posts.id','=',$post_id)->get();
          $a=explode (',',$dateAvalible);
          $result=array_diff($s,$a);
-		//  dd($result);
+		  dd($result);
 		//  $arrDayNotAvalble = array();
 		// foreach ($dateAvalible as $key => $value) {
 		// 	array_push($arrDayNotAvalble,$value);
