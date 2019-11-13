@@ -21,9 +21,6 @@
 
   <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
-
-  <link rel="stylesheet" href=" {{ asset('fonts/fontawesome/css/font-awesome.min.css') }}">
-
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
@@ -36,10 +33,8 @@
   @stack('css')
 
   {{-- multi up image --}}
-  <script src="{{asset('js/dropzone.js')}}"></script>
   <script src="{{asset('js/index.js')}}"></script>
-  <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-  <script type="text/javascript" src="{{asset('ckeditor/adapters/jquery.js') }}"></script>
+  
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
 
