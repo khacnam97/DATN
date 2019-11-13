@@ -38,7 +38,7 @@
 					<tr >
 						<td >{{$o->restaurant->name}}</td>
 						<td>{{$o->restaurant->phone}}</td>
-						<td>{{$o->order_time->time}}</td>
+						<td>{{$o->order_time}}</td>
 						<td>{{$o->order_date}}</td>
 						<td>
 

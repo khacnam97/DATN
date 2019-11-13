@@ -42,7 +42,7 @@
 						<td >{{$o->id}}</td>
 						<td>{{$o->user->name}}</td>
 						<td>{{$o->phone}}</td>
-						<td>{{$o->order_time->time}}</td>
+						<td>{{$o->order_time}}</td>
 						<td>{{$o->order_date}}</td>
 						<td>{{$o->people_number}}</td>
 						<td>{{$o->price_table}}</td>

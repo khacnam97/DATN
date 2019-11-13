@@ -52,19 +52,20 @@ class OrderController extends Controller
         $order->user_id=Auth::id();
         $order->price_table=$request->price_table;  
         $order->order_date=$request->order_date;
-        $order->order_time_id=$request->order_time_id;
-        $order->restaurant_id=$request->restaurant_id;        
+        $order->order_time=$request->time;
+        $order->restaurant_id=$request->restaurant_id;
+          
         $order->status=0;
         // dd($request);   
         $order->save();
-        return view('pages.order',['order'=>$order,'order_time'=>$order_time,'restaurant'=>$restaurant]);
+        return view('pages.test',['order'=>$order,'order_time'=>$order_time,'restaurant'=>$restaurant]);
     }
     public function manageOrder ()
     {
        $id = Auth::id();
        $order =Order::join('restaurants','orders.restaurant_id','=','restaurants.id')
                ->join('posts','posts.restaurant_id','=','restaurants.id')
-               ->select('orders.id','orders.user_id','orders.order_time_id','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status')
+               ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status')
                ->where('posts.user_id','=',$id)->get();
       
 
@@ -99,7 +100,7 @@ class OrderController extends Controller
     {
         $id=Auth::id();
         $order =Order::join('restaurants','orders.restaurant_id','=','restaurants.id')
-                ->select('orders.id','orders.user_id','orders.order_time_id','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','orders.restaurant_id')
+                ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','orders.restaurant_id')
                 ->where('user_id','=',$id)->get();
 
         return view('pages.myOrder',['order'=>$order]);

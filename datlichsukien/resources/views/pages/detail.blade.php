@@ -2,7 +2,36 @@
 @section('header')
 <link rel="stylesheet" type="text/css" href="/css/custom/rating.css">
 <link rel="stylesheet" type="text/css" href="/css/custom/front.css">
+/* Bootstrap css */
+@import "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
 
+/* Google Material icons */
+@import "http://fonts.googleapis.com/icon?family=Material+Icons";
+
+/* Propeller css */
+@import "dist/css/propeller.min.css";
+
+/* Bootstrap datetimepicker */
+@import "datetimepicker/css/bootstrap-datetimepicker.css";
+
+/* Propeller datetimepicker */
+@import "datetimepicker/css/pmd-datetimepicker.css";
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Bootstrap js -->
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- Propeller textfield js --> 
+<script type="text/javascript" src="dist/js/propeller.min.js"></script>
+
+<!-- Datepicker moment with locales -->
+<script type="text/javascript" language="javascript" src="datetimepicker/js/moment-with-locales.js"></script>
+
+<!-- Propeller Bootstrap datetimepicker -->
+<script type="text/javascript" language="javascript" src="datetimepicker/js/bootstrap-datetimepicker.js"></script>
 @endsection
 @section('content')
 
@@ -122,21 +151,23 @@ $photo_path = $data->unique('photo_path')->values();
     </script>
         <div class="col-8">
                
-               @if(Auth::check())
-<!--               <a href="{{route('order',$data[0]->restaurant_id)}}" class="btn btn-primary"  style="width: 200px;" > Đặt lịch</a>
- -->              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22">
-                Đặt lịch
-              </button>
-<!--                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate" value="{{$strDay7}}">{{$strDay7}} </button>
- -->              @foreach ($arrDay as  $day)
+               @if(Auth::check()) 
+                 @if($result !==0)            
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate1" value="{{$strDay7}}">{{$strDay7}} </button>
+                 @else 
+                     @foreach ($result as  $day)
                     
-                      @if($dateAvalible != $day)
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate" value="{{$day}}">{{$day}} </button>
+                     
+                        <button type="button" disabled="" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate" value="{{$day}}">{{$day}} </button>
 
-                      @endif
+                     
                   
-              @endforeach
-
+                     @endforeach
+                  @endif
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate2" value="{{$strDay8}}">{{$strDay8}} </button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate3" value="{{$strDay9}}">{{$strDay9}} </button>
+                   
+                   
                 @else
 
                 <a style="width:200px;" class="btn btn-primary" data-toggle="modal" data-target="#myModal" href="{{ route('login') }}">Đặt lịch</a>
@@ -236,28 +267,7 @@ $photo_path = $data->unique('photo_path')->values();
 
 </div>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal22" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          @csrf
-          <input type="text" name="test" id="test">
-        </form>      
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+@include('pages.addorder')
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3"></script>
 <script async defer crossorigin="anonymous" src="{{asset('js/front/cmt.js')}}"></script>
 @endsection

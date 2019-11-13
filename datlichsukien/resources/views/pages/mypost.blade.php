@@ -58,6 +58,6 @@
 
 </div>
 
-<div style="display: inline-block;">{{$data->links()}}</div>
+<div style="display: inline-block; margin-left: 700px;">{{$data->links()}}</div>
 
 @endsection
