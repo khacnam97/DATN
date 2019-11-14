@@ -110,16 +110,26 @@ class FrontController extends Controller
 		        ->join('posts','posts.restaurant_id','=','orders.restaurant_id')
                 ->select('orders.order_date')
                 ->where('posts.id','=',$post_id)->get();
-         $a=explode (',',$dateAvalible);
+        //dd($dateAvalible);
+         $a=explode ('"',$dateAvalible);
+         //dd($a);
+          $c='';
          $result=array_diff($s,$a);
-		  dd($result);
+
+   //       dd(empty($result));
+		 // if(!empty($result)){
+		 // 	$c='a';
+   //          dd($c);
+		 // }
+		// dd($c);
 		//  $arrDayNotAvalble = array();
 		// foreach ($dateAvalible as $key => $value) {
 		// 	array_push($arrDayNotAvalble,$value);
 
 		// }
-		 //dd($arrDayNotAvalble);
-		// $result=array_diff($s,$arrDayNotAvalble);
+		
+		// dd($a);
+		 //$result=array_diff($s,$arrDayNotAvalble);
 
 		//dd($result);
 		return view('pages/detail', ['data' => $data, 'rating' => $rating, 'user_rate' => $user_rate, 'strDay7' => $strDay7,'strDay8' => $strDay8,'strDay9' => $strDay9, 'dateAvalible' => $dateAvalible, 'arrDay' => $arrDay,'result'=>$result]);
