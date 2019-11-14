@@ -152,17 +152,17 @@ $photo_path = $data->unique('photo_path')->values();
         <div class="col-8">
                
                @if(Auth::check()) 
-                 @if($result !==0)            
+                 @if(!empty($result))            
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate1" value="{{$strDay7}}">{{$strDay7}} </button>
                  @else 
-                     @foreach ($result as  $day)
+                    
                     
                      
-                        <button type="button" disabled="" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate" value="{{$day}}">{{$day}} </button>
+                        <button type="button" disabled="" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate" value="{{$strDay7}} ">{{$strDay7}} </button>
 
                      
                   
-                     @endforeach
+                     
                   @endif
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate2" value="{{$strDay8}}">{{$strDay8}} </button>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate3" value="{{$strDay9}}">{{$strDay9}} </button>
