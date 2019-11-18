@@ -59,6 +59,26 @@ $(document).ready(function(){
     
     $('#test').val($('#btnDate2').val())
   })
+  $('#btnDate3').on('click',function(){
+    
+    $('#test').val($('#btnDate3').val())
+  })
+  $('#btnDate4').on('click',function(){
+    
+    $('#test').val($('#btnDate4').val())
+  })
+  $('#btnDate5').on('click',function(){
+    
+    $('#test').val($('#btnDate5').val())
+  })
+  $('#btnDate6').on('click',function(){
+    
+    $('#test').val($('#btnDate6').val())
+  })
+  $('#btnDate7').on('click',function(){
+    
+    $('#test').val($('#btnDate7').val())
+  })
   // function Namoccho(){
   //   alert("Nam óc chs")
   // }

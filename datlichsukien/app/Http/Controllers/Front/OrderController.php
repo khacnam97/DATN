@@ -23,22 +23,7 @@ class OrderController extends Controller
 	}
 	public function addOrder(Request $request)
     {
-        $this->validate($request,
-            [   'price_table'=>'required',
-                'order_date'=>'required',
-                'people_number'=>'required',
-                'phone'=>'required',
-                'address'=>'required',
-                
-            ],
-            [
-                'price_table.required'=>'bạn chưa nhập giá mỗi bàn ',
-                'order_date.required'=>'bạn chưa nhập ngày tổ chức',
-                'people_number.required'=>'bạn chưa nhập số lượng người',
-                'phone.required'=>'bạn chưa nhập tên địa điểm',
-                'address.required'=>'bạn chưa nhập địa chỉ',   
-            ]
-         );
+        
         // $restaurant = DB::table('restaurants')
         // ->select('restaurants.id')
         // ->where('restaurants.id','=',$id)->first()->id;
@@ -54,11 +39,10 @@ class OrderController extends Controller
         $order->order_date=$request->order_date;
         $order->order_time=$request->time;
         $order->restaurant_id=$request->restaurant_id;
-          
-        $order->status=0;
-        // dd($request);   
+
+        $order->status=0;   
         $order->save();
-        return view('pages.test',['order'=>$order,'order_time'=>$order_time,'restaurant'=>$restaurant]);
+        return redirect()->route('myorder');
     }
     public function manageOrder ()
     {
