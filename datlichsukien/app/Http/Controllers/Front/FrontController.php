@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Front;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Post;
@@ -14,7 +12,6 @@ use App\Order;
 use App\Restaurant;
 use DB;
 use DateTime;
-
 class FrontController extends Controller
 {
      public function index()
@@ -66,7 +63,6 @@ class FrontController extends Controller
 		$post_id = DB::table('posts')
 		->select('posts.id')
 		->where('posts.id','=',$id)->first()->id;
-
 		$data = DB::table('posts')
 		->join('photos', 'posts.id', '=', 'photos.post_id')
 		->join('users', 'posts.user_id', '=', 'users.id')
@@ -94,28 +90,25 @@ class FrontController extends Controller
 		$strDay9 = date('Y-m-d', strtotime($strNow. ' + 9 days'));
 		//dd($strDay7);
 		$strDay72 = new DateTime( $strDay7 );
-
 		$strDay14 = date('Y-m-d', strtotime($strNow. ' + 13 days'));
 		$strDay142 = new DateTime( $strDay14 );
-
 		$arrDay = array();
 		for($i = $strDay72; $i <= $strDay142; $i->modify('+1 day')){
 		    // $i->format("Y-m-d");
 		    array_push($arrDay,$i->format("Y-m-d"));
 		}
 		// dd($arrDay);
-	    $s=explode (',',$strDay7);
+	    $strDay1=explode (',',$strDay7);
 	    //dd($s);
 		$dateAvalible = DB::table('orders')
 		        ->join('posts','posts.restaurant_id','=','orders.restaurant_id')
                 ->select('orders.order_date')
                 ->where('posts.id','=',$post_id)->get();
         //dd($dateAvalible);
-         $a=explode ('"',$dateAvalible);
+         $strdateAvalible=explode ('"',$dateAvalible);
          //dd($a);
           $c='';
-         $result=array_diff($s,$a);
-
+         $result=array_diff($strDay1,$strdateAvalible);
    //       dd(empty($result));
 		 // if(!empty($result)){
 		 // 	$c='a';
@@ -125,12 +118,10 @@ class FrontController extends Controller
 		//  $arrDayNotAvalble = array();
 		// foreach ($dateAvalible as $key => $value) {
 		// 	array_push($arrDayNotAvalble,$value);
-
 		// }
 		
 		// dd($a);
 		 //$result=array_diff($s,$arrDayNotAvalble);
-
 		//dd($result);
 		return view('pages/detail', ['data' => $data, 'rating' => $rating, 'user_rate' => $user_rate, 'strDay7' => $strDay7,'strDay8' => $strDay8,'strDay9' => $strDay9, 'dateAvalible' => $dateAvalible, 'arrDay' => $arrDay,'result'=>$result]);
 	}
