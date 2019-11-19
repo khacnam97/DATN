@@ -10,12 +10,12 @@
       <div class="modal-body">
         <h5 style="text-align: center;">{{$data[0]->restaurant}}</h5>
         <form action="{{route('order.add')}}" method="post">
-          @csrf
+          <input type="hidden" name="_token" value="{{ csrf_token()}}">
           <div class="form-group row">
             <label class="col-sm-3 col-form-label form-control-label">Thời gian tổ chức</label>
             
               <div class="col-sm-6" >
-                 <input class="form-control" type="text" name="order_date" id="test" disabled="">
+                 <input class="form-control" type="text" name="order_date" id="test" >
               </div>    
           </div>
           <div class="form-group row">
@@ -79,7 +79,6 @@
           <div class="form-group row" style="margin-bottom: 30px;">
             <div class="col" style="margin-left: 300px;" >
               <button class="btn btn-info" type="submit" >Đặt lịch</button>
-              <!-- <button type="reset" title=""  id="edit"class="btn btn-danger">Cancel</button> -->
             </div>
           </div>   
         </form>      

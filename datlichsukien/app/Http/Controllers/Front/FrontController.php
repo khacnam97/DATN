@@ -88,42 +88,57 @@ class FrontController extends Controller
 		$strDay7 = date('Y-m-d', strtotime($strNow. ' + 7 days'));
 		$strDay8 = date('Y-m-d', strtotime($strNow. ' + 8 days'));
 		$strDay9 = date('Y-m-d', strtotime($strNow. ' + 9 days'));
-		//dd($strDay7);
-		$strDay72 = new DateTime( $strDay7 );
-		$strDay14 = date('Y-m-d', strtotime($strNow. ' + 13 days'));
-		$strDay142 = new DateTime( $strDay14 );
-		$arrDay = array();
-		for($i = $strDay72; $i <= $strDay142; $i->modify('+1 day')){
-		    // $i->format("Y-m-d");
-		    array_push($arrDay,$i->format("Y-m-d"));
-		}
+
+		$strDay10 = date('Y-m-d', strtotime($strNow. ' + 10 days'));
+		$strDay11 = date('Y-m-d', strtotime($strNow. ' + 11 days'));
+		$strDay12 = date('Y-m-d', strtotime($strNow. ' + 12 days'));
+		$strDay13 = date('Y-m-d', strtotime($strNow. ' + 13 days'));
+		
+		// $strDay72 = new DateTime( $strDay7 );
+
+		// $strDay14 = date('Y-m-d', strtotime($strNow. ' + 13 days'));
+		// $strDay142 = new DateTime( $strDay14 );
+
+		// $arrDay = array();
+		// for($i = $strDay72; $i <= $strDay142; $i->modify('+1 day')){
+		//     // $i->format("Y-m-d");
+		//     array_push($arrDay,$i->format("Y-m-d"));
+		// }
 		// dd($arrDay);
 	    $strDay1=explode (',',$strDay7);
-	    //dd($s);
+	    $strDay2=explode (',',$strDay8);
+	    $strDay3=explode (',',$strDay9);
+	    $strDay4=explode (',',$strDay10);
+	    $strDay5=explode (',',$strDay11);
+	    $strDay6=explode (',',$strDay12);
+	    $strDay0=explode (',',$strDay13);
 		$dateAvalible = DB::table('orders')
 		        ->join('posts','posts.restaurant_id','=','orders.restaurant_id')
                 ->select('orders.order_date')
                 ->where('posts.id','=',$post_id)->get();
         //dd($dateAvalible);
-         $strdateAvalible=explode ('"',$dateAvalible);
-         //dd($a);
-          $c='';
-         $result=array_diff($strDay1,$strdateAvalible);
-   //       dd(empty($result));
-		 // if(!empty($result)){
-		 // 	$c='a';
-   //          dd($c);
-		 // }
-		// dd($c);
-		//  $arrDayNotAvalble = array();
-		// foreach ($dateAvalible as $key => $value) {
-		// 	array_push($arrDayNotAvalble,$value);
-		// }
-		
-		// dd($a);
-		 //$result=array_diff($s,$arrDayNotAvalble);
-		//dd($result);
-		return view('pages/detail', ['data' => $data, 'rating' => $rating, 'user_rate' => $user_rate, 'strDay7' => $strDay7,'strDay8' => $strDay8,'strDay9' => $strDay9, 'dateAvalible' => $dateAvalible, 'arrDay' => $arrDay,'result'=>$result]);
+
+         $ep_dateAvalible=explode ('"',$dateAvalible);
+         
+         $result=array_diff($strDay1,$ep_dateAvalible);
+         $result2=array_diff($strDay2,$ep_dateAvalible);
+         $result3=array_diff($strDay3,$ep_dateAvalible);
+         $result4=array_diff($strDay4,$ep_dateAvalible);
+         $result5=array_diff($strDay5,$ep_dateAvalible);
+         $result6=array_diff($strDay6,$ep_dateAvalible);
+         $result7=array_diff($strDay0,$ep_dateAvalible);
+         
+         $weekday1 = date('l', strtotime($strDay7));
+         $weekday2 = date('l', strtotime($strDay8));
+         $weekday3 = date('l', strtotime($strDay9));
+         $weekday4 = date('l', strtotime($strDay10));
+         $weekday5 = date('l', strtotime($strDay11));
+         $weekday6 = date('l', strtotime($strDay12));
+         $weekday7 = date('l', strtotime($strDay13));
+
+         //dd($weekday5);
+		return view('pages/detail', ['data' => $data, 'rating' => $rating, 'user_rate' => $user_rate, 'strDay7' => $strDay7,'strDay8' => $strDay8,'strDay9' => $strDay9,'strDay10' => $strDay10,'strDay11' => $strDay11,'strDay12' => $strDay12,'strDay13' => $strDay13, 'dateAvalible' => $dateAvalible,'result'=>$result,'result2'=>$result2,'result3'=>$result3,'result4'=>$result4,'result5'=>$result5,'result6'=>$result6,'result7'=>$result7,'weekday1'=>$weekday1,'weekday2'=>$weekday2,'weekday3'=>$weekday3,'weekday4'=>$weekday4,'weekday5'=>$weekday5,'weekday6'=>$weekday6,'weekday7'=>$weekday7]);
+
 	}
 	public function rate(Request $request)
 	{
