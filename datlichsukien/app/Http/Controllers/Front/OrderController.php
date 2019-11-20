@@ -74,17 +74,20 @@ class OrderController extends Controller
         $order = Order::find($id);
         $order->status=1;
         $order->save();
-        return redirect()->back()->with('success',Config::get('constant.user.unblockUser'));
+        return redirect()->back()->with('success',Config::get('constant.order.accept'));
     }
-    public function confirm ()
+    public function confirm ($id,Request $request)
     {
-       return view('pages.confirm');
+        $order = Order::find($id);
+        $order->status=1;
+        $order->save();
+       return redirect()->back()->with('success',Config::get('constant.order.accept'));
     }
     public function myorder()
     {
         $id=Auth::id();
         $order =Order::join('restaurants','orders.restaurant_id','=','restaurants.id')
-                ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','orders.restaurant_id')
+                ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','orders.restaurant_id','orders.address')
                 ->where('user_id','=',$id)->get();
 
         return view('pages.myOrder',['order'=>$order]);
@@ -97,5 +100,12 @@ class OrderController extends Controller
        }
        else printf("format");
        
+    }
+    public function delete($id)
+    {
+        $order = Order::find($id);
+        $order->delete();
+        
+        return redirect()->back()->with('success', Config::get('constant.order.deleteOrder'));
     }
 }

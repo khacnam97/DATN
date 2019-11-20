@@ -1,7 +1,17 @@
 @extends('layouts.app')
 @section('content')
+<script src="{{asset('js/jquery-3.2.1.slim.min.js')}}"></script>
+<script src="{{asset('js/popper.min.js')}}"></script>
 
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
 <div class="card mb-3">
+	
+	@if($order->count() == 0)
+		<h1 style="margin-top:100px;margin-bottom: 100px; font-size: 35px;">Bạn chưa có lịch đặt nào </h1>
+	
+
+	@else
+	<h1 style="margin-top:100px;margin-bottom: 50px; text-align: center;">Lịch đặt của tôi</h1>
 	@if(Session::has('message'))
 	<div class="alert alert-success">
 		{{Session::get('message')}}
@@ -12,13 +22,6 @@
 		{{Session::get('success')}}
 	</div>
 	@endif
-	@if($order->count() == 0)
-		<h1 style="margin-top:100px;margin-bottom: 100px; font-size: 35px;">Bạn chưa có lịch đặt nào </h1>
-	
-
-	@else
-	<h1 style="margin-top:100px;margin-bottom: 50px; text-align: center;">Lịch đặt của tôi</h1>
-	
 	<div class="card-body">
 		
 		<div class="table-responsive">
@@ -45,21 +48,27 @@
 						@if($o->status ==1)
 		                      <button class="btn-danger" >
 		                       
-		                      <a href="" onclick="return confirm('Bạn có muốn block user này?')" role="button"  style="color: white;text-decoration: none;" >Hủy</a>
+		                      <a href=""  role="button"  style="color: white;text-decoration: none;" >Đã chấp nhận</a>
 		                    </button>
-		                    @else 
+		                @elseif($o->status ==0) 
 		                    <button class="btn-success">
 		                     
 		                      <a data-toggle="modal" data-target="#myModal3" href=""  style="color: white;text-decoration: none;" >Đang chờ </a>
 		                    </button>
+		                @else
+		                    <button class="btn-success">
+		                     
+		                      <a data-toggle="modal" data-target="#myModal3" href=""  style="color: white;text-decoration: none;" >Đã từ bị chối </a>
+		                    </button> 
                         @endif
-							<button type="button" class="btn-info" data-toggle="modal" data-target="#myModal">
-								<a href="" style="color: white;text-decoration: none;">Detail</a>
+							<button type="button" class="btn-info" data-toggle="modal" data-target="#detailModal" data-idorder="{{$o->id}}" data-namerestaurant="{{$o->restaurant->name}}" data-phone="{{$o->restaurant->phone}}" data-address="{{$o->address}}" data-time="{{$o->order_time}}" data-date="{{$o->order_date}}" data-peonumber="{{$o->people_number}}" data-price="{{$o->price_table}}"> 
+								Chi tiết
 							</button>
-
+                            @if($o->status !==1)
 							<button type="button" class="btn-danger" >
-								<a href="" style="color: white;text-decoration: none;" onclick="return confirm ('Bạn có muốn xóa ')">Delete</a>
+								<a href="{{route('myorder.delete', $o->id)}}" style="color: white;text-decoration: none;" onclick="return confirm ('Bạn có muốn xóa ??')">Delete</a>
 							</button>
+							@endif
 						</td>
 					</tr>
 				@endforeach	
@@ -68,5 +77,106 @@
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+         <h5>Chi tiết lịch đặt</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body"> <h5 style="text-align: center;"></h5>
+      	<input name="id" type="hidden" id="idedit">
+      	<label for="category-name" class="col-form-label"> Tên nhà hàng </label>
+      	<input type="text" name="name" class="form-control" id="restaurant-name" readonly>
+      	<label for="address" class="col-form-label"> Địa chỉ địa điểm tổ chức </label>
+      	<input type="text" name="address" class="form-control" id="address" readonly>
+      	<div class="row">
+      		<div class="form-group col-md-6">
+      			<label for="name" class="col-form-label">Thời gian tổ chức </label>
+      			<input type="text" name="phone" class="form-control" id="time" readonly>
+      		</div>
+      		<div class="form-group col-md-6">
+      			<label for="name" class="col-form-label"> Ngày tổ chức  </label>
+      			<input type="text" name="phone" class="form-control" id="date" readonly> 
+      		</div>
+      		
+      	</div> 
+      	<div class="row">
+      		<div class="form-group col-md-4">
+      			<label for="name" class="col-form-label"> Số điện thoại </label>
+      			<input type="text" name="phone" class="form-control" id="phone" readonly>
+      		</div>
+      		<div class="form-group col-md-4">
+      			<label for="name" class="col-form-label"> Số lượng người  </label>
+      			<input type="text" name="phone" class="form-control" id="peonumber" readonly> 
+      		</div>
+      		<div class="form-group col-md-4">
+      			<label for="name" class="col-form-label"> Mức giá mỗi bàn  </label>
+      			<input type="text" name="phone" class="form-control" id="price" readonly> 
+      		</div>
+      		
+      	</div> 
+      	
+      </div>
+      <div class="modal-footer">
+      	<button id="buttoncancel" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      	<button id="buttonedit" type="button" class="btn btn-primary">Edit</button>
+      	<button id="buttonsave" type="button" class="btn btn-success" onclick="return confirm('Save?')" disabled>Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+			$('#detailModal').on('show.bs.modal', function(event) {
+				var button = $(event.relatedTarget)
+				var idorder = button.data('idrestaurant')
+				var namerestaurant = button.data('namerestaurant')
+				var phone = button.data('phone')
+				var time = button.data('time')
+				var date = button.data('date')
+				var peonumber = button.data('peonumber')
+				var price = button.data('price')
+				var address = button.data('address')
 
+				var modal = $(this)
+				modal.find('#idedit').val(idorder);
+				modal.find('#restaurant-name').val(namerestaurant)
+				modal.find('#phone').val(phone)
+				modal.find('#time').val(time)
+				modal.find('#date').val(date)
+				modal.find('#peonumber').val(peonumber)
+				modal.find('#price').val(price)
+				modal.find('#address').val(address)
+			})
+		</script>
+		<script>
+			let editbutton = document.querySelector('#buttonedit');
+			let savebutton = document.querySelector('#buttonsave');
+			let cancelbutton = document.querySelector('#buttoncancel');
+			let textinput1 = document.querySelector('#restaurant-name');
+			let textinput = document.querySelector('#phone');
+			let detailform = document.querySelector('#detailform');
+			editbutton.addEventListener('click', enableButton);
+			cancelbutton.addEventListener('click', disableButton);
+			savebutton.addEventListener('click', submitform);
+
+			function enableButton() {
+				editbutton.disabled = true;
+				savebutton.disabled = false;
+				textinput.readOnly = false;
+				textinput.autofocus = true;
+			}
+
+			function disableButton() {
+				editbutton.disabled = false;
+				savebutton.disabled = true;
+				textinput.readOnly = true;
+			}
+
+			function submitform() {
+				detailform.submit();
+			}
+		</script>
 @endsection
