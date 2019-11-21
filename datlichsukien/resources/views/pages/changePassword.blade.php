@@ -63,11 +63,11 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary">
+            <div class="form-group" style="display: flex;justify-content: center;">
+              <button type="submit" class="btn btn-primary" style="margin-right: 10px; width: 100px;">
                 Save
               </button>
-              <a href="{{ url('/') }}" title=""  id="edit_button"class="btn btn-danger">Cancel</a>
+              <a href="{{ url('/') }}" title="" style="width: 100px;" id="edit_button"class="btn btn-danger">Cancel</a>
             </div>
           </form>
         </div>

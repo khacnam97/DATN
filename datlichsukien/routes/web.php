@@ -110,6 +110,7 @@ Route::get('/home', function(){
 
 		Route::get('/myorder','OrderController@myOrder')->name('myorder');
 		Route::get('/delete/{id}','OrderController@delete')->name('myorder.delete');
+		Route::post('/edit','OrderController@edit')->name('myorder.edit');
 		
 	});
 });

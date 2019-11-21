@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Auth;
 use Response;
 use App\Order_time;
@@ -107,5 +108,27 @@ class OrderController extends Controller
         $order->delete();
         
         return redirect()->back()->with('success', Config::get('constant.order.deleteOrder'));
+    }
+    public function edit(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->route('myorder')
+                ->withErrors($validator);
+        }
+       
+        $id =  $request->id;
+        // dd($request->id);
+        $order = Order::find($id);
+        $order->address = $request->address;
+        $order->order_time = $request->order_time;
+        $order->phone = $request->phone;
+        $order->people_number = $request->people_number;
+        $order->price_table = $request->price_table;
+        //dd($request->address);
+        $order->save();
+        return  redirect()->route('myorder');
     }
 }

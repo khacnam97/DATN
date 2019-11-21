@@ -77,7 +77,7 @@
           @endif
             <input class="form-control" name="restaurant_id" type="text" value="{{$data[0]->restaurant_id}}" required="" hidden="">
           <div class="form-group row" style="margin-bottom: 30px;">
-            <div class="col" style="margin-left: 300px;" >
+            <div class="col" style="display: flex;justify-content: center;" >
               <button class="btn btn-info" type="submit" >Đặt lịch</button>
             </div>
           </div>   
