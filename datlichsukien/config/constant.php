@@ -42,7 +42,10 @@
         	'editPlace'=>'Bạn đã sửa thành công',
         	'deletePlace'=>'Bạn đã xóa thành công'
         ],
-        'register' =>'Đăng kí thành công'
-
+        'register' =>'Đăng kí thành công',
+        'order' =>[
+        	'deleteOrder'=>'Bạn đã xóa thành công lịch đặt này',
+        	'accept'=>'Bạn đã xác nhận lịch đặt này'
+        ]
 	]
 ?>

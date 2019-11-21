@@ -106,9 +106,10 @@ Route::get('/home', function(){
 		Route::get('/manageOrder','OrderController@manageOrder')->name('manage.order');
 		Route::get('/cancel/{id}', 'OrderController@cancel')->name('myorder.cancel');
 		Route::get('/accept/{id}', 'OrderController@accept')->name('myorder.accept');
-		Route::get('/confirm', 'OrderController@confirm')->name('confirm');
+		Route::get('/confirm/{id}', 'OrderController@confirm')->name('confirm');
 
 		Route::get('/myorder','OrderController@myOrder')->name('myorder');
+		Route::get('/delete/{id}','OrderController@delete')->name('myorder.delete');
 		
 	});
 });
