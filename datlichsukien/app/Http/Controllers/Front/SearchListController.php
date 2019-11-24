@@ -47,4 +47,24 @@ class SearchListController extends Controller
                 ->get();
         return response()->json($data);
     }
+    public function search_date(Request $request)
+    {
+       $search1 ='date';
+        
+       $search = $request ->date;
+		$post= DB::table('posts')
+		->join('restaurants','posts.restaurant_id','=','restaurants.id')
+		->join('orders','posts.restaurant_id','=','orders.restaurant_id')
+		->leftjoin('ratings', 'posts.id', '=', 'ratings.post_id')
+		->join('photos', 'posts.id', '=', 'photos.post_id')->select('posts.id','posts.describer','restaurants.address', 'posts.title','photos.photo_path',\DB::raw('avg(ratings.rating) as avg_rating'))->groupBy('posts.id')->groupBy('posts.title')->groupBy('photos.photo_path')->groupBy('posts.describer')->groupBy('restaurants.address')
+		->where([
+			['orders.order_date','LIKE','%'.$search.'%'],
+			['photos.flag', '=', '1'],
+			['is_approved','=','1']
+			
+		])
+		->Paginate(Config::get('constant.pagination'));
+		$post->appends([$search1=>$search]);
+		return view('pages.searchDate',['post' => $post],[$search=>$search]);
+    }
 }

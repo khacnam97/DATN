@@ -15,7 +15,7 @@
             <label class="col-sm-3 col-form-label form-control-label">Thời gian tổ chức</label>
             
               <div class="col-sm-6" >
-                 <input class="form-control" type="text" name="order_date" id="test" >
+                 <input class="form-control" type="text" name="order_date" id="test" readonly>
               </div>    
           </div>
           <div class="form-group row">

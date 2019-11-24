@@ -11,8 +11,12 @@ use App\Order_time;
 use App\Order;
 use App\Restaurant;
 use App\Post;
+use App\User;
 use DB;
 use Config;
+use App\Events\NotiOrderHandler;
+use App\Notifications\NotiOrder;
+
 class OrderController extends Controller
 {
     public function index($id)
@@ -40,9 +44,17 @@ class OrderController extends Controller
         $order->order_date=$request->order_date;
         $order->order_time=$request->time;
         $order->restaurant_id=$request->restaurant_id;
-
+        $restaurant =$request->restaurant_id;
+        //dd($restaurant);
         $order->status=0;   
         $order->save();
+        event(new NotiOrderHandler($order));
+            $toUsers = User::join('posts','posts.user_id','=','users.id')
+                             ->select( 'users.id as id')
+                             ->where('posts.restaurant_id','=',$restaurant)->get();
+             // $toUsers = User::where('role','=','1')->get();
+                           //dd( $toUsers);
+            \Notification::send($toUsers, new NotiOrder($order));
         return redirect()->route('myorder');
     }
     public function manageOrder ()

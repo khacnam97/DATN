@@ -36,34 +36,5 @@
   </div>
 </div>
 
-<form action="/admin/chart" method="GET">
-  <label>Table</label>
-  <select required name="dbname">
-    <option value="" selected disabled hidden>Choose here</option>
-    <option value="users">User</option>
-    <option value="ratings">Rating</option>
-    <option value="posts">Post</option>
-  </select>
-  
-  <br>
-
-  <input type="month" name="begin" required>
-  <input type="month" name="end" required>
-  <button class="btn-success" type="submit" formaction="/admin/chart" formmethod="GET">Submit</button>
-</form>
-
-<!-- <div style="height: 400px">
-  @if(isset($chart))
-  {!! $chart->container() !!}
-  <div>
- -->
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
-    <!-- {!! $chart->script() !!}
-    @endif -->
-
-
-
-
     @endsection
