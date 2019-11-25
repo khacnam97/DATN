@@ -45,7 +45,8 @@
         'register' =>'Đăng kí thành công',
         'order' =>[
         	'deleteOrder'=>'Bạn đã xóa thành công lịch đặt này',
-        	'accept'=>'Bạn đã xác nhận lịch đặt này'
+        	'accept'=>'Bạn đã xác nhận lịch đặt này',
+        	'error' =>'Bạn chọn ngày không hợp lệ hoặc ngày đã có người đặt'
         ]
 	]
 ?>

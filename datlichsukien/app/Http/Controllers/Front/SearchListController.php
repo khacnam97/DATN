@@ -52,6 +52,10 @@ class SearchListController extends Controller
        $search1 ='date';
         
        $search = $request ->date;
+       $restaurantid = DB::table('orders')
+       ->select('orders.restaurant_id')
+       ->where('orders.order_date','=',$search)->get();
+       dd($restaurantid);
 		$post= DB::table('posts')
 		->join('restaurants','posts.restaurant_id','=','restaurants.id')
 		->join('orders','posts.restaurant_id','=','orders.restaurant_id')

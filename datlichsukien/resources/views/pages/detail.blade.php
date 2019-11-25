@@ -74,6 +74,22 @@
 $photo_path = $data->unique('photo_path')->values();
 ?>
 <div class="container" style='text-align:left;margin-top:100px;'>
+  @if (session('success'))
+      <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert" aria_label="Close">
+          <span aria_hidden="true">&times;</span>
+        </button>
+        {{ session('success') }}
+      </div>
+      @endif
+  @if (session('error'))
+      <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria_label="Close">
+          <span aria_hidden="true">&times;</span>
+        </button>
+        {{ session('error') }}
+      </div>
+      @endif
   <h1 class="my-4" style="margin-bottom: 0px;">{{$data[0]->title}}</h1>
 
     <small style="text-align:right;font-size: 18px; margin-bottom: 20px;">By <a style="color: blue;text-decoration: none;" href="/user/{{$data[0]->user_id}}"> {{$data[0]->name}}</a> Ngày {{ date('d-m-Y', strtotime($data[0]->create_at)) }}  </small>
@@ -126,14 +142,7 @@ $photo_path = $data->unique('photo_path')->values();
       </div>
     </div>
     <div class="col-6" style="text-align: end;margin: 30px 0;">
-      @if (session('success'))
-      <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert" aria_label="Close">
-          <span aria_hidden="true">&times;</span>
-        </button>
-        {{ session('success') }}
-      </div>
-      @endif
+      
       <div>
         <div class="row" style="justify-content: flex-end;margin-right: 5px;">
           <div class="fb-share-button" data-href="{{url()->current()}}" data-layout="button" data-size="large">
@@ -189,11 +198,15 @@ $photo_path = $data->unique('photo_path')->values();
           
         </div>
         
-        <div class="row" style="margin: 20px 0;">
-            <form action="{{route('search.date')}}" method="get">
+        <div class="col-6" style="margin-left: 12px; margin-top: 10px;">
+            <form action="{{route('order.add.date')}}" method="post">
+             <input type="hidden" name="_token" value="{{ csrf_token()}}">
              <div class="row">
-               <input required="" id="datepicker" name="date" width="276" />
-              <button type="submit" class="btn btn-success">Tìm kiếm</button>
+               <input type="hidden" value="{{$data[0]->id}}" name="idpost">
+               <input type="hidden" value="{{$data[0]->restaurant_id}}" name="restaurantid">
+               <input type="hidden" value="{{$data[0]->restaurant}}" name="restaurantdate">
+               <input required="" id="datepicker" name="order_date" width="276" placeholder="Chọn ngày đặt lịch" />
+               <button type="submit" class="btn btn-success">Đặt lịch</button>
              </div>
               
             </form> 
