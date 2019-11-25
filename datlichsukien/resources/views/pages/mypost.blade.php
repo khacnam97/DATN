@@ -58,6 +58,6 @@
 
 </div>
 
-<div style="display: inline-block; margin-left: 700px;">{{$data->links()}}</div>
+<div style="display: flex; justify-content: center;">{{$data->links()}}</div>
 
 @endsection

@@ -15,7 +15,7 @@
             <label class="col-sm-3 col-form-label form-control-label">Thời gian tổ chức</label>
             
               <div class="col-sm-6" >
-                 <input class="form-control" type="text" name="order_date" id="test" >
+                 <input class="form-control" type="text" name="order_date" id="test" readonly>
               </div>    
           </div>
           <div class="form-group row">
@@ -77,7 +77,7 @@
           @endif
             <input class="form-control" name="restaurant_id" type="text" value="{{$data[0]->restaurant_id}}" required="" hidden="">
           <div class="form-group row" style="margin-bottom: 30px;">
-            <div class="col" style="margin-left: 300px;" >
+            <div class="col" style="display: flex;justify-content: center;" >
               <button class="btn btn-info" type="submit" >Đặt lịch</button>
             </div>
           </div>   

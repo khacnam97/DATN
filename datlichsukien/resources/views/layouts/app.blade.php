@@ -84,6 +84,25 @@
             </li>
             @endif
             @else
+            <li class="nav-item dropdown" style="">
+              <a id="" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;font-size: 13px;" v-pre>
+                <i class="fa fa-bell fa-2x" style="margin-top: 0%;"></i>
+                <span class="badge badge-light">{{Auth::user()->unreadNotifications->count()}}</span>
+              </a>
+              @if(Auth::user()->Notifications->count()>0)
+              <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a href="/deletenotify" class="dropdown-item" style="color:red;border-bottom:1px solid black;padding-bottom:10px;">Delete all notifications</a>
+                @foreach(Auth::user()->unreadNotifications as $notification)
+                <a href="{{$notification->data['link']}}" id="notify" class="dropdown-item"> {{$notification->data['message']}}</a>
+                @endforeach
+                @foreach(Auth::user()->Notifications as $notification)
+                @if($notification->read_at !=NULL)
+                <a href="{{$notification->data['link']}}" id="notify" class="dropdown-item" style="background-color:lightgrey"> {{$notification->data['message']}}</a>
+                @endif
+                @endforeach
+              </div>
+              @endif
+            </li>
             <li class="nav-item dropdown" >
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;font-size: 13px;" v-pre>
 

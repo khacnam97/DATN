@@ -67,9 +67,9 @@
 						</div>
 					</div>
 					<div class="form-group row" style="margin-bottom: 30px;">
-						<div class="col" style="margin-left: 180px;">
-							<button class="btn btn-info" >Update</button>
-							<a href="{{ url('profile') }}" title=""  id="edit_button"class="btn btn-danger">Cancel</a>
+						<div class="col" style="display: flex;justify-content: center;">
+							<button class="btn btn-info" style="margin-right: 10px; width: 100px;">Update</button>
+							<a href="{{ url('profile') }}" title="" style="width: 100px;" id="edit_button"class="btn btn-danger">Cancel</a>
 						</div>
 					</div>
 				</form>

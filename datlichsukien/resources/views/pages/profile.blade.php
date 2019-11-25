@@ -59,9 +59,9 @@
 						</div>
 					</div>
 					<div class="form-group row" style="margin-bottom: 30px;">
-						<div class="col" style="margin-left: 150px;">
-							<a href="{{route('profile.edit')}}" title=""  id="edit"class="btn btn-info">Edit profiles</a>
-							<a href="{{ url('/')}}" title=""  id="edit"class="btn btn-danger">Cancel</a>
+						<div class="col" style="display: flex;justify-content: center; ">
+							<a href="{{route('profile.edit')}}" title="" style="margin-right: 10px;" id="edit"class="btn btn-info">Edit profiles</a>
+							<a href="{{ url('/')}}" title="" style="width: 110px;" id="edit"class="btn btn-danger">Cancel</a>
 						</div>
 					</div>
 				</form>
