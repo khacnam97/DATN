@@ -143,49 +143,44 @@ $photo_path = $data->unique('photo_path')->values();
       </div>
 
     </div>
- <script>
-        $('#datepicker').datepicker({
-            format: 'yyyy-mm-dd',
-            uiLibrary: 'bootstrap4'
-        });
-    </script>
-        <div class="col">
+    
+        <div class="col-12" >
                
                @if(Auth::check()) 
                  @if(!empty($result))            
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate1" value="{{$strDay7}}">{{$weekday1}} ({{$strDay7}})  </button>
+                    <button type="button" style="height: 40px; font-size: 12px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate1" value="{{$strDay7}}">{{$weekday1}}  ({{$strDay7}})  </button>
                  @else 
-                        <button type="button" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday1}} ({{$strDay7}}) </button>
+                        <button type="button" style="height: 40px; font-size: 12px;" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday1}}  ({{$strDay7}}) </button>
                   @endif
                   @if(!empty($result2))            
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate2" value="{{$strDay8}}">{{$weekday2}}({{$strDay8}}) </button>
+                    <button type="button" style="height: 40px; font-size: 12px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate2" value="{{$strDay8}}">{{$weekday2}}({{$strDay8}}) </button>
                  @else 
-                        <button type="button" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday2}}({{$strDay8}})</button>
+                        <button type="button" style="height: 40px; font-size: 12px;" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday2}}({{$strDay8}})</button>
                   @endif
                   @if(!empty($result3))            
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate3" value="{{$strDay9}}">{{$weekday3}}({{$strDay9}})</button>
+                    <button type="button" style="height: 40px; font-size: 12px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate3" value="{{$strDay9}}">{{$weekday3}}({{$strDay9}})</button>
                  @else 
-                        <button type="button" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday3}}({{$strDay9}})</button>
+                        <button type="button" style="height: 40px; font-size: 12px;" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday3}}({{$strDay9}})</button>
                   @endif
                    @if(!empty($result4))            
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate4" value="{{$strDay10}}">{{$weekday4}}({{$strDay10}}) </button>
+                    <button type="button" style="height: 40px; font-size: 12px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate4" value="{{$strDay10}}">{{$weekday4}}({{$strDay10}}) </button>
                  @else 
-                        <button type="button" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday4}}({{$strDay10}})</button>
+                        <button type="button" style="height: 40px; font-size: 12px;" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday4}}({{$strDay10}})</button>
                   @endif
                   @if(!empty($result5))            
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate5" value="{{$strDay11}}">{{$weekday5}}({{$strDay11}}) </button>
+                    <button type="button" style="height: 40px; font-size: 12px;"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate5" value="{{$strDay11}}">{{$weekday5}}({{$strDay11}}) </button>
                  @else 
-                        <button type="button" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday5}}({{$strDay11}})</button>
+                        <button type="button" style="height: 40px; font-size: 12px;" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday5}}({{$strDay11}})</button>
                   @endif
                   @if(!empty($result6))            
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate6" value="{{$strDay12}}">{{$weekday6}}({{$strDay12}}) </button>
+                    <button type="button" style="height: 40px; font-size: 12px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate6" value="{{$strDay12}}">{{$weekday6}}({{$strDay12}}) </button>
                  @else 
-                        <button  type="button" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday6}}({{$strDay12}}) </button>
+                        <button  type="button" style="height: 40px; font-size: 12px;" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday6}}({{$strDay12}}) </button>
                   @endif
                     @if(!empty($result7))            
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate7" value="{{$strDay13}}">{{$weekday7}}({{$strDay13}}) </button>
+                    <button type="button" style="height: 40px; font-size: 12px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate7" value="{{$strDay13}}">{{$weekday7}}({{$strDay13}}) </button>
                  @else 
-                        <button type="button" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday7}}({{$strDay13}}) </button>
+                        <button type="button" style="height: 40px; font-size: 12px;" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday7}}({{$strDay13}}) </button>
                   @endif
                 @else
 
@@ -193,6 +188,23 @@ $photo_path = $data->unique('photo_path')->values();
                 @endif
           
         </div>
+        
+        <div class="row" style="margin: 20px 0;">
+            <form action="{{route('search.date')}}" method="get">
+             <div class="row">
+               <input required="" id="datepicker" name="date" width="276" />
+              <button type="submit" class="btn btn-success">Tìm kiếm</button>
+             </div>
+              
+            </form> 
+            <script>
+              $('#datepicker').datepicker({
+                uiLibrary: 'bootstrap4',
+                format: 'yyyy-mm-dd'
+              });
+            </script>
+        </div> 
+       
 
     <div style="margin: 20px 0 100px 0;width: 100%;">
       <ul class="nav nav-tabs" role="tablist">
