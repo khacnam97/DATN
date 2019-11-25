@@ -92,6 +92,7 @@ Route::get('/home', function(){
 
 	Route::get('/search_list', 'SearchListController@getsearch')->name('search.list');
 	Route::get('/autocomplete', 'SearchListController@autocomplete')->name('autocomplete');
+	Route::get('/search_date', 'SearchListController@search_date')->name('search.date');
 
 	Route::get('/mypost','ProfileController@mypost')->name('mypost');
 	Route::post('/mypost/{id}/delete','PostController@delete')->name('mypost.delete');
@@ -110,6 +111,7 @@ Route::get('/home', function(){
 
 		Route::get('/myorder','OrderController@myOrder')->name('myorder');
 		Route::get('/delete/{id}','OrderController@delete')->name('myorder.delete');
+		Route::post('/edit','OrderController@edit')->name('myorder.edit');
 		
 	});
 });

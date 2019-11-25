@@ -4,14 +4,19 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Auth;
 use Response;
 use App\Order_time;
 use App\Order;
 use App\Restaurant;
 use App\Post;
+use App\User;
 use DB;
 use Config;
+use App\Events\NotiOrderHandler;
+use App\Notifications\NotiOrder;
+
 class OrderController extends Controller
 {
     public function index($id)
@@ -39,9 +44,17 @@ class OrderController extends Controller
         $order->order_date=$request->order_date;
         $order->order_time=$request->time;
         $order->restaurant_id=$request->restaurant_id;
-
+        $restaurant =$request->restaurant_id;
+        //dd($restaurant);
         $order->status=0;   
         $order->save();
+        event(new NotiOrderHandler($order));
+            $toUsers = User::join('posts','posts.user_id','=','users.id')
+                             ->select( 'users.id as id')
+                             ->where('posts.restaurant_id','=',$restaurant)->get();
+             // $toUsers = User::where('role','=','1')->get();
+                           //dd( $toUsers);
+            \Notification::send($toUsers, new NotiOrder($order));
         return redirect()->route('myorder');
     }
     public function manageOrder ()
@@ -107,5 +120,27 @@ class OrderController extends Controller
         $order->delete();
         
         return redirect()->back()->with('success', Config::get('constant.order.deleteOrder'));
+    }
+    public function edit(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->route('myorder')
+                ->withErrors($validator);
+        }
+       
+        $id =  $request->id;
+        // dd($request->id);
+        $order = Order::find($id);
+        $order->address = $request->address;
+        $order->order_time = $request->order_time;
+        $order->phone = $request->phone;
+        $order->people_number = $request->people_number;
+        $order->price_table = $request->price_table;
+        //dd($request->address);
+        $order->save();
+        return  redirect()->route('myorder');
     }
 }

@@ -280,7 +280,37 @@ $photo_path = $data->unique('photo_path')->values();
       </div>
     </div>
   </div>
-  
+  <div class="container" style="margin-bottom: 50px;">
+    @if($data[0]->cmt !=NULL || $data[0]->rate != NUll)
+    @foreach ($data as $key=>$value)
+    <div class="media border p-3">
+
+      @if($value->avatar)
+      <img style="width:40px; height: 40px;" class="mr-3 mt-3 rounded-circle" src="{{$value->avatar}}" alt="">
+      @else
+      <img style="width:40px; height: 40px;" class="mr-3 mt-3 rounded-circle" src="/picture/images.png" alt="">
+      @endif
+      <div class="media-body">
+
+        <h5 style='padding-top:20px;display:inline-block;' class="mt-0"><a href="/user/{{$value->cmtid}}">{{$value->cmtname}}</a></h5>
+
+        <small>{{ date('d-m-Y', strtotime($value->created_at)) }}</small>
+
+
+
+
+
+        @for($i=1;$i<= $value->rate;$i++)
+          <span style="color:orange" class="fa fa-star "></span>
+
+          @endfor
+
+         {!!$value->cmt!!}
+      </div>
+    </div>
+    @endforeach
+    @endif
+  </div>
 
   
 
