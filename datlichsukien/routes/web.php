@@ -106,7 +106,7 @@ Route::get('/home', function(){
 		Route::post('/edit/{idpost}', 'PostController@edit')->name('account.editpost');
 		Route::get('/manageOrder','OrderController@manageOrder')->name('manage.order');
 		Route::get('/cancel/{id}', 'OrderController@cancel')->name('myorder.cancel');
-		Route::get('/accept/{id}', 'OrderController@accept')->name('myorder.accept');
+		Route::post('/accept', 'OrderController@accept')->name('myorder.accept');
 		Route::get('/confirm/{id}', 'OrderController@confirm')->name('confirm');
 
 		Route::get('/myorder','OrderController@myOrder')->name('myorder');

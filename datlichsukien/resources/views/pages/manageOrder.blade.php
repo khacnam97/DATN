@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
+<script src="{{asset('js/jquery-3.2.1.slim.min.js')}}"></script>
+<script src="{{asset('js/popper.min.js')}}"></script>
 
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
 <div class="card mb-3">
 	
 	@if($order->count() == 0)
@@ -55,10 +58,9 @@
 		                      <a   role="button"  style="color: white;text-decoration: none;" >Đã xác nhận</a>
 		                    </button>
 		                    @else 
-		                    <button class="btn-success">
-		                     
-		                      <a  role="button"  href="{{ route('myorder.accept', $o->id) }}" onclick="return confirm('Bạn có muốn xác nhận lịch đặt này {{$o->id}} ?')" style="color: white;text-decoration: none;" >Xác nhận</a>
-		                    </button>
+		                    <button type="button" class="btn-info" data-toggle="modal" data-target="#detailModal2" data-date="{{$o->order_date}}"   data-address="{{$o->address}}" data-time="{{$o->order_time}}" data-id="{{$o->id}}" data-peonumber="{{$o->people_number}}" data-price="{{$o->price_table}}" data-email="{{$o->user->email}}"> 
+								Xác nhận
+							</button>
                         @endif
 							<button type="button" class="btn-info" data-toggle="modal" data-target="#myModal">
 								<a href="" style="color: white;text-decoration: none;">Detail</a>
@@ -72,5 +74,103 @@
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="detailModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+         <h5>Chi tiết lịch đặt</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body"> <h5 style="text-align: center;"></h5>
+      	
+      	
+      	<form id="accecptform" action="{{route('myorder.accept')}}" method="POST">
+		{{ csrf_field() }}
+      	<input type="hidden" name="id" class="form-control" id="id" readonly>
+      	<input type="text" name="email" class="form-control" id="email" readonly >
+      	<label for="address" class="col-form-label"> Địa chỉ địa điểm tổ chức </label>
+      	<input type="text" name="address" class="form-control" id="address" readonly >
+      	<div class="row">
+      		<div class="form-group col-md-6">
+      			<label for="name" class="col-form-label">Thời gian tổ chức </label>
+      			<input type="text" name="order_time" class="form-control" id="time" readonly>
+      		</div>
+      		<div class="form-group col-md-6">
+      			<label for="name" class="col-form-label"> Ngày tổ chức  </label>
+      			<input type="text" name="order_date" class="form-control" id="date" readonly> 
+      		</div>
+      		
+      	</div> 
+      	<div class="row">
+      		
+      		<div class="form-group col-md-4">
+      			<label for="name" class="col-form-label"> Số lượng người  </label>
+      			<input type="text" name="people_number" class="form-control" id="peonumber" readonly> 
+      		</div>
+      		<div class="form-group col-md-4">
+      			<label for="name" class="col-form-label"> Mức giá mỗi bàn  </label>
+      			<input type="text" name="price_table" class="form-control" id="price" readonly> 
+      		</div>
+      		
+      	</div> 
+      	
+      	</form>
+      </div>
+      <div class="modal-footer">
+      	
+      	<button id="buttonsave" type="button" class="btn btn-success" onclick="return confirm('Xác nhận?')" >Xác nhận</button>
+      	<button id="buttoncancel" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      	
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+	$('#detailModal2').on('show.bs.modal', function(event) {
+		var button = $(event.relatedTarget)
+		var id = button.data('id')
+		
+		var email = button.data('email')
+		var time = button.data('time')
+		var id = button.data('id')
+		var peonumber = button.data('peonumber')
+		var price = button.data('price')
+		var date = button.data('date')
+		var address = button.data('address')
 
+		var modal = $(this)
+		modal.find('#idedit').val(id);
+		modal.find('#email').val(email);
+		
+		modal.find('#time').val(time)
+		modal.find('#id').val(id)
+		modal.find('#peonumber').val(peonumber)
+		modal.find('#price').val(price)
+		modal.find('#date').val(date)
+		modal.find('#address').val(address)
+	})
+</script>
+<script type="text/javascript">
+	let textinput2 = document.querySelector('#time');
+	let textinput3 = document.querySelector('#peonumber');
+	let textinput4 = document.querySelector('#price');
+	let textinput5 = document.querySelector('#address');
+	let textinput6 = document.querySelector('#email');
+    
+	let savebutton = document.querySelector('#buttonsave');
+	
+    savebutton.addEventListener('click', submitform);
+
+	let accecptform = document.querySelector('#accecptform');
+	
+	savebutton.addEventListener('click', submitform);
+
+	
+
+	function submitform() {
+		accecptform.submit();
+	}
+</script>
 @endsection

@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Front;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Post;
@@ -14,7 +12,6 @@ use App\Order;
 use App\Restaurant;
 use DB;
 use DateTime;
-
 class FrontController extends Controller
 {
      public function index()
@@ -66,7 +63,6 @@ class FrontController extends Controller
 		$post_id = DB::table('posts')
 		->select('posts.id')
 		->where('posts.id','=',$id)->first()->id;
-
 		$data = DB::table('posts')
 		->join('photos', 'posts.id', '=', 'photos.post_id')
 		->join('users', 'posts.user_id', '=', 'users.id')
@@ -92,6 +88,7 @@ class FrontController extends Controller
 		$strDay7 = date('Y-m-d', strtotime($strNow. ' + 7 days'));
 		$strDay8 = date('Y-m-d', strtotime($strNow. ' + 8 days'));
 		$strDay9 = date('Y-m-d', strtotime($strNow. ' + 9 days'));
+
 		$strDay10 = date('Y-m-d', strtotime($strNow. ' + 10 days'));
 		$strDay11 = date('Y-m-d', strtotime($strNow. ' + 11 days'));
 		$strDay12 = date('Y-m-d', strtotime($strNow. ' + 12 days'));
@@ -120,6 +117,7 @@ class FrontController extends Controller
                 ->select('orders.order_date')
                 ->where('posts.id','=',$post_id)->get();
         //dd($dateAvalible);
+
          $ep_dateAvalible=explode ('"',$dateAvalible);
          
          $result=array_diff($strDay1,$ep_dateAvalible);
@@ -140,6 +138,7 @@ class FrontController extends Controller
 
          //dd($weekday5);
 		return view('pages/detail', ['data' => $data, 'rating' => $rating, 'user_rate' => $user_rate, 'strDay7' => $strDay7,'strDay8' => $strDay8,'strDay9' => $strDay9,'strDay10' => $strDay10,'strDay11' => $strDay11,'strDay12' => $strDay12,'strDay13' => $strDay13, 'dateAvalible' => $dateAvalible,'result'=>$result,'result2'=>$result2,'result3'=>$result3,'result4'=>$result4,'result5'=>$result5,'result6'=>$result6,'result7'=>$result7,'weekday1'=>$weekday1,'weekday2'=>$weekday2,'weekday3'=>$weekday3,'weekday4'=>$weekday4,'weekday5'=>$weekday5,'weekday6'=>$weekday6,'weekday7'=>$weekday7]);
+
 	}
 	public function rate(Request $request)
 	{

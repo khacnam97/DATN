@@ -14,9 +14,13 @@ use App\Post;
 use App\User;
 use DB;
 use Config;
+use App\Accept;
 use App\Events\NotiOrderHandler;
 use App\Notifications\NotiOrder;
-
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+use App\Mail\AcceptCreated;
+use App\Notifications\AcceptRequest;
 class OrderController extends Controller
 {
     public function index($id)
@@ -62,7 +66,8 @@ class OrderController extends Controller
        $id = Auth::id();
        $order =Order::join('restaurants','orders.restaurant_id','=','restaurants.id')
                ->join('posts','posts.restaurant_id','=','restaurants.id')
-               ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status')
+               ->join('users','users.id','=','orders.user_id')
+               ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','users.email','orders.address')
                ->where('posts.user_id','=',$id)->get();
       
 
@@ -82,15 +87,35 @@ class OrderController extends Controller
            return redirect()->back()->with('success',Config::get('constant.user.blockUser')); 
       // }
     }
-    public function accept($id,Request $request)
+    public function accept(Request $request)
     {
+        $id =  $request->id;
         $order = Order::find($id);
+        $order->email = $request->email;
+        do {
+          //generate a random string using Laravel's str_random helper
+         $token = str_random();
+          } //check if the token already exists and if it does, try again
+         while (Accept::where('token', $token)->first());
+
+          //create a new invite record
+          $accept1= new Accept();
+          $accept1->email=$request->get('email');
+          //dd($request->get('email'));
+          $accept1->token= md5(uniqid(rand(), true));
+
+          $accept1->save();
+          // send the email
+          Mail::to($request->get('email'))->send(new AcceptCreated($accept1));
+          // redirect back where we came from
         $order->status=1;
         $order->save();
         return redirect()->back()->with('success',Config::get('constant.order.accept'));
     }
     public function confirm ($id,Request $request)
     {
+        $id =  $request->id;
+        dd($id);
         $order = Order::find($id);
         $order->status=1;
         $order->save();
