@@ -56,8 +56,6 @@ class OrderController extends Controller
             $toUsers = User::join('posts','posts.user_id','=','users.id')
                              ->select( 'users.id as id')
                              ->where('posts.restaurant_id','=',$restaurant)->get();
-             // $toUsers = User::where('role','=','1')->get();
-                           //dd( $toUsers);
             \Notification::send($toUsers, new NotiOrder($order));
         return redirect()->route('myorder');
     }
@@ -167,5 +165,29 @@ class OrderController extends Controller
         //dd($request->address);
         $order->save();
         return  redirect()->route('myorder');
+    }
+    public function adddateOrder(Request $request)
+    {
+      $orderdate=$request->order_date;
+      $strDay=explode (',',$orderdate);
+      $post_id=$request->idpost;
+      $dateAvalible = DB::table('orders')
+      ->join('posts','posts.restaurant_id','=','orders.restaurant_id')
+      ->select('orders.order_date')
+      ->where('posts.id','=',$post_id)->get();
+      $ep_dateAvalible=explode ('"',$dateAvalible);
+      $result=array_diff($strDay,$ep_dateAvalible);
+      $strNow =  date("Y-m-d");
+      if(!empty($result) &&  strtotime($strNow) < strtotime($orderdate)) 
+      {
+          $restaurant_id =$request->restaurantid;
+          $restaurantdate =$request->restaurantdate;
+         // dd($restaurantdate);
+
+          return view('pages.addorderDate',['restaurant_id'=>$restaurant_id,'restaurantdate'=>$restaurantdate,'orderdate'=>$orderdate]);
+      }
+      else{
+        return redirect()->back()->with('error', Config::get('constant.order.error'));
+      }
     }
 }
