@@ -10,6 +10,7 @@ use DB;
 use App\Photo;
 use App\Post;
 use App\Rating;
+use App\Restaurant;
 use File;
 use Image;
 use Config;
@@ -127,28 +128,45 @@ class UserController extends Controller
             return redirect()->back()->with('error' , Config::get('constant.user.deleteAdminUser'));
         }
         else{
-            $postid = Post::where('users_id', $id)->get();
+            $postid = Post::where('user_id', $id)->get();
             foreach ($postid as $p) {  
-                $photo = Photo::where('posts_id', $p->id);      
-                // $rating2 = Rating::where('post_id', $p->id);  
-                $path = "/picture/admin/post/".$p->id;         
-                // $rating2->delete();     
+                $photo = Photo::where('post_id', $p->id);      
+                $rating2 = Rating::where('post_id', $p->id);  
+                $path = "/picture/admin/post/".$p->id;      
+                $rating2->delete();     
                 $photo->delete();
                 File::deleteDirectory(public_path($path));    
             }
-            // $rating =DB::table('ratings')  
-            // ->where([
-            //     ['user_id','=',$id],
-            // ])
-            // ->delete();
-            $social =DB::table('socials')  
+            $rating =DB::table('ratings')  
             ->where([
-                ['users_id','=',$id],
+                ['user_id','=',$id],
             ])
             ->delete();
-            $post = DB::table('posts')
-            ->where('users_id','=',$id)
+            $order =DB::table('orders')  
+            ->where([
+                ['user_id','=',$id],
+            ])
             ->delete();
+            $social =DB::table('socials')  
+            ->where([
+                ['user_id','=',$id],
+            ])
+            ->delete();
+            $order2 = DB::table('orders')
+            ->join('restaurants','restaurants.id','=','orders.restaurant_id')
+            ->join('posts','posts.restaurant_id','=','restaurants.id')
+            ->join('users','users.id','=','posts.user_id')
+            ->where('posts.user_id','=',$id)
+            ->delete();
+            $restaurant = DB::table('restaurants')
+            ->join('posts','posts.restaurant_id','=','restaurants.id')
+            ->join('users','users.id','=','posts.user_id')
+            ->where('posts.user_id','=',$id)
+            ->delete();
+            $post = DB::table('posts')
+            ->where('user_id','=',$id)
+            ->delete();
+            
             $user->delete();
             return redirect()->back()->with('success',Config::get('constant.user.deleteUser'));
       }

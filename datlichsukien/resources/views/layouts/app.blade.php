@@ -63,7 +63,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- Left Side Of Navbar -->
           <ul class="navbar-nav mr-auto">
-            <li><a class="nav-link  border-0" style="cursor:pointer; " id="scr2"> About Us </a></li>
+            <li><a class="nav-link  border-0" style="cursor:pointer;  " id="scr2" href="{{route('index')}}" > Trang chủ </a></li>
             <li><a class="nav-link  border-0" style=" cursor:pointer;" id="scr3"> Địa điểm </a></li>
             <li><a class="nav-link  border-0" style=" cursor:pointer;" id="scr1"> Liên hệ </a></li>
 
@@ -221,7 +221,27 @@
         </div>
       </div>
     </div>
+    <!-- MOdal upgrade -->
+    <div class="modal fade" id="upgradeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Xác nhận trở thành người quản lí địa điểm?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-footer">
+            <form id="upgrade-form" action="{{route('upgrade')}}" method="post">
+              @csrf
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary" id="accept">Accept</button>
+            </form>
 
+          </div>
+        </div>
+      </div>
+    </div>
 
 
 {{-- @yield('content')

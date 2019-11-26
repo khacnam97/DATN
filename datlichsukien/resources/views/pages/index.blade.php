@@ -105,13 +105,13 @@
         </div>       
         <div style="width: 100%; margin-left: 10px; margin-top: 30px;">
             <form class="form-inline" action="{{route('search.list')}}" method="get">   
-            <div class="">        
-            <div>
-               <input class="typeahead form-control" type="text" placeholder="Search" name="search" required="" id="inputsearch" autocomplete="off" style="margin-bottom: 10px">
+            <div class="row">        
+            <div style="margin-left: 10px;">
+               <input class="typeahead form-control" style="width: 250px;" type="text" placeholder="Nhập địa điểm tìm kiếm " name="search" required="" id="inputsearch" autocomplete="off" style="margin-bottom: 10px">
             </div>
                  
             <div>
-              <button class="btn btn-success" type="submit" id="btnsearch"> Tìm kiếm </button>
+              <button class="btn btn-success" type="submit" id="btnsearch" style="width: 100px;"> Tìm kiếm </button>
             </div>
             </div>
           </form>
@@ -189,7 +189,7 @@
     </div>
         <div style="text-align: center;margin-top:50px;color: #b3b3ba;"><h2>NHỮNG BÀI VIẾT MỚI NHẤT</h2></div>
         <div class="row" style="justify-content: center;">
-            
+            @if($all_post->count() !== 0)
             @foreach ($all_post as $record)
             <div class="col-sm-4" style="margin:50px 0;">
                 <div class="card-img" id="card-img" style="height:300px;" >
@@ -226,6 +226,8 @@
             </div>
             @endforeach
         </div>
+    
+    @endif
     </div>
  </div>   
 @endsection

@@ -232,13 +232,20 @@ class PostController extends Controller
     {
 
         //query bulder
-        $posts = DB::table('posts')
-            ->where('id' , '=' ,$id)->delete();
+        $order = DB::table('orders')
+            ->join('restaurants','restaurants.id','=','orders.restaurant_id')
+            ->join('posts','posts.restaurant_id','=','restaurants.id')
+            ->where('posts.id','=',$id)
+            ->delete();
+        $restaurant =DB::table('restaurants')
+            ->join('posts','posts.restaurant_id','=','restaurants.id')
+            ->where('posts.id', '=' ,$id)->delete();
         $photo =DB::table('photos')
             ->where('post_id', '=' ,$id)->delete();
         $path = "/picture/admin/post/".$id; 
         File::deleteDirectory(public_path($path));
-
+        $posts = DB::table('posts')
+            ->where('id' , '=' ,$id)->delete();
         //$rating =Rating::where('post_id', $id)->delete();
         $postss = POST::all();
         return redirect (route('admin.post.index'))->with(config::get('constant.success'), config::get('constant.message_delete_success'));

@@ -68,6 +68,11 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 	Route::group(['prefix' => 'order','namespace'=>'order'], function(){
 		Route::get('/', 'OrderController@index')->name('admin.order.index');
 		Route::get('/delete/{id}', 'OrderController@delete')->name('admin.order.delete');
+		Route::post('/add', 'OrderController@addOrder')->name('admin.order.addOrder');
+		Route::get('/cancel/{id}', 'OrderController@cancel')->name('admin.order.cancel');
+		Route::get('/accept/{id}', 'OrderController@accept')->name('admin.order.accept');
+		Route::get('/edit/{id}', 'OrderController@showedit')->name('admin.order.edit');
+		Route::post('/edit/{id}', 'OrderController@edit')->name('admin.order.edit');
 		
 	});
 });
@@ -88,6 +93,7 @@ Route::get('/home', function(){
 
 	Route::get('/order/{id}','OrderController@index')->name('order');
 	Route::post('/order','OrderController@addOrder')->name('order.add');
+	Route::post('/orderdate','OrderController@addOrderdate')->name('order.adddate');
     Route::post('/check','OrderController@check')->name('order.check');
     Route::post('/order_date','OrderController@adddateOrder')->name('order.add.date');
 
@@ -97,6 +103,8 @@ Route::get('/home', function(){
 
 	Route::get('/mypost','ProfileController@mypost')->name('mypost');
 	Route::post('/mypost/{id}/delete','PostController@delete')->name('mypost.delete');
+    
+    Route::post('/upgrade', 'FrontController@upgrade')->name('upgrade');
 
 	Route::group(['prefix' => 'account', 'middleware' => 'auth'],function(){
 		Route::get('/post', 'PostController@showformAddPost')->name('account.addpost');
