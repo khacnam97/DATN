@@ -73,49 +73,7 @@ class OrderController extends Controller
             \Notification::send($toUsers, new NotiOrder($order));
         return redirect()->route('myorder');
     }
-    public function addOrderdate(Request $request)
-    {
-        
-        $this->validate($request,
-            [   'phone'=>'required',
-                'address'=>'required',
-                'time'=>'required',
-                'order_date'=>'required',
-                'price_table'=>['required','integer'],
-                'people_number'=>['required','integer']
-            ],
-            [
-                'phone.required'=>'bạn chưa nhập số điện thoại',
-                'address.required'=>'bạn chưa nhập địa chỉ',
-                'time.required'=>'bạn chưa nhập thời gian',
-                'order_date.required'=>'bạn chưa nhập ngày tháng',
-                'people_number.required'=>'bạn chưa nhập số lượng người ',
-                'price_table.required'=>'bạn chưa nhập số bàn'
-            ]
-        );
-
-        $order = new Order;
-        $restaurant=Restaurant::all();
-
-        $order->people_number=$request->people_number;
-        $order->address=$request->address;
-        $order->phone=$request->phone;
-        $order->user_id=Auth::id();
-        $order->price_table=$request->price_table;  
-        $order->order_date=$request->order_date;
-        $order->order_time=$request->time;
-        $order->restaurant_id=$request->restaurant_id;
-        $restaurant =$request->restaurant_id;
-        //dd($restaurant);
-        $order->status=0;   
-        $order->save();
-        event(new NotiOrderHandler($order));
-            $toUsers = User::join('posts','posts.user_id','=','users.id')
-                             ->select( 'users.id as id')
-                             ->where('posts.restaurant_id','=',$restaurant)->get();
-            \Notification::send($toUsers, new NotiOrder($order));
-        return redirect()->back()->with('success', 'Bạn đã đăng kí thành công một lịch đặt');
-    }
+   
     public function manageOrder ()
     {
        $id = Auth::id();
