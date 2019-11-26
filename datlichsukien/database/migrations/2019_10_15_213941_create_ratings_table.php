@@ -18,6 +18,7 @@ class CreateRatingsTable extends Migration
             $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('user_id');
             $table->integer('rating')->nullable();
+            $table->string('cmt')->nullable();
             $table->timestamps();
         });
     }
