@@ -37,11 +37,11 @@
   <div class="row">
     <div class="form-group col-md-4">
       <input type="checkbox" name="changePassword" id=changePasword >
-      <label for="">Đổi mật khẩu</label>
+      <label for="">Password</label>
       <input  type="password" name="password" value="" class="form-control password" disabled="" placeholder="Password" required>
     </div>
     <div class="form-group col-md-4">
-      <label for="">Nhập lại mật khẩu</label>
+      <label for="">Confirm password</label>
       <input  type="password" name="passwordAgain" value="" class="form-control password" disabled="" placeholder="Confirm Password" required>
     </div>
   </div>
@@ -79,7 +79,7 @@
       <img src="{{  $user->avatar }}" alt="{{ $user->avatar }}" id="output" style="width: 100px; height: 100px; background-repeat: no-repeat;" />
   </div>
    <div class="form-group">
-    <label for="">Chọn ảnh mới</label>
+    <label for="">Choose a new photo</label>
     <input  type="file" name="avatar" value="{{$user->avatar}}" accept="image/x-png,image/jpeg"   autocomplete="file" onchange="loadFile(event)">
   </div>
   <script>
@@ -111,7 +111,7 @@
 </form>
  <script>
         $('#datepicker').datepicker({
-            format: 'yyyy-dd-mm',
+            format: 'yyyy-mm-dd',
             uiLibrary: 'bootstrap4'
         });
     </script>

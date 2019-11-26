@@ -152,10 +152,11 @@ $photo_path = $data->unique('photo_path')->values();
       </div>
 
     </div>
-    
+    @if(Auth::check())
+        <div style="margin-left: 12px; "><h4>Đặt lịch</h4></div> 
         <div class="col-12" >
                
-               @if(Auth::check()) 
+               
                  @if(!empty($result))            
                     <button type="button" style="height: 40px; font-size: 12px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate1" value="{{$strDay7}}">{{$weekday1}}  ({{$strDay7}})  </button>
                  @else 
@@ -191,10 +192,8 @@ $photo_path = $data->unique('photo_path')->values();
                  @else 
                         <button type="button" style="height: 40px; font-size: 12px;" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday7}}({{$strDay13}}) </button>
                   @endif
-                @else
-
-                <a style="width:200px;" class="btn btn-primary" data-toggle="modal" data-target="#myModal" href="{{ route('login') }}">Đặt lịch</a>
-                @endif
+               
+               
           
         </div>
         
@@ -217,15 +216,18 @@ $photo_path = $data->unique('photo_path')->values();
               });
             </script>
         </div> 
-       
+         @else
+
+         <a style="width:200px;" class="btn btn-primary" data-toggle="modal" data-target="#myModal" href="{{ route('login') }}">Đặt lịch</a>
+        @endif
 
     <div style="margin: 20px 0 100px 0;width: 100%;">
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" href="#description">Description</a>
+          <a class="nav-link active" data-toggle="tab" href="#description">Mô tả</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#location">Location</a>
+          <a class="nav-link" data-toggle="tab" href="#location">Vị trí</a>
         </li>
 
       </ul>
@@ -247,14 +249,14 @@ $photo_path = $data->unique('photo_path')->values();
   </div>
   <div class="container">
     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" style="margin-bottom: 20px;">
-      Comment
+      Bình luận
     </button>
     <div class="collapse" id="collapseExample">
       <div class="card card-body">
 
         @if(Auth::check())
         @if($user_rate)
-        <p>Your rate:
+        <p>Đánh giá của bạn:
           @for($i=1;$i<= $user_rate->rating;$i++) <span style="color:orange;font-size: 30px" class="fa fa-star "></span>
             @if($user_rate->rating -$i >= 0.5 && $user_rate->rating -$i < 1)<span style="color:orange;font-size: 30px" class="fa fa-star-half-alt "></span>
 
@@ -264,7 +266,7 @@ $photo_path = $data->unique('photo_path')->values();
         @endif
         <form action="/detail/rate" method="POST" onsubmit="myButton.disabled = true; return true;">
           @csrf
-          <label for="">Rating:</label>
+          <label for="">Đánh giá của bạn về địa điểm này:</label>
           <?php session(['post_id' => $data[0]->id]); ?>
 
             <div class='rating-stars '>
@@ -290,17 +292,17 @@ $photo_path = $data->unique('photo_path')->values();
   
 
           <div class="form-group">
-            <label for="">Comment:</label>
+            <label for="">Bình luận:</label>
 
 
             <textarea class="form-control" rows="5" id="" name="commentarea" required></textarea>
 
 
           </div>
-          <button name="myButton" type="submit" id="btnRating">Send</button>
+          <button name="myButton" type="submit" id="btnRating">Gửi</button>
         </form>
         @else
-        <a style="width:150px;" class="btn btn-primary" data-toggle="modal" data-target="#myModal" href="{{ route('login') }}">Please Login</a>
+        <a style="width: 300px;" class="btn btn-primary" data-toggle="modal" data-target="#myModal" href="{{ route('login') }}">Vui lòng đăng nhập để đánh giá</a>
         @endif
       </div>
     </div>

@@ -1,3 +1,4 @@
+
 <div class="modal fade" id="exampleModal22" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -8,6 +9,18 @@
         </button>
       </div>
       <div class="modal-body">
+        @if(count($errors)>0)
+        <div class="alert alert-danger">
+          @foreach($errors->all() as $err)
+          {{$err}} <br>
+          @endforeach
+      </div>
+     @endif 
+  @if(Session::has('success'))
+  <div class="alert alert-success">
+    {{Session::get('success')}}
+  </div>
+  @endif
         <h5 style="text-align: center;">{{$data[0]->restaurant}}</h5>
         <form action="{{route('order.add')}}" method="post">
           <input type="hidden" name="_token" value="{{ csrf_token()}}">
@@ -37,41 +50,41 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label form-control-label">Số lượng người</label>
             <div class="col-sm-6">
-              <input class="form-control" type="text" name="people_number" value="" required="">
+              <input class="form-control" type="text" name="people_number" value="" placeholder="Số lượng người tham dự" required="">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-3 col-form-label form-control-label">Mức giá mỗi bàn</label>
             <div class="col-sm-6">
-              <input class="form-control" type="text" value="" name="price_table" required="">
+              <input class="form-control" type="text" value="" name="price_table" placeholder="Mức giá mỗi bàn tiệc" required="">
             </div>
           </div>
           @if(Auth::check()) 
           <div class="form-group row">
             <label class="col-sm-3 col-form-label form-control-label">Địa chỉ</label>
             <div class="col-sm-6">
-              <input class="form-control" type="text" name="address" value="{{Auth::user()->address}}" required="" >
+              <input class="form-control" type="text" name="address" placeholder="Địa chỉ của bạn"  value="{{Auth::user()->address}}" required="" >
             </div>
           </div>
           
           <div class="form-group row">
             <label class="col-sm-3 col-form-label form-control-label">Số điện thoại</label>
             <div class="col-sm-6">
-              <input class="form-control" name="phone" type="text" value="{{Auth::user()->phone}}" required="">
+              <input class="form-control" name="phone" type="text" placeholder="Số điện thoại "  value="{{Auth::user()->phone}}" required="">
             </div>
           </div>
           @else
           <div class="form-group row">
             <label class="col-sm-3 col-form-label form-control-label">Địa chỉ</label>
             <div class="col-sm-6">
-              <input class="form-control" type="text" name="address" value="" required="" >
+              <input class="form-control" type="text" name="address" placeholder="Địa chỉ của bạn" value="" required="" >
             </div>
           </div>
           
           <div class="form-group row">
             <label class="col-sm-3 col-form-label form-control-label">Số điện thoại</label>
             <div class="col-sm-6">
-              <input class="form-control" name="phone" type="text" value="" required="">
+              <input class="form-control" name="phone" type="text" placeholder="Số điện thoại " value="" required="">
             </div>
           </div>
           @endif

@@ -2,13 +2,24 @@
 @section('header')
 
 <div class="container"  id="show_profile" style="margin-top: 100px; margin-bottom: 50px;display:flex; justify-content: center;">
-	<div style="width: 800px; height: 500px; border-style: ridge;background-color: #dee2e6;">
+	<div style="width: 800px; height: 600px; ">
 		
 		<div class="row" style="justify-content: center;">
 			<div class="col-9">
-
+			@if(count($errors)>0)
+			        <div class="alert alert-danger">
+			          @foreach($errors->all() as $err)
+			          {{$err}} <br>
+			          @endforeach
+			      </div>
+			     @endif 
+			  @if(Session::has('success'))
+			  <div class="alert alert-success">
+			    {{Session::get('success')}}
+			  </div>
+			  @endif
                  <h3 style="text-align: center;">{{$restaurantdate}}</h3>
-				<form action="{{route('order.add')}}" method="post">
+				<form action="{{route('order.adddate')}}" method="post">
 					<input type="hidden" name="_token" value="{{ csrf_token()}}">
 					<div class="form-group row">
 						<label class="col-sm-3 col-form-label form-control-label">Thời gian tổ chức</label>

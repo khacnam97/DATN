@@ -55,14 +55,14 @@ class SearchListController extends Controller
        $restaurantid = DB::table('orders')
        ->select('orders.restaurant_id')
        ->where('orders.order_date','=',$search)->get();
-       dd($restaurantid);
+       //dd($restaurantid);
 		$post= DB::table('posts')
 		->join('restaurants','posts.restaurant_id','=','restaurants.id')
 		->join('orders','posts.restaurant_id','=','orders.restaurant_id')
 		->leftjoin('ratings', 'posts.id', '=', 'ratings.post_id')
 		->join('photos', 'posts.id', '=', 'photos.post_id')->select('posts.id','posts.describer','restaurants.address', 'posts.title','photos.photo_path',\DB::raw('avg(ratings.rating) as avg_rating'))->groupBy('posts.id')->groupBy('posts.title')->groupBy('photos.photo_path')->groupBy('posts.describer')->groupBy('restaurants.address')
 		->where([
-			['orders.order_date','LIKE','%'.$search.'%'],
+			['orders.order_date','!=',$search],
 			['photos.flag', '=', '1'],
 			['is_approved','=','1']
 			

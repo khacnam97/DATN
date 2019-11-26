@@ -176,4 +176,11 @@ class FrontController extends Controller
        }
        else printf("format");
     }
+    public function upgrade(Request $request)
+	{
+		$user = Auth::user();
+		$user->role = '2';
+		$user->save();
+		return redirect('/');
+	}
 }

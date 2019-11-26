@@ -56,6 +56,12 @@ class RestaurantController extends Controller
 
     public function xoa($id)
     {
+        $order = DB::table('orders')
+            ->where('orders.restaurant_id','=',$id)
+            ->delete();
+        $post = DB::table('posts')
+            ->where('posts.restaurant_id','=',$id)
+            ->delete();
         $restaurant = restaurant::find($id);
         $restaurant->delete();
         
