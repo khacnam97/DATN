@@ -104,7 +104,7 @@ class OrderController extends Controller
     {
         $id =  $request->id;
         $order = Order::find($id);
-        $order->email = $request->email;
+        // $order->email = $request->email;
         do {
           //generate a random string using Laravel's str_random helper
          $token = str_random();
