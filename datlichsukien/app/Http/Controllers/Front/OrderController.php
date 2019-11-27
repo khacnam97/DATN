@@ -17,6 +17,7 @@ use Config;
 use App\Accept;
 use App\Events\NotiOrderHandler;
 use App\Notifications\NotiOrder;
+use App\Notifications\NotiOrderUser;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use App\Mail\AcceptCreated;
@@ -89,18 +90,12 @@ class OrderController extends Controller
      public function cancel($id,Request $request)
     {
         $order = Order::find($id);
-        // $check = $order->role;
-        // if($check == 1){
-
-        //     return redirect()->back()->with('error' , Config::get('constant.user.blockAdminUser'));
-        // }
-        // else{
            $order->status=0;
            $order->save();
            return redirect()->back()->with('success',Config::get('constant.user.blockUser')); 
       // }
     }
-    public function accept(Request $request)
+    public function acceptOrder(Request $request)
     {
         $id =  $request->id;
         $order = Order::find($id);
@@ -112,16 +107,22 @@ class OrderController extends Controller
          while (Accept::where('token', $token)->first());
 
           //create a new invite record
-          $accept1= new Accept();
-          $accept1->email=$request->get('email');
-          $accept1->token= md5(uniqid(rand(), true));
+          $accept= new Accept();
+          $accept->email=$request->get('email');
+          $accept->address=$request->get('address');
+          $accept->token= md5(uniqid(rand(), true));
 
-          $accept1->save();
+          $accept->save();
           // send the email
-          Mail::to($request->get('email'))->send(new AcceptCreated($accept1));
+          Mail::to($request->get('email'))->send(new AcceptCreated($accept));
           // redirect back where we came from
         $order->status=1;
         $order->save();
+        event(new NotiOrderHandler($order));
+            $toUsers = User::join('orders','orders.user_id','=','users.id')
+                             ->select( 'users.id as id')
+                             ->where('orders.id','=',$id)->get();
+            \Notification::send($toUsers, new NotiOrderUser($order));
         return redirect()->back()->with('success',Config::get('constant.order.accept'));
     }
     public function confirm ($id,Request $request)
