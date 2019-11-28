@@ -92,9 +92,6 @@ $photo_path = $data->unique('photo_path')->values();
       @endif
   <h1 class="my-4" style="margin-bottom: 0px;">{{$data[0]->title}}</h1>
 
-    <small style="text-align:right;font-size: 18px; margin-bottom: 20px;">By <a style="color: blue;text-decoration: none;" href="/user/{{$data[0]->user_id}}"> {{$data[0]->name}}</a> Ngày {{ date('d-m-Y', strtotime($data[0]->create_at)) }}  </small>
-
-  
   <div class="row">
 
     <div class="col">
@@ -239,8 +236,7 @@ $photo_path = $data->unique('photo_path')->values();
           <h5 style="color: #3490dc;"> <i class="fas fa-map-marker-alt " style="color: red;"></i> {{$data[0]->address}}</h5>
              {!!($data[0]->describer)!!}
         </div>
-        <div id="location" class="container tab-pane fade"><br>
-          <h3>Location</h3>         
+        <div id="location" class="container tab-pane fade"><br>    
           <div id="map" style="height: 400px;"></div>
         </div>
 
@@ -293,13 +289,9 @@ $photo_path = $data->unique('photo_path')->values();
 
           <div class="form-group">
             <label for="">Bình luận:</label>
-
-
             <textarea class="form-control" rows="5" id="" name="commentarea" required></textarea>
-
-
           </div>
-          <button name="myButton" type="submit" id="btnRating">Gửi</button>
+          <button name="myButton" class="btn btn-primary" type="submit" id="btnRating">Gửi</button>
         </form>
         @else
         <a style="width: 300px;" class="btn btn-primary" data-toggle="modal" data-target="#myModal" href="{{ route('login') }}">Vui lòng đăng nhập để đánh giá</a>
@@ -322,10 +314,6 @@ $photo_path = $data->unique('photo_path')->values();
         <h5 style='padding-top:20px;display:inline-block;' class="mt-0"><a href="/user/{{$value->cmtid}}">{{$value->cmtname}}</a></h5>
 
         <small>{{ date('d-m-Y', strtotime($value->created_at)) }}</small>
-
-
-
-
 
         @for($i=1;$i<= $value->rate;$i++)
           <span style="color:orange" class="fa fa-star "></span>

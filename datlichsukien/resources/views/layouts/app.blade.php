@@ -43,7 +43,10 @@
   <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
   <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
-
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
   <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
@@ -91,7 +94,6 @@
               </a>
               @if(Auth::user()->Notifications->count()>0)
               <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a href="/deletenotify" class="dropdown-item" style="color:red;border-bottom:1px solid black;padding-bottom:10px;">Delete all notifications</a>
                 @foreach(Auth::user()->unreadNotifications as $notification)
                 <a href="{{$notification->data['link']}}" id="notify" class="dropdown-item"> {{$notification->data['message']}}</a>
                 @endforeach
@@ -100,6 +102,7 @@
                 <a href="{{$notification->data['link']}}" id="notify" class="dropdown-item" style="background-color:lightgrey"> {{$notification->data['message']}}</a>
                 @endif
                 @endforeach
+                 <a href="" class="dropdown-item" style="color:black; text-decoration:underline; background-color: #e0e0e0">Xem thêm</a>
               </div>
               @endif
             </li>
@@ -145,10 +148,10 @@
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#upgradeModal">Cập nhật tài khoản</a>
                 @endif
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item"  href="{{ route('logout') }}"
+                <a class="dropdown-item" style="background-color: #e0e0e0" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
+                    {{ __('Đăng xuất') }}
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
