@@ -23,7 +23,10 @@
 	</div>
 	@endif
 	<div class="card-body">
-		
+		<div class="row">
+			<label style="background-color: red;width: 50px;" >ID</label>
+			<label style="background-color: red;width: 200px;">Tên người đặt</label>
+		</div>
 		<div class="table-responsive">
 			<table class="table table-bordered" id="dataTable" >
 				<thead>
@@ -58,13 +61,11 @@
 		                      <a   role="button"  style="color: white;text-decoration: none;" >Đã xác nhận</a>
 		                    </button>
 		                    @else 
-		                    <button type="button" class="btn-info" data-toggle="modal" data-target="#detailModal2" data-date="{{$o->order_date}}"   data-address="{{$o->address}}" data-time="{{$o->order_time}}" data-id="{{$o->id}}" data-peonumber="{{$o->people_number}}" data-price="{{$o->price_table}}" data-email="{{$o->user->email}}"> 
+		                    <button type="button" class="btn-info" data-toggle="modal" data-target="#detailModal2" data-date="{{$o->order_date}}"   data-address="{{$o->address}}" data-time="{{$o->order_time}}" data-id="{{$o->id}}" data-peonumber="{{$o->people_number}}" data-price="{{$o->price_table}}" data-email="{{$o->user->email}}" data-phone="{{$o->phone}}"> 
 								Xác nhận
 							</button>
                         @endif
-							<button type="button" class="btn-info" data-toggle="modal" data-target="#myModal">
-								<a href="" style="color: white;text-decoration: none;">Detail</a>
-							</button>
+							
  
 						</td>
 					</tr>
@@ -113,7 +114,10 @@
       			<label for="name" class="col-form-label"> Mức giá mỗi bàn  </label>
       			<input type="text" name="price_table" class="form-control" id="price" readonly> 
       		</div>
-      		
+      		<div class="form-group col-md-4">
+      			<label for="name" class="col-form-label"> Số điện thoại  </label>
+      			<input type="text" name="phone" class="form-control" id="phone" readonly> 
+      		</div>
       	</div> 
       	
       	</form>
@@ -139,6 +143,7 @@
 		var price = button.data('price')
 		var date = button.data('date')
 		var address = button.data('address')
+		var phone = button.data('phone')
 
 		var modal = $(this)
 		modal.find('#idedit').val(id);
@@ -150,6 +155,7 @@
 		modal.find('#price').val(price)
 		modal.find('#date').val(date)
 		modal.find('#address').val(address)
+		modal.find('#phone').val(phone)
 	})
 </script>
 <script type="text/javascript">

@@ -91,11 +91,6 @@
 		</div>
 
 		
-		<div class="form-group ">
-			<label for="">Map</label>
-			<input id="pac-input" style="width: 500px;" class="controls" type="text" placeholder="Search Box" >
-			<div id="map"></div>
-		</div>
 		<div class="form-row">
 			<div class="form-group col-md-3">
 				<input type="hidden"  class="form-control input-sm" name="lat" id="lat" required="">
@@ -131,7 +126,11 @@
 			</span>
 			@enderror
 		</div>
-
+        <div class="form-group ">
+			<label for="">Bản đồ</label>
+			<input id="pac-input" style="width: 500px;" class="controls" type="text" placeholder="Search Box" >
+			<div id="map"></div>
+		</div>
 
 		<h5 class="form-control-label"> Thêm ảnh cho bài viết (<span style="color: red">*</span>)</h5>
 		<div class="form-control-file">

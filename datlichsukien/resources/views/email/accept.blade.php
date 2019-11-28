@@ -1,7 +1,6 @@
 <div>
 	<pre>
-		Hello you,
-		You have an invitation from a friend.
-		Information of your friend: email: {{Auth::user()->email}}
+		Lịch đặt của bạn đã được xác nhận từ  {{Auth::user()->name}},
+		{{ $accept->address }}
 	</pre>
 </div>

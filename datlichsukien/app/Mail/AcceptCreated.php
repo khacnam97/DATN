@@ -17,10 +17,11 @@ class AcceptCreated extends Mailable
      *
      * @return void
      */
+    public $accept;
     public function __construct(Accept $accept)
     {
      $this->accept = $accept;
- }
+    }
 
     /**
      * Build the message.
@@ -29,6 +30,7 @@ class AcceptCreated extends Mailable
      */
     public function build()
     {
+
        return $this->view('email.accept');
     }
 }
