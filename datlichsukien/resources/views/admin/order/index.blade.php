@@ -160,4 +160,9 @@
       format: 'yyyy-mm-dd'
     });
 </script>
+<script>
+        $('#time').timepicker({
+            uiLibrary: 'bootstrap4'
+        });
+    </script>
 @endsection

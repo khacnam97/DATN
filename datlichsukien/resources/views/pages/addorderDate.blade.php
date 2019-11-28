@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('header')
-
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 <div class="container"  id="show_profile" style="margin-top: 100px; margin-bottom: 50px;display:flex; justify-content: center;">
 	<div style="width: 800px; height: 600px; ">
 		
@@ -32,7 +35,7 @@
 						
                        <label class="col-sm-3 col-form-label form-control-label" style="width: 150px; background-color: #6cb2eb; color: #212529;">Thời gian tổ chức</label>
 						<div class="col-sm-8" >
-							<input type="text" class="form-control" name="time" required="" id="timepicker" style="height: 30px;">
+							<input type="text" class="form-control" name="time" required="" id="timepicker" >
 						</div>
 
 					</div>
@@ -98,9 +101,9 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-	$('#timepicker').timepicker({
-		format: 'h:m'
-	});
-</script>
+<script>
+        $('#timepicker').timepicker({
+            uiLibrary: 'bootstrap4'
+        });
+    </script>
 

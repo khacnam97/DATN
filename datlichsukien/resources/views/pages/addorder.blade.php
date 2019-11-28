@@ -35,7 +35,7 @@
             <label class="col-sm-3 col-form-label form-control-label">Thời gian tổ chức</label>
             
               <div class="col-sm-6" >
-                <input type="text" class="form-control" name="time" required="" id="timepicker" style="height: 30px;">
+                <input type="text" class="form-control" name="time" required="" id="timepicker" >
               </div>
            
           </div>
@@ -99,8 +99,8 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
- $('#timepicker').timepicker({
-    format: 'h:m'
-  });
-</script>
+<script>
+        $('#timepicker').timepicker({
+            uiLibrary: 'bootstrap4'
+        });
+    </script>

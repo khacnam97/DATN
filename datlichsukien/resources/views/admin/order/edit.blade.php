@@ -53,7 +53,7 @@
         <div class="row">
           <div class="form-group col-md-6">
             <label for="name" class="col-form-label">Time </label>
-            <input type="text" name="order_time" class="form-control" id="time" value="{{$order->order_time}}" required="">
+            <input type="text" name="order_time" class="form-control" id="timepicker" value="{{$order->order_time}}" required="">
           </div>
           <div class="form-group col-md-6">
             <label for="name" class="col-form-label"> Date</label>
@@ -76,7 +76,7 @@
             <input type="text" name="phone" class="form-control" id="phone" value="{{$order->phone}}" required=""> 
           </div>
         </div> 
-        <button id="buttonsave" type="submit" class="btn btn-success"  >Add</button>
+        <button id="buttonsave" type="submit" class="btn btn-success"  >Edit</button>
         </form>
       </div>
     </div>
@@ -101,6 +101,11 @@
   });
  });
 </script>
+<script>
+        $('#timepicker').timepicker({
+            uiLibrary: 'bootstrap4'
+        });
+    </script>
 @endsection
 
 
