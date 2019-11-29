@@ -48,6 +48,8 @@
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
+  
+
   <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body id="home" class="wide body-light multipage multipage-sub">
@@ -136,8 +138,6 @@
                 @if (Auth::user()->role == 1)
                 <a class="dropdown-item" href="{{route('manage.order')}}">Quản lí đặt lịch</a>
                 <a class="dropdown-item" href="{{route('mypost')}}">Bài đăng của tôi</a>
-                <a class="dropdown-item" href="">Phê duyệt bài đăng</a>
-                <a class="dropdown-item" href="">Quản lí user</a>
                 <a class="dropdown-item" href="{{route('admin.index')}}"><span style="font-weight: bold;">Trang quản lí</span></a>
 
 

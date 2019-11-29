@@ -1,6 +1,6 @@
 <div>
 	<pre>
-		Lịch đặt của bạn đã được xác nhận từ  {{Auth::user()->name}},
-		{{ $accept->address }}
+		Lịch đặt ngày "{{$accept->order_date}}"của bạn đã được xác nhận từ địa điểm "{{$accept->restaurant}}""
+		
 	</pre>
 </div>

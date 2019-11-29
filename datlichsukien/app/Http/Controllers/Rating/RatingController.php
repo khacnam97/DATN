@@ -37,8 +37,7 @@ class RatingController extends Controller
 			$record->post_id=$request->post_id;
 			//$record->cmt=$request->comment;
             // dd($request->user_id);
-             dd($record);
-             dd($request->rating);
+           
 			$record->save();
 			return redirect('admin/rating')->with("success",Config::get('constant.rating.addSuccess'));
 		}

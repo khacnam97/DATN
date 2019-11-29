@@ -81,7 +81,7 @@ class OrderController extends Controller
        $order =Order::join('restaurants','orders.restaurant_id','=','restaurants.id')
                ->join('posts','posts.restaurant_id','=','restaurants.id')
                ->join('users','users.id','=','orders.user_id')
-               ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','users.email','orders.address')
+               ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','users.email','orders.address','orders.restaurant_id')
                ->where('posts.user_id','=',$id)->get();
       
 
@@ -99,6 +99,7 @@ class OrderController extends Controller
     {
         $id =  $request->id;
         $order = Order::find($id);
+        
         // $order->email = $request->email;
         do {
           //generate a random string using Laravel's str_random helper
@@ -110,6 +111,8 @@ class OrderController extends Controller
           $accept= new Accept();
           $accept->email=$request->get('email');
           $accept->address=$request->get('address');
+          $accept->restaurant=$request->get('restaurant');
+          $accept->order_date=$request->get('order_date');
           $accept->token= md5(uniqid(rand(), true));
 
           $accept->save();

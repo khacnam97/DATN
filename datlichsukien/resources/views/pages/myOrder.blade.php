@@ -142,7 +142,6 @@
 		var button = $(event.relatedTarget)
 		var id = button.data('id')
 		var namerestaurant = button.data('namerestaurant')
-		var namerestaurant = button.data('namerestaurant')
 		var phone = button.data('phone')
 		var time = button.data('time')
 		var id = button.data('id')
