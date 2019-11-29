@@ -188,7 +188,16 @@
 
           <!-- Modal body -->
           <div class="modal-body">
-            
+            @if ($errors->count() > 0)
+            @if($errors->all()[0] == "These credentials do not match our records.")
+            <script type="text/javascript">
+              console.log("xx");
+              $(window).on("load", function() {
+                $("#myModal").modal("show");
+              });
+            </script>
+            @endif
+            @endif
             @include('auth.login')
           </div>
 
@@ -212,7 +221,22 @@
 
           <!-- Modal body -->
           <div class="modal-body">
-           
+           @if ($errors->count() > 0)
+            @if($errors->all()[0] == "The password must be at least 8 characters.")
+            <script type="text/javascript">
+              $(window).on("load", function() {
+                $("#myModal2").modal("show");
+              })
+            </script>
+            @elseif($errors->all()[0] == "email da ton tai")
+            <span class="text-center" style="color: red; margin-left:150px">Email đã tồn tại</span>
+            <script type="text/javascript">
+              $(window).on("load", function() {
+                $("#myModal2").modal("show");
+              })
+            </script>
+            @endif
+            @endif
             @include('auth.register')
           </div>
          
