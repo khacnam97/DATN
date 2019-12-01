@@ -49,6 +49,38 @@
 	@endif
 	<form action="{{route('account.addpost')}}" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="_token" value="{{ csrf_token()}}">
+
+		<div class="input-group control-group increment form-row" >
+			<div class="form-group col-md-4">
+				<input type="text"  class="form-control" name="room" placeholder="Tên phòng" required="" >
+			</div>
+            <div class="form-group col-md-4">
+            	<input type="text" class="form-control" name="service" placeholder="Dịch vụ" required="">
+            </div>
+            <div class="form-group col-md-3">
+            	<input type="text"  class="form-control" name="peopleNumber" placeholder="Sức chứa của phòng" required="">
+            </div>
+          
+          <div class="input-group-btn">  
+            <button class="btn btn-primary add" type="button"><i class="glyphicon glyphicon-plus" id="add"></i>Thêm </button>
+          </div>
+        </div>
+        <div class=" clone" style="overflow: hidden;">
+          <div class="control-group input-group form-row" style="margin-top:10px">
+            <div class="form-group col-md-4">
+				<input type="text" name="room" class="form-control"   >
+			</div>
+            <div class="form-group col-md-4">
+            	<input type="text" name="service" class="form-control" >
+            </div>
+            <div class="form-group col-md-3">
+            	<input type="text" name="peopleNumber" class="form-control" >
+            </div>
+            <div class="input-group-btn"> 
+              <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove" id="removed"></i> Xóa</button>
+            </div>
+          </div>
+        </div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				<label  for="name" class="col-form-label" > Tên địa điểm(<span style="color: red">*</span>) </label>
@@ -310,5 +342,24 @@
         }
     });
        
+</script>
+<script type="text/javascript">
+	 $(document).ready(function() {
+
+      $(".add").click(function(){ 
+          var html = $(".clone").html();
+          $(".increment").after(html);
+      });
+
+      $("body").on("click",".btn-danger",function(){ 
+          $(this).parents(".control-group").remove();
+      });
+
+      var ab=$(".clone");
+      ab.hide();
+
+      
+
+    });
 </script>
 @endsection
