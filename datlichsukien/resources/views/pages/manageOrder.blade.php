@@ -26,6 +26,10 @@
 		<div class="row">
 			<label style="background-color: red;width: 50px;" >ID</label>
 			<label style="background-color: red;width: 200px;">Tên người đặt</label>
+			<label style="background-color: red;width: 200px;">Tên người đặt</label>
+			<label style="background-color: red;width: 200px;">Tên người đặt</label>
+			<label style="background-color: red;width: 200px;">Tên người đặt</label>
+			<label style="background-color: red;width: 200px;">Tên người đặt</label>
 		</div>
 		<div class="table-responsive">
 			<table class="table table-bordered" id="dataTable" >
@@ -61,7 +65,7 @@
 		                      <a   role="button"  style="color: white;text-decoration: none;" >Đã xác nhận</a>
 		                    </button>
 		                    @else 
-		                    <button type="button" class="btn-info" data-toggle="modal" data-target="#detailModal2" data-date="{{$o->order_date}}"   data-address="{{$o->address}}" data-time="{{$o->order_time}}" data-id="{{$o->id}}" data-peonumber="{{$o->people_number}}" data-price="{{$o->price_table}}" data-email="{{$o->user->email}}" data-phone="{{$o->phone}}"> 
+		                    <button type="button" class="btn-info" data-toggle="modal" data-target="#detailModal2" data-date="{{$o->order_date}}"   data-address="{{$o->address}}" data-time="{{$o->order_time}}" data-id="{{$o->id}}" data-peonumber="{{$o->people_number}}" data-price="{{$o->price_table}}" data-email="{{$o->user->email}}" data-phone="{{$o->phone}}" data-namerestaurant="{{$o->restaurant->name}}"> 
 								Xác nhận
 							</button>
                         @endif
@@ -90,7 +94,9 @@
       	<form id="accecptform" action="{{route('myorder.accept')}}" method="POST">
 		{{ csrf_field() }}
       	<input type="hidden" name="id" class="form-control" id="id" readonly>
-      	<input type="text" name="email" class="form-control" id="email" readonly >
+      	<label for="address" class="col-form-label">Địa điểm</label>
+      	<input type="text" name="restaurant" class="form-control" id="restaurant-name" readonly>
+      	<input type="hidden" name="email" class="form-control" id="email" readonly >
       	<label for="address" class="col-form-label"> Địa chỉ địa điểm tổ chức </label>
       	<input type="text" name="address" class="form-control" id="address" readonly >
       	<div class="row">
@@ -144,6 +150,7 @@
 		var date = button.data('date')
 		var address = button.data('address')
 		var phone = button.data('phone')
+        var namerestaurant = button.data('namerestaurant')
 
 		var modal = $(this)
 		modal.find('#idedit').val(id);
@@ -156,6 +163,7 @@
 		modal.find('#date').val(date)
 		modal.find('#address').val(address)
 		modal.find('#phone').val(phone)
+		modal.find('#restaurant-name').val(namerestaurant)
 	})
 </script>
 <script type="text/javascript">

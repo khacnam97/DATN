@@ -165,6 +165,7 @@ class PostController extends Controller
         $posts ->describer= $request->input('descrice');
     
         $restaurant = Restaurant::find($posts->restaurant_id);
+        $restaurant ->name = $request->name;
         $restaurant ->address = $request->address;
         $restaurant->district_id = $request->district_id;
         $restaurant ->phone = $request->phone;

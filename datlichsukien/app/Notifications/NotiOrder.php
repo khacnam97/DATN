@@ -57,7 +57,7 @@ class NotiOrder extends Notification
     {
         return [
             'order_id' => $this->order->id,
-            'message' => "Có một lịch đặt ngày  " . $this->order->order_date,
+            'message' => "Bạn có một lịch đặt từ " .$this->order->user->name ." vào ngày " . $this->order->order_date ,
             'link' => "/account/manageOrder",
         ];
     }

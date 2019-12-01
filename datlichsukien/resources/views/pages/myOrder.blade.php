@@ -7,10 +7,9 @@
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
-<div class="card mb-3">
 	
 	@if($order->count() == 0)
-		<h1 style="margin-top:100px;margin-bottom: 100px; font-size: 35px;">Bạn chưa có lịch đặt nào </h1>
+		<h1 style="margin-top:200px;margin-bottom: 200px;text-align: center; font-size: 35px;">Bạn chưa có lịch đặt nào </h1>
 	
 
 	@else
@@ -25,62 +24,50 @@
 		{{Session::get('success')}}
 	</div>
 	@endif
-	<div class="card-body">
-		
-		<div class="table-responsive">
-			<table class="table table-bordered" id="dataTable" >
-				<thead>
-					<tr>
-						<th >Địa điểm đặt lịch</th>
-						<th>Số điện thoại </th>
-						<th>Thời gian tổ chức</th>
-						<th>Ngày tổ chức</th>
-						<th>More</th>
-					</tr>
-				</thead>
-				<tbody>
-    @endif
-			    @foreach ($order as $key=> $o)
-					<tr >
-						<td >{{$o->restaurant->name}}</td>
-						<td>{{$o->restaurant->phone}}</td>
-						<td>{{$o->order_time}}</td>
-						<td>{{$o->order_date}}</td>
-						<td>
 
-						@if($o->status ==1)
-		                      <button class="btn-danger" >
-		                       
-		                      <a href=""  role="button"  style="color: white;text-decoration: none;" >Đã chấp nhận</a>
-		                    </button>
-		                @elseif($o->status ==0) 
-		                    <button class="btn-success">
-		                     
-		                      <a data-toggle="modal" data-target="#myModal3" href=""  style="color: white;text-decoration: none;" >Đang chờ </a>
-		                    </button>
-		                @else
-		                    <button class="btn-success">
-		                     
-		                      <a data-toggle="modal" data-target="#myModal3" href=""  style="color: white;text-decoration: none;" >Đã từ bị chối </a>
-		                    </button> 
-                        @endif
-							<button type="button" class="btn-info" data-toggle="modal" data-target="#detailModal" data-date="{{$o->order_date}}" data-namerestaurant="{{$o->restaurant->name}}" data-phone="{{$o->restaurant->phone}}" data-address="{{$o->address}}" data-time="{{$o->order_time}}" data-id="{{$o->id}}" data-peonumber="{{$o->people_number}}" data-price="{{$o->price_table}}"> 
-								Chi tiết
-							</button>
-							
-                            @if($o->status !==1)
-							<button type="button" class="btn-danger" >
-								<a href="{{route('myorder.delete', $o->id)}}" style="color: white;text-decoration: none;" onclick="return confirm ('Bạn có muốn xóa ??')">Xóa</a>
-							</button>
-							@endif
-						</td>
-					</tr>
-				@endforeach	
-				</tbody>
-			</table>
+	@foreach ($order as $key=> $record)
+		<div class="row" style="margin-bottom: 10px;background-color: #dee2e6;height:200px;justify-content: center;align-items: center; margin-left: 100px;margin-right: 100px;">
+			<div class="col-sm-6">
+                <img class="card-img-top" src="/{{$record->photo_path}}" alt="{{$record->title}}" style="height: 200px; ">
+			</div>
+		<div class="col-sm-6">
+			<div class="text">
+				<h5>{{$record->name}}</h5>
+				
+				<div> <p><i class="fas fa-map-marker-alt " style="color: blue;"></i> {{$record->addressrestaurant}}</p></div>
+				<p><i class="fa fa-calendar"></i> Thời gian {{$record->order_time}} Ngày {{$record->order_date}}</p>
+				<button type="button" class="btn-info" data-toggle="modal" data-target="#detailModal" data-date="{{$record->order_date}}" data-namerestaurant="{{$record->restaurant->name}}" data-phone="{{$record->restaurant->phone}}" data-address="{{$record->addressrestaurant}}" data-time="{{$record->order_time}}" data-id="{{$record->id}}" data-peonumber="{{$record->people_number}}" data-price="{{$record->price_table}}"> 
+					Chi tiết
+				</button>
+				@if($record->status ==1)
+				<button class="btn-danger" >
+
+					<a href=""  role="button"  style="color: white;text-decoration: none;" >Đã chấp nhận</a>
+				</button>
+				@elseif($record->status ==0) 
+				<button class="btn-success">
+
+					<a data-toggle="modal" data-target="#myModal3" href=""  style="color: white;text-decoration: none;" >Đang chờ phê duyệt</a>
+				</button>
+				@else
+				<button class="btn-success">
+
+					<a data-toggle="modal" data-target="#myModal3" href=""  style="color: white;text-decoration: none;" >Đã từ bị chối </a>
+				</button> 
+				@endif
+				@if($record->status !==1)
+				<button type="button" class="btn-danger" >
+					<a href="{{route('myorder.delete', $record->id)}}" style="color: white;text-decoration: none;" onclick="return confirm ('Bạn có muốn xóa ??')">Xóa</a>
+				</button>
+				@endif
+				</div>
+				
+			</div>
 		</div>
-	</div>
-</div>
+	@endforeach
+	<div style="display: flex; justify-content: center;">{{$order->links()}}</div>
+    @endif
+
 <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -141,7 +128,6 @@
 	$('#detailModal').on('show.bs.modal', function(event) {
 		var button = $(event.relatedTarget)
 		var id = button.data('id')
-		var namerestaurant = button.data('namerestaurant')
 		var namerestaurant = button.data('namerestaurant')
 		var phone = button.data('phone')
 		var time = button.data('time')
