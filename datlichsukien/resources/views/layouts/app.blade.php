@@ -137,7 +137,7 @@
                 <a class="dropdown-item" href="{{route('myorder')}}">Lịch đặt của tôi</a>
                 @if (Auth::user()->role == 1)
                 <a class="dropdown-item" href="{{route('manage.order')}}">Quản lí đặt lịch</a>
-                <a class="dropdown-item" href="{{route('mypost')}}">Bài đăng của tôi</a>
+                <a class="dropdown-item" href="{{route('mypost')}}">Đăng kí địa điểm </a>
                 <a class="dropdown-item" href="{{route('admin.index')}}"><span style="font-weight: bold;">Trang quản lí</span></a>
 
 
@@ -261,8 +261,8 @@
           <div class="modal-footer">
             <form id="upgrade-form" action="{{route('upgrade')}}" method="post">
               @csrf
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-primary" id="accept">Accept</button>
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
+              <button type="submit" class="btn btn-primary" id="accept">Đồng ý</button>
             </form>
 
           </div>

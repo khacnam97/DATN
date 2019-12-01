@@ -15,13 +15,11 @@
 	</div>
 	@endif
 	@if($data->count() == 0)
-		<h1 style="margin-top:100px;margin-bottom: 100px; font-size: 35px;">Bạn chưa đăng bài nào !! <br>Hãy chia sẽ địa điểm của bạn .</h1>
-		<div style="display: flex;width: 100%;" >
-			<a href="{{route('account.addpost')}}" title="" class="" style="justify-content: center;margin-bottom: 120px;">Tạo bài viết đầu tiên của bạn tại đây</a>
-		</div>
+		<h1 style="margin-top:150px;margin-bottom: 100px; font-size: 35px;text-align: center;">Bạn chưa đăng kí địa điểm nào !! <br>Hãy đăng kí địa điểm của bạn .<a href="{{route('account.addpost')}}" title="" class="" style=""> Tại đây</a></h1>
+		
 
 	@else
-		<h1 style="margin-top:50px;margin-bottom: 50px;">Những bài viết của tôi</h1>
+		<h1 style="margin-top:50px;margin-bottom: 50px; text-align: center;">Những bài viết của tôi</h1>
 		<a href="{{route('account.addpost')}}" title="" class="btn btn-info" style="display: table;justify-content: left;margin-bottom: 50px;">Tạo mới</a>
 	@endif	
 	@foreach ($data as $key=>$value)
@@ -48,8 +46,8 @@
 			<div class="row" style="display: table;text-align: left;">
 				<form>
 					@csrf
-					<a href="{{route('account.editpost', [$idPost = $value->post_id])}}" title="" class="btn btn-info" style="width: 75px;margin-right: 10px;">Edit</a>
-					<button  formaction="{{route('mypost.delete', $id = $value->post_id)}}" title="" class="btn btn-danger " style="width: 75px;" onclick="return confirm('Bạn có muốn xoa bài đăng này?')" formmethod="post">Delete</button>
+					<a href="{{route('account.editpost', [$idPost = $value->post_id])}}" title="" class="btn btn-info" style="width: 75px;margin-right: 10px;">Sửa</a>
+					<button  formaction="{{route('mypost.delete', $id = $value->post_id)}}" title="" class="btn btn-danger " style="width: 75px;" onclick="return confirm('Bạn có muốn xoa bài đăng này?')" formmethod="post">Xóa</button>
 				</form>
 			</div>
 		</div>

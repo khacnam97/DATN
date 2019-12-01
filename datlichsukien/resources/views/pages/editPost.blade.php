@@ -14,7 +14,7 @@
 @extends('layouts.app')
 	@section('content')
 		<div class="container" style="margin-top: 100px; text-align: left;">
-			<h3 class="text-center"> Edit Post</h3>
+			<h3 class="text-center"> Chỉnh sửa bài đăng</h3>
 			  	@if(count($errors)>0)
 			   		<div class="alert alert-danger">
 			    	@foreach($errors->all() as $err)
@@ -34,33 +34,23 @@
 				@endif
 			<FORM   action="{{route('account.editpost', [$idpost=$post->id] )}}" method="post" enctype="multipart/form-data" id="formedit">
 				@csrf
-				<div class="form-row">
-					
-					<div class="form-group col-md-6">
-						<label  for="name" class="col-form-label" > Tên địa điểm </label>
-						<p class="form-control" style="
-						background-color: #e9ecef ;"> {{$post->restaurant->name}}</p>
-
-					</div>
-				</div>
+				
 
 				<div class="form-row " >
-					<div class="form-group col-md-12">
-						<label  for="address" class="col-form-label col-md-4 "> Địa chỉ cụ thể</label>
-						<input type="text"  class="form-control col-md-8 @error('address') is-invalid @enderror"    value="{{$post->restaurant->address}}" placeholder="Phường(Xã)-Quận(Huyện)-Tỉnh(ThànhPhố)" name="address" id="address" required="" >
+					<div class="form-group col-md-6">
+						<label  for="address" class="col-form-label  "> Tên địa điểm </label>
+						<input type="text"  class="form-control "  value="{{$post->restaurant->name}}" placeholder="Tên đại điểm" name="name" id="name" required="" >
+					
+					</div>
+					<div class="form-group col-md-6">
+						<label  for="address" class="col-form-label  "> Địa chỉ cụ thể</label>
+						<input type="text"  class="form-control  @error('address') is-invalid @enderror"    value="{{$post->restaurant->address}}" placeholder="Phường(Xã)-Quận(Huyện)-Tỉnh(ThànhPhố)" name="address" id="address" required="" >
 							@error('address')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
 					
-					</div>
-					<div class="form-group col-md-6">
-						<label  for="name" class="col-form-label" > Tỉnh - Thành phố </label>
-						<input type="text" autocomplete="off"  class="form-control" name="city" id="city" required="" value="Đà Nẵng" placeholder="Tỉnh-Thành phố" disabled="">
-						<div id="errotinh" style="display: none;">
-							<span style="color: red;">Không tìm thấy kết quả</span>
-						</div>
 					</div>
 					<div class="form-group col-md-6">
 						<label  for="name" class="col-form-label" > Quận - Huyện </label>
@@ -74,6 +64,12 @@
 				        @endif
 				      	</select>
 					</div>
+					<div class="form-group col-md-6">
+						<label  for="name" class="col-form-label" > Tỉnh - Thành phố </label>
+						<input type="text" autocomplete="off"  class="form-control" name="city" id="city" required="" value="Đà Nẵng" placeholder="Tỉnh-Thành phố" disabled="">
+						
+					</div>
+					
 
 				</div>
 				

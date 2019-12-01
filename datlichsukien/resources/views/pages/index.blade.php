@@ -100,40 +100,9 @@
     </a>
 </div>
 <div class="row">
-    <div class="col-3"  style="background-color:  #f8f9fa" >
-        <div id="map" style="width:96%; margin-left: 3%;height: 300px;margin-top: 10px;"  >
-          
-        </div>       
-        <div style="width: 100%; margin-left: 10px; margin-top: 30px;">
-            <form class="form-inline" action="{{route('search.list')}}" method="get">   
-            <div class="row">        
-            <div style="margin-left: 10px;">
-               <input class="typeahead form-control" style="width: 250px;" type="text" placeholder="Nhập địa điểm tìm kiếm " name="search" required="" id="inputsearch" autocomplete="off" style="margin-bottom: 10px">
-            </div>
-                 
-            <div>
-              <button class="btn btn-success" type="submit" id="btnsearch" style="width: 100px;"> Tìm kiếm </button>
-            </div>
-            </div>
-          </form>
-        </div>
-        <div>
-          <form action="{{route('search.date')}}" method="get">
-          
-            <input required="" id="datepicker" name="date" width="276" />
-            <button type="submit" class="btn btn-success">Tìm kiếm</button>
-          </form> 
-          <script>
-            $('#datepicker').datepicker({
-              uiLibrary: 'bootstrap4',
-              format: 'yyyy-mm-dd'
-            });
-    </script>
-        </div>
-    </div>
+   
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
     <script type="text/javascript">
       var path = "{{ route('autocomplete') }}";
       $('input.typeahead').typeahead({
@@ -229,6 +198,37 @@
         </div>
     
     @endif
+    </div>
+    <div class="col-3"  style="background-color:  #f8f9fa" >
+        <div id="map" style="width:97%; margin-right: 3%;height: 300px;margin-top: 10px;"  >
+          
+        </div>       
+        <div style="margin-right: 10px; margin-top: 30px;">
+            <form class="form-inline" action="{{route('search.list')}}" method="get">   
+            <div class="row justify-content-center">        
+            <div style="padding-bottom: 10px; padding-right:10px">
+               <input class="typeahead form-control" style="" type="text" placeholder="Nhập địa điểm tìm kiếm " name="search" required="" id="inputsearch" autocomplete="off" style="margin-bottom: 10px">
+            </div>
+                 
+            <div>
+              <button class="btn btn-success" type="submit" id="btnsearch" style=""> Tìm kiếm </button>
+            </div>
+            </div>
+          </form>
+        </div>
+        <div>
+          <!-- <form action="{{route('search.date')}}" method="get">
+          
+            <input required="" id="datepicker" name="date" width="276" />
+            <button type="submit" class="btn btn-success">Tìm kiếm</button>
+          </form> --> 
+          <script>
+            $('#datepicker').datepicker({
+              uiLibrary: 'bootstrap4',
+              format: 'yyyy-mm-dd'
+            });
+          </script>
+        </div>
     </div>
  </div>   
 @endsection

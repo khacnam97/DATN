@@ -332,6 +332,7 @@ $photo_path = $data->unique('photo_path')->values();
 </div>
 <!-- Modal -->
 @include('pages.addorder')
+
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3"></script>
 <script async defer crossorigin="anonymous" src="{{asset('js/front/cmt.js')}}"></script>
 @endsection

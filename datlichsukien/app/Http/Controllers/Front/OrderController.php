@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 use Response;
-use App\Order_time;
 use App\Order;
 use App\Restaurant;
 use App\Post;
@@ -22,6 +21,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use App\Mail\AcceptCreated;
 use App\Notifications\AcceptRequest;
+use App\Photo;
 class OrderController extends Controller
 {
     public function index($id)
@@ -141,9 +141,15 @@ class OrderController extends Controller
     {
         $id=Auth::id();
         $order =Order::join('restaurants','orders.restaurant_id','=','restaurants.id')
-                ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','orders.restaurant_id','orders.address')
-                ->where('user_id','=',$id)->get();
-
+                ->join('posts', 'posts.restaurant_id', '=', 'orders.restaurant_id')
+                ->join('photos', 'posts.id', '=', 'photos.post_id')
+                ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','orders.restaurant_id','restaurants.name','posts.title','restaurants.address as addressrestaurant','photos.photo_path')
+                ->where([
+                  ['orders.user_id','=',$id],
+                  ['photos.flag', '=', '1'],
+                  ])
+                  ->paginate(10);
+        // dd($order);
         return view('pages.myOrder',['order'=>$order]);
     }
     public function check(Request $request)
