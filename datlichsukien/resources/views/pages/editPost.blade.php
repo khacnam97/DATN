@@ -72,7 +72,39 @@
 					
 
 				</div>
-				
+				<label  for="name" class="col-form-label" >Điền thông tin (<span style="color: red">*</span>) </label>
+				<div class="input-group control-group increment form-row" >
+
+					<div class="form-group col-md-4">
+						<input type="text"  class="form-control" name="room[]" placeholder="Tên khu" required="" >
+					</div>
+					<div class="form-group col-md-4">
+						<input type="text" class="form-control" name="service[]" placeholder="Dịch vụ" required="">
+					</div>
+					<div class="form-group col-md-3">
+						<input type="text"  class="form-control" name="peopleNumber[]" placeholder="Sức chứa của phòng" required="">
+					</div>
+
+					<div class="input-group-btn">  
+						<button class="btn btn-primary add" type="button"><i class="glyphicon glyphicon-plus" id="add"></i>Thêm </button>
+					</div>
+				</div>
+				<div class=" clone" style="overflow: hidden;">
+					<div class="control-group input-group form-row" style="margin-top:10px">
+						<div class="form-group col-md-4">
+							<input type="text" name="room[]" class="form-control"  placeholder="Tên khu"  >
+						</div>
+						<div class="form-group col-md-4">
+							<input type="text" name="service[]" class="form-control" placeholder="Dịch vụ" >
+						</div>
+						<div class="form-group col-md-3">
+							<input type="text" name="peopleNumber[]" class="form-control" placeholder="Sức chứa của phòng">
+						</div>
+						<div class="input-group-btn"> 
+							<button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove" id="removed"></i> Xóa</button>
+						</div>
+					</div>
+				</div>
 				<div class="form-group">
 					<label class="col-form-label "> Số điện thoại </label>
 					<input type="tel" class="form-control col-md-8 @error('phone') is-invalid @enderror "  placeholder="034567890"  value="{{$post->restaurant->phone}}" name="phone" id="phone">
@@ -210,26 +242,22 @@ $(function() {
 
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 <script type="text/javascript">
-    var routes = "{{ route('post.autocomplete')}}";
-    $('#name').typeahead({
-        source:  function (term, process) {
-        return $.get(routes, { term: term }, function (data) {
-                return process(data);
-            });
-        }
-    });
+	$(document).ready(function() {
 
-    
+		$(".add").click(function(){ 
+			var html = $(".clone").html();
+			$(".increment").after(html);
+		});
 
+		$("body").on("click",".btn-danger",function(){ 
+			$(this).parents(".control-group").remove();
+		});
 
-    
-   
-
-   
+		var ab=$(".clone");
+		ab.hide();
+	});
 </script>
-
 @endsection
 
 

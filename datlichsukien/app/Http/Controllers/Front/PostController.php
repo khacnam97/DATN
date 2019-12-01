@@ -31,7 +31,7 @@ class PostController extends Controller
     }
     //function add one Post
     public function addpost(Request $request){
-     dd($request->all());
+    // dd($request->all());
     	$request-> validate([
             'name' => 'required',
             'phone' => 'required|min:10 ',
@@ -44,11 +44,8 @@ class PostController extends Controller
         	$post = new Post;
         	$post ->user_id = Auth::id();
         	    
-                $newDetail=new Detail;
-                $newDetail->room=$request->room;
-                $newDetail->people_number=$request->peopleNumber;
-                $newDetail->service=$request->service;
-                dd($request->room);
+
+                //dd($request->room[0]);
 
         		$newRestaurant = new Restaurant;
         		$newRestaurant->name = $request->name;
@@ -82,9 +79,17 @@ class PostController extends Controller
             //save new Restaurant
                 $newRestaurant -> save();
                 $post ->restaurant_id = $newRestaurant->id;
-                $
-                $newDetail->save();
-            // }
+                $n=count($request->room);
+                //dd($i);
+                for ($i=0;$i<$n-1;$i++ ) {
+                    $newDetail=new Detail;
+                    $newDetail->room=$request->room[$i];
+                    $newDetail->people_number=$request->peopleNumber[$i];
+                    $newDetail->service=$request->service[$i];
+                    $newDetail ->restaurant_id = $newRestaurant->id;
+                    $newDetail ->save();
+                }
+                
             //save post
             $post ->save();
             // event(new CreatePostHandler($post));
@@ -243,7 +248,7 @@ class PostController extends Controller
     //Delete myposst
     public function delete($id)
     {
-        //Check input
+        
         if(POST::where('id', $id)->first() == null){
             return redirect()->back()->with(config::get('constant.error'), config::get('constant.message_delete_fail'));            
         }
@@ -253,16 +258,27 @@ class PostController extends Controller
         }
         else
         {
-            //transaction database
-            // DB::transaction(function(){
-                $posts = DB::table('posts')
-                    ->where('id' , '=' ,$id)->delete();
-                $photo =DB::table('photos')
-                    ->where('post_id', '=' ,$id)->delete();
-                $path = "/picture/admin/post/".$id;
-                $rating = Rating::where('post_id', $id)->delete(); 
-                File::deleteDirectory(public_path($path));
-            // });
+            $detail = DB::table('details')
+                ->join('restaurants','restaurants.id','=','details.restaurant_id')
+                ->join('posts','posts.restaurant_id','=','restaurants.id')
+                ->where('posts.id','=',$id)
+                ->delete();
+            $order = DB::table('orders')
+                ->join('restaurants','restaurants.id','=','orders.restaurant_id')
+                ->join('posts','posts.restaurant_id','=','restaurants.id')
+                ->where('posts.id','=',$id)
+                ->delete();
+            $restaurant =DB::table('restaurants')
+                ->join('posts','posts.restaurant_id','=','restaurants.id')
+                ->where('posts.id', '=' ,$id)->delete();
+            $posts = DB::table('posts')
+                ->where('id' , '=' ,$id)->delete();
+            $photo =DB::table('photos')
+                ->where('post_id', '=' ,$id)->delete();
+            $path = "/picture/admin/post/".$id;
+            $rating = Rating::where('post_id', $id)->delete(); 
+            File::deleteDirectory(public_path($path));
+           
             return redirect()->route('mypost')->with(config::get('constant.success'), config::get('constant.message_delete_success'));
         }
     }
