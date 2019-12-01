@@ -13,6 +13,7 @@ use App\District;
 use DB;
 use Auth;
 use File;
+use App\Detail;
 use App\Rating;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Validator;
@@ -30,7 +31,7 @@ class PostController extends Controller
     }
     //function add one Post
     public function addpost(Request $request){
-    
+     dd($request->all());
     	$request-> validate([
             'name' => 'required',
             'phone' => 'required|min:10 ',
@@ -42,7 +43,13 @@ class PostController extends Controller
         	$restaurant = Restaurant::all();
         	$post = new Post;
         	$post ->user_id = Auth::id();
-        	
+        	    
+                $newDetail=new Detail;
+                $newDetail->room=$request->room;
+                $newDetail->people_number=$request->peopleNumber;
+                $newDetail->service=$request->service;
+                dd($request->room);
+
         		$newRestaurant = new Restaurant;
         		$newRestaurant->name = $request->name;
         		$newRestaurant->address = $request->address;
@@ -75,7 +82,8 @@ class PostController extends Controller
             //save new Restaurant
                 $newRestaurant -> save();
                 $post ->restaurant_id = $newRestaurant->id;
-
+                $
+                $newDetail->save();
             // }
             //save post
             $post ->save();
