@@ -63,6 +63,7 @@ class OrderController extends Controller
         $order->order_date=$request->order_date;
         $order->order_time=$request->time;
         $order->restaurant_id=$request->restaurant_id;
+        $order->detail_id=$request->detail_id;
         $restaurant =$request->restaurant_id;
         //dd($restaurant);
         $order->status=0;   
