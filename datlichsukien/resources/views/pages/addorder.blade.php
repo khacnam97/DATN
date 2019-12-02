@@ -32,6 +32,29 @@
               </div>    
           </div>
           <div class="form-group row">
+            <label class="col-sm-3 col-form-label form-control-label">Chọn loại phòng</label>
+            <div class="col">
+              
+              <div class="col-sm-8">
+                <div > 
+                  <label style="width: 110px;">Tên khu</label> 
+                  <label style="width: 110px;">Dịch vụ</label>
+                  <label style="width: 110px;">Sức chứa</label></div>
+                <div class="dropdown-divider"></div>
+                @foreach ($detail as $record)
+                <div>
+                  <input type="radio" name="detail_id"  value="{{$record->id}}">{{$record->room}}
+                   <label style="width: 100px;margin-left: 50px;">{{$record->service}}</label>
+                   <label style="width: 100px;">{{$record->people_number}}</label>
+                </div>
+                @endforeach
+               
+              </div>
+             
+            </div>
+            
+          </div>
+          <div class="form-group row">
             <label class="col-sm-3 col-form-label form-control-label">Thời gian tổ chức</label>
             
               <div class="col-sm-6" >
@@ -39,14 +62,7 @@
               </div>
            
           </div>
-          <div class="form-group row">
-            <label class="col-sm-3 col-form-label form-control-label">Mức độ</label>
-            <span>
-                <input type="radio" name="gender" value="male"> Lớn
-                <input type="radio" name="gender" value="female"> Vừa
-                <input type="radio" name="gender" value="other"> Nhỏ
-            </span>
-          </div>
+          
           <div class="form-group row">
             <label class="col-sm-3 col-form-label form-control-label">Số lượng người</label>
             <div class="col-sm-6">
