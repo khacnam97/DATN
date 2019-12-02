@@ -54,26 +54,49 @@ class OrderController extends Controller
 
         $order = new Order;
         $restaurant=Restaurant::all();
-
-        $order->people_number=$request->people_number;
-        $order->address=$request->address;
-        $order->phone=$request->phone;
-        $order->user_id=Auth::id();
-        $order->price_table=$request->price_table;  
-        $order->order_date=$request->order_date;
-        $order->order_time=$request->time;
-        $order->restaurant_id=$request->restaurant_id;
-        $order->detail_id=$request->detail_id;
+        $detail_id=$request->detail_id;
+        $orderDate =$request->order_date;
         $restaurant =$request->restaurant_id;
+        $detailAvalible1 = DB::table('orders')
+                ->join('restaurants','restaurants.id','=','orders.restaurant_id')
+            ->join('posts','posts.restaurant_id','=','restaurants.id')
+                ->select('orders.detail_id as id1')
+                ->where([
+                  [ 'orders.restaurant_id','=',$restaurant],
+                  [ 'orders.order_date','=',$orderDate],
+                  [ 'orders.detail_id','=',$detail_id]
+                  ])
+                ->get();
+        $ex_detailAvalible=explode (':',$detailAvalible1);
+        //$ex_detail=explode ('"',$detail_id);
+        //$arr =array_push()
+        $a=array();
+        array_push($a, "[]");
+        $result=array_diff($ex_detailAvalible,$a);
+        if (!empty($result)) {
+          return redirect()->back()->with('error','Bạn đã chọn khu đã có người đặt ,bạn vui lòng xem lại !'); 
+        }
+        else{
+          $order->people_number=$request->people_number;
+          $order->address=$request->address;
+          $order->phone=$request->phone;
+          $order->user_id=Auth::id();
+          $order->price_table=$request->price_table;  
+          $order->order_date=$request->order_date;
+          $order->order_time=$request->time;
+          $order->restaurant_id=$request->restaurant_id;
+          $order->detail_id=$request->detail_id;
+          $restaurant =$request->restaurant_id;
         //dd($restaurant);
-        $order->status=0;   
-        $order->save();
-        event(new NotiOrderHandler($order));
-            $toUsers = User::join('posts','posts.user_id','=','users.id')
-                             ->select( 'users.id as id')
-                             ->where('posts.restaurant_id','=',$restaurant)->get();
-            \Notification::send($toUsers, new NotiOrder($order));
-        return redirect()->route('myorder');
+          $order->status=0;   
+          $order->save();
+          event(new NotiOrderHandler($order));
+          $toUsers = User::join('posts','posts.user_id','=','users.id')
+          ->select( 'users.id as id')
+          ->where('posts.restaurant_id','=',$restaurant)->get();
+          \Notification::send($toUsers, new NotiOrder($order));
+          return redirect()->route('myorder');
+        }        
     }
    
     public function manageOrder ()

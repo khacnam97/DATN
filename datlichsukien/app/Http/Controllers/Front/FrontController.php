@@ -114,18 +114,16 @@ class FrontController extends Controller
                 ->select('orders.order_date')
                 ->where('posts.id','=',$post_id)->get();
 
-        //dd($dateAvalible);
-
          $ep_dateAvalible=explode ('"',$dateAvalible);
          
-         $result=array_diff($strDay1,$ep_dateAvalible);
-         $result2=array_diff($strDay2,$ep_dateAvalible);
-         $result3=array_diff($strDay3,$ep_dateAvalible);
-         $result4=array_diff($strDay4,$ep_dateAvalible);
-         $result5=array_diff($strDay5,$ep_dateAvalible);
-         $result6=array_diff($strDay6,$ep_dateAvalible);
-         $result7=array_diff($strDay0,$ep_dateAvalible);
-         
+         // $result=array_diff($strDay1,$ep_dateAvalible);
+         // $result2=array_diff($strDay2,$ep_dateAvalible);
+         // $result3=array_diff($strDay3,$ep_dateAvalible);
+         // $result4=array_diff($strDay4,$ep_dateAvalible);
+         // $result5=array_diff($strDay5,$ep_dateAvalible);
+         // $result6=array_diff($strDay6,$ep_dateAvalible);
+         // $result7=array_diff($strDay0,$ep_dateAvalible);
+        
          $weekday1 = date('l', strtotime($strDay7));
          $weekday2 = date('l', strtotime($strDay8));
          $weekday3 = date('l', strtotime($strDay9));
@@ -134,25 +132,96 @@ class FrontController extends Controller
          $weekday6 = date('l', strtotime($strDay12));
          $weekday7 = date('l', strtotime($strDay13));
 
-         $detailAvalible = DB::table('orders')
+         $detailAvalible1 = DB::table('orders')
                 ->join('restaurants','restaurants.id','=','orders.restaurant_id')
 		        ->join('posts','posts.restaurant_id','=','restaurants.id')
-                ->select('orders.detail_id')
+                ->select('orders.detail_id as id1')
                 ->where([
                 	['posts.id','=',$post_id],
                 	[ 'orders.order_date','=',$strDay7]
                   ])
                 ->get();
-          dd($detailAvalible);
+         $detailAvalible2 = DB::table('orders')
+                ->join('restaurants','restaurants.id','=','orders.restaurant_id')
+		        ->join('posts','posts.restaurant_id','=','restaurants.id')
+                ->select('orders.detail_id as id1')
+                ->where([
+                	['posts.id','=',$post_id],
+                	[ 'orders.order_date','=',$strDay8]
+                  ])
+                ->get();
+          $detailAvalible3 = DB::table('orders')
+                ->join('restaurants','restaurants.id','=','orders.restaurant_id')
+		        ->join('posts','posts.restaurant_id','=','restaurants.id')
+                ->select('orders.detail_id as id1')
+                ->where([
+                	['posts.id','=',$post_id],
+                	[ 'orders.order_date','=',$strDay9]
+                  ])
+                ->get();
+          $detailAvalible4 = DB::table('orders')
+                ->join('restaurants','restaurants.id','=','orders.restaurant_id')
+		        ->join('posts','posts.restaurant_id','=','restaurants.id')
+                ->select('orders.detail_id as id1')
+                ->where([
+                	['posts.id','=',$post_id],
+                	[ 'orders.order_date','=',$strDay10]
+                  ])
+                ->get();
+          $detailAvalible5 = DB::table('orders')
+                ->join('restaurants','restaurants.id','=','orders.restaurant_id')
+		        ->join('posts','posts.restaurant_id','=','restaurants.id')
+                ->select('orders.detail_id as id1')
+                ->where([
+                	['posts.id','=',$post_id],
+                	[ 'orders.order_date','=',$strDay11]
+                  ])
+                ->get();
+          $detailAvalible6 = DB::table('orders')
+                ->join('restaurants','restaurants.id','=','orders.restaurant_id')
+		        ->join('posts','posts.restaurant_id','=','restaurants.id')
+                ->select('orders.detail_id as id1')
+                ->where([
+                	['posts.id','=',$post_id],
+                	[ 'orders.order_date','=',$strDay12]
+                  ])
+                ->get();
+          $detailAvalible7 = DB::table('orders')
+                ->join('restaurants','restaurants.id','=','orders.restaurant_id')
+		        ->join('posts','posts.restaurant_id','=','restaurants.id')
+                ->select('orders.detail_id as id1')
+                ->where([
+                	['posts.id','=',$post_id],
+                	[ 'orders.order_date','=',$strDay13]
+                  ])
+                ->get();
+         // dd($detailAvalible1);
+
          $detailx =DB::table('details')
 				->join('restaurants', 'details.restaurant_id', '=', 'restaurants.id')
 				->join('posts', 'posts.restaurant_id', '=', 'restaurants.id')
 				->where('posts.id', '=', $post_id)
-				->select('details.id')
+				->select('details.id as id1')
 				->get();
-		dd($detailAvalible);
-	     $a=explode ('"',$detailAvalible);
-	     dd($a);
+		//dd($detailx);
+	     $ex_detailx=explode (':',$detailx);
+	     $ex_detailAvalible1=explode (':',$detailAvalible1);
+	     $ex_detailAvalible2=explode (':',$detailAvalible2);
+	     $ex_detailAvalible3=explode (':',$detailAvalible3);
+	     $ex_detailAvalible4=explode (':',$detailAvalible4);
+	     $ex_detailAvalible5=explode (':',$detailAvalible5);
+	     $ex_detailAvalible6=explode (':',$detailAvalible6);
+	     $ex_detailAvalible7=explode (':',$detailAvalible7);
+
+	     $result=array_diff($ex_detailx,$ex_detailAvalible1);
+	     $result2=array_diff($ex_detailx,$ex_detailAvalible2);
+	     $result3=array_diff($ex_detailx,$ex_detailAvalible3);
+	     $result4=array_diff($ex_detailx,$ex_detailAvalible4);
+	     $result5=array_diff($ex_detailx,$ex_detailAvalible5);
+	     $result6=array_diff($ex_detailx,$ex_detailAvalible6);
+	     $result7=array_diff($ex_detailx,$ex_detailAvalible7);
+
+	     //dd($result6);
 		//$x=array_diff($detailAvalible,$detailx);
         
 		return view('pages/detail', ['data' => $data, 'rating' => $rating,'detail'=>$detail, 'user_rate' => $user_rate, 'strDay7' => $strDay7,'strDay8' => $strDay8,'strDay9' => $strDay9,'strDay10' => $strDay10,'strDay11' => $strDay11,'strDay12' => $strDay12,'strDay13' => $strDay13, 'dateAvalible' => $dateAvalible,'result'=>$result,'result2'=>$result2,'result3'=>$result3,'result4'=>$result4,'result5'=>$result5,'result6'=>$result6,'result7'=>$result7,'weekday1'=>$weekday1,'weekday2'=>$weekday2,'weekday3'=>$weekday3,'weekday4'=>$weekday4,'weekday5'=>$weekday5,'weekday6'=>$weekday6,'weekday7'=>$weekday7]);
