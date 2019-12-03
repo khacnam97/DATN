@@ -72,6 +72,7 @@
 
 <?php
 $photo_path = $data->unique('photo_path')->values();
+$cmts = $data->unique('rating_id')->values();
 ?>
 <div class="container" style='text-align:left;margin-top:100px;'>
   @if (session('success'))
@@ -300,8 +301,8 @@ $photo_path = $data->unique('photo_path')->values();
     </div>
   </div>
   <div class="container" style="margin-bottom: 50px;">
-    @if($data[0]->cmt !=NULL || $data[0]->rate != NUll)
-    @foreach ($data as $key=>$value)
+    @if($cmts[0]->cmt !=NULL || $cmts[0]->rate != NUll)
+    @foreach ($cmts as $key=>$value)
     <div class="media border p-3">
 
       @if($value->avatar)

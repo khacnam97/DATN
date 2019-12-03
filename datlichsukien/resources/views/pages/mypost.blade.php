@@ -23,7 +23,9 @@
 		<a href="{{route('account.addpost')}}" title="" class="btn btn-info" style="display: table;justify-content: left;margin-bottom: 50px;">Đăng kí địa điểm mới</a>
 	@endif	
 	@foreach ($data as $key=>$value)
-	<div class="row" style="margin-bottom: 50px;background-color: #dee2e6;width: 100%;justify-content: center;align-items: center;">
+	<div class="row" style="margin-bottom: 50px;background-color: #ffffff;width: 100%;justify-content: center;align-items: center;-webkit-box-shadow: 11px 11px 5px -2px rgba(0,0,0,1);
+-moz-box-shadow: 11px 11px 5px -2px rgba(0,0,0,1);
+box-shadow: 11px 11px 5px -2px rgba(0,0,0,1)">
 		<div class="col-sm-6">
 			<img class="card-img-top" src="/{{$value->photo_path}}" alt="Card image cap" style="height: 280px;">
 		</div>
