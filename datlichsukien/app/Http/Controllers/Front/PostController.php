@@ -34,19 +34,16 @@ class PostController extends Controller
     // dd($request->all());
     	$request-> validate([
             'name' => 'required',
-            'phone' => 'required|min:10 ',
+            'phone' => 'required ',
             'title' => 'required',
             'descrice' => 'required',
-            // 'districts_id' => 'required',
+            
         ]);
         // Transaction database
         	$restaurant = Restaurant::all();
         	$post = new Post;
         	$post ->user_id = Auth::id();
-        	    
-
-                //dd($request->room[0]);
-
+    
         		$newRestaurant = new Restaurant;
         		$newRestaurant->name = $request->name;
         		$newRestaurant->address = $request->address;
@@ -55,8 +52,6 @@ class PostController extends Controller
                 $newRestaurant->longt = $request->lng;                
                 $newRestaurant->district_id =$request->district_id;
 
-        	
-
             $post ->title = $request ->title;
             $post ->is_approved = 0;
             $post ->describer = $request->descrice;
@@ -64,15 +59,6 @@ class PostController extends Controller
             if($request->has('filename')){
             	foreach ($request->file('filename') as $pho) {
             		$name=$pho->getClientOriginalName();
-                    $thumbnailImage = Image::make($pho);
-                    if($thumbnailImage->width() < 800 || $thumbnailImage->height()<400)
-                    {
-                        return redirect()->back()->with(config::get('constant.error'), config::get('constant.message_fail_photo'))->withInput($request->input());
-                    }
-                    if($thumbnailImage->width() > 2500 && $thumbnailImage->height()>1300)
-                    {
-                        return redirect()->back()->with(config::get('constant.error'), config::get('constant.message_fail_photo'))->withInput($request->input());
-                    }
     	        }
             }
 
@@ -136,27 +122,29 @@ class PostController extends Controller
         //dd($idPost);
         $id = Auth::id();
         //check  
-        // if(Post::where('id', $idPost)->first() == null){
-        //     return view('includes.error404');
-        // }
+        if(Post::where('id', $idPost)->first() == null){
+            return view('includes.error404');
+        }
         if( Post::where('id', $idPost)->first()->user_id != $id){
             return view('includes.error404');            
         }
         $post = Post::where('id',$idPost)->first();
-
+        $detail =DB::table('details')
+        ->join('restaurants', 'details.restaurant_id', '=', 'restaurants.id')
+        ->join('posts', 'posts.restaurant_id', '=', 'restaurants.id')
+        ->where('posts.id', '=', $idPost)
+        ->select('details.room','details.service','details.people_number','details.id')
+        ->get();
+        //dd($detail);
         $restaurant = Restaurant::all();
         $district = District::all();
-        return view('pages.editPost',[ 'restaurant' => $restaurant,  'district' => $district, 'post' => $post]);
+        return view('pages.editPost',[ 'restaurant' => $restaurant,  'district' => $district, 'post' => $post,'detail'=>$detail]);
     }
 
     //edit post
     public function edit(Request $request, $idpost){
-
-        //validate dữ liiêu
-        // dd('aa');
-        // $a = POST::select('title','id')->get();
-        // dd($a);     
-
+      
+        //dd($request->all());
         $request-> validate([
             'phone' => 'required ',
             'title' => 'required',
@@ -176,13 +164,30 @@ class PostController extends Controller
         }
         $posts ->title = $request ->title;
         $posts ->describer= $request->input('descrice');
-    
+        
+
         $restaurant = Restaurant::find($posts->restaurant_id);
         $restaurant ->name = $request->name;
         $restaurant ->address = $request->address;
         $restaurant->district_id = $request->district_id;
         $restaurant ->phone = $request->phone;
- 
+        $newRestaurant=$posts->restaurant_id;
+        //dd($newRestaurant);
+        $detail =DB::table('details')
+        ->join('restaurants', 'details.restaurant_id', '=', 'restaurants.id')
+        ->join('posts', 'posts.restaurant_id', '=', 'restaurants.id')
+        ->where('posts.id', '=', $idpost)
+        ->delete();
+        $n=count($request->room);
+                //dd($i);
+                for ($i=0;$i<$n-1;$i++ ) {
+                    $newDetail=new Detail;
+                    $newDetail->room=$request->room[$i];
+                    $newDetail->people_number=$request->peopleNumber[$i];
+                    $newDetail->service=$request->service[$i];
+                    $newDetail ->restaurant_id = $newRestaurant;
+                    $newDetail ->save();
+                }
         //edit photos
         $path = 'picture/admin/post/'.$posts->id;
         if($request->has('filename')){
@@ -199,15 +204,6 @@ class PostController extends Controller
                         return redirect()->back()->with(config::get('constant.error'),'Photo does exitst');
 
                 }  
-                $thumbnailImage = Image::make($image);
-                if($thumbnailImage->width() < 800 || $thumbnailImage->height()<500)
-                {
-                    return redirect()->back()->with(config::get('constant.error'), config::get('constant.message_fail_photo'));
-                }
-                if($thumbnailImage->width() > 2500 && $thumbnailImage->height()>1300)
-                {
-                    return redirect()->back()->with(config::get('constant.error'), config::get('constant.message_fail_photo'));
-                }
                 $image->move($path, $name);  
                 $photo = new photo;
                 $photo->photo_path = $path."/".$name;

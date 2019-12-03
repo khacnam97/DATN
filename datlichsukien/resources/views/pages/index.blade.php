@@ -115,9 +115,11 @@
     </script>
     <div class="col-9">
       <div class="" id="topplace">
-        <div style="text-align: center;margin-top:50px;color: #b3b3ba;" ><h4>NHỮNG ĐỊA ĐIỂM TỔ CHỨC ĐƯỢC ĐÁNH GIÁ CAO</h4></div>
-
-        <div class="row" style="justify-content: center;">
+        @if($top_rating->count() == 0)
+        @else
+         <div style="text-align: center;margin-top:50px;color: #b3b3ba;" ><h4>NHỮNG ĐỊA ĐIỂM TỔ CHỨC ĐƯỢC ĐÁNH GIÁ CAO</h4></div>
+        @endif
+        <div class="row" style="justify-content: center; margin-left: 5px;">
             @if($top_rating->count() !== 0)
             @foreach ($top_rating as $record)
             <div class="col-sm-3" style="margin:50px 0;">
@@ -158,7 +160,7 @@
         </div>
     </div>
         <div style="text-align: center;margin-top:50px;color: #b3b3ba;"><h2>NHỮNG BÀI VIẾT MỚI NHẤT</h2></div>
-        <div class="row" style="justify-content: center;">
+        <div class="row" style="justify-content: center; margin-left: 5px;">
             @if($all_post->count() !== 0)
             @foreach ($all_post as $record)
             <div class="col-sm-4" style="margin:50px 0;">

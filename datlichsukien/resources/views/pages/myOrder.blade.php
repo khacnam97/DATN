@@ -26,7 +26,7 @@
 	@endif
 
 	@foreach ($order as $key=> $record)
-		<div class="row" style="margin-bottom: 10px;background-color: #dee2e6;height:200px;justify-content: center;align-items: center; margin-left: 100px;margin-right: 100px;">
+		<div class="row" style="margin-bottom: 80px;background-color: #dee2e6;height:200px;justify-content: center;align-items: center; margin-left: 100px;margin-right: 100px;">
 			<div class="col-sm-6">
                 <img class="card-img-top" src="/{{$record->photo_path}}" alt="{{$record->title}}" style="height: 200px; ">
 			</div>
@@ -36,7 +36,7 @@
 				
 				<div> <p><i class="fas fa-map-marker-alt " style="color: blue;"></i> {{$record->addressrestaurant}}</p></div>
 				<p><i class="fa fa-calendar"></i> Thời gian {{$record->order_time}} Ngày {{$record->order_date}}</p>
-				<button type="button" class="btn-info" data-toggle="modal" data-target="#detailModal" data-date="{{$record->order_date}}" data-namerestaurant="{{$record->restaurant->name}}" data-phone="{{$record->restaurant->phone}}" data-address="{{$record->addressrestaurant}}" data-time="{{$record->order_time}}" data-id="{{$record->id}}" data-peonumber="{{$record->people_number}}" data-price="{{$record->price_table}}"> 
+				<button type="button" class="btn-info" data-toggle="modal" data-target="#detailModal" data-date="{{$record->order_date}}" data-namerestaurant="{{$record->restaurant->name}}" data-phone="{{$record->restaurant->phone}}" data-address="{{$record->addressrestaurant}}" data-time="{{$record->order_time}}" data-id="{{$record->id}}" data-peonumber="{{$record->people_number}}" data-price="{{$record->price_table}}" data-room="{{$record->room}}" data-service="{{$record->service}}" data-detailpeonumber="{{$record->detailpeonumber}}"> 
 					Chi tiết
 				</button>
 				@if($record->status ==1)
@@ -47,7 +47,7 @@
 				@elseif($record->status ==0) 
 				<button class="btn-success">
 
-					<a data-toggle="modal" data-target="#myModal3" href=""  style="color: white;text-decoration: none;" >Đang chờ phê duyệt</a>
+					<a data-toggle="modal" data-target="#myModal3" href=""  style="color: white;text-decoration: none;" >Đang chờ phê duyệt </a>
 				</button>
 				@else
 				<button class="btn-success">
@@ -86,6 +86,20 @@
       	<input type="hidden" name="id" class="form-control" id="id" readonly>
       	<label for="address" class="col-form-label"> Địa chỉ địa điểm tổ chức </label>
       	<input type="text" name="address" class="form-control" id="address" readonly>
+      	<div class="input-group control-group  form-row" >
+			<div class="form-group col-md-4">
+			    <label>Tên khu</label>			
+				<input type="text"  class="form-control" name="room" id="room" placeholder="Tên khu" disabled="" >
+			</div>
+			<div class="form-group col-md-4">
+			    <label>Dịch vụ</label>				
+				<input type="text" class="form-control" name="service" id="service" placeholder="Dịch vụ" disabled="">
+			</div>
+			<div class="form-group col-md-4">	
+			    <label>Sức chứa</label>			
+				<input type="text"  class="form-control" name="detailpeonumber" id="detailpeonumber" placeholder="Sức chứa của phòng" disabled="">
+			</div>
+		</div>
       	<div class="row">
       		<div class="form-group col-md-6">
       			<label for="name" class="col-form-label">Thời gian tổ chức </label>
@@ -136,6 +150,9 @@
 		var price = button.data('price')
 		var date = button.data('date')
 		var address = button.data('address')
+		var room = button.data('room')
+		var service = button.data('service')
+		var detailpeonumber= button.data('detailpeonumber')
 
 		var modal = $(this)
 		modal.find('#idedit').val(id);
@@ -147,6 +164,9 @@
 		modal.find('#price').val(price)
 		modal.find('#date').val(date)
 		modal.find('#address').val(address)
+		modal.find('#room').val(room)
+		modal.find('#service').val(service)
+		modal.find('#detailpeonumber').val(detailpeonumber)
 	})
 </script>
 <script>

@@ -31,7 +31,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<img src="../picture/front/owl.gif" alt="flashy" class="w3l">
             <h2 class="main-title">404</span></h2>
 			<p class="w3-agileits2">We can't seem to find the page you're looking for.</p>
-			<p class="copyright align-middle"  style="margin-left: 15%;">© 2019 Travel Viet| <a href="" ></a></p>
+			<p class="copyright align-middle"  style="margin-left: 15%;">© 2019 Khắc Nam  <a href="" ></a></p>
         </div>
 	</div>
 </div>	
