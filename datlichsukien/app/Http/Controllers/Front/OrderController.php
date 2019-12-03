@@ -220,6 +220,13 @@ class OrderController extends Controller
       $orderdate=$request->order_date;
       $strDay=explode (',',$orderdate);
       $post_id=$request->idpost;
+
+      $detail =DB::table('details')
+      ->join('restaurants', 'details.restaurant_id', '=', 'restaurants.id')
+      ->join('posts', 'posts.restaurant_id', '=', 'restaurants.id')
+      ->where('posts.id', '=', $post_id)
+      ->select('details.room','details.service','details.people_number','details.id')
+      ->get();
       $detailAvalible = DB::table('orders')
           ->join('restaurants','restaurants.id','=','orders.restaurant_id')
           ->join('posts','posts.restaurant_id','=','restaurants.id')
@@ -245,7 +252,7 @@ class OrderController extends Controller
           $restaurantdate =$request->restaurantdate;
          // dd($restaurantdate);
 
-          return view('pages.addorderDate',['restaurant_id'=>$restaurant_id,'restaurantdate'=>$restaurantdate,'orderdate'=>$orderdate]);
+          return view('pages.addorderDate',['restaurant_id'=>$restaurant_id,'restaurantdate'=>$restaurantdate,'orderdate'=>$orderdate,'detail'=>$detail]);
       }
       else{
         return redirect()->back()->with('error', Config::get('constant.order.error'));

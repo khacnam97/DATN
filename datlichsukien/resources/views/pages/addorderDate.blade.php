@@ -5,7 +5,8 @@
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 <div class="container"  id="show_profile" style="margin-top: 100px; margin-bottom: 50px;display:flex; justify-content: center;">
-	<div style="width: 800px; height: 600px; ">
+	<div style="width: 800px; height: 800px;background-color: #ffffff; -webkit-box-shadow: 11px -8px 5px -2px rgba(0,0,0,1);-moz-box-shadow: 11px -8px 5px -2px rgba(0,0,0,1);
+        box-shadow: 11px -8px 5px -2px rgba(0,0,0,1);">
 		
 		<div class="row" style="justify-content: center;">
 			<div class="col-9">
@@ -40,14 +41,26 @@
 
 					</div>
 					<div class="form-group row">
-						
-						<label class="col-sm-3 col-form-label form-control-label" style="width: 150px; background-color: #6cb2eb; color: #212529;">Quy mô</label>
-						<span style="margin-left: 20px;">
-							<input type="radio" name="gender" value="male"> Lớn
-							<input type="radio" name="gender" value="female"> Vừa
-							<input type="radio" name="gender" value="other"> Nhỏ
-						</span>
-					</div>
+						<label class="col-sm-3 col-form-label form-control-label"  style="width: 150px; background-color: #6cb2eb; color: #212529;">Chọn loại phòng</label>
+						<div class="col">
+
+							<div class="col-sm-8">
+								
+									<div class="dropdown-divider"></div>
+									@foreach ($detail as $record)
+									<div>
+										<input type="radio" name="detail_id" required=""  value="{{$record->id}}">
+										<label style="width: 100px;">{{$record->room}}</label> 
+										<label style="width: 80px;">{{$record->service}}</label>
+										<label style="width: 50px;">{{$record->people_number}}</label>
+									</div>
+									@endforeach
+
+								</div>
+
+							</div>
+
+						</div>
 					<div class="form-group row">
 						<label class="col-sm-3 col-form-label form-control-label" style="width: 150px; background-color: #6cb2eb; color: #212529;">Số lượng người</label>
 						<div class="col-sm-8">

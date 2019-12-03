@@ -10,8 +10,6 @@
 	
 	@if($order->count() == 0)
 		<h1 style="margin-top:200px;margin-bottom: 200px;text-align: center; font-size: 35px;">Bạn chưa có lịch đặt nào </h1>
-	
-
 	@else
 	<h1 style="margin-top:100px;margin-bottom: 50px; text-align: center;">Lịch đặt của tôi</h1>
 	@if(Session::has('message'))
@@ -26,7 +24,8 @@
 	@endif
 
 	@foreach ($order as $key=> $record)
-		<div class="row" style="margin-bottom: 80px;background-color: #dee2e6;height:200px;justify-content: center;align-items: center; margin-left: 100px;margin-right: 100px;">
+		<div class="row" style="margin-bottom: 80px;background-color: #ffffff;height:200px;justify-content: center;align-items: center; margin-left: 100px;margin-right: 100px;-webkit-box-shadow: 11px -8px 5px -2px rgba(0,0,0,1);-moz-box-shadow: 11px -8px 5px -2px rgba(0,0,0,1);
+            box-shadow: 11px -8px 5px -2px rgba(0,0,0,1);">
 			<div class="col-sm-6">
                 <img class="card-img-top" src="/{{$record->photo_path}}" alt="{{$record->title}}" style="height: 200px; ">
 			</div>

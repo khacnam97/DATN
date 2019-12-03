@@ -52,7 +52,7 @@
 
   <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
-<body id="home" class="wide body-light multipage multipage-sub">
+<body id="home" class="wide body-light multipage multipage-sub" style="background-color: #f8f9fa">
 
 <!-- Wrap all content -->
 <div class="wrapper">

@@ -72,6 +72,7 @@ class FrontController extends Controller
 		->select('posts.id', 'posts.restaurant_id','users.id','posts.title', 'posts.user_id', 'posts.describer','posts.id','posts.created_at as create_at', 'photos.photo_path', 'users.name', 'restaurants.name as restaurant', 'restaurants.lat', 'restaurants.longt','restaurants.address','ratings.id as rating_id' , 'ratings.rating as rate', 'ratings.created_at', 'userscmt.id as cmtid', 'userscmt.name as cmtname', 'userscmt.avatar','ratings.cmt')
 		->where('posts.id', '=', $post_id)
 		->get();
+		
 		$detail =DB::table('details')
 		->join('restaurants', 'details.restaurant_id', '=', 'restaurants.id')
 		->join('posts', 'posts.restaurant_id', '=', 'restaurants.id')
@@ -115,14 +116,6 @@ class FrontController extends Controller
                 ->where('posts.id','=',$post_id)->get();
 
          $ep_dateAvalible=explode ('"',$dateAvalible);
-         
-         // $result=array_diff($strDay1,$ep_dateAvalible);
-         // $result2=array_diff($strDay2,$ep_dateAvalible);
-         // $result3=array_diff($strDay3,$ep_dateAvalible);
-         // $result4=array_diff($strDay4,$ep_dateAvalible);
-         // $result5=array_diff($strDay5,$ep_dateAvalible);
-         // $result6=array_diff($strDay6,$ep_dateAvalible);
-         // $result7=array_diff($strDay0,$ep_dateAvalible);
         
          $weekday1 = date('l', strtotime($strDay7));
          $weekday2 = date('l', strtotime($strDay8));
