@@ -59,6 +59,18 @@ class RestaurantController extends Controller
         $order = DB::table('orders')
             ->where('orders.restaurant_id','=',$id)
             ->delete();
+        $detail = DB::table('details')
+                ->join('restaurants','restaurants.id','=','details.restaurant_id')
+                ->where('details.restaurant_id','=',$id)
+                ->delete();
+        $rating = DB::table('ratings')
+                ->join('posts','posts.id','=','ratings.post_id')
+                ->where('posts.restaurant_id','=',$id)
+                ->delete();
+        $photo =DB::table('photos')
+            ->join('posts','posts.id','=','photos.post_id')
+            ->join('restaurants','restaurants.id','=','posts.restaurant_id')
+            ->where('restaurants.id', '=' ,$id)->delete();
         $post = DB::table('posts')
             ->where('posts.restaurant_id','=',$id)
             ->delete();

@@ -92,16 +92,17 @@
 			</div>
 		</div>
 		<label  for="name" class="col-form-label" >Điền thông tin (<span style="color: red">*</span>) </label>
+        
         <div class="input-group control-group increment form-row" >
 
 			<div class="form-group col-md-4">
-				<input type="text"  class="form-control" name="room[]" placeholder="Tên khu" required="" >
+				<input type="text"  class="form-control" name="room[]" placeholder="Tên khu" value="{{ old('room') }}" required="" >
 			</div>
             <div class="form-group col-md-4">
-            	<input type="text" class="form-control" name="service[]" placeholder="Dịch vụ" required="">
+            	<input type="text" class="form-control" name="service[]" placeholder="Dịch vụ" required="" value="{{ old('service') }}">
             </div>
             <div class="form-group col-md-3">
-            	<input type="text"  class="form-control" name="peopleNumber[]" placeholder="Sức chứa của phòng" required="">
+            	<input type="text"  class="form-control" name="peopleNumber[]" placeholder="Sức chứa của phòng" required="" value="{{ old('peopleNumber') }}">
             </div>
           
           <div class="input-group-btn">  
@@ -167,7 +168,8 @@
 		</div>
 
 		<h5 class="form-control-label"> Thêm ảnh cho bài viết (<span style="color: red">*</span>)</h5>
-		<div class="form-control-file">
+				
+        <div class="form-control-file">
 			<input multiple type="file"  id="gallery-photo-add" class="form-control" name="filename[]" required="" accept="image/x-png,image/jpeg">
 			@error('filename')
 			<span class="invalid-feedback" role="alert">
@@ -176,17 +178,14 @@
 			@enderror
 			<div class="gallery" style="display: flex; width: 200px;height: 200px;">
 			</div>	
-		</div>				
-
+		</div>	
+        
 		<div style=" margin-top: 100px; margin-bottom: 50px;">
 			<button type="submit" class="btn btn-primary" style="width: 100px;" >Đăng bài</button>
 			<button type="reset" class="btn btn-dark" style="width: 100px;" id="reset"> Reset</button>
 		</div>
 	</form>
-
-
 </div>
-
 
 <script type="text/javascript">
 
@@ -194,10 +193,7 @@
 
 		$('#reset').on('click', function(){
 			$('.gallery img').hide();		
-		})
-
-		
-	    
+		})  
 	});
 	$('#gallery-photo-add').on('click', function() {
 		$('.gallery img').hide();

@@ -58,15 +58,15 @@ class OrderController extends Controller
         $orderDate =$request->order_date;
         $restaurant =$request->restaurant_id;
         $detailAvalible1 = DB::table('orders')
-                ->join('restaurants','restaurants.id','=','orders.restaurant_id')
+            ->join('restaurants','restaurants.id','=','orders.restaurant_id')
             ->join('posts','posts.restaurant_id','=','restaurants.id')
-                ->select('orders.detail_id as id1')
-                ->where([
+            ->select('orders.detail_id as id1')
+            ->where([
                   [ 'orders.restaurant_id','=',$restaurant],
                   [ 'orders.order_date','=',$orderDate],
                   [ 'orders.detail_id','=',$detail_id]
                   ])
-                ->get();
+            ->get();
         $ex_detailAvalible=explode (':',$detailAvalible1);
         //$ex_detail=explode ('"',$detail_id);
         //$arr =array_push()
@@ -167,12 +167,13 @@ class OrderController extends Controller
         $order =Order::join('restaurants','orders.restaurant_id','=','restaurants.id')
                 ->join('posts', 'posts.restaurant_id', '=', 'orders.restaurant_id')
                 ->join('photos', 'posts.id', '=', 'photos.post_id')
-                ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','orders.restaurant_id','restaurants.name','posts.title','restaurants.address as addressrestaurant','photos.photo_path')
+                ->join('details', 'details.id', '=', 'orders.detail_id')
+                ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','orders.restaurant_id','restaurants.name','posts.title','restaurants.address as addressrestaurant','photos.photo_path','details.room','details.service','details.people_number as detailpeonumber')
                 ->where([
                   ['orders.user_id','=',$id],
                   ['photos.flag', '=', '1'],
                   ])
-                  ->paginate(10);
+                  ->Paginate(10);
         // dd($order);
         return view('pages.myOrder',['order'=>$order]);
     }
@@ -219,12 +220,24 @@ class OrderController extends Controller
       $orderdate=$request->order_date;
       $strDay=explode (',',$orderdate);
       $post_id=$request->idpost;
-      $dateAvalible = DB::table('orders')
-      ->join('posts','posts.restaurant_id','=','orders.restaurant_id')
-      ->select('orders.order_date')
-      ->where('posts.id','=',$post_id)->get();
-      $ep_dateAvalible=explode ('"',$dateAvalible);
-      $result=array_diff($strDay,$ep_dateAvalible);
+      $detailAvalible = DB::table('orders')
+          ->join('restaurants','restaurants.id','=','orders.restaurant_id')
+          ->join('posts','posts.restaurant_id','=','restaurants.id')
+          ->select('orders.detail_id as id1')
+          ->where([
+                  ['posts.id','=',$post_id],
+                  [ 'orders.order_date','=',$orderdate]
+            ])
+          ->get();
+      $detailx =DB::table('details')
+        ->join('restaurants', 'details.restaurant_id', '=', 'restaurants.id')
+        ->join('posts', 'posts.restaurant_id', '=', 'restaurants.id')
+        ->where('posts.id', '=', $post_id)
+        ->select('details.id as id1')
+        ->get();
+      $ex_detailx=explode (':',$detailx);
+      $ex_detailAvalible=explode (':',$detailAvalible);
+      $result=array_diff($ex_detailx,$ex_detailAvalible);
       $strNow =  date("Y-m-d");
       if(!empty($result) &&  strtotime($strNow) < strtotime($orderdate)) 
       {

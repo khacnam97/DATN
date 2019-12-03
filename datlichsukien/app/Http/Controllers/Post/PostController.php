@@ -9,8 +9,11 @@ use App\Post;
 use App\User;
 use Carbon\Carbon;
 use App\Photo;
+use App\Detail;
 use File;
+use App\District;
 use App\Restaurant;
+use App\Rating;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Config;
@@ -28,7 +31,8 @@ class PostController extends Controller
         $postss = POST::all();
         $user = USER::all();
         $restaurant = restaurant::all();
-        return view('admin.post.index', ['posts'=>$postss , 'user'=>$user ,'restaurant'=>$restaurant]);
+        $district=District::all();
+        return view('admin.post.index', ['posts'=>$postss , 'user'=>$user ,'restaurant'=>$restaurant,'district'=>$district]);
     }
 
 
@@ -61,16 +65,24 @@ class PostController extends Controller
 
         // import posts
         $posts = new POST;
-
-        $posts -> user_id = User::where('name', $request->userid)->first()->id;
-        $posts -> restaurant_id = Restaurant::where('name',$request ->restaurantid)->first()->id;
-        $posts -> title = $request ->title;
-        $posts -> describer = $request ->input('describer');
+        $newRestaurant = new Restaurant;
+        $newRestaurant->name = $request->restaurantid;
+        $newRestaurant->address = $request->address;
+        $newRestaurant->phone = $request->phone;
+        $newRestaurant->lat = $request->lat;
+        $newRestaurant->longt = $request->lng;                
+        $newRestaurant->district_id =$request->district_id;
+        
+        $posts ->user_id = User::where('name', $request->userid)->first()->id;
+        $newRestaurant -> save();
+        $posts ->restaurant_id = $newRestaurant->id;
+        $posts ->title = $request ->title;
+        $posts ->describer = $request ->input('describer');
         if($request->checkbox){
-            $posts -> is_approved = $request -> checkbox;
+            $posts ->is_approved = $request ->checkbox;
         }
         else{
-        $posts -> is_approved =0;
+        $posts ->is_approved =0;
         }
          // $posts ->slug = Str::slug($request->title, '-');
         //make folder chứa photo
@@ -78,6 +90,17 @@ class PostController extends Controller
         if(!File::exists($path)){
             File::makeDirectory($path, 0644);
         }
+
+         $n=count($request->room);
+                //dd($i);
+                for ($i=0;$i<$n-1;$i++ ) {
+                    $newDetail=new Detail;
+                    $newDetail->room=$request->room[$i];
+                    $newDetail->people_number=$request->peopleNumber[$i];
+                    $newDetail->service=$request->service[$i];
+                    $newDetail ->restaurant_id = $newRestaurant->id;
+                    $newDetail ->save();
+                }      
         //insert multi photo
         $posts -> save();
         if($request->has('filename')){
@@ -129,7 +152,13 @@ class PostController extends Controller
         $posts = POST::find($id);
          $user = USER::all();
         $restaurant = RESTAURANT::all();
-        return view('admin.post.edit', ['post'=>$posts, 'user'=>$user ,'restaurant'=>$restaurant] );
+         $detail =DB::table('details')
+        ->join('restaurants', 'details.restaurant_id', '=', 'restaurants.id')
+        ->join('posts', 'posts.restaurant_id', '=', 'restaurants.id')
+        ->where('posts.id', '=', $id)
+        ->select('details.room','details.service','details.people_number','details.id')
+        ->get();
+        return view('admin.post.edit', ['post'=>$posts, 'user'=>$user ,'restaurant'=>$restaurant,'detail'=>$detail] );
     }
     /**
      * Show the form for editing the specified resource.
@@ -156,7 +185,22 @@ class PostController extends Controller
         $posts ->is_approved = $request->approved;
         $posts ->title = $request ->title;
         $posts ->describer = $request->input('describer');
-
+        $newRestaurant=$posts->restaurant_id;
+         $detail =DB::table('details')
+        ->join('restaurants', 'details.restaurant_id', '=', 'restaurants.id')
+        ->join('posts', 'posts.restaurant_id', '=', 'restaurants.id')
+        ->where('posts.id', '=', $id)
+        ->delete();
+        $n=count($request->room);
+                //dd($i);
+                for ($i=0;$i<$n-1;$i++ ) {
+                    $newDetail=new Detail;
+                    $newDetail->room=$request->room[$i];
+                    $newDetail->people_number=$request->peopleNumber[$i];
+                    $newDetail->service=$request->service[$i];
+                    $newDetail ->restaurant_id = $newRestaurant;
+                    $newDetail ->save();
+                }
 
         // xu li them anh moi
         $path = 'picture/admin/post/'.$posts->id;
@@ -233,8 +277,14 @@ class PostController extends Controller
     {
 
         //query bulder
+
         $order = DB::table('orders')
             ->join('restaurants','restaurants.id','=','orders.restaurant_id')
+            ->join('posts','posts.restaurant_id','=','restaurants.id')
+            ->where('posts.id','=',$id)
+            ->delete();
+        $detail = DB::table('details')
+            ->join('restaurants','restaurants.id','=','details.restaurant_id')
             ->join('posts','posts.restaurant_id','=','restaurants.id')
             ->where('posts.id','=',$id)
             ->delete();
@@ -245,6 +295,7 @@ class PostController extends Controller
             ->where('post_id', '=' ,$id)->delete();
         $path = "/picture/admin/post/".$id; 
         File::deleteDirectory(public_path($path));
+        $rating = Rating::where('post_id', $id)->delete();
         $posts = DB::table('posts')
             ->where('id' , '=' ,$id)->delete();
         //$rating =Rating::where('post_id', $id)->delete();
@@ -276,7 +327,13 @@ class PostController extends Controller
     public function detail($id)
     {
         $posts = POST::find($id);
-        return view('admin.post.detail', ['post'=>$posts] );
+         $detail =DB::table('details')
+        ->join('restaurants', 'details.restaurant_id', '=', 'restaurants.id')
+        ->join('posts', 'posts.restaurant_id', '=', 'restaurants.id')
+        ->where('posts.id', '=', $id)
+        ->select('details.room','details.service','details.people_number','details.id')
+        ->get();
+        return view('admin.post.detail', ['post'=>$posts,'detail'=>$detail] );
   
     }
     public function deletephoto($id)

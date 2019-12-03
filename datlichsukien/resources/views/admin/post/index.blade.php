@@ -76,8 +76,8 @@
 			</table>
 		</div>
 	</div>
-	<div class="modal" id="myModal3">
-		<div class="modal-dialog">
+	<div class="modal fade" id="myModal3" >
+		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 
 				<!-- Modal Header -->

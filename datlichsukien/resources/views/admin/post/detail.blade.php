@@ -18,16 +18,47 @@
 	    	<label >User:</label>
 	    	<input type="" value="{{$post->user->name}}" disabled="true" class="form-control @error('userid') is-invalid @enderror" id="userid " name="userid">
 	  	</div>
-
-	  	<div class="form-group"  style="margin-left: 50px";>
-	    	<label >Restaurant:</label>
-	    	<input type="" value="{{$post->restaurant->name}}" disabled="true" class="form-control" id="restaurantid" name="restaurantid">
-	  	</div>
       <div class="form-group" style="margin-left: 50px;">
         <label >Is Approved:</label>
-        <input type="number" value="{{$post->is_approved}}" disabled="true" class="form-control" id="userid " name="userid">
+         @if($post->is_approved==1)
+        <input type="" value="Approved" disabled="true" class="form-control" id="userid " name="userid">
+        @else
+         <input type="" value="UnApproved" disabled="true" class="form-control" id="userid " name="userid">
+        @endif
+      </div>
+      <div class="form-group col-sm-5"  style="margin-left: 50px";>
+        <label >Restaurant:</label>
+        <input type="" value="{{$post->restaurant->name}}" disabled="true" class="form-control" id="restaurantid" name="restaurantid">
       </div>
 	</div>
+  <div class="col-form-label  form-row" >
+          <div class="form-group col-md-4">
+            <label>Tên khu</label>
+          </div>
+          <div class="form-group col-md-4">
+            <label>Dịch vụ</label>
+          </div>
+          <div class="form-group col-md-4">
+            <label>Sức chứa</label>
+          </div>
+          </div>
+       @foreach ($detail as $record)
+        <div class="input-group control-group  form-row" >
+      
+          <div class="form-group col-md-4">
+            
+            <input type="text"  class="form-control" name="room[]" value="{{$record->room}}" placeholder="Tên khu" required="" disabled="">
+          </div>
+          <div class="form-group col-md-4">
+            
+            <input type="text" class="form-control" name="service[]" value="{{$record->service}}" placeholder="Dịch vụ" required="" disabled="">
+          </div>
+          <div class="form-group col-md-4">
+            
+            <input type="text"  class="form-control" name="peopleNumber[]" value="{{$record->people_number}}" placeholder="Sức chứa của phòng" required="" disabled="">
+          </div>
+        </div>
+        @endforeach
 	<div class="form-group">
     	<label for="">Title:</label>
     	<input type="text" value="{{$post->title}}" disabled="true" class="form-control" id="title" name="title">
