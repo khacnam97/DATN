@@ -46,7 +46,8 @@
         'order' =>[
         	'deleteOrder'=>'Bạn đã xóa thành công lịch đặt này',
         	'accept'=>'Bạn đã xác nhận lịch đặt này',
-        	'error' =>'Bạn chọn ngày không hợp lệ hoặc ngày đã có người đặt'
+        	'error' =>'Bạn chọn ngày không hợp lệ hoặc ngày đã có người đặt',
+        	'notiorder'=>'Bạn đã chọn khu đã có người đặt ,bạn vui lòng xem lại !'
         ]
 	]
 ?>

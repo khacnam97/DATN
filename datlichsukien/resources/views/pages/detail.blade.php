@@ -75,21 +75,21 @@ $photo_path = $data->unique('photo_path')->values();
 ?>
 <div class="container" style='text-align:left;margin-top:100px;'>
   @if (session('success'))
-      <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert" aria_label="Close">
-          <span aria_hidden="true">&times;</span>
-        </button>
-        {{ session('success') }}
-      </div>
-      @endif
+  <div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert" aria_label="Close">
+      <span aria_hidden="true">&times;</span>
+    </button>
+    {{ session('success') }}
+  </div>
+  @endif
   @if (session('error'))
-      <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert" aria_label="Close">
-          <span aria_hidden="true">&times;</span>
-        </button>
-        {{ session('error') }}
-      </div>
-      @endif
+  <div class="alert alert-danger">
+    <button type="button" class="close" data-dismiss="alert" aria_label="Close">
+      <span aria_hidden="true">&times;</span>
+    </button>
+    {{ session('error') }}
+  </div>
+  @endif
   <h1 class="my-4" style="margin-bottom: 0px;">{{$data[0]->title}}</h1>
 
   <div class="row">

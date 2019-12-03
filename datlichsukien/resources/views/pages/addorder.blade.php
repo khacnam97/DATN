@@ -43,8 +43,9 @@
                 <div class="dropdown-divider"></div>
                 @foreach ($detail as $record)
                 <div>
-                  <input type="radio" name="detail_id"  value="{{$record->id}}">{{$record->room}}
-                   <label style="width: 100px;margin-left: 50px;">{{$record->service}}</label>
+                  <input type="radio" name="detail_id"  value="{{$record->id}}">
+                   <label style="width: 100px;">{{$record->room}}</label> 
+                   <label style="width: 100px;">{{$record->service}}</label>
                    <label style="width: 100px;">{{$record->people_number}}</label>
                 </div>
                 @endforeach
