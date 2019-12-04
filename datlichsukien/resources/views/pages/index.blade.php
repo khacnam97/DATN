@@ -198,7 +198,7 @@
             </div>
             @endforeach
         </div>
-    
+       <div style="display: inline-block;display: flex;justify-content: center;">{!!$all_post->links()!!}</div>
     @endif
     </div>
     <div class="col-3"  style="background-color:  #f8f9fa" >

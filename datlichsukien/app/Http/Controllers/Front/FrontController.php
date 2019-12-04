@@ -49,16 +49,16 @@ class FrontController extends Controller
 			['is_approved', '=', '1'],
 			['photos.flag', '=', '1']
 		])
-		->take(Config::get('constant.numberRecord3'))
-		->get();
+		
+		->Paginate(9);
 		$restaurant = DB::table('restaurants')->get();
         return view('pages.index',['top_rating'=>$top_rating,'restaurant'=>$restaurant,'all_post'=>$all_post]);
     }
     public function detail($id)
 	{
-		// if(Post::where('id',$id)->first() == null){
-		// 	return view('includes.erro404');
-		// }
+		if(Post::where('id',$id)->first() == null){
+			return view('includes.error404');
+		}
 		$post = Post::where('id',$id)->first();
 		$post_id = DB::table('posts')
 		->select('posts.id')

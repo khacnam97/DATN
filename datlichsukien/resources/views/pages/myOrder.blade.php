@@ -35,22 +35,19 @@
 				
 				<div> <p><i class="fas fa-map-marker-alt " style="color: blue;"></i> {{$record->addressrestaurant}}</p></div>
 				<p><i class="fa fa-calendar"></i> Thời gian {{$record->order_time}} Ngày {{$record->order_date}}</p>
-				<button type="button" class="btn-info" data-toggle="modal" data-target="#detailModal" data-date="{{$record->order_date}}" data-namerestaurant="{{$record->restaurant->name}}" data-phone="{{$record->restaurant->phone}}" data-address="{{$record->addressrestaurant}}" data-time="{{$record->order_time}}" data-id="{{$record->id}}" data-peonumber="{{$record->people_number}}" data-price="{{$record->price_table}}" data-room="{{$record->room}}" data-service="{{$record->service}}" data-detailpeonumber="{{$record->detailpeonumber}}"> 
+				<button type="button" class="btn-info" data-toggle="modal" data-target="#detailModal" data-date="{{$record->order_date}}" data-namerestaurant="{{$record->restaurant->name}}" data-phone="{{$record->restaurant->phone}}" data-address="{{$record->addressrestaurant}}" data-time="{{$record->order_time}}" data-id="{{$record->id}}" data-peonumber="{{$record->people_number}}" data-price="{{$record->price_table}}" data-room="{{$record->room}}" data-service="{{$record->service}}" data-detailpeonumber="{{$record->detailpeonumber}}" data-addressme="{{$record->address}}"> 
 					Chi tiết
 				</button>
 				@if($record->status ==1)
-				<button class="btn-danger" >
-
-					<a href=""  role="button"  style="color: white;text-decoration: none;" >Đã chấp nhận</a>
+				<button class="btn-success" >
+					<a   role="button"  style="color: white;text-decoration: none;" >Đã chấp nhận</a>
 				</button>
 				@elseif($record->status ==0) 
 				<button class="btn-success">
-
-					<a data-toggle="modal" data-target="#myModal3" href=""  style="color: white;text-decoration: none;" >Đang chờ phê duyệt </a>
+					<a data-toggle="modal" data-target="#myModal3"  style="color: white;text-decoration: none;" >Đang chờ phê duyệt </a>
 				</button>
 				@else
-				<button class="btn-success">
-
+				<button class="btn-danger">
 					<a data-toggle="modal" data-target="#myModal3" href=""  style="color: white;text-decoration: none;" >Đã từ bị chối </a>
 				</button> 
 				@endif
@@ -59,8 +56,7 @@
 					<a href="{{route('myorder.delete', $record->id)}}" style="color: white;text-decoration: none;" onclick="return confirm ('Bạn có muốn xóa ??')">Xóa</a>
 				</button>
 				@endif
-				</div>
-				
+				</div>	
 			</div>
 		</div>
 	@endforeach
@@ -99,6 +95,8 @@
 				<input type="text"  class="form-control" name="detailpeonumber" id="detailpeonumber" placeholder="Sức chứa của phòng" disabled="">
 			</div>
 		</div>
+		<label for="address" class="col-form-label"> Địa chỉ của bạn </label>
+      	<input type="text" name="addressme" class="form-control" id="addressme" readonly>
       	<div class="row">
       		<div class="form-group col-md-6">
       			<label for="name" class="col-form-label">Thời gian tổ chức </label>
@@ -149,6 +147,7 @@
 		var price = button.data('price')
 		var date = button.data('date')
 		var address = button.data('address')
+		var addressme = button.data('addressme')
 		var room = button.data('room')
 		var service = button.data('service')
 		var detailpeonumber= button.data('detailpeonumber')
@@ -163,6 +162,7 @@
 		modal.find('#price').val(price)
 		modal.find('#date').val(date)
 		modal.find('#address').val(address)
+		modal.find('#addressme').val(addressme)
 		modal.find('#room').val(room)
 		modal.find('#service').val(service)
 		modal.find('#detailpeonumber').val(detailpeonumber)
@@ -176,7 +176,7 @@
 	let textinput2 = document.querySelector('#time');
 	let textinput3 = document.querySelector('#peonumber');
 	let textinput4 = document.querySelector('#price');
-	let textinput5 = document.querySelector('#address');
+	let textinput5 = document.querySelector('#addressme');
 	
 
 	let detailform = document.querySelector('#detailform');

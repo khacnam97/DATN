@@ -27,32 +27,35 @@
 					 {{csrf_field()}}
 					<div class="form-group row">
 						
-                        <label class="col-sm-3 col-form-label form-control-label" style="width: 150px; background-color: #6cb2eb; color: #212529;">Ngày tổ chức</label>
+                        <label class="col-sm-3 col-form-label form-control-label" style="width: 150px;background-color: #e0e0e0; -webkit-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);-moz-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);">Ngày tổ chức</label>
 						<div class="col-sm-8" >
 							<input class="form-control" type="text" name="order_date" id="test" value="{{$orderdate}}" readonly>
 						</div>    
 					</div>
 					<div class="form-group row">
 						
-                       <label class="col-sm-3 col-form-label form-control-label" style="width: 150px; background-color: #6cb2eb; color: #212529;">Thời gian tổ chức</label>
+                       <label class="col-sm-3 col-form-label form-control-label" style="width: 150px; background-color: #e0e0e0; -webkit-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);-moz-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);">Thời gian tổ chức</label>
 						<div class="col-sm-8" >
 							<input type="text" class="form-control" name="time" required="" id="timepicker" >
 						</div>
 
 					</div>
 					<div class="form-group row">
-						<label class="col-sm-3 col-form-label form-control-label"  style="width: 150px; background-color: #6cb2eb; color: #212529;">Chọn loại phòng</label>
+						<label class="col-sm-3 col-form-label form-control-label"  style="width: 150px; background-color: #e0e0e0; -webkit-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);-moz-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);height: 40px;">Chọn loại phòng</label>
 						<div class="col">
 
-							<div class="col-sm-8">
-								
+							<div class="col-sm-10">
+								    <div > 
+					                  <label style="width: 110px;">Tên khu</label> 
+					                  <label style="width: 100px;">Dịch vụ</label>
+					                  <label style="width: 90px;">Sức chứa</label></div>
 									<div class="dropdown-divider"></div>
 									@foreach ($detail as $record)
 									<div>
 										<input type="radio" name="detail_id" required=""  value="{{$record->id}}">
-										<label style="width: 100px;">{{$record->room}}</label> 
-										<label style="width: 80px;">{{$record->service}}</label>
-										<label style="width: 50px;">{{$record->people_number}}</label>
+										<label style="width: 110px;">{{$record->room}}</label> 
+										<label style="width: 100px;">{{$record->service}}</label>
+										<label style="width: 90px;">{{$record->people_number}}</label>
 									</div>
 									@endforeach
 
@@ -62,41 +65,41 @@
 
 						</div>
 					<div class="form-group row">
-						<label class="col-sm-3 col-form-label form-control-label" style="width: 150px; background-color: #6cb2eb; color: #212529;">Số lượng người</label>
+						<label class="col-sm-3 col-form-label form-control-label" style="width: 150px; background-color: #e0e0e0; -webkit-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);-moz-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);">Số lượng người</label>
 						<div class="col-sm-8">
 							<input class="form-control" type="text" name="people_number" value="" required="">
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-sm-3 col-form-label form-control-label" style="width: 150px; background-color: #6cb2eb; color: #212529;">Mức giá mỗi bàn</label>
+						<label class="col-sm-3 col-form-label form-control-label" style="width: 150px; background-color: #e0e0e0; -webkit-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);-moz-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);">Mức giá mỗi bàn</label>
 						<div class="col-sm-8">
 							<input class="form-control" type="text" value="" name="price_table" required="">
 						</div>
 					</div>
 					@if(Auth::check()) 
 					<div class="form-group row">
-						<label class="col-sm-3 col-form-label form-control-label" style="width: 150px; background-color: #6cb2eb; color: #212529;">Địa chỉ</label>
+						<label class="col-sm-3 col-form-label form-control-label" style="width: 150px; background-color: #e0e0e0; -webkit-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);-moz-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);">Địa chỉ</label>
 						<div class="col-sm-8">
 							<input class="form-control" type="text" name="address" value="{{Auth::user()->address}}" required="" >
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label class="col-sm-3 col-form-label form-control-label" style="width: 150px; background-color: #6cb2eb; color: #212529;">Số điện thoại</label>
+						<label class="col-sm-3 col-form-label form-control-label" style="width: 150px; background-color: #e0e0e0; -webkit-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);-moz-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);">Số điện thoại</label>
 						<div class="col-sm-8">
 							<input class="form-control" name="phone" type="text" value="{{Auth::user()->phone}}" required="">
 						</div>
 					</div>
 					@else
 					<div class="form-group row">
-						<label class="col-sm-3 col-form-label form-control-label" style="width: 150px; background-color: #6cb2eb; color: #212529;">Địa chỉ</label>
+						<label class="col-sm-3 col-form-label form-control-label" style="width: 150px; background-color: #e0e0e0; -webkit-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);-moz-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);">Địa chỉ</label>
 						<div class="col-sm-8">
 							<input class="form-control" type="text" name="address" value="" required="" >
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label class="col-sm-3 col-form-label form-control-label" style="width: 150px; background-color: #6cb2eb; color: #212529;">Số điện thoại</label>
+						<label class="col-sm-3 col-form-label form-control-label" style="width: 150px; background-color: #e0e0e0; -webkit-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);-moz-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);">Số điện thoại</label>
 						<div class="col-sm-8">
 							<input class="form-control" name="phone" type="text" value="" required="">
 						</div>
