@@ -73,7 +73,7 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label form-control-label">Mức giá mỗi bàn</label>
             <div class="col-sm-6">
-              <input class="form-control" type="text" value="" name="price_table" placeholder="Mức giá mỗi bàn tiệc" required="">
+              <input class="form-control" type="text" value="" name="price_table" placeholder="VNĐ" required="">
             </div>
           </div>
           @if(Auth::check()) 

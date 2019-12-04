@@ -105,7 +105,8 @@ class OrderController extends Controller
        $order =Order::join('restaurants','orders.restaurant_id','=','restaurants.id')
                ->join('posts','posts.restaurant_id','=','restaurants.id')
                ->join('users','users.id','=','orders.user_id')
-               ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','users.email','orders.address','orders.restaurant_id')
+               ->join('details', 'details.id', '=', 'orders.detail_id')
+               ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','users.email','orders.address','orders.restaurant_id','details.room','details.service','details.people_number as detailpeonumber')
                ->where('posts.user_id','=',$id)->get();
       
 
@@ -123,8 +124,6 @@ class OrderController extends Controller
     {
         $id =  $request->id;
         $order = Order::find($id);
-        
-        // $order->email = $request->email;
         do {
           //generate a random string using Laravel's str_random helper
          $token = str_random();
@@ -137,6 +136,8 @@ class OrderController extends Controller
           $accept->address=$request->get('address');
           $accept->restaurant=$request->get('restaurant');
           $accept->order_date=$request->get('order_date');
+          $accept->order_time=$request->get('order_time');
+          $accept->nameuserOrder=$request->get('name');
           $accept->token= md5(uniqid(rand(), true));
 
           $accept->save();
@@ -168,7 +169,7 @@ class OrderController extends Controller
                 ->join('posts', 'posts.restaurant_id', '=', 'orders.restaurant_id')
                 ->join('photos', 'posts.id', '=', 'photos.post_id')
                 ->join('details', 'details.id', '=', 'orders.detail_id')
-                ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','orders.restaurant_id','restaurants.name','posts.title','restaurants.address as addressrestaurant','photos.photo_path','details.room','details.service','details.people_number as detailpeonumber')
+                ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','orders.restaurant_id','restaurants.name','posts.title','restaurants.address as addressrestaurant','photos.photo_path','details.room','details.service','details.people_number as detailpeonumber','orders.address')
                 ->where([
                   ['orders.user_id','=',$id],
                   ['photos.flag', '=', '1'],
@@ -206,7 +207,7 @@ class OrderController extends Controller
         $id =  $request->id;
         // dd($request->id);
         $order = Order::find($id);
-        $order->address = $request->address;
+        $order->address = $request->addressme;
         $order->order_time = $request->order_time;
         $order->phone = $request->phone;
         $order->people_number = $request->people_number;
