@@ -130,5 +130,6 @@ Route::post('signup', 'Auth\RegisterController@register')->name('signup');
 Route::get('/change_password', 'Auth\ChangePasswordController@show')->name('show_changePass');
 Route::post('/update_password', 'Auth\ChangePasswordController@update')->name('update_changePass');
 Auth::routes();
-
+Route::post('reset-password', 'ResetPasswordController@sendMail');
+Route::put('reset-password/{token}', 'ResetPasswordController@reset');
 //Route::get('/home', 'HomeController@index')->name('home');
