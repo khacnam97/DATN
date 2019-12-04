@@ -52,9 +52,30 @@ class SearchListController extends Controller
        $search1 ='date';
         
        $search = $request ->date;
-       $restaurantid = DB::table('orders')
-       ->select('orders.restaurant_id')
-       ->where('orders.order_date','=',$search)->get();
+
+       // SYY
+       // dd($search);
+       // dd(var_dump($search));
+   //     $finRestaurantNotOdder = DB::table('orders')
+   //     		->leftjoin('restaurants','orders.restaurant_id','=','restaurants.id')
+ 		// 	->select('restaurants.id')
+ 		// 	->whereDate('orders.order_date','=',date($search))
+ 		// 	->distinct()
+ 		// 	->get();
+ 		$finRestaurantNotOdder =DB::table('restaurants')
+ 			->select('id')
+ 			->whereNotIn('id', DB::table('orders')->select('restaurant_id')->where('order_date', '=', $search))
+			->get();
+
+    	foreach ($finRestaurantNotOdder as $finRestaurantNotOdder) {
+                $data[] = $finRestaurantNotOdder->id;
+            }
+ 		// dd($data);
+ 		// dd($finRestaurantNotOdder);
+
+       // $restaurantid = DB::table('orders')
+       // ->select('orders.restaurant_id')
+       // ->where('orders.order_date','=',$search)->get();
        //dd($restaurantid);
 		$post= DB::table('posts')
 		->join('restaurants','posts.restaurant_id','=','restaurants.id')
@@ -65,9 +86,10 @@ class SearchListController extends Controller
 			['orders.order_date','!=',$search],
 			['photos.flag', '=', '1'],
 			['is_approved','=','1']
-			
 		])
+		->whereIn('restaurants.id', $data)
 		->Paginate(Config::get('constant.pagination'));
+		// dd($post);
 		$post->appends([$search1=>$search]);
 		return view('pages.searchDate',['post' => $post],[$search=>$search]);
     }

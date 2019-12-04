@@ -219,11 +219,11 @@
           </form>
         </div>
         <div>
-          <!-- <form action="{{route('search.date')}}" method="get">
+          <form action="{{route('search.date')}}" method="get" id="formSearchDate">
           
             <input required="" id="datepicker" name="date" width="276" />
-            <button type="submit" class="btn btn-success">Tìm kiếm</button>
-          </form> --> 
+            <button type="submit" class="btn btn-success" form="formSearchDate">Tìm kiếm</button>
+          </form> 
           <script>
             $('#datepicker').datepicker({
               uiLibrary: 'bootstrap4',
