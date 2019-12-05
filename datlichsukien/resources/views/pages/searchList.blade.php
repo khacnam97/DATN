@@ -50,7 +50,7 @@
 @endforeach
 
 </div>
-<div style="display: inline-block;">{!!$post->links()!!}</div>
+<div style="display: flex;justify-content: center;">{!!$post->links()!!}</div>
 
 
 @endsection

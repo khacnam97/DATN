@@ -75,6 +75,16 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 		Route::post('/edit/{id}', 'OrderController@edit')->name('admin.order.edit');
 		
 	});
+	Route::group(['prefix' => 'detail','namespace'=>'detail'], function(){
+		Route::get('/', 'DetailController@index')->name('admin.detail.index');
+		// Route::get('/delete/{id}', 'DetailController@delete')->name('admin.order.delete');
+		// Route::post('/add', 'DetailController@addOrder')->name('admin.order.addOrder');
+		// Route::get('/cancel/{id}', 'DetailController@cancel')->name('admin.order.cancel');
+		// Route::get('/accept/{id}', 'DetailController@accept')->name('admin.order.accept');
+		// Route::get('/edit/{id}', 'DetailController@showedit')->name('admin.order.edit');
+		// Route::post('/edit/{id}', 'DetailController@edit')->name('admin.order.edit');
+		
+	});
 });
 Route::group(['namespace'=>'Front'],function(){
 Route::get('/', 'FrontController@index')->name('index'); 
@@ -130,6 +140,10 @@ Route::post('signup', 'Auth\RegisterController@register')->name('signup');
 Route::get('/change_password', 'Auth\ChangePasswordController@show')->name('show_changePass');
 Route::post('/update_password', 'Auth\ChangePasswordController@update')->name('update_changePass');
 Auth::routes();
-Route::post('reset-password', 'ResetPasswordController@sendMail');
-Route::put('reset-password/{token}', 'ResetPasswordController@reset');
+
 //Route::get('/home', 'HomeController@index')->name('home');
+Route::post('create', 'PasswordResetController@create');
+Route::get('find/{token}', 'PasswordResetController@find');
+Route::post('reset', 'PasswordResetController@reset');
+
+// Route::get('/home', 'HomeController@index')->name('home');

@@ -55,6 +55,9 @@ class PostController extends Controller
             $post ->title = $request ->title;
             $post ->is_approved = 0;
             $post ->describer = $request->descrice;
+            $strNow =  date("d-m-Y");
+            $post ->slug = Str::slug($request->title.$strNow, '-');
+            //dd( $post ->slug);
             //check image
             if($request->has('filename')){
             	foreach ($request->file('filename') as $pho) {
@@ -79,7 +82,7 @@ class PostController extends Controller
             //save post
             $post ->save();
             // event(new CreatePostHandler($post));
-            $toUsers = User::where('role','1')->get();
+            //$toUsers = User::where('role','1')->get();
             //create folder
             $path="picture/admin/post/".$post->id;
             if (!file_exists($path)) {

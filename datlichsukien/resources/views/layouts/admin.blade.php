@@ -113,6 +113,11 @@
                   <i class="fas fa-fw fa-table"></i>
                   <span>Rating</span></a>
                 </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.detail.index') }}">
+                  <i class="fas fa-fw fa-table"></i>
+                  <span>Detail</span></a>
+                </li>
               </ul>
 
               <div id="content-wrapper">

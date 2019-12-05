@@ -50,10 +50,10 @@
 			<thead>
 				<tr>
 					<th>ID</th>
-					<th>Rating</th>
-					<th>Comment</th>
-					<th>Reviewer</th>
-					<th>Title</th>
+					<th>Restaurant</th>
+					<th>Room</th>
+					<th>Service</th>
+					<th>People number</th>
 					<th>Time create</th>
 					<th>Time modify</th>
 					<th>Action</th>
@@ -62,24 +62,24 @@
 			<tfoot>
 				<tr>
 					<th>ID</th>
-					<th>Rating</th>
-					<th>Comment</th>
-					<th>Reviewer</th>
-					<th>Title</th>
+					<th>Restaurant</th>
+					<th>Room</th>
+					<th>Service</th>
+					<th>People number</th>
 					<th>Time create</th>
 					<th>Time modify</th>
 					<th>Action</th>
 				</tr>
 			</tfoot>
 			<tbody>
-				@if($rating)
-				@foreach ($rating as $record)
+				@if($detail)
+				@foreach ($detail as $record)
 				<tr>
 					<td>{{$record->id}}</td>
-					<td>{{$record->rating}}</td>
-					<td>{!! $record->cmt !!}</td>
-					<td>{{$record->user->name}}</td>
-					<td>{{$record->post->restaurant->name}}</td>
+					<td>{{$record->restaurant->name}}</td>
+					<td>{!! $record->room !!}</td>
+					<td>{{$record->service}}</td>
+					<td>{{$record->people_number}}</td>
 					<td>{{$record->created_at}}</td>
 					<td>{{$record->updated_at}}</td>
 					<td style="display: flex;">

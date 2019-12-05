@@ -66,10 +66,11 @@ class SearchListController extends Controller
  			->select('id')
  			->whereNotIn('id', DB::table('orders')->select('restaurant_id')->where('order_date', '=', $search))
 			->get();
-
+       
     	foreach ($finRestaurantNotOdder as $finRestaurantNotOdder) {
                 $data[] = $finRestaurantNotOdder->id;
             }
+            // dd($data);
  		// dd($data);
  		// dd($finRestaurantNotOdder);
 
@@ -83,13 +84,13 @@ class SearchListController extends Controller
 		->leftjoin('ratings', 'posts.id', '=', 'ratings.post_id')
 		->join('photos', 'posts.id', '=', 'photos.post_id')->select('posts.id','posts.describer','restaurants.address', 'posts.title','photos.photo_path',\DB::raw('avg(ratings.rating) as avg_rating'))->groupBy('posts.id')->groupBy('posts.title')->groupBy('photos.photo_path')->groupBy('posts.describer')->groupBy('restaurants.address')
 		->where([
-			['orders.order_date','!=',$search],
+			
 			['photos.flag', '=', '1'],
 			['is_approved','=','1']
 		])
 		->whereIn('restaurants.id', $data)
-		->Paginate(Config::get('constant.pagination'));
-		// dd($post);
+		->get();
+		 dd($post);
 		$post->appends([$search1=>$search]);
 		return view('pages.searchDate',['post' => $post],[$search=>$search]);
     }

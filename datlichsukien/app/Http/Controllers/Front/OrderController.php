@@ -38,6 +38,7 @@ class OrderController extends Controller
             [   'phone'=>'required',
                 'address'=>'required',
                 'time'=>'required',
+                'detail_id'=>'required',
                 'order_date'=>'required',
                 'price_table'=>['required','integer'],
                 'people_number'=>['required','integer']
@@ -48,7 +49,8 @@ class OrderController extends Controller
                 'time.required'=>'bạn chưa nhập thời gian',
                 'order_date.required'=>'bạn chưa nhập ngày tháng',
                 'people_number.required'=>'bạn chưa nhập số lượng người ',
-                'price_table.required'=>'bạn chưa nhập số bàn'
+                'price_table.required'=>'bạn chưa nhập số bàn',
+                'detail_id.required'=>'Bạn chưa chọn khu vực'
             ]
         );
 
@@ -68,8 +70,6 @@ class OrderController extends Controller
                   ])
             ->get();
         $ex_detailAvalible=explode (':',$detailAvalible1);
-        //$ex_detail=explode ('"',$detail_id);
-        //$arr =array_push()
         $a=array();
         array_push($a, "[]");
         $result=array_diff($ex_detailAvalible,$a);
@@ -107,7 +107,7 @@ class OrderController extends Controller
                ->join('users','users.id','=','orders.user_id')
                ->join('details', 'details.id', '=', 'orders.detail_id')
                ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','users.email','orders.address','orders.restaurant_id','details.room','details.service','details.people_number as detailpeonumber')
-               ->where('posts.user_id','=',$id)->get();
+               ->where('posts.user_id','=',$id)->Paginate(10);
       
 
        return view('pages.manageOrder',['order'=>$order]);

@@ -73,7 +73,7 @@
 					<div class="form-group row">
 						<label class="col-sm-3 col-form-label form-control-label" style="width: 150px; background-color: #e0e0e0; -webkit-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);-moz-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);">Mức giá mỗi bàn</label>
 						<div class="col-sm-8">
-							<input class="form-control" type="text" value="" name="price_table" required="">
+							<input class="form-control" type="text" value="" placeholder="VNĐ" name="price_table" required="">
 						</div>
 					</div>
 					@if(Auth::check()) 
