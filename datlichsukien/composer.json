@@ -16,6 +16,7 @@
         "laravel/helpers": "^1.1",
         "laravel/tinker": "^1.0",
         "laravel/ui": "^1.1",
+        "nesbot/carbon": "^2.27",
         "vojtys/typeahead": "^0.3.3"
     },
     "require-dev": {
