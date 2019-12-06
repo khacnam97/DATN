@@ -50,9 +50,18 @@
 					                  <label style="width: 100px;">Dịch vụ</label>
 					                  <label style="width: 90px;">Sức chứa</label></div>
 									<div class="dropdown-divider"></div>
-									@foreach ($detail as $record)
+									@foreach ($iddetail as $record)
 									<div>
 										<input type="radio" name="detail_id" required=""  value="{{$record->id}}">
+										<label style="width: 110px;">{{$record->room}}</label> 
+										<label style="width: 100px;">{{$record->service}}</label>
+										<label style="width: 90px;">{{$record->people_number}}</label>
+									</div>
+									<div class="dropdown-divider"></div>
+									@endforeach
+									@foreach ($iddetailorder as $record)
+									<div style="opacity: 0.6;filter: alpha(opacity=20);" >
+										<input disabled="" type="radio" name="detail_id" required=""  value="{{$record->id}}">
 										<label style="width: 110px;">{{$record->room}}</label> 
 										<label style="width: 100px;">{{$record->service}}</label>
 										<label style="width: 90px;">{{$record->people_number}}</label>

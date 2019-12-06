@@ -72,7 +72,7 @@
           </div>
           </div>
           <div class="dropdown-divider"></div>
-                @foreach ($detail as $record)
+        @foreach ($detail as $record)
         <div class="input-group control-group  form-row" >
       
           <div class="form-group col-md-4">

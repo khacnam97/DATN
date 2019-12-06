@@ -63,6 +63,7 @@ class FrontController extends Controller
 		$post_id = DB::table('posts')
 		->select('posts.id')
 		->where('posts.id','=',$id)->first()->id;
+		//dd($id);
 		$data = DB::table('posts')
 		->join('photos', 'posts.id', '=', 'photos.post_id')
 		->join('users', 'posts.user_id', '=', 'users.id')
@@ -93,6 +94,8 @@ class FrontController extends Controller
 		session()->put('link',  url()->current());
 		
 		$strNow =  date("Y-m-d");
+		$strDay77 = date('Y-m-d', strtotime($strNow. ' + 7 days'));
+		$strDay88 = date('Y-m-d', strtotime($strNow. ' + 8 days'));
 		$strDay7 = date('Y-m-d', strtotime($strNow. ' + 7 days'));
 		$strDay8 = date('Y-m-d', strtotime($strNow. ' + 8 days'));
 		$strDay9 = date('Y-m-d', strtotime($strNow. ' + 9 days'));
@@ -216,8 +219,58 @@ class FrontController extends Controller
 
 	     //dd($result6);
 		//$x=array_diff($detailAvalible,$detailx);
-        
-		return view('pages/detail', ['data' => $data, 'rating' => $rating,'detail'=>$detail, 'user_rate' => $user_rate, 'strDay7' => $strDay7,'strDay8' => $strDay8,'strDay9' => $strDay9,'strDay10' => $strDay10,'strDay11' => $strDay11,'strDay12' => $strDay12,'strDay13' => $strDay13, 'dateAvalible' => $dateAvalible,'result'=>$result,'result2'=>$result2,'result3'=>$result3,'result4'=>$result4,'result5'=>$result5,'result6'=>$result6,'result7'=>$result7,'weekday1'=>$weekday1,'weekday2'=>$weekday2,'weekday3'=>$weekday3,'weekday4'=>$weekday4,'weekday5'=>$weekday5,'weekday6'=>$weekday6,'weekday7'=>$weekday7]);
+	     $idrestaurant = DB::table('posts')
+				->select('posts.restaurant_id')
+				->where('posts.id','=',$id)->first()->restaurant_id;
+			//dd($idre);
+        $iddetailorder = DB::table('orders')
+                ->join('restaurants','restaurants.id','=','orders.restaurant_id')
+ 				->join('posts','posts.restaurant_id','=','restaurants.id')
+ 				->join('details','details.id','=','orders.detail_id')
+ 				->select('orders.detail_id','details.id','details.room','details.service','details.people_number')
+ 				->where([
+ 				['order_date', '=', $strDay7],
+ 				['posts.id', '=', $id]
+ 			])
+			->get();
+		//dd($iddetailorder);
+        $iddetail =DB::table('details')
+ 			->select('details.id','details.room','details.service','details.people_number')
+ 			->where('details.restaurant_id', '=', $idrestaurant)
+ 			->whereNotIn('id', DB::table('orders')
+                ->join('restaurants','restaurants.id','=','orders.restaurant_id')
+ 				->join('posts','posts.restaurant_id','=','restaurants.id')
+ 				->select('detail_id')->where([
+ 			    ['order_date', '=', $strDay7],
+ 				['posts.id', '=', $id]
+ 			       ]))
+			->get();
+
+		$iddetailorder1 = DB::table('orders')
+                ->join('restaurants','restaurants.id','=','orders.restaurant_id')
+ 				->join('posts','posts.restaurant_id','=','restaurants.id')
+ 				->join('details','details.id','=','orders.detail_id')
+ 				->select('orders.detail_id','details.id','details.room','details.service','details.people_number')
+ 				->where([
+ 				['order_date', '=', $strDay8],
+ 				['posts.id', '=', $id]
+ 			])
+			->get();
+		//dd($iddetailorder);
+        $iddetail1 =DB::table('details')
+ 			->select('details.id','details.room','details.service','details.people_number')
+ 			->where('details.restaurant_id', '=', $idrestaurant)
+ 			->whereNotIn('id', DB::table('orders')
+                ->join('restaurants','restaurants.id','=','orders.restaurant_id')
+ 				->join('posts','posts.restaurant_id','=','restaurants.id')
+ 				->select('detail_id')->where([
+ 			    ['order_date', '=', $strDay8],
+ 				['posts.id', '=', $id]
+ 			       ]))
+			->get();
+      //  dd($iddetail);
+
+		return view('pages/detail', ['data' => $data, 'rating' => $rating,'detail'=>$detail, 'user_rate' => $user_rate, 'strDay7' => $strDay7,'strDay8' => $strDay8,'strDay9' => $strDay9,'strDay10' => $strDay10,'strDay11' => $strDay11,'strDay12' => $strDay12,'strDay13' => $strDay13, 'dateAvalible' => $dateAvalible,'result'=>$result,'result2'=>$result2,'result3'=>$result3,'result4'=>$result4,'result5'=>$result5,'result6'=>$result6,'result7'=>$result7,'weekday1'=>$weekday1,'weekday2'=>$weekday2,'weekday3'=>$weekday3,'weekday4'=>$weekday4,'weekday5'=>$weekday5,'weekday6'=>$weekday6,'weekday7'=>$weekday7,'iddetailorder'=>$iddetailorder,'iddetail'=>$iddetail,'strDay77'=>$strDay77,'iddetailorder1'=>$iddetailorder1,'iddetail1'=>$iddetail1,'strDay88'=>$strDay88]);
 
 	}
 	public function rate(Request $request)

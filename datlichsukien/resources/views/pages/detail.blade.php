@@ -32,6 +32,7 @@
 
 <!-- Propeller Bootstrap datetimepicker -->
 <script type="text/javascript" language="javascript" src="datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
 @endsection
 @section('content')
 
@@ -155,8 +156,10 @@ $cmts = $data->unique('rating_id')->values();
         <div class="col-12" >
                
                
-                 @if(!empty($result))            
+                 @if(!empty($result))
+           
                     <button type="button" style="height: 40px; font-size: 12px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate1" value="{{$strDay7}}">{{$weekday1}}  ({{$strDay7}})  </button>
+        
                  @else 
                         <button type="button" style="height: 40px; font-size: 12px;" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday1}}  ({{$strDay7}}) </button>
                   @endif

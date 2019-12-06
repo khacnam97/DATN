@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Order;
 use App\User;
+use App\Detail;
 use App\Restaurant;
+use DB;
 class OrderController extends Controller
 {
     public function index()
@@ -75,8 +77,20 @@ class OrderController extends Controller
     {
        $order=Order::find($id);
        $user =User::all();
+       $detail =Detail::all();
+       $iddetail = DB::table('orders')
+                ->select('orders.detail_id')
+                ->where('orders.id','=',$id)->first()->detail_id;
+       $detail =DB::table('details')
+                      ->join('restaurants','restaurants.id','=','details.restaurant_id')
+                      ->join('orders','orders.restaurant_id','=','restaurants.id')
+                      ->select('details.room','details.service','details.people_number')
+                      ->where('orders.id','=',$id)
+                      ->get();
+
+        //dd($detail);
        $restaurant=Restaurant::all();
-       return view('admin.order.edit',['order'=>$order,'user'=>$user,'restaurant'=>$restaurant]);
+       return view('admin.order.edit',['order'=>$order,'user'=>$user,'restaurant'=>$restaurant,'detail'=>$detail]);
     }
     public function edit(Request $request,$id)
     {
@@ -97,7 +111,6 @@ class OrderController extends Controller
             ]
         );
         $order->user_id = $request->get('user_id');
-        $order->restaurant_id = $request->get('restaurant_id');
         $order->address = $request->get('address');
         $order->phone = $request->get('phone');
         $order->order_date = $request->get('order_date');

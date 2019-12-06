@@ -28,7 +28,6 @@
 						<th>ID</th>
 						<th>Name</th>
 						<th>Phone</th>
-						<!-- <th>Category</th> -->
 						<th>Address</th>
 						<th>Time create</th>
 						<th>Time modify</th>
@@ -40,7 +39,6 @@
 						<th>ID</th>
 						<th>Name</th>
 						<th>Phone</th>
-						<!-- <th>Category</th> -->
 						<th>Address</th>
 						<th>Time create</th>
 						<th>Time modify</th>

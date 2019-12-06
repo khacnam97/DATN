@@ -79,9 +79,6 @@ $(document).ready(function(){
     
     $('#test').val($('#btnDate7').val())
   })
-  // function Namoccho(){
-  //   alert("Nam óc chs")
-  // }
 });
 
 

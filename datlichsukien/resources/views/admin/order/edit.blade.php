@@ -37,17 +37,36 @@
        </div>
        <div class="form-group col-md-6">
       <label for="Restaurant" class="col-form-label">Restaurant </label>
-          <select class="custom-select" name="restaurant_id" id="restaurant_id">
-          <option value="{{$order->restaurant_id}}">{{$order->restaurant->name}}</option>
-          @if($restaurant)
-          @foreach ($restaurant as  $record)
-          <option value="{{$record->id}}">{{$record->name}}</option>
-          @endforeach
-          @endif
-          
+        <input type="text" name="price_table" class="form-control" disabled="" value="{{$order->restaurant->name}}">
       </select>
        </div>
     </div>
+    <div class="col-form-label  form-row" >
+          <div class="form-group col-md-4">
+            <label>Tên khu</label>
+          </div>
+          <div class="form-group col-md-4">
+            <label>Dịch vụ</label>
+          </div>
+          <div class="form-group col-md-4">
+            <label>Sức chứa</label>
+          </div>
+          </div>
+        <div class="input-group control-group  form-row" >
+      
+          <div class="form-group col-md-4">
+            
+            <input type="text"  class="form-control" name="room" value="{{$order->detail->room}}" placeholder="Tên khu" required="" disabled="">
+          </div>
+          <div class="form-group col-md-4">
+            
+            <input type="text" class="form-control" name="service" value="{{$order->detail->service}}" placeholder="Dịch vụ" required="" disabled="">
+          </div>
+          <div class="form-group col-md-4">
+            
+            <input type="text"  class="form-control" name="peopleNumber" value="{{$order->detail->people_number}}" placeholder="Sức chứa của phòng" required="" disabled="">
+          </div>
+        </div>
         <label for="address" class="col-form-label">Address </label>
         <input type="text" name="address" class="form-control" id="address" value="{{$order->address}}" required="" >
         <div class="row">
