@@ -22,27 +22,27 @@
 		{{Session::get('success')}}
 	</div>
 	@endif
-	<div class="card-body" style="margin-bottom: 100px;">
-		<div class="row">
+	
+		<!-- <div class="row">
 			<label style="background-color: red;width: 50px;" >ID</label>
 			<label style="background-color: red;width: 200px;">Tên người đặt</label>
 			<label style="background-color: red;width: 200px;">Tên người đặt</label>
 			<label style="background-color: red;width: 200px;">Tên người đặt</label>
 			<label style="background-color: red;width: 200px;">Tên người đặt</label>
 			<label style="background-color: red;width: 200px;">Tên người đặt</label>
-		</div>
-		<div class="table-responsive">
-			<table class="table table-bordered" id="dataTable" >
+		</div> -->
+		
+			<table class="table table-hover " id="dataTable"  >
 				<thead>
 					<tr>
-						<th >ID</th>
-						<th >Tên người đặt</th>
-						<th>Số điện thoại người đặt</th>
-						<th>Thời gian tổ chức</th>
-						<th>Ngày tổ chức</th>
-						<th>Số lương người</th>
-						<th>Giá mỗi bàn </th>
-						<th>More</th>
+						<th class="table-primary">ID</th>
+						<th class="table-primary">Tên người đặt</th>
+						<th class="table-primary">Số điện thoại người đặt</th>
+						<th class="table-primary">Thời gian tổ chức</th>
+						<th class="table-primary">Ngày tổ chức</th>
+						<th class="table-primary">Số lương người</th>
+						<th class="table-primary">Giá mỗi bàn </th>
+						<th class="table-primary">More</th>
 					</tr>
 				</thead>
 
@@ -72,12 +72,13 @@
 							 </button>	
 						</td>
 					</tr>
+
 				@endforeach	
+
 				</tbody>
 			</table>
-		</div>
-	</div>
 </div>
+<div style="display: flex;justify-content: flex-end; margin-bottom:100px; margin-right: 50px;">{!!$order->links()!!}</div>
 <div class="modal fade" id="detailModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -314,4 +315,3 @@
 		accecptform.submit();
 	}
 </script>
-@endsection

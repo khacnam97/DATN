@@ -50,9 +50,18 @@
 					                  <label style="width: 100px;">Dịch vụ</label>
 					                  <label style="width: 90px;">Sức chứa</label></div>
 									<div class="dropdown-divider"></div>
-									@foreach ($detail as $record)
+									@foreach ($iddetail as $record)
 									<div>
 										<input type="radio" name="detail_id" required=""  value="{{$record->id}}">
+										<label style="width: 110px;">{{$record->room}}</label> 
+										<label style="width: 100px;">{{$record->service}}</label>
+										<label style="width: 90px;">{{$record->people_number}}</label>
+									</div>
+									<div class="dropdown-divider"></div>
+									@endforeach
+									@foreach ($iddetailorder as $record)
+									<div style="opacity: 0.6;filter: alpha(opacity=20);" >
+										<input disabled="" type="radio" name="detail_id" required=""  value="{{$record->id}}">
 										<label style="width: 110px;">{{$record->room}}</label> 
 										<label style="width: 100px;">{{$record->service}}</label>
 										<label style="width: 90px;">{{$record->people_number}}</label>
@@ -73,7 +82,7 @@
 					<div class="form-group row">
 						<label class="col-sm-3 col-form-label form-control-label" style="width: 150px; background-color: #e0e0e0; -webkit-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);-moz-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);">Mức giá mỗi bàn</label>
 						<div class="col-sm-8">
-							<input class="form-control" type="text" value="" name="price_table" required="">
+							<input class="form-control" type="text" value="" placeholder="VNĐ" name="price_table" required="">
 						</div>
 					</div>
 					@if(Auth::check()) 

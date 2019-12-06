@@ -136,7 +136,7 @@
 		</div>
 		<div class="form-group">
 			<label class="col-form-label "> Số điện thoại (<span style="color: red">*</span>) </label>
-			<input type="tel" class="form-control col-md-8 @error('phone') is-invalid @enderror "  placeholder="034567890" name="phone" id="phone" value="{{ old('phone') }}">
+			<input type="tel" class="form-control col-md-8 @error('phone') is-invalid @enderror " required=""  placeholder="034567890" name="phone" id="phone" value="{{ old('phone') }}">
 			@error('phone')
 			<span class="invalid-feedback" role="alert">
 				<strong>{{ $message }}</strong>

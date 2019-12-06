@@ -27,15 +27,15 @@ class RatingController extends Controller
 		$this->validate($request, [
 			'name_se' => 'required',
 			'rating' =>  ['required','integer', new inputRating],
-			'title' => 'required'
-			// 'comment' => 'required',
+			'title' => 'required',
+			 'comment' => 'required',
 		]);
 		if($request){
 			$record = new Rating();
 			$record->user_id=$request->user_id;
 			$record->rating=$request->rating;
 			$record->post_id=$request->post_id;
-			//$record->cmt=$request->comment;
+			$record->cmt=$request->comment;
             // dd($request->user_id);
            
 			$record->save();
@@ -68,7 +68,7 @@ class RatingController extends Controller
 		$rating->user_id = $request->get('user_id');
 		$rating->rating = $request->get('rating');
 		$rating->post_id = $request->get('post_id');
-		//$rating->cmt = $request->get('comment');
+		$rating->cmt = $request->get('comment');
 		$rating->save();
 		return redirect('admin/rating')->with("success",Config::get('constant.rating.editSuccess'));
 	}

@@ -38,6 +38,7 @@ class OrderController extends Controller
             [   'phone'=>'required',
                 'address'=>'required',
                 'time'=>'required',
+                'detail_id'=>'required',
                 'order_date'=>'required',
                 'price_table'=>['required','integer'],
                 'people_number'=>['required','integer']
@@ -48,7 +49,8 @@ class OrderController extends Controller
                 'time.required'=>'bạn chưa nhập thời gian',
                 'order_date.required'=>'bạn chưa nhập ngày tháng',
                 'people_number.required'=>'bạn chưa nhập số lượng người ',
-                'price_table.required'=>'bạn chưa nhập số bàn'
+                'price_table.required'=>'bạn chưa nhập số bàn',
+                'detail_id.required'=>'Bạn chưa chọn khu vực'
             ]
         );
 
@@ -68,8 +70,6 @@ class OrderController extends Controller
                   ])
             ->get();
         $ex_detailAvalible=explode (':',$detailAvalible1);
-        //$ex_detail=explode ('"',$detail_id);
-        //$arr =array_push()
         $a=array();
         array_push($a, "[]");
         $result=array_diff($ex_detailAvalible,$a);
@@ -107,7 +107,7 @@ class OrderController extends Controller
                ->join('users','users.id','=','orders.user_id')
                ->join('details', 'details.id', '=', 'orders.detail_id')
                ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','users.email','orders.address','orders.restaurant_id','details.room','details.service','details.people_number as detailpeonumber')
-               ->where('posts.user_id','=',$id)->get();
+               ->where('posts.user_id','=',$id)->Paginate(10);
       
 
        return view('pages.manageOrder',['order'=>$order]);
@@ -247,13 +247,42 @@ class OrderController extends Controller
       $ex_detailAvalible=explode (':',$detailAvalible);
       $result=array_diff($ex_detailx,$ex_detailAvalible);
       $strNow =  date("Y-m-d");
+      
+      $idrestaurant = DB::table('posts')
+        ->select('posts.restaurant_id')
+        ->where('posts.id','=',$post_id)->first()->restaurant_id;
+        
+      $iddetailorder = DB::table('orders')
+                ->join('restaurants','restaurants.id','=','orders.restaurant_id')
+        ->join('posts','posts.restaurant_id','=','restaurants.id')
+        ->join('details','details.id','=','orders.detail_id')
+        ->select('orders.detail_id','details.id','details.room','details.service','details.people_number')
+        ->where([
+        ['order_date', '=', $orderdate],
+        ['posts.id', '=', $post_id]
+      ])
+      ->get();
+    //dd($iddetailorder);
+
+        $iddetail =DB::table('details')
+      ->select('details.id','details.room','details.service','details.people_number')
+      ->where('details.restaurant_id', '=', $idrestaurant)
+      ->whereNotIn('id', DB::table('orders')
+                ->join('restaurants','restaurants.id','=','orders.restaurant_id')
+        ->join('posts','posts.restaurant_id','=','restaurants.id')
+        ->select('detail_id')->where([
+          ['order_date', '=', $orderdate],
+        ['posts.id', '=', $post_id]
+             ]))
+      ->get();
+
       if(!empty($result) &&  strtotime($strNow) < strtotime($orderdate)) 
       {
           $restaurant_id =$request->restaurantid;
           $restaurantdate =$request->restaurantdate;
          // dd($restaurantdate);
 
-          return view('pages.addorderDate',['restaurant_id'=>$restaurant_id,'restaurantdate'=>$restaurantdate,'orderdate'=>$orderdate,'detail'=>$detail]);
+          return view('pages.addorderDate',['restaurant_id'=>$restaurant_id,'restaurantdate'=>$restaurantdate,'orderdate'=>$orderdate,'detail'=>$detail,'iddetailorder'=>$iddetailorder,'iddetail'=>$iddetail]);
       }
       else{
         return redirect()->back()->with('error', Config::get('constant.order.error'));

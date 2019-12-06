@@ -8,10 +8,10 @@
         <div class="card-body-icon">
           <i class="fas fa-fw fa-comments"></i>
         </div>
-        <div class="mr-5">Users</div>
+        <div class="mr-5">Người dùng</div>
       </div>
       <a class="card-footer text-white clearfix small z-1" href="{{ route('admin.user.index') }}">
-        <span class="float-left">View Details</span>
+        <span class="float-left">Xem chi tiết</span>
         <span class="float-right">
           <i class="fas fa-angle-right"></i>
         </span>
@@ -24,10 +24,10 @@
         <div class="card-body-icon">
           <i class="fas fa-fw fa-list"></i>
         </div>
-        <div class="mr-5">Posts</div>
+        <div class="mr-5">Bài viết</div>
       </div>
       <a class="card-footer text-white clearfix small z-1" href="{{ route('admin.post.index') }}">
-        <span class="float-left">View Details</span>
+        <span class="float-left">Xem chi tiết</span>
         <span class="float-right">
           <i class="fas fa-angle-right"></i>
         </span>

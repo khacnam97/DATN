@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Restaurant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Restaurant;
-// use App\Category;
 use App\District;
 use DB;
 use Config;

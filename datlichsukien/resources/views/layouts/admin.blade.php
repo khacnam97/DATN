@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Event Admin - Dashboard</title>
+  <title> Admin - Dashboard</title>
 
   <!-- Custom fonts for this template-->
   <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -40,7 +40,7 @@
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" href="{{ route('admin.index') }}">Administrator</a>
+    <a class="navbar-brand mr-1" href="{{ route('admin.index') }}">Người quản lí</a>
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
@@ -68,10 +68,8 @@
           {{Auth::user()->name}} 
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-          <a class="dropdown-item" href="#">Profile</a>
-          <a class="dropdown-item" href="{{route('index')}}">Home</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          <a class="dropdown-item" href="{{route('index')}}">Trang chủ</a>
+
         </div>
       </li>
     </ul>
@@ -85,33 +83,38 @@
       <li class="nav-item active">
         <a class="nav-link" href="{{ route('admin.index') }}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span>
+          <span>Bảng điều khiển </span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.user.index') }}">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>User</span></a>
+          <span>Người dùng</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('admin.post.index') }}">
             <i class="fas fa-fw fa-table"></i>
-            <span>Post</span></a>
+            <span>Bài viết </span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link"  href="{{ route('admin.restaurant.index') }}">
               <i class="fas fa-fw fa-table"></i>
-              <span>Restaurant</span></a>
+              <span>Địa điểm </span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('admin.order.index') }}">
                 <i class="fas fa-fw fa-table"></i>
-                <span>Order</span></a>
+                <span>Lịch đặt</span></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.rating.index') }}">
                   <i class="fas fa-fw fa-table"></i>
-                  <span>Rating</span></a>
+                  <span>Đánh giá</span></a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.detail.index') }}">
+                  <i class="fas fa-fw fa-table"></i>
+                  <span>Chi tiết </span></a>
                 </li>
               </ul>
 
@@ -122,7 +125,7 @@
                   <!-- Breadcrumbs-->
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                      <a href="#">Dashboard</a>
+                      <a href="#">Bảng điều khiển</a>
                     </li>
                     <li class="active">@yield('title')</li>
                   </ol>

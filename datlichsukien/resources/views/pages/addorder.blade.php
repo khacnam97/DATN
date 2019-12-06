@@ -41,7 +41,8 @@
                   <label style="width: 110px;">Dịch vụ</label>
                   <label style="width: 110px;">Sức chứa</label></div>
                 <div class="dropdown-divider"></div>
-                @foreach ($detail as $record)
+                @if($strDay77)
+                @foreach ($iddetail as $record)
                 <div>
                   <input type="radio" name="detail_id" required=""  value="{{$record->id}}">
                    <label style="width: 100px;">{{$record->room}}</label> 
@@ -49,7 +50,33 @@
                    <label style="width: 100px;">{{$record->people_number}}</label>
                 </div>
                 @endforeach
-               
+                 @foreach ($iddetailorder as $record)
+                <div>
+                  <input type="radio" name="detail_id" required=""  value="{{$record->id}}" disabled="">
+                   <label style="width: 100px;">{{$record->room}}</label> 
+                   <label style="width: 100px;">{{$record->service}}</label>
+                   <label style="width: 100px;">{{$record->people_number}}</label>
+                </div>
+                @endforeach
+               @endif
+               @if($strDay88)
+                @foreach ($iddetail1 as $record)
+                <div>
+                  <input type="radio" name="detail_id" required=""  value="{{$record->id}}">
+                   <label style="width: 100px;">{{$record->room}}</label> 
+                   <label style="width: 100px;">{{$record->service}}</label>
+                   <label style="width: 100px;">{{$record->people_number}}</label>
+                </div>
+                @endforeach
+                 @foreach ($iddetailorder1 as $record)
+                <div>
+                  <input type="radio" name="detail_id" required=""  value="{{$record->id}}" disabled="">
+                   <label style="width: 100px;">{{$record->room}}</label> 
+                   <label style="width: 100px;">{{$record->service}}</label>
+                   <label style="width: 100px;">{{$record->people_number}}</label>
+                </div>
+                @endforeach
+               @endif
               </div>
              
             </div>
