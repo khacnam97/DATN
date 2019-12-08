@@ -23,13 +23,9 @@
   <FORM  method="post" class="" action="{{route('admin.post.edit', $post->id)}}" enctype="multipart/form-data">
     @csrf
     <div style="display: flex;">
-      <div class="form-group">
-        <label >Id:</label>
-        <input type="number"  placeholder="{{$post->id}}" disabled="true" class="form-control" id="postid " name="id">
-
-      </div>
-      <div class="form-group " style="margin-left: 50px;" >
-        <label >User :</label>
+     
+      <div class="form-group"  >
+        <label >Người dùng :</label>
         {{-- <select class="form-control" id="userid" name="userid" >
           <option > {{$post->user->name}}</option>
           @foreach($user as $u)
@@ -42,22 +38,22 @@
       </div>
 
       
-      <div class="form-group" style="margin-left: 50px;">
-        <label >Approved</label>
+      <div class="form-group col-sm-2" style="margin-left: 50px;">
+        <label >Trạng thái</label>
         <select class="form-control" id="approved" name="approved">
           @if($post->is_approved==1)
-          <option value="{{$post->is_approved}}">Approved</option>
+          <option value="{{$post->is_approved}}">Chấp nhận</option>
           @else
-           <option value="{{$post->is_approved}}">Unapproved</option>
+           <option value="{{$post->is_approved}}">Chưa chấp nhận</option>
           @endif
-          <option value="1">Approved</option>
-          <option value="0">Unapproved</option>
+          <option value="1">Chấp nhận</option>
+          <option value="0">Từ chối</option>
         </select>
       </div>
-      <div class="form-group col-sm-5"  style="margin-left: 50px";>
-        <label >Restaurant :</label>
-        <input class="form-control" type="text" name="restaurantid" id="restaurantid" value="{{old('restaurantid', $post->restaurant->name)}}" required="">
-        <div id="erroplace" style="display: none;"> <span style="color: red"> Không tồn tại place </span></div>
+      <div class="form-group col-sm-7"  style="margin-left: 50px";>
+        <label >Địa điểm :</label>
+        <input class="form-control" type="text" name="restaurantid" id="restaurantid" value="{{old('restaurantid', $post->restaurant->name)}}" disabled="">
+        
       </div>
     </div>
         <div class="col-form-label  form-row" >
@@ -113,19 +109,19 @@
               </div>
             </div>
     <div class="form-group">
-      <label for="">Title:</label>
+      <label for="">Tiêu đề:</label>
       <input type="text" value="{{$post->title}}"  class="form-control" id="title" name="title">
     </div>
     <div class="form-group">
-      <label for="">Descrice:</label>
-      <textarea class="form-control" rows="3" id="describer" name="describer" >{!! $post->describer !!} </textarea>
+      <label for="">Mô tả:</label>
+      <textarea class="form-control" rows="8" id="describer" name="describer" >{!! $post->describer !!} </textarea>
     </div>
 
     {{-- show all photo --}}
     <div class="form-group">
      <input type="text" value="" style="display: none;"  class="form-control" id="p1" name="p1">
    </div>
-   <h5>All photo</h5>
+   <h5>Tất cả ảnh</h5>
    <div class="form-group">
     <div  class="d-flex">
     
@@ -156,11 +152,11 @@
 
 <div class="custom-file">
   {{ csrf_field() }}
-  <h5>Add more photo</h5>
+  <h5>Thêm nhiều ảnh</h5>
   <div class="input-group control-group increment" >
     {{--           <input type="file" name="filename[]" class="form-control">
     --}}          <div class="input-group-btn">  
-      <button class="btn btn-success add" type="button"><i class="glyphicon glyphicon-plus" id="add"></i>Click here to Add more</button>
+      <button class="btn btn-success add" type="button"><i class="glyphicon glyphicon-plus" id="add"></i>Nhấn vào đây để thêm</button>
     </div>
   </div>
   <div class="clone">
@@ -168,7 +164,7 @@
       <input type="file" name="filename[]" class="form-control" accept="image/x-png,image/jpeg" >
 
       <div class="input-group-btn"> 
-        <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove" id="removed"></i> Remove</button>
+        <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove" id="removed"></i> Xóa</button>
       </div>
 
     </div>
@@ -177,8 +173,8 @@
 
 <div class="flex-row ">
   <div class="justify-content-center flex-wrap "  style="margin: 20px;">
-    <button class="btn-success" type="submit"  onclick="return confirm('Bạn có muốn sửa bản ghi này?')"  id="submit"> Save</button>
-    <button class="btn-secondary" type="reset"> Cancel</button>
+    <button class="btn-success" type="submit"  onclick="return confirm('Bạn có muốn sửa bản ghi này?')"  id="submit"> Lưu</button>
+    <button class="btn-secondary" type="reset"> Thoát</button>
   </div>
 </div>
 

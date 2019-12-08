@@ -172,16 +172,14 @@ class PostController extends Controller
         $request-> validate([
             'user_id' => 'reiquired',
             'title' => 'required',
-            'describer' => 'required',
-            'restaurantid' => 'required',
+            'describer' => 'required'
         ]);
         $posts = POST::find($id);
         //check user id có thay đổi không
         if(POST::find($id)->user_id != USER::where('name',$request->userid)->first()->user_id){
             $posts ->user_id = User::where('name',$request ->userid)->first()->id;
 
-        }
-        $posts ->restaurant_id = Restaurant::where('name',$request ->restaurantid)->first()->id;  
+        }  
         $posts ->is_approved = $request->approved;
         $posts ->title = $request ->title;
         $posts ->describer = $request->input('describer');

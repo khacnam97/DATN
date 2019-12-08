@@ -5,7 +5,7 @@
 <div class="card mb-3">
   <div class="card-header">
     <em class="fas fa-table"></em>
-  Data Table User </div>
+  Bảng dữ liệu người dùng </div>
    @if(count($errors)>0)
         <div class="alert alert-danger">
           @foreach($errors->all() as $err)

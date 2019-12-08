@@ -30,7 +30,7 @@
 
 	<div style="display: flex;" class="form-row">
 		<div class="form-group col-md-6">
-	    	<label >User :</label>
+	    	<label >Tên người dùng :</label>
 	    	@error('userid')
                 <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -40,24 +40,24 @@
         <div id="errouser" style="display: none;"> <span style="color: red"> Không tồn tại user </span></div>
 	  	</div>
   	<div class="form-group col-md-6">
-        <label for="">Phone</label>
+        <label for="">Số điện thoại</label>
         <input class="form-control" type="text" name="phone" id="phone" value="{{old('phone')}}" required="">  
     </div>
 	</div>
 
 	<div class="form-group">
-    	<label for="">Restaurant</label>
+    	<label for="">Địa điểm</label>
       <input class="form-control" type="text" name="restaurantid"  value="{{old('restaurantid')}}" required="">
       
   </div>
   <div class="form-group">
-      <label for="">Address</label>
+      <label for="">Địa chỉ</label>
       <input class="form-control" type="text" name="address" id="address" value="{{old('address')}}" required="">  
   </div>
  <div class="form-row">
     
      <div class="form-group col-md-6"  >
-      <label for="">District</label>
+      <label for="">Quận ,huyện</label>
       <select class="custom-select" name="district_id" id="district">
         @if($district)
         @foreach ($district as  $record)
@@ -67,7 +67,7 @@
       </select> 
      </div>
      <div class="form-group col-md-6"  >
-       <label for="">City</label>
+       <label for="">Thành phố</label>
        <input class="form-control" type="text" name="" id="" value="Đà Nẵng" disabled=""> 
       </div>
   </div>
@@ -106,15 +106,15 @@
           </div>
         </div>
 	<div class="form-group">
-    	<label for="">Title:</label>
+    	<label for="">Tiêu đề:</label>
     	<input type="text" class="form-control" id="title" name="title" required="" value="{{old('title')}}">
   	</div>
 	<div class="form-group">
-    	<label for="">Descrice:</label>
+    	<label for="">Mô tả:</label>
       <textarea class="form-control" rows="3" id="describer" name="describer" required>{{old('describer')}}</textarea>
   	</div>
   <div class="form-group ">
-    <label for="">Map</label>
+    <label for="">Bản đồ</label>
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"> </div>
   </div>
@@ -127,22 +127,22 @@
     </div>
   </div>
 	<div class="form-group form-check" style="display: flex;">
-     	<input class="form-check-input" type="checkbox" name="checkbox" value="1">Post now:
+     	<input class="form-check-input" type="checkbox" name="checkbox" value="1">Đăng ngay:
   	</div>
   	<div class="custom-file" style="height: auto;">
 
- 		<h5>Upload image</h5>
+ 		<h5>Chọn ảnh</h5>
         <div class="input-group control-group increment" >
           <input type="file" name="filename[]" class="form-control" accept="image/x-png,image/jpeg" required="" accept="image|jpeg|x-png">
           <div class="input-group-btn">  
-            <button class="btn btn-primary add" type="button"><i class="glyphicon glyphicon-plus" id="add"></i>Add</button>
+            <button class="btn btn-primary add" type="button"><i class="glyphicon glyphicon-plus" id="add"></i>Thêm</button>
           </div>
         </div>
         <div class=" clone" style="overflow: hidden;">
           <div class="control-group input-group" style="margin-top:10px">
             <input type="file" name="filename[]" class="form-control" accept="image/x-png,image/jpeg">
             <div class="input-group-btn"> 
-              <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove" id="removed"></i> Remove</button>
+              <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove" id="removed"></i> Xóa</button>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 
 <div class="modal-header">
-    <h1 class="modal-title">Add rating</h1>
+    <h1 class="modal-title">Thêm một đánh giá</h1>
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
     <!-- Modal body -->
 </div>
@@ -13,7 +13,7 @@
             {{csrf_field()}}
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="username">Reviewers:</label>
+                    <label for="username">Người đánh giá</label>
                     <input  class="form-control" type="text" name="name_se" value="{{ old('name_se') }}" id="name" >
                     <input  class="form-control" type="text" name="user_id" value="" id="user_id" hidden>
                     @if ($errors->has('name_se'))
@@ -22,8 +22,8 @@
                     <div id="error" style="display: none;color: red;font-weight: bold;">Không có trong danh sách</div>
                 </div>
                 <div class="form-group  col-md-6">
-                    <label for="rating">Rating:</label>
-                    <input type="number" class="form-control" id="rating"  placeholder="Enter Rating" name="rating" value="{{ old('rating') }}" min="1" max="5">
+                    <label for="rating">Đánh giá</label>
+                    <input type="number" class="form-control" id="rating"  placeholder="Đánh giá" name="rating" value="{{ old('rating') }}" min="1" max="5">
                     @if ($errors->has('rating'))
                     <span class="text-danger">{{ $errors->first('rating') }}</span>
                     @endif
@@ -31,7 +31,7 @@
             </div>
 
             <div class="form-group">
-             <label for="post">Post:</label>
+             <label for="post">Địa điểm:</label>
              <input  class="form-control" type="text" name="title" value="{{ old('title') }}" id="title" >
              <input  class="form-control" type="text" name="post_id" value="" id="post_id" hidden>
              @if ($errors->has('title'))
@@ -40,15 +40,15 @@
              <div id="error2" style="display: none;color: red;font-weight: bold;">Không có trong danh sách</div>
          </div>
          <div class="form-group">
-            <label for="comment">Comment:</label>
+            <label for="comment">Bình luận:</label>
             <textarea class="form-control" rows="5" id="editor1" name="comment" value="" ></textarea>
             @if ($errors->has('comment'))
             <span class="text-danger">{{ $errors->first('comment') }}</span>
             @endif
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-success" id="add">Add</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+            <button type="submit" class="btn btn-success" id="add">Thêm</button>
 
         </div>
     </form>

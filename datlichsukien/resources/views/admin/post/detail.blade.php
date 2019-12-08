@@ -9,17 +9,13 @@
 	<FORM >
 	@csrf
 	<div style="display: flex;">
-		<div class="form-group">
-	    	<label >Id:</label>
-	    	<input type="number"  value="{{$post->id}}" disabled="true" class="form-control" id="userid " name="userid">
 
-	  	</div>
-		<div class="form-group " style="margin-left: 50px;" >
-	    	<label >User:</label>
+		<div class="form-group "  >
+	    	<label >Người dùng:</label>
 	    	<input type="" value="{{$post->user->name}}" disabled="true" class="form-control @error('userid') is-invalid @enderror" id="userid " name="userid">
 	  	</div>
       <div class="form-group" style="margin-left: 50px;">
-        <label >Is Approved:</label>
+        <label >Châp nhận</label>
          @if($post->is_approved==1)
         <input type="" value="Approved" disabled="true" class="form-control" id="userid " name="userid">
         @else
@@ -27,7 +23,7 @@
         @endif
       </div>
       <div class="form-group col-sm-5"  style="margin-left: 50px";>
-        <label >Restaurant:</label>
+        <label >Địa điểm:</label>
         <input type="" value="{{$post->restaurant->name}}" disabled="true" class="form-control" id="restaurantid" name="restaurantid">
       </div>
 	</div>
@@ -60,16 +56,16 @@
         </div>
         @endforeach
 	<div class="form-group">
-    	<label for="">Title:</label>
+    	<label for="">Tiêu đề:</label>
     	<input type="text" value="{{$post->title}}" disabled="true" class="form-control" id="title" name="title">
   	</div>
 	<div class="form-group">
-    	<label for="">Descrice:</label>
+    	<label for="">Mô tả:</label>
   		<textarea class="form-control" disabled="true" rows="5" id="descrice" name="descrice">{!!$post->describer!!} </textarea> 
   	</div>
 
     {{-- show all photo --}}
-   	<h5>All photo</h5>
+   	<h5>Tất cả ảnh</h5>
     <div class="form-group">
     	<div >
 
@@ -85,12 +81,12 @@
 	</FORM>
     <div class="row" style="margin: 50px 40% 50px ">
       <div class="">
-        <a href="{{route('admin.post.showedit',$post->id)}}" class="btn  btn-info nav-link"> Edit</a>
+        <a href="{{route('admin.post.showedit',$post->id)}}" class="btn  btn-info nav-link"> Chỉnh sửa</a>
         
       </div>
       <form method="post" action="{{ route('admin.post.delete', $post->id)}}" class="">
           @csrf
-          <button type="submit" class="btn btn-danger nav-link" role='button' onclick="return confirm('Bạn có muốn xóa bản ghi này?')" style="margin-left: 10px;"> Delete</button>
+          <button type="submit" class="btn btn-danger nav-link" role='button' onclick="return confirm('Bạn có muốn xóa bản ghi này?')" style="margin-left: 10px;"> Xóa</button>
       </form>
     </div>
 

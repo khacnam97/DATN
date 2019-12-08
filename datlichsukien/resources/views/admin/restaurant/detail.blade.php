@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-<h1>Detail Restaurant</h1>
+<h1>Chi tiết Địa điểm</h1>
 
 
 <form action="{{route('admin.restaurant.detail', $restaurant->id)}}" method="get">
@@ -14,28 +14,46 @@
   
   
     <div class="form-group">
-      <label for="">Address</label>
+      <label for="">Địa chỉ địa điểm</label>
       <input id="text" type="text" name="address" value="{{ $restaurant->address }}" class="form-control" required autocomplete="address" disabled="">
     </div>
     <div class="form-row">
     <div class="form-group col-md-3">
-      <label for="">Phone</label>
+      <label for="">Số điện thoại</label>
       <input type="text" class="form-control" name="phone" disabled="" value="{{$restaurant->phone}}">
 
     </div>
+
+       @foreach ($detail as $record)
+        <div class="input-group control-group  form-row" >
+      
+          <div class="form-group col-md-4">
+             <label>Tên khu</label>
+            <input type="text"  class="form-control" name="room[]" value="{{$record->room}}" placeholder="Tên khu" required="" disabled="">
+          </div>
+          <div class="form-group col-md-4">
+             <label>Dịch vụ</label>
+            <input type="text" class="form-control" name="service[]" value="{{$record->service}}" placeholder="Dịch vụ" required="" disabled="">
+          </div>
+          <div class="form-group col-md-4">
+             <label>Sức chứa</label>
+            <input type="text"  class="form-control" name="peopleNumber[]" value="{{$record->people_number}}" placeholder="Sức chứa của phòng" required="" disabled="">
+          </div>
+        </div>
+        @endforeach
     <div class="form-group col-md-3">
-      <label for="">District</label>
+      <label for="">Quận,huyện</label>
       <input type="text" class="form-control" name="district_id" disabled="" value="{{$restaurant->district->name}}">
 
     </div>
     <div class="form-group col-md-3">
-      <label for="">City</label>
+      <label for="">Thành phố</label>
       <input type="text" name="" class="form-control" value="Đà Nẵng" disabled="" disabled="">
     </div>
     
   </div>
   <div class="form-group ">
-    <label for="">Map</label>
+    <label for="">Bản đồ</label>
     
     <div id="map"> </div>
   </div>
@@ -47,7 +65,7 @@
       <input type="hidden" value="{{$restaurant->longt}}" class="form-control input-sm" name="lng" id="lng" required="" disabled="">
     </div>
   </div> 
-  <a href="/admin/restaurant"  class="btn btn-danger" style="color: white">Cancel</a>
+  <a href="/admin/restaurant"  class="btn btn-danger" style="color: white">Thoát</a>
   
 </form>
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Restaurant;
 use App\District;
+use App\Detail;
 use DB;
 use Config;
 class RestaurantController extends Controller
@@ -83,10 +84,13 @@ class RestaurantController extends Controller
     public function getedit ($id)
     {
      $restaurant=restaurant::find($id);
-     // $category=Category::all();
-     // $city=City::all();
+     $detail =DB::table('details')
+        ->join('restaurants', 'details.restaurant_id', '=', 'restaurants.id')
+        ->where('restaurants.id', '=', $id)
+        ->select('details.room','details.service','details.people_number','details.id')
+        ->get();
      $district=District::all();
-     return view('admin.restaurant.edit',['restaurant'=>$restaurant,'district'=>$district]);
+     return view('admin.restaurant.edit',['restaurant'=>$restaurant,'district'=>$district,'detail'=>$detail]);
     }
     public function postedit (Request $request,$id)
     {
@@ -98,6 +102,21 @@ class RestaurantController extends Controller
         $restaurant->district_id = $request->get('district_id');
         $restaurant->lat=$request->get('lat');
         $restaurant->longt=$request->get('lng');
+
+         $detail =DB::table('details')
+        ->join('restaurants', 'details.restaurant_id', '=', 'restaurants.id')
+        ->where('restaurants.id', '=', $id)
+        ->delete();
+        $n=count($request->room);
+                //dd($i);
+                for ($i=0;$i<$n-1;$i++ ) {
+                    $newDetail=new Detail;
+                    $newDetail->room=$request->room[$i];
+                    $newDetail->people_number=$request->peopleNumber[$i];
+                    $newDetail->service=$request->service[$i];
+                    $newDetail ->restaurant_id = $id;
+                    $newDetail ->save();
+                }
         $restaurant->save();
 
         return \Redirect::route('admin.restaurant.edit', [$restaurant->id,'restaurant'=>$restaurant])->with('message',  Config::get('constant.restaurant.editPlace'));
@@ -106,8 +125,12 @@ class RestaurantController extends Controller
     public function getdetail ($id)
     {
      $restaurant=restaurant::find($id);
-     
+     $detail =DB::table('details')
+        ->join('restaurants', 'details.restaurant_id', '=', 'restaurants.id')
+        ->where('restaurants.id', '=', $id)
+        ->select('details.room','details.service','details.people_number','details.id')
+        ->get();
      $district=District::all();
-     return view('admin.restaurant.detail',['restaurant'=>$restaurant,'district'=>$district]);
+     return view('admin.restaurant.detail',['restaurant'=>$restaurant,'district'=>$district,'detail'=>$detail]);
     }
 }

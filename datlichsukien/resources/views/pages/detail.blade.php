@@ -128,7 +128,7 @@ $cmts = $data->unique('rating_id')->values();
     </div>
 
   </div>
-
+  
   <div class="row">
     <div class="col-6">
       <div style="margin: 20px 0;" class="rating">
@@ -158,38 +158,51 @@ $cmts = $data->unique('rating_id')->values();
                
                  @if(!empty($result))
            
-                    <button type="button" style="height: 40px; font-size: 12px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate1" value="{{$strDay7}}">{{$weekday1}}  ({{$strDay7}})  </button>
-        
+                   <button type="button" style="height: 40px; font-size: 12px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate1" value="{{$strDay7}}" onclick="FindRoom(this)">{{$weekday1}}  ({{$strDay7}})  </button>
+                   <input type="hidden" name="room" id="room" value="{{$arr}}">  
+                   <input type="hidden" name="roomorder" id="roomorder" value="{{$arrdetailorder}}">         
                  @else 
                         <button type="button" style="height: 40px; font-size: 12px;" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday1}}  ({{$strDay7}}) </button>
                   @endif
                   @if(!empty($result2))            
                     <button type="button" style="height: 40px; font-size: 12px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate2" value="{{$strDay8}}">{{$weekday2}}({{$strDay8}}) </button>
+                    <input type="hidden" name="room1" id="room1" value="{{$arr1}}">  
+                    <input type="hidden" name="roomorder2" id="roomorder1" value="{{$arrdetailorder1}}">  
                  @else 
                         <button type="button" style="height: 40px; font-size: 12px;" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday2}}({{$strDay8}})</button>
                   @endif
                   @if(!empty($result3))            
                     <button type="button" style="height: 40px; font-size: 12px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate3" value="{{$strDay9}}">{{$weekday3}}({{$strDay9}})</button>
+                    <input type="hidden" name="room2" id="room2" value="{{$arr2}}">  
+                    <input type="hidden" name="roomorder2" id="roomorder2" value="{{$arrdetailorder2}}">
                  @else 
                         <button type="button" style="height: 40px; font-size: 12px;" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday3}}({{$strDay9}})</button>
                   @endif
                    @if(!empty($result4))            
                     <button type="button" style="height: 40px; font-size: 12px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate4" value="{{$strDay10}}">{{$weekday4}}({{$strDay10}}) </button>
+                    <input type="hidden" name="room3" id="room3" value="{{$arr3}}">  
+                    <input type="hidden" name="roomorder3" id="roomorder3" value="{{$arrdetailorder3}}">
                  @else 
                         <button type="button" style="height: 40px; font-size: 12px;" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday4}}({{$strDay10}})</button>
                   @endif
                   @if(!empty($result5))            
                     <button type="button" style="height: 40px; font-size: 12px;"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate5" value="{{$strDay11}}">{{$weekday5}}({{$strDay11}}) </button>
+                    <input type="hidden" name="room4" id="room4" value="{{$arr4}}">  
+                    <input type="hidden" name="roomorder4" id="roomorder4" value="{{$arrdetailorder4}}">
                  @else 
                         <button type="button" style="height: 40px; font-size: 12px;" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday5}}({{$strDay11}})</button>
                   @endif
                   @if(!empty($result6))            
                     <button type="button" style="height: 40px; font-size: 12px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate6" value="{{$strDay12}}">{{$weekday6}}({{$strDay12}}) </button>
+                    <input type="hidden" name="room5" id="room5" value="{{$arr5}}">  
+                    <input type="hidden" name="roomorder5" id="roomorder5" value="{{$arrdetailorder5}}">
                  @else 
                         <button  type="button" style="height: 40px; font-size: 12px;" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday6}}({{$strDay12}}) </button>
                   @endif
                     @if(!empty($result7))            
                     <button type="button" style="height: 40px; font-size: 12px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal22" id="btnDate7" value="{{$strDay13}}">{{$weekday7}}({{$strDay13}}) </button>
+                    <input type="hidden" name="room6" id="room6" value="{{$arr6}}">  
+                    <input type="hidden" name="roomorder6" id="roomorder6" value="{{$arrdetailorder6}}">
                  @else 
                         <button type="button" style="height: 40px; font-size: 12px;" disabled="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal22" >{{$weekday7}}({{$strDay13}}) </button>
                   @endif

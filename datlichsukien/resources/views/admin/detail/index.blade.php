@@ -1,34 +1,14 @@
 @extends('layouts.admin')
-@section('title', '/ Rating')
+@section('title', '/ Chi tiết')
 @section('content')
 <div class="card mb-3">
 	<div class="card-header">
 
 		<em class="fas fa-table"></em>
-	Data Table Rating</div>
-
-	<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				@if ($errors->count() > 0)
-				<script type="text/javascript">
-					$(window ).on("load", function() {
-						$('#addModal').modal('show');
-                  //$("#myModal").modal("toggle");
-                  console.log("zz");
-              });
-          </script>
-          
-          @endif
-          @include('admin.rating.add')
-      </div>
-  </div>
-</div>
+	Bảng dử liệu Chi tiết địa điểm </div>
 
 <div class="card-body">
-	<div style="margin-bottom: 15px">
-		<button data-toggle="modal" data-target="#addModal" class="btn btn-success "><em class="fas fa-plus"></em> ADD</button>
-	</div>
+	
 	<div class="table-responsive">
 		@if (session('success'))
 		<div class="alert alert-success">
@@ -50,25 +30,25 @@
 			<thead>
 				<tr>
 					<th>ID</th>
-					<th>Restaurant</th>
-					<th>Room</th>
-					<th>Service</th>
-					<th>People number</th>
-					<th>Time create</th>
-					<th>Time modify</th>
-					<th>Action</th>
+					<th>Địa điểm</th>
+					<th>Phòng</th>
+					<th>Dịch vụ</th>
+					<th>Số chứa của phòng</th>
+					<th>Thời gian tạo</th>
+					<th>Thời gian sửa</th>
+					<th>Khác</th>
 				</tr>
 			</thead>
 			<tfoot>
 				<tr>
 					<th>ID</th>
-					<th>Restaurant</th>
-					<th>Room</th>
-					<th>Service</th>
-					<th>People number</th>
-					<th>Time create</th>
-					<th>Time modify</th>
-					<th>Action</th>
+					<th>Địa điểm</th>
+					<th>Phòng</th>
+					<th>Dịch vụ</th>
+					<th>Số chứa của phòng</th>
+					<th>Thời gian tạo</th>
+					<th>Thời gian sửa</th>
+					<th>Khác</th>
 				</tr>
 			</tfoot>
 			<tbody>
@@ -83,8 +63,10 @@
 					<td>{{$record->created_at}}</td>
 					<td>{{$record->updated_at}}</td>
 					<td style="display: flex;">
-						<a href="{{route('admin.rating.edit',$record->id)}}" class="btn-info nav-link" role='button'> Edit</a>
-						<button form= "formDel" formaction ="{{route('admin.rating.delete',$record->id)}}" class="btn-danger nav-link" role='button' onclick="return confirm('Bạn có muốn xóa bản ghi này?')" style="margin-left: 5px;"> Delete</button>
+						<a href="{{route('admin.detail.edit',$record->id)}}" class="btn-info nav-link" role='button'> Sữa</a>
+						<button type="button" class="btn-danger" >
+							<a href="{{route('admin.detail.delete', $record->id)}}" style="color: white;text-decoration: none;" onclick="return confirm ('bạn có muốn xóa lịch đặt này')">Xóa</a>
+						</button>
 					</td>
 				</tr>
 				@endforeach
