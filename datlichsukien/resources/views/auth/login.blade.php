@@ -11,11 +11,11 @@
 </head>
 
 @section('content')
-<div class="card-body" style="text-align:center;" >
+<div class="card-body" >
 
     <form method="POST" action="{{ route('login') }}" id="formlogin"  class="form-signin" style="background-color: #dee2e6;">
         @csrf
-        <a href="" class="btn btn-block btn-social btn-google">
+        <!-- <a href="" class="btn btn-block btn-social btn-google">
             <i class="fab fa-google"></i>
 
             Sign in with Google
@@ -27,9 +27,9 @@
 
         <p class="divider-text">
             <span class="bg-light">OR</span>
-        </p>
+        </p> -->
         <div class="">
-            
+                <label for="inputEmail" class="" >Email </label>
                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
 
                 @error('email')
@@ -40,8 +40,8 @@
         </div>
 
         <div class="" style="margin-top: 10px;">
-        
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="Password">
+                 <label for="" class="" >Mật khẩu </label>
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="Mật khẩu ">
 
                 @error('password')
                 <span class="invalid-feedback" role="alert">
@@ -51,7 +51,7 @@
             
         </div>
 
-        <div class="form-group row">
+       <!--  <div class="form-group row">
             <div class="col-md-6 offset-md-2">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -61,17 +61,17 @@
                     </label>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="form-group row mb-0" >
             <div class="col-md-8 offset-md-2" style="text-align:center;">
                 <button type="submit" class="btn btn-lg btn-primary btn-block" form="formlogin" >
-                    {{ __('Login') }}
+                    {{ __('Đăng nhập') }}
                 </button>
 
                    @if (Route::has('password.request'))
                 <a class="btn btn-link" href="{{ route('password.request') }}">
-                    {{ __('Forgot Your Password?') }}
+                    {{ __('Quên mật khẩu?') }}
                 </a>
                 @endif 
             </div>
@@ -92,7 +92,7 @@
                 
                 <button class="btn btn-link" type="button"  id="createacc">
 
-                    {{ __('Have an account?') }}
+                    {{ __('Chưa có tài khoản?') }}
                 </button>
                 
             </div>

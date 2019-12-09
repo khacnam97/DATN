@@ -1,10 +1,10 @@
 @extends('layouts.admin')
-@section('title', '/ order')
+@section('title', '/ Lịch đặt')
 @section('content')
 <div class="card mb-3">
 	<div class="card-header">
 		<em class="fas fa-table"></em>
-	Data Table order </div>
+	Bảng dữ liệu lịch đặt </div>
 	@if(Session::has('message'))
 	<div class="alert alert-success">
 		{{Session::get('message')}}
@@ -18,22 +18,20 @@
 	<div class="card-body">
 		<div style="margin-bottom: 15px">
 			
-			<a href="" class="btn btn-success" style="color: white" data-toggle="modal" data-target="#detailModal3"><em class="fas fa-plus"></em> ADD</a>
-			
 		</div>
 		<div class="table-responsive">
 			<table class="table table-bordered" id="dataTable" >
 				<thead>
 					<tr>
 						<th >ID</th>
-						<th >Name order</th>
-						<th >Restaurant</th>
-						<th>Phone</th>
-						<th>Time</th>
-						<th>Date</th>
-						<th>People number</th>
-						<th>Price </th>
-						<th>More</th>
+						<th >Tên người đặt</th>
+						<th >Địa điểm </th>
+						<th>Số điện thoại</th>
+						<th>Thời gian tổ chức</th>
+						<th>Ngày tổ chức</th>
+						<th>Số người</th>
+						<th>Giá mỗi bàn</th>
+						<th>Khác</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -52,20 +50,20 @@
 						@if($o->status ==1)
 		                     <button class="btn-success" >
 		                       
-		                      <a href="{{route('admin.order.cancel', $o->id)}}" onclick="return confirm('Cancel order?')" role="button"  style="color: white;text-decoration: none;" >Confirmed</a>
+		                      <a href="{{route('admin.order.cancel', $o->id)}}" onclick="return confirm('Cancel order?')" role="button"  style="color: white;text-decoration: none;" >Đã xác nhận</a>
 		                    </button>
 		                    @else 
 		                    <button class="btn-danger">
 		                     
-		                      <a  href="{{route('admin.order.accept', $o->id)}}" onclick="return confirm('accept?')"  style="color: white;text-decoration: none;" >Waiting</a>
+		                      <a  href="{{route('admin.order.accept', $o->id)}}" onclick="return confirm('accept?')"  style="color: white;text-decoration: none;" >Đang chờ</a>
 		                    </button>
                         @endif
 							<button type="button" class="btn-info" >
-								<a href="{{route('admin.order.edit', $o->id)}}" style="color: white;text-decoration: none;">Edit</a>
+								<a href="{{route('admin.order.edit', $o->id)}}" style="color: white;text-decoration: none;">Sửa</a>
 							</button>
 
 							<button type="button" class="btn-danger" >
-								<a href="{{route('admin.order.delete', $o->id)}}" style="color: white;text-decoration: none;" onclick="return confirm ('bạn có muốn xóa lịch đặt này')">Delete</a>
+								<a href="{{route('admin.order.delete', $o->id)}}" style="color: white;text-decoration: none;" onclick="return confirm ('bạn có muốn xóa lịch đặt này')">Xóa</a>
 							</button>
 						</td>
 					</tr>

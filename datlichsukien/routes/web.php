@@ -77,12 +77,9 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 	});
 	Route::group(['prefix' => 'detail','namespace'=>'detail'], function(){
 		Route::get('/', 'DetailController@index')->name('admin.detail.index');
-		// Route::get('/delete/{id}', 'DetailController@delete')->name('admin.order.delete');
-		// Route::post('/add', 'DetailController@addOrder')->name('admin.order.addOrder');
-		// Route::get('/cancel/{id}', 'DetailController@cancel')->name('admin.order.cancel');
-		// Route::get('/accept/{id}', 'DetailController@accept')->name('admin.order.accept');
-		// Route::get('/edit/{id}', 'DetailController@showedit')->name('admin.order.edit');
-		// Route::post('/edit/{id}', 'DetailController@edit')->name('admin.order.edit');
+		Route::get('/delete/{id}', 'DetailController@delete')->name('admin.detail.delete');
+		Route::get('/edit/{id}', 'DetailController@showedit')->name('admin.detail.edit');
+		Route::post('/edit/{id}', 'DetailController@edit')->name('admin.detail.edit');
 		
 	});
 });

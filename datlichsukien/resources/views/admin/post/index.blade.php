@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', '/ Post')
+@section('title', '/ Địa điểm')
 @section('content')
  @if (session('success'))
     <div class="alert alert-success">
@@ -9,37 +9,35 @@
 <div class="card mb-3">
 	<div class="card-header">
 		<i class="fas fa-table"></i>
-	Data Table Post</div>
+	Bảng dữ liệu bài viết</div>
 	<div class="card-body">
 		<div style="margin-bottom: 15px">
-			<button data-toggle="modal" data-target="#myModal3" class="btn btn-success "><i class="fas fa-plus"></i> ADD</button>
+			<button data-toggle="modal" data-target="#myModal3" class="btn btn-success "><i class="fas fa-plus"></i> Thêm</button>
 		</div>
 		<div class="table-responsive">
 			<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 				<thead>
 					<tr>
 						<th>ID</th>
-						<th>Title</th>
-						<th>Author</th>
-						<th>Status approved</th>
-						<th>Restaurant</th>
-						<th>Action</th>
+						<th>Mô tả</th>
+						<th>Người đăng kí</th>
+						<th>Trạng thái</th>
+						<th>Địa điểm</th>
+						<th>Khác</th>
 					</tr>
 				</thead>
 				<tfoot>
 					<tr>
 						<th>ID</th>
-						<th>Title</th>
-						<th>Author</th>
-						<th>Status approved</th>
-						<th>Restaurant</th>
-						<th>Action</th>
+						<th>Mô tả</th>
+						<th>Người đăng kí</th>
+						<th>Trạng thái</th>
+						<th>Địa điểm</th>
+						<th>Khác</th>
 					</tr>
 				</tfoot>
 				<tbody style="font-weight: normal;">
-					@if($posts->count()==0)
-							k có dư liêu
-					@else
+					
 					@foreach($posts as $post)
 					<tr style="font-weight: normal;">
 						<th style="font-weight: normal;">{{ $post-> id }}</th>
@@ -47,30 +45,30 @@
 						<th style="font-weight: normal;">{{ $post->user->name}}</th>
 						<th style="font-weight: normal;">@if($post->is_approved ==1)
 							<div style="display: flex;">
-								Approved  
+								Chấp nhận  
 								<a href="{{route('admin.post.unapproved', $post->id)}}" onclick="return confirm('Xác nhận hủy đăng bài này?')" role="button" class="btn btn-danger nav-link" style="width: 50px; height: 40px; margin-left: 10px;" > Un</a>
 							</div>
 							@else 
 							<div style="display: flex;">
-								Unapproved  
+								Từ chối  
 								<a href="{{route('admin.post.approved', $post->id)}}" onclick="return confirm('Xác nhận đăng bài này?')" role="button" class="btn btn-success nav-link" style="width: 50px; height: 40px; margin-left: 10px;" > En</a>
 							</div>
 						@endif </th>
 						<th style="font-weight: normal;">{{ $post->restaurant->name }}</th>
 
 						<td align="center" style="display: flex;">
-							<a href="{{route('admin.post.detail', $post->id)}}" class=" btn btn-success nav-link"> Detail</a>
+							<a href="{{route('admin.post.detail', $post->id)}}" class=" btn btn-success nav-link"> Chi tiết</a>
 
-							<a href="{{route('admin.post.showedit', $post->id)}}" class="btn btn-info nav-link " role='button' style="margin-left: 5px;"> Edit</a>
+							<a href="{{route('admin.post.showedit', $post->id)}}" class="btn btn-info nav-link " role='button' style="margin-left: 5px;"> Sửa</a>
 							<form method="post" action="{{ route('admin.post.delete', $post->id)}}">
 								@csrf
-								<button class="btn btn-danger nav-link" role='button' onclick="return confirm('Bạn có muốn xóa bản ghi này?')" style="margin-left: 5px;"> Delete</button>
+								<button class="btn btn-danger nav-link" role='button' onclick="return confirm('Bạn có muốn xóa bản ghi này?')" style="margin-left: 5px;"> Xóa</button>
 							</form>
 						</td>
 					</tr>
 
 					@endforeach
-					@endif
+					
 
 				</tbody>
 			</table>
@@ -82,7 +80,7 @@
 
 				<!-- Modal Header -->
 				<div class="modal-header" style="">
-					<h4 class="modal-title " style="width: 100%; text-align: center;">Add new post</h4>
+					<h4 class="modal-title " style="width: 100%; text-align: center;">Thêm một địa điểm</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				@if ($errors->count() > 0)

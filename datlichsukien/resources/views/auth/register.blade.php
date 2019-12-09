@@ -24,7 +24,7 @@
         </div>
         @endif
         @endif
-        <a class="btn btn-block btn-social btn-google"  href="" >
+        <!-- <a class="btn btn-block btn-social btn-google"  href="" >
 
         <i class="fab fa-google"></i>
 
@@ -36,12 +36,12 @@
         </a>
         <p class="divider-text">
             <span class="bg-light">OR</span>
-        </p>
-        <label for="inputName" class="sr-only">Name</label>
-        <input type="text" id="inputName" class="form-control" name="name" value="{{old('name')}}" placeholder="  Name" required autofocus>
-        <label for="inputEmail" class="sr-only" >Email address</label>
+        </p> -->
+        <label for="inputName" class="">Họ và tên</label>
+        <input type="text" id="inputName" class="form-control" name="name" value="{{old('name')}}" placeholder="Họ và tên" required autofocus>
+        <label for="inputEmail" class="" >Email </label>
         <input type="email" id="inputEmail" class="form-control" name="email" value="{{old('email')}}" placeholder="Email address" required >
-        <label for="inputPassword" class="sr-only">Password</label>
+        <label for="inputPassword" class="">Mật khẩu</label>
         <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
         <div class="form-group ">
             <label for="inputState">Vai trò</label>
@@ -52,9 +52,9 @@
                 
             </select>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" form="formregister" type="submit">Sign up</button>
+        <button class="btn btn-lg btn-primary btn-block" form="formregister" type="submit">Đăng kí</button>
         <hr id="hr1">
-        <p>Have an account? <button type="button" class="btn-link btn" id="signin">Login</button></p>
+        <p>Đã có tài khoản? <button type="button" class="btn-link btn" id="signin">Đâng nhập</button></p>
     </form>
    
     </div>

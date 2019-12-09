@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+<!-- @extends('layouts.admin')
 @section('content')
 <h1>Thêm địa điểm tổ chức</h1>
 @if(count($errors)>0)
@@ -176,3 +176,4 @@ async defer></script>
 </script>
 @endsection
 
+ -->

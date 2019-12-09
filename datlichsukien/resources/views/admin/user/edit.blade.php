@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-<h1>Edit User</h1>
+<h1>CHỉnh sửa người dùng</h1>
  @if (session('thongbao'))
   {{session('thongbao')}}
 

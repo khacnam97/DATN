@@ -37,46 +37,16 @@
               
               <div class="col-sm-8">
                 <div > 
-                  <label style="width: 110px;">Tên khu</label> 
+                  <label style="width: 110px; ">Tên khu</label> 
                   <label style="width: 110px;">Dịch vụ</label>
                   <label style="width: 110px;">Sức chứa</label></div>
                 <div class="dropdown-divider"></div>
-                @if($strDay77)
-                @foreach ($iddetail as $record)
-                <div>
-                  <input type="radio" name="detail_id" required=""  value="{{$record->id}}">
-                   <label style="width: 100px;">{{$record->room}}</label> 
-                   <label style="width: 100px;">{{$record->service}}</label>
-                   <label style="width: 100px;">{{$record->people_number}}</label>
+                <div id="arrdetail">
+                  s
                 </div>
-                @endforeach
-                 @foreach ($iddetailorder as $record)
-                <div>
-                  <input type="radio" name="detail_id" required=""  value="{{$record->id}}" disabled="">
-                   <label style="width: 100px;">{{$record->room}}</label> 
-                   <label style="width: 100px;">{{$record->service}}</label>
-                   <label style="width: 100px;">{{$record->people_number}}</label>
+                <div id="arrdetail1" style="opacity: 0.6;filter: alpha(opacity=20);">
+                  s
                 </div>
-                @endforeach
-               @endif
-               @if($strDay88)
-                @foreach ($iddetail1 as $record)
-                <div>
-                  <input type="radio" name="detail_id" required=""  value="{{$record->id}}">
-                   <label style="width: 100px;">{{$record->room}}</label> 
-                   <label style="width: 100px;">{{$record->service}}</label>
-                   <label style="width: 100px;">{{$record->people_number}}</label>
-                </div>
-                @endforeach
-                 @foreach ($iddetailorder1 as $record)
-                <div>
-                  <input type="radio" name="detail_id" required=""  value="{{$record->id}}" disabled="">
-                   <label style="width: 100px;">{{$record->room}}</label> 
-                   <label style="width: 100px;">{{$record->service}}</label>
-                   <label style="width: 100px;">{{$record->people_number}}</label>
-                </div>
-                @endforeach
-               @endif
               </div>
              
             </div>
@@ -86,7 +56,7 @@
             <label class="col-sm-3 col-form-label form-control-label">Thời gian tổ chức</label>
             
               <div class="col-sm-6" >
-                <input type="text" class="form-control" name="time" required="" id="timepicker" >
+                <input  type="text" class="form-control" name="time" required="" id="timepicker" >
               </div>
            
           </div>

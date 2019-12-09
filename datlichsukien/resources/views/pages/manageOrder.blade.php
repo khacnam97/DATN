@@ -1,9 +1,7 @@
 @extends('layouts.app')
 @section('content')
-<script src="{{asset('js/jquery-3.2.1.slim.min.js')}}"></script>
-<script src="{{asset('js/popper.min.js')}}"></script>
 
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
+<!-- <script src="{{asset('js/bootstrap.min.js')}}"></script> -->
 <div class="card mb-3">
 	
 	@if($order->count() == 0)
@@ -225,6 +223,7 @@
   </div>
 </div>
 <script>
+	$(document).ready(function(){
 	$('#detailModal2').on('show.bs.modal', function(event) {
 		var button = $(event.relatedTarget)
 		var id = button.data('id')	
@@ -293,6 +292,7 @@
 		modal.find('#detailpeonumber').val(detailpeonumber)
 		modal.find('#name').val(name)
 	})
+	})
 </script>
 <script type="text/javascript">
 	let textinput2 = document.querySelector('#time');
@@ -315,3 +315,4 @@
 		accecptform.submit();
 	}
 </script>
+@endsection

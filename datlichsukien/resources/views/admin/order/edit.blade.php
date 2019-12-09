@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-<h1>Edit Order</h1>
+<h1>Chỉnh sửa lịch đặt</h1>
  @if (session('thongbao'))
   {{session('thongbao')}}
 
@@ -24,7 +24,7 @@
     {{ csrf_field() }}
     <div class="form-row">
       <div class="form-group col-md-6">
-      <label for="Name" class="col-form-label">Name </label>
+      <label for="Name" class="col-form-label">Tên người đặt </label>
           <select class="custom-select" name="user_id" id="user_id">
           <option value="{{$order->user_id}}">{{$order->user->name}}</option>
           @if($user)
@@ -36,7 +36,7 @@
       </select>
        </div>
        <div class="form-group col-md-6">
-      <label for="Restaurant" class="col-form-label">Restaurant </label>
+      <label for="Restaurant" class="col-form-label">Địa điểm  </label>
         <input type="text" name="price_table" class="form-control" disabled="" value="{{$order->restaurant->name}}">
       </select>
        </div>
@@ -67,15 +67,15 @@
             <input type="text"  class="form-control" name="peopleNumber" value="{{$order->detail->people_number}}" placeholder="Sức chứa của phòng" required="" disabled="">
           </div>
         </div>
-        <label for="address" class="col-form-label">Address </label>
+        <label for="address" class="col-form-label">Địa chỉ người đặt </label>
         <input type="text" name="address" class="form-control" id="address" value="{{$order->address}}" required="" >
         <div class="row">
           <div class="form-group col-md-6">
-            <label for="name" class="col-form-label">Time </label>
+            <label for="name" class="col-form-label">Thời gian tổ chức </label>
             <input type="text" name="order_time" class="form-control" id="timepicker" value="{{$order->order_time}}" required="">
           </div>
           <div class="form-group col-md-6">
-            <label for="name" class="col-form-label"> Date</label>
+            <label for="name" class="col-form-label"> Ngày tổ chức</label>
             <input type="text" name="order_date" class="form-control" id="datepicker" value="{{$order->order_date}}" required=""> 
           </div>
           
@@ -83,19 +83,19 @@
         <div class="row">
           
           <div class="form-group col-md-4">
-            <label for="name" class="col-form-label"> Number people  </label>
+            <label for="name" class="col-form-label"> Số lượng lượng người </label>
             <input type="text" name="people_number" class="form-control" id="peonumber" value="{{$order->people_number}}" required=""> 
           </div>
           <div class="form-group col-md-4">
-            <label for="name" class="col-form-label"> Price  </label>
+            <label for="name" class="col-form-label"> Giá mỗi bàn  </label>
             <input type="text" name="price_table" class="form-control" id="price" value="{{$order->price_table}}" required=""> 
           </div>
           <div class="form-group col-md-4">
-            <label for="name" class="col-form-label"> Phone  </label>
+            <label for="name" class="col-form-label"> Số điện thoại người đặt  </label>
             <input type="text" name="phone" class="form-control" id="phone" value="{{$order->phone}}" required=""> 
           </div>
         </div> 
-        <button id="buttonsave" type="submit" class="btn btn-success"  >Edit</button>
+        <button id="buttonsave" type="submit" class="btn btn-success"  >Chỉnh sửa</button>
         </form>
       </div>
     </div>
@@ -107,19 +107,6 @@
             uiLibrary: 'bootstrap4'
         });
     </script>
-<script>
-  $(document).ready(function(){
-   $("#changePasword").change(function(){
-    if($(this).is(":checked"))
-    {
-      $(".password").removeAttr('disabled');
-    }
-    else{
-      $(".password").attr('disabled','');
-    }
-  });
- });
-</script>
 <script>
         $('#timepicker').timepicker({
             uiLibrary: 'bootstrap4'

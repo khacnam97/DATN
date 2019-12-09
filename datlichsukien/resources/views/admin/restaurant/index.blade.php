@@ -1,10 +1,10 @@
 @extends('layouts.admin')
-@section('title', '/ restaurant')
+@section('title', '/ Địa điểm')
 @section('content')
 <div class="card mb-3">
 	<div class="card-header">
 		<em class="fas fa-table"></em>
-	Data Table restaurant </div>
+	Bảng dữ liệu địa điểm </div>
 	@if(Session::has('message'))
 	<div class="alert alert-success">
 		{{Session::get('message')}}
@@ -18,7 +18,7 @@
 	<div class="card-body">
 		<div style="margin-bottom: 15px">
 			
-			<a href="{{route('admin.restaurant.add')}}" class="btn btn-success" style="color: white"><em class="fas fa-plus"></em> ADD</a>
+			<!-- <a href="{{route('admin.restaurant.add')}}" class="btn btn-success" style="color: white"><em class="fas fa-plus"></em> ADD</a> -->
 			
 		</div>
 		<div class="table-responsive">
@@ -26,23 +26,19 @@
 				<thead>
 					<tr>
 						<th>ID</th>
-						<th>Name</th>
-						<th>Phone</th>
-						<th>Address</th>
-						<th>Time create</th>
-						<th>Time modify</th>
-						<th>More</th>
+						<th>Tên địa điểm</th>
+						<th>Số điện thoại</th>
+						<th>Địa chỉ </th>
+						<th>Khác</th>
 					</tr>
 				</thead>
 				<tfoot>
 					<tr>
 						<th>ID</th>
-						<th>Name</th>
-						<th>Phone</th>
-						<th>Address</th>
-						<th>Time create</th>
-						<th>Time modify</th>
-						<th>More</th>
+						<th>Tên địa điểm</th>
+						<th>Số điện thoại</th>
+						<th>Địa chỉ </th>
+						<th>Khác</th>
 					</tr>
 				</tfoot>
 				<tbody>
@@ -52,21 +48,18 @@
 						<td>{{$p->id}}</td>
 						<td>{{$p->name}}</td>
 						<td>{{$p->phone}}</td>
-						
 						<td>{{$p->address}}</td>
-						<td>{{$p->created_at}}</td>
-						<td>{{$p->updated_at}}</td>
 						<td>
 
 							<button type="button" class="btn-success" data-toggle="modal" data-target="#myModal">
-								<a href="{{route('admin.restaurant.detail', $p->id)}}" style="color: white;text-decoration: none;">Detail</a>
+								<a href="{{route('admin.restaurant.detail', $p->id)}}" style="color: white;text-decoration: none;">Chi tiết</a>
 							</button>
 							<button type="button" class="btn-info" data-toggle="modal" data-target="#myModal">
-								<a href="{{route('admin.restaurant.edit', $p->id )}}" style="color: white;text-decoration: none;">Edit</a>
+								<a href="{{route('admin.restaurant.edit', $p->id )}}" style="color: white;text-decoration: none;">Sửa</a>
 							</button>
 
 							<button type="button" class="btn-danger" >
-								<a href="{{route('admin.restaurant.delete', $p->id)}}" style="color: white;text-decoration: none;" onclick="return confirm ('Bạn có muốn xóa {{$p->name}}')">Delete</a>
+								<a href="{{route('admin.restaurant.delete', $p->id)}}" style="color: white;text-decoration: none;" onclick="return confirm ('Bạn có muốn xóa {{$p->name}}')">Xóa</a>
 							</button>
 						</td>
 					</tr>

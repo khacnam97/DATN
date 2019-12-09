@@ -25,22 +25,75 @@
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
   
   <div class="form-group">
-    <label for="name">Name</label>
+    <label for="name">Tên địa điểm</label>
     <input type="text" name="name" value="{{ $restaurant->name }}" class="form-control" required autocomplete="name">
   </div>
   
   <div class="form-group">
-    <label for="">Address</label>
+    <label for="">Địa chỉ</label>
     <input id="text" type="text" name="address" value="{{ $restaurant->address }}" class="form-control" required autocomplete="address">
   </div>
+  <div class="col-form-label  form-row" >
+          <div class="form-group col-md-4">
+            <label>Tên khu</label>
+          </div>
+          <div class="form-group col-md-4">
+            <label>Dịch vụ</label>
+          </div>
+          <div class="form-group col-md-4">
+            <label>Sức chứa</label>
+          </div>
+          </div>
+          <div class="dropdown-divider"></div>
+        @foreach ($detail as $record)
+        <div class="input-group control-group  form-row" >
+      
+          <div class="form-group col-md-4">
+            
+            <input type="text"  class="form-control" name="room[]" value="{{$record->room}}" placeholder="Tên khu" required="" >
+          </div>
+          <div class="form-group col-md-4">
+            
+            <input type="text" class="form-control" name="service[]" value="{{$record->service}}" placeholder="Dịch vụ" required="">
+          </div>
+          <div class="form-group col-md-4">
+            
+            <input type="text"  class="form-control" name="peopleNumber[]" value="{{$record->people_number}}" placeholder="Sức chứa của phòng" required="">
+          </div>
+        </div>
+        @endforeach
+         
+        <div class="input-group control-group increment1 form-row" >
+              
+              <div class="input-group-btn">  
+                <button class="btn btn-primary addDetail" type="button"><i class="glyphicon glyphicon-plus" id="addDetail"></i>Thêm khu</button>
+              </div>
+            </div>
+            <div class=" clone1" style="overflow: hidden;">
+              <div class="control-group input-group form-row" style="margin-top:10px">
+                <div class="form-group col-md-4">
+            <input type="text" name="room[]" class="form-control"  placeholder="Tên khu"  >
+          </div>
+                <div class="form-group col-md-4">
+                  <input type="text" name="service[]" class="form-control" placeholder="Dịch vụ" >
+                </div>
+                <div class="form-group col-md-3">
+                  <input type="text" name="peopleNumber[]" class="form-control" placeholder="Sức chứa của phòng">
+                </div>
+                <div class="input-group-btn"> 
+                  <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove" id="removed"></i> Xóa</button>
+                </div>
+              </div>
+            </div>
   <div class="form-row">
    
     <div class="form-group col-md-3">
-      <label for="">Phone</label>
+      <label for="">Số điện thoại</label>
        <input id="text" type="text" name="phone" value="{{ $restaurant->phone }}" class="form-control" required autocomplete="address">
     </div>
+
     <div class="form-group col-md-3">
-      <label for="">District</label>
+      <label for="">Quận, huyện</label>
       <select class="custom-select" name="district_id" id="district">
         <option value="{{$restaurant->district_id}}">{{$restaurant->district->name}}</option>
         @if($district)
@@ -51,12 +104,12 @@
       </select>
     </div>
     <div class="form-group col-md-3">
-      <label for="">City</label>
+      <label for="">Thành phố</label>
        <input id="text" type="text" name="city" value="Đà Nẵng" class="form-control" disabled="">
     </div>
   </div>
   <div class="form-group ">
-    <label for="">Map</label>
+    <label for="">Bản đồ</label>
     <input id="pac-input" class="controls" type="text" restaurantholder="Search Box">
     <div id="map"> </div>
   </div>
@@ -69,9 +122,9 @@
     </div>
   </div>
   <button type="submit" class="btn btn-primary">
-    <i class="fa fa-btn fa-sign-in"></i>Update
+    <i class="fa fa-btn fa-sign-in"></i>Cập nhật
   </button>
-    <a href="/admin/restaurant" class="btn btn-danger" style="color: white">Cancel</a>
+    <a href="/admin/restaurant" class="btn btn-danger" style="color: white">Thoát</a>
 </form>
 <style type="text/css">
   #map{
@@ -170,5 +223,21 @@ async defer></script>
         });
        }
    
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    $(".addDetail").click(function(){ 
+      var html = $(".clone1").html();
+      $(".increment1").after(html);
+    });
+
+    $("body").on("click",".btn-danger",function(){ 
+      $(this).parents(".control-group").remove();
+    });
+
+    var a=$(".clone1");
+    a.hide();
+  });
 </script>
 @endsection
