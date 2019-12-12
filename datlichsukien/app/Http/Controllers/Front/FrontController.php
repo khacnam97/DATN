@@ -196,7 +196,7 @@ class FrontController extends Controller
 				->where('posts.id', '=', $post_id)
 				->select('details.id as id1')
 				->get();
-		//dd($detailx);
+		      
 	     $ex_detailx=explode (':',$detailx);
 	     $ex_detailAvalible1=explode (':',$detailAvalible1);
 	     $ex_detailAvalible2=explode (':',$detailAvalible2);
@@ -205,17 +205,82 @@ class FrontController extends Controller
 	     $ex_detailAvalible5=explode (':',$detailAvalible5);
 	     $ex_detailAvalible6=explode (':',$detailAvalible6);
 	     $ex_detailAvalible7=explode (':',$detailAvalible7);
+         foreach ($detailx as $detailx ) {	
+					$datax[] = $detailx->id1; 
+				}
+		// dd($ex_detailAvalible4);
+        $arrayName = array(1 => '[]' );
+		 $arr_detailAvalible1=array_diff($ex_detailAvalible1,$arrayName);
+		 //dd($result);
+         if(!empty($arr_detailAvalible1)){
+         	    foreach ($detailAvalible1 as $detailAvalible1 ) {	
+					$data1[] = $detailAvalible1->id1; 
+				}
+				$result=array_diff($datax,$data1);
+		       // dd($result);
+         }else{
+         	$result='a';
+         }
+		
+		 $arr_detailAvalible2=array_diff($ex_detailAvalible2,$arrayName);
+         if(!empty($arr_detailAvalible2)){
+         	    foreach ($detailAvalible2 as $detailAvalible2 ) {	
+					$data2[] = $detailAvalible2->id1; 
+				}
+				$result2=array_diff($datax,$data2);
+         }else{
+         	$result2='a';
+         }
 
-	     $result=array_diff($ex_detailx,$ex_detailAvalible1);
-	     $result2=array_diff($ex_detailx,$ex_detailAvalible2);
-	     $result3=array_diff($ex_detailx,$ex_detailAvalible3);
-	     $result4=array_diff($ex_detailx,$ex_detailAvalible4);
-	     $result5=array_diff($ex_detailx,$ex_detailAvalible5);
-	     $result6=array_diff($ex_detailx,$ex_detailAvalible6);
-	     $result7=array_diff($ex_detailx,$ex_detailAvalible7);
+         $arr_detailAvalible3=array_diff($ex_detailAvalible3,$arrayName);
+         if(!empty($arr_detailAvalible3)){
+         	    foreach ($detailAvalible3 as $detailAvalible3 ) {	
+					$data3[] = $detailAvalible3->id1; 
+				}
+				$result3=array_diff($datax,$data3);
+         }else{
+         	$result3='a';
+         }
 
-	     //dd($result6);
-		//$x=array_diff($detailAvalible,$detailx);
+         $arr_detailAvalible4=array_diff($ex_detailAvalible4,$arrayName);
+         if(!empty($arr_detailAvalible4)){
+         	    foreach ($detailAvalible4 as $detailAvalible4 ) {	
+					$data4[] = $detailAvalible4->id1; 
+				}
+				$result4=array_diff($datax,$data4);
+         }else{
+         	$result4='a';
+         }
+         $arr_detailAvalible5=array_diff($ex_detailAvalible5,$arrayName);
+         if(!empty($arr_detailAvalible5)){
+         	    foreach ($detailAvalible5 as $detailAvalible5 ) {	
+					$data5[] = $detailAvalible5->id1; 
+				}
+				$result5=array_diff($datax,$data5);
+         }else{
+         	$result5='a';
+         }
+
+         $arr_detailAvalible6=array_diff($ex_detailAvalible6,$arrayName);
+         if(!empty($arr_detailAvalible6)){
+         	    foreach ($detailAvalible6 as $detailAvalible6 ) {	
+					$data6[] = $detailAvalible6->id1; 
+				}
+				$result6=array_diff($datax,$data6);
+         }else{
+         	$result6='a';
+         }
+
+         $arr_detailAvalible7=array_diff($ex_detailAvalible7,$arrayName);
+         if(!empty($arr_detailAvalible7)){
+         	    foreach ($detailAvalible7 as $detailAvalible7 ) {	
+					$data7[] = $detailAvalible7->id1; 
+				}
+				$result7=array_diff($datax,$data7);
+         }else{
+         	$result7='a';
+         }
+	     
 	     $idrestaurant = DB::table('posts')
 	     ->select('posts.restaurant_id')
 	     ->where('posts.id','=',$id)->first()->restaurant_id;

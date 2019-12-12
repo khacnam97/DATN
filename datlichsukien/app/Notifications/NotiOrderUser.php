@@ -57,7 +57,7 @@ class NotiOrderUser extends Notification
     {
         return [
             'order_id' => $this->order->id,
-            'message' => "Bạn có một lịch đặt được xác nhận vào ngày " . $this->order->order_date,
+            'message' => "Bạn có một lịch đặt được xác nhận vào ngày '" . $this->order->order_date,
             'link' => "/account/myorder",
         ];
     }
