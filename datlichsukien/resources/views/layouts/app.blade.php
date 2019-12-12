@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -97,14 +97,14 @@
               @if(Auth::user()->Notifications->count()>0)
               <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
                 @foreach(Auth::user()->unreadNotifications as $notification)
-                <a href="{{$notification->data['link']}}" id="notify" class="dropdown-item"> {{$notification->data['message']}}</a>
+                <a href="{{$notification->data['link']}}" id="notify" class="dropdown-item" > <span style="font-size:15px;font-style: italic;">{{$notification->data['message']}}</span></a>
                 @endforeach
                 @foreach(Auth::user()->Notifications as $notification)
                 @if($notification->read_at !=NULL)
                 <a href="{{$notification->data['link']}}" id="notify" class="dropdown-item" style="background-color:lightgrey"> {{$notification->data['message']}}</a>
                 @endif
                 @endforeach
-                 <a href="" class="dropdown-item" style="color:black; text-decoration:underline; background-color: #e0e0e0">Xem thêm</a>
+                 <a href="" class="dropdown-item" style="color:black; text-decoration:underline; background-color: #3490dc">Xem thêm</a>
               </div>
               @endif
             </li>
