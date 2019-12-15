@@ -75,7 +75,7 @@
 $photo_path = $data->unique('photo_path')->values();
 $cmts = $data->unique('rating_id')->values();
 ?>
-<div class="container" style='text-align:left;margin-top:100px;'>
+<div class="container" style='text-align:left;margin-top:70px;'>
   @if (session('success'))
   <div class="alert alert-success">
     <button type="button" class="close" data-dismiss="alert" aria_label="Close">
@@ -92,7 +92,7 @@ $cmts = $data->unique('rating_id')->values();
     {{ session('error') }}
   </div>
   @endif
-  <h1 class="my-4" style="margin-bottom: 0px;">{{$data[0]->title}}</h1>
+  <h1 class="my-3" style="margin-bottom: 0px; ">{{$data[0]->title}}</h1>
 
   <div class="row">
 
@@ -103,14 +103,14 @@ $cmts = $data->unique('rating_id')->values();
 
           <div class="carousel-item active">
 
-            <img height="500px" class="d-block w-100" src="/{{$photo_path[0]->photo_path}}" alt="">
+            <img height="400px" class="d-block w-100" src="/{{$photo_path[0]->photo_path}}" alt="">
 
           </div>
 
           @for ($i=1;$i<$photo_path->count();$i++)
             <div class="carousel-item">
 
-              <img height="500px" class="d-block w-100" src="/{{$photo_path[$i]->photo_path}}" alt="">
+              <img height="400px" class="d-block w-100" src="/{{$photo_path[$i]->photo_path}}" alt="">
 
             </div>
             @endfor
@@ -250,7 +250,11 @@ $cmts = $data->unique('rating_id')->values();
       <div style="height:500px;" class="tab-content">
         <div id="description" class="container tab-pane active"><br>
           <h3>{{$data[0]->restaurant}}</h3>
-          <h5 style="color: #3490dc;"> <i class="fas fa-map-marker-alt " style="color: red;"></i> {{$data[0]->address}}</h5>
+          <div class="row">
+            <h5 style="color: #3490dc;"> <i class="fas fa-map-marker-alt " style="color: red;"></i> {{$data[0]->address}}</h5>
+            <h5 style="color: #3490dc; margin-left: 20px;"> <i  class="fa fa-phone" style="color: red;"></i> {{$data[0]->phone}}</h5>
+          </div>
+          
              {!!($data[0]->describer)!!}
         </div>
         <div id="location" class="container tab-pane fade"><br>    
