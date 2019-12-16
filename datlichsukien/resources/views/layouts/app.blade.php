@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿OCTYPE html>
 <html lang="en">
 
 <head>
@@ -57,7 +57,7 @@
 <!-- Wrap all content -->
 <div class="wrapper">
       
-    <nav class="navbar navbar-expand-md navbar-light bg-inverse shadow-sm  fixed-top" style="font-family: 'Roboto', sans-serif; background-size: cover;   background-color: #6cb2eb;height: 60px; width: 100%; padding: 0px; box-sizing: border-box;"  id="nav-top">
+    <nav class="navbar navbar-expand-md navbar-light bg-inverse shadow-sm  fixed-top" style="font-family: 'Roboto', sans-serif; background-size: cover;   background-color: #ffffff;height: 60px; width: 100%; padding: 0px; " >
 
       <div class="container-fluid" style="color: white; margin: 0px; padding: 0; width: 100%">
         <a href="{{route('index')}}"><img src="/picture/front/logo.png" style="" id="logo5" alt="avatar"></a>
@@ -68,9 +68,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- Left Side Of Navbar -->
           <ul class="navbar-nav mr-auto">
-            <li><a class="nav-link  border-0" style="cursor:pointer;  " id="scr2" href="{{route('index')}}" > Trang chủ </a></li>
-            <li><a class="nav-link  border-0" style=" cursor:pointer;" id="scr3"> Địa điểm </a></li>
-            <li><a class="nav-link  border-0" style=" cursor:pointer;" id="scr1"> Liên hệ </a></li>
+            <li><a class="nav-link  border-0" style="cursor:pointer; color: #1b1e21; " id="scr2" href="{{route('index')}}" > Trang chủ </a></li>
+            <li><a class="nav-link  border-0" style=" cursor:pointer;  color: #1b1e21;" id="scr3"> Địa điểm </a></li>
+            <li><a class="nav-link  border-0" style=" cursor:pointer;  color: #1b1e21;" id="scr1"> Liên hệ </a></li>
 
           </ul>
 
@@ -79,18 +79,18 @@
             <!-- Authentication Links -->
             @guest
             <li class="nav-item">
-              <a class="nav-link" data-toggle="modal" data-target="#myModal" href="{{ route('login') }}" style="color: white; ">{{ __('Đăng nhập') }}</a>
+              <a class="nav-link" data-toggle="modal" data-target="#myModal" href="{{ route('login') }}" style=" color: #1b1e21; ">{{ __('Đăng nhập') }}</a>
 
             </li>
 
             @if (Route::has('register'))
             <li class="nav-item">
-              <a class="nav-link" data-toggle="modal" data-target="#myModal2" href="{{ route('register') }}" style="color: white; ">{{ __('Đăng kí') }} </a>
+              <a class="nav-link" data-toggle="modal" data-target="#myModal2" href="{{ route('register') }}" style=" color: #1b1e21; ">{{ __('Đăng kí') }} </a>
             </li>
             @endif
             @else
             <li class="nav-item dropdown" style="">
-              <a id="" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;font-size: 13px;" v-pre>
+              <a id="" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style=" color: #dc3545;;font-size: 13px;" v-pre>
                 <i class="fa fa-bell fa-2x" style="margin-top: 0%;"></i>
                 <span class="badge badge-light">{{Auth::user()->unreadNotifications->count()}}</span>
               </a>
@@ -109,7 +109,7 @@
               @endif
             </li>
             <li class="nav-item dropdown" >
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;font-size: 13px;" v-pre>
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style=" color: #1b1e21;font-size: 13px;" v-pre>
 
                 <img @if(!empty(Auth::user()->avatar)) src="{{Auth::user()->avatar}}" @else src="/picture/images.png" @endif alt="Avatar" style="border-radius: 50%;margin-right: 10px; width: 30px; height: 30px;">
                 @if (!empty(Auth::user()->name))
@@ -143,7 +143,7 @@
 
                 @elseif (Auth::user()->role == 2)
                 <a class="dropdown-item" href="{{route('manage.order')}}">Quản lí đặt lịch</a>
-                <a class="dropdown-item" href="{{route('mypost')}}">Bài đăng của tôi</a>
+                 <a class="dropdown-item" href="{{route('mypost')}}">Đăng kí địa điểm </a>
                 @else
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#upgradeModal">Cập nhật tài khoản</a>
                 @endif

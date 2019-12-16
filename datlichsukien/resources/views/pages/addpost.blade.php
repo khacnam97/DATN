@@ -1,5 +1,5 @@
 <head>
-	<title>Thêm bài viết</title>
+	<title>Thêm địa điểm</title>
 	<link rel="stylesheet" type="text/css" href="{{asset('css/dropzone.css')}}">
 	<style type="text/css">
 		.gallery img{
@@ -36,7 +36,7 @@
 <div class="container" style="margin-top: 60px; text-align: left;">
 
 
-	<h3 class="text-center"> Thêm bài viết </h3>
+	<h3 class="text-center"> Thêm địa điểm  </h3>
 	@if (session('success'))
 	<div class="alert alert-success">
 		{{ session('success') }}
@@ -64,7 +64,7 @@
 
 			<div class="form-group col-md-6">
 				<label  for="name" class="col-form-label" > Địa chỉ(<span style="color: red">*</span>) </label>
-				<input type="text"  class="form-control @error('address') is-invalid @enderror" placeholder="Full address" name="address" id="address" required="" value="{{ old('address') }}">
+				<input type="text"  class="form-control @error('address') is-invalid @enderror" placeholder="Địa chỉ cụ thể" name="address" id="address" required="" value="{{ old('address') }}">
 				@error('address')
 				<span class="invalid-feedback" role="alert">
 					<strong>{{ $message }}</strong>
@@ -144,7 +144,7 @@
 			@enderror
 		</div>
 		<div class="form-group">
-			<label class=" col-form-label @error('title') is-invalid @enderror">Title bài đăng (<span style="color: red">*</span>)</label>
+			<label class=" col-form-label @error('title') is-invalid @enderror">Tiêu đề bài đăng (<span style="color: red">*</span>)</label>
 			<input type="text" class="form-control col-md-8" placeholder="Tiêu đề bài viết" name="title" id="title" required="" value="{{ old('title') }}" >
 			@error('title')
 			<span class="invalid-feedback" role="alert">
@@ -167,7 +167,7 @@
 			<div id="map"></div>
 		</div>
 
-		<h5 class="form-control-label"> Thêm ảnh cho bài viết (<span style="color: red">*</span>)</h5>
+		<h5 class="form-control-label"> Thêm ảnh cho địa điểm  (<span style="color: red">*</span>)</h5>
 				
         <div class="form-control-file">
 			<input multiple type="file"  id="gallery-photo-add" class="form-control" name="filename[]" required="" accept="image/x-png,image/jpeg">
@@ -181,7 +181,7 @@
 		</div>	
         
 		<div style=" margin-top: 100px; margin-bottom: 50px;">
-			<button type="submit" class="btn btn-primary" style="width: 100px;" >Đăng bài</button>
+			<button type="submit" class="btn btn-primary" style="width: 100px;" >Đăng</button>
 			<button type="reset" class="btn btn-dark" style="width: 100px;" id="reset"> Reset</button>
 		</div>
 	</form>

@@ -19,7 +19,7 @@
 		
 
 	@else
-		<h1 style="margin-top:50px;margin-bottom: 50px; text-align: center;">Những bài viết của tôi</h1>
+		<h1 style="margin-top:50px;margin-bottom: 50px; text-align: center;">Những địa điểm của tôi</h1>
 		<a href="{{route('account.addpost')}}" title="" class="btn btn-info" style="display: table;justify-content: left;margin-bottom: 50px;">Đăng kí địa điểm mới</a>
 	@endif	
 	@foreach ($data as $key=>$value)

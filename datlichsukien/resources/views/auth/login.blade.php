@@ -51,18 +51,6 @@
             
         </div>
 
-       <!--  <div class="form-group row">
-            <div class="col-md-6 offset-md-2">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                    <label class="form-check-label" for="remember">
-                        {{ __('Remember Me') }}
-                    </label>
-                </div>
-            </div>
-        </div> -->
-
         <div class="form-group row mb-0" >
             <div class="col-md-8 offset-md-2" style="text-align:center;">
                 <button type="submit" class="btn btn-lg btn-primary btn-block" form="formlogin" >
@@ -76,19 +64,9 @@
                 @endif 
             </div>
         </div>
-        <!-- <div class="form-group row mb-0" style="text-align:center;">
-            <div class="col-md-8 offset-md-2">
-
-
-                @if (Route::has('password.request'))
-                <a class="btn btn-link" href="">
-                    {{ __('Forgot Your Password?') }}
-                </a>
-                @endif
-            </div>
-        </div> -->
+    
         <div class="form-group row mb-0">
-            <div class="col-md-8 offset-md-2">
+            <div class="col-md-8 offset-md-2" style="text-align:center;">
                 
                 <button class="btn btn-link" type="button"  id="createacc">
 

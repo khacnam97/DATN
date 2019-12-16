@@ -5,7 +5,7 @@
 <div class="card mb-3">
 	
 	@if($order->count() == 0)
-		<h1 style=" text-align: center; margin-top:150px;margin-bottom: 300px; font-size: 35px;">Bạn chưa có lịch đặt nào!!</h1>
+		<h1 style=" text-align: center; margin-top:150px;margin-bottom: 200px; font-size: 35px;">Bạn chưa có lịch đặt nào!!</h1>
 	
 
 	@else
@@ -45,7 +45,7 @@
 				</thead>
 
 				<tbody>
-	@endif 
+	 
 			    @foreach ($order as $key=> $o)
 					<tr >
 						<td >{{$o->id}}</td>
@@ -77,6 +77,7 @@
 			</table>
 </div>
 <div style="display: flex;justify-content: flex-end; margin-bottom:100px; margin-right: 50px;">{!!$order->links()!!}</div>
+@endif
 <div class="modal fade" id="detailModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
       <div class="modal-content">

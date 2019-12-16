@@ -54,7 +54,7 @@
         </div>
         <button class="btn btn-lg btn-primary btn-block" form="formregister" type="submit">Đăng kí</button>
         <hr id="hr1">
-        <p>Đã có tài khoản? <button type="button" class="btn-link btn" id="signin">Đâng nhập</button></p>
+        <p>Đã có tài khoản? <button type="button" class="btn-link btn" id="signin">Đăng nhập</button></p>
     </form>
    
     </div>

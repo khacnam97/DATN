@@ -6,7 +6,7 @@
 
 @if(count($post)==0)
 <div class="container" style="margin-top: 200px;">
-	<div style="margin-bottom: 400px; margin-top: 300px;">
+	<div style="margin-bottom: 100px; margin-top: 200px;">
 		<p style="font-size: 30px;text-align: center;">Không Tìm thấy bài viết cho từ khóa <strong>{{$search}}</strong> </p>
 	</div>
 </div>
@@ -21,8 +21,7 @@
 	
 	
 	@foreach ($post as $record)
-	<div class="row" style="margin-bottom: 50px;background-color: #dee2e6;width: 100%;height:300px;justify-content: center;
-	align-items: center;">
+	<div class="row" style="margin-bottom: 50px;background-color: #dee2e6;width: 100%;height:300px;justify-content: center;align-items: center;-webkit-box-shadow: 11px 11px 5px -2px rgba(0,0,0,1);-moz-box-shadow: 11px 11px 5px -2px rgba(0,0,0,1);box-shadow: 11px 11px 5px -2px rgba(0,0,0,1)">
 	<div class="col-sm-6">
 		<img class="card-img-top" src="{{$record->photo_path}}" alt="{{$record->title}}" style="height: 280px;">
 	</div>

@@ -31,7 +31,7 @@
       </div>
       <div class="col-sm-3 " style="margin-top: 50px;">
         <ul class="list_style" style="padding: 0px;">
-          <li class="nav-head" style="margin-bottom: 30px;">TOUR AND BLOG</li>
+          <li class="nav-head" style="margin-bottom: 30px;"> BLOG</li>
           <li><a href="https://www.facebook.com/hahahhahhhah" target="_blank" style="color: #3997A6;">Our Top Tours</a></li>
           <li><a href="https://www.facebook.com/hahahhahhhah" target="_blank" style="color: #3997A6;">Blogs</a></li>
         </ul>

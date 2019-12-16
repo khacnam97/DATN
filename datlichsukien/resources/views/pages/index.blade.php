@@ -64,55 +64,25 @@
       
     </script>
     
-<div class="carousel slide" data-ride="carousel" id="demo"  >
-    <!-- Indicators -->
-    <ul class="carousel-indicators">
-        <li class="active" data-slide-to="0" data-target="#demo">
-        </li>
-        <li data-slide-to="1" data-target="#demo">
-        </li>
-        <li data-slide-to="2" data-target="#demo">
-        </li>
-    </ul>
-    <!-- The slideshow -->
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img alt="Los Angeles" height="500" src="https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/2017/12/22223742/Events-1200x630.jpg" width="1100">
-            </img>
+    <div class=""  id="demo" style="background-image:url(/picture/anhnen.jpg);
+    height: 300px; " >
+    <div class ="" style="padding-top: 150px;display: inline-block;display: flex;justify-content: center;">
+      <form class="form-inline" action="{{route('search.list')}}" method="get">   
+        <div class="row ">        
+          <div style="padding-bottom: 10px; padding-right:10px">
+           <input class="typeahead form-control"  type="text" placeholder="Nhập địa điểm tìm kiếm " name="search" required="" id="input" autocomplete="off" style="margin-bottom: 10px;width: 400px;">
+         </div>
+
+         <div>
+          <button class="btn btn-success" type="submit" id="btnsearch" style=""> <span class="font-weight-bold" >Tìm kiếm </span></button>
+          </div>
         </div>
-        <div class="carousel-item">
-            <img alt="Chicago" height="500" src="https://www.ucb.ac.uk/content/images/courses/hospitality-tourism-events/events-management-3.jpg" width="1100">
-            </img>
-        </div>
-        <div class="carousel-item">
-            <img alt="New York" height="500" src="https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/2017/12/22223742/Events-1200x630.jpg" width="1100">
-            </img>
-        </div>
+        </form>
+      </div>
+
     </div>
-    <!-- Left and right controls -->
-    <a class="carousel-control-prev" data-slide="prev" href="#demo">
-        <span class="carousel-control-prev-icon">
-        </span>
-    </a>
-    <a class="carousel-control-next" data-slide="next" href="#demo">
-        <span class="carousel-control-next-icon">
-        </span>
-    </a>
-</div>
 <div class="row">
    
-
-
-    <script type="text/javascript">
-      var path = "{{ route('autocomplete') }}";
-      $('input.typeahead').typeahead({
-        source:  function (query, process) {
-          return $.get(path, { query: query }, function (data) {
-            return process(data);
-          });
-        }
-      });
-    </script>
     <div class="col-9">
       <div class="" id="topplace">
         @if($top_rating->count() == 0)
@@ -205,32 +175,17 @@
         <div id="map" style="width:97%; margin-right: 3%;height: 300px;margin-top: 10px;"  >
           
         </div>       
-        <div style="margin-right: 10px; margin-top: 30px;">
-            <form class="form-inline" action="{{route('search.list')}}" method="get">   
-            <div class="row justify-content-center">        
-            <div style="padding-bottom: 10px; padding-right:10px">
-               <input class="typeahead form-control" style="" type="text" placeholder="Nhập địa điểm tìm kiếm " name="search" required="" id="inputsearch" autocomplete="off" style="margin-bottom: 10px">
-            </div>
-                 
-            <div>
-              <button class="btn btn-success" type="submit" id="btnsearch" style=""> Tìm kiếm </button>
-            </div>
-            </div>
-          </form>
-        </div>
-        <div>
-          <form action="{{route('search.date')}}" method="get" id="formSearchDate">
-          
-            <input required="" id="datepicker" name="date" width="276" />
-            <button type="submit" class="btn btn-success" form="formSearchDate">Tìm kiếm</button>
-          </form> 
-          <script>
-            $('#datepicker').datepicker({
-              uiLibrary: 'bootstrap4',
-              format: 'yyyy-mm-dd'
-            });
-          </script>
-        </div>
+        
     </div>
  </div>   
+ <script type="text/javascript">
+      var path = "{{ route('autocomplete') }}";
+      $('input.typeahead').typeahead({
+        source:  function (query, process) {
+          return $.get(path, { query: query }, function (data) {
+            return process(data);
+          });
+        }
+      });
+    </script>
 @endsection
