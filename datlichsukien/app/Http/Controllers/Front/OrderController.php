@@ -40,7 +40,7 @@ class OrderController extends Controller
                 'time'=>'required',
                 'detail_id'=>'required',
                 'order_date'=>'required',
-                'price_table'=>['required','integer'],
+                'price_table'=>'required',
                 'people_number'=>['required','integer']
             ],
             [

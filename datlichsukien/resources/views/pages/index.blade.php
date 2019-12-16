@@ -5,64 +5,11 @@
 <style type="text/css" media="screen"></style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBt5tJTim4lOO3ojbGARhPd1Z3O3CnE-C8&libraries=places&callback=initMap"async defer></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript">
-  
-   var map, infoWindow;
-   var markers = [];
-   function initMap(){
-     map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: -34.397, lng: 150.644},
-      zoom: 16,
-    });
-     infoWindow = new google.maps.InfoWindow;
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-            
-             var restaurant = <?php print_r(json_encode($restaurant)) ?>;
-             var marker = new GMaps({
-              el: '#map',
-              center: pos,
-              zoom:12
-            });
-            
-            marker.addMarker({
-             position: pos,
-             title:'vị trí của bạn',
-             infoWindow: {
-              content: 'vị trí của bạn'
-            }  
-          });
-            $.each( restaurant, function( index, value ){
-              marker.addMarker({
-                lat: value.lat,
-                lng: value.longt,
-                title: value.name,
-                infoWindow: {
-                  content: 'Tên địa điểm :'+value.name+'<br>Địa chỉ :'+value.address
-                }       
-              });
-             });
-            
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-      }
-      
-    </script>
+
     
     <div class=""  id="demo" style="background-image:url(/picture/anhnen.jpg);
     height: 300px; " >
@@ -177,7 +124,8 @@
         </div>       
         
     </div>
- </div>   
+ </div> 
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>  
  <script type="text/javascript">
       var path = "{{ route('autocomplete') }}";
       $('input.typeahead').typeahead({
@@ -187,5 +135,59 @@
           });
         }
       });
+    </script>
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBt5tJTim4lOO3ojbGARhPd1Z3O3CnE-C8&libraries=places&callback=initMap"async defer></script>
+ <script type="text/javascript">
+  
+   var map, infoWindow;
+   var markers = [];
+   function initMap(){
+     map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: -34.397, lng: 150.644},
+      zoom: 16,
+    });
+     infoWindow = new google.maps.InfoWindow;
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            
+             var restaurant = <?php print_r(json_encode($restaurant)) ?>;
+             var marker = new GMaps({
+              el: '#map',
+              center: pos,
+              zoom:12
+            });
+            
+            marker.addMarker({
+             position: pos,
+             title:'vị trí của bạn',
+             infoWindow: {
+              content: 'vị trí của bạn'
+            }  
+          });
+            $.each( restaurant, function( index, value ){
+              marker.addMarker({
+                lat: value.lat,
+                lng: value.longt,
+                title: value.name,
+                infoWindow: {
+                  content: 'Tên địa điểm :'+value.name+'<br>Địa chỉ :'+value.address
+                }       
+              });
+             });
+            
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
+      
     </script>
 @endsection
