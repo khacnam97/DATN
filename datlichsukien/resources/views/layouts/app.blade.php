@@ -1,4 +1,4 @@
-﻿OCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -104,7 +104,9 @@
                 <a href="{{$notification->data['link']}}" id="notify" class="dropdown-item" style="background-color:lightgrey"> {{$notification->data['message']}}</a>
                 @endif
                 @endforeach
-                 <a href="" class="dropdown-item" style="color:black; text-decoration:underline; background-color: #3490dc">Xem thêm</a>
+                @if(Auth::user()->Notifications->count()>10)
+                 <a href="{{route('notification')}}" class="dropdown-item" style="color:black; text-decoration:underline; background-color: #3490dc">Xem thêm</a>
+                @endif
               </div>
               @endif
             </li>
