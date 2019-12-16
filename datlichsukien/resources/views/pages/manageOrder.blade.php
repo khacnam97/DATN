@@ -5,7 +5,7 @@
 <div class="card mb-3">
 	
 	@if($order->count() == 0)
-		<h1 style=" text-align: center; margin-top:150px;margin-bottom: 200px; font-size: 35px;">Bạn chưa có lịch đặt nào!!</h1>
+		<h1 style=" text-align: center; margin-top:150px;margin-bottom: 250px; font-size: 35px;">Bạn chưa có lịch đặt nào!!</h1>
 	
 
 	@else

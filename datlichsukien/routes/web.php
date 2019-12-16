@@ -111,6 +111,7 @@ Route::get('/home', function(){
 	Route::post('/mypost/{id}/delete','PostController@delete')->name('mypost.delete');
     
     Route::post('/upgrade', 'FrontController@upgrade')->name('upgrade');
+    Route::get('/notification','FrontController@notification')->name('notification');
 
 	Route::group(['prefix' => 'account', 'middleware' => 'auth'],function(){
 		Route::get('/post', 'PostController@showformAddPost')->name('account.addpost');
@@ -127,6 +128,7 @@ Route::get('/home', function(){
 		Route::get('/myorder','OrderController@myOrder')->name('myorder');
 		Route::get('/delete/{id}','OrderController@delete')->name('myorder.delete');
 		Route::post('/edit','OrderController@edit')->name('myorder.edit');
+
 		
 	});
 });

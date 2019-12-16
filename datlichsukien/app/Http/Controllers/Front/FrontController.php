@@ -550,4 +550,8 @@ class FrontController extends Controller
 		$user->save();
 		return redirect('/');
 	}
+	public function notification()
+	{
+		return view('pages.notification');
+	}
 }

@@ -32,7 +32,7 @@ class OrderController extends Controller
                 'address'=>'required',
                 'order_time'=>'required',
                 'order_date'=>'required',
-                'price_table'=>['required','integer'],
+                'price_table'=>'required',
                 'people_number'=>['required','integer']
             ],
             [
