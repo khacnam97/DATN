@@ -174,7 +174,7 @@ class OrderController extends Controller
                   ['orders.user_id','=',$id],
                   ['photos.flag', '=', '1'],
                   ])
-                  ->Paginate(10);
+                ->Paginate(10);
         // dd($order);
         return view('pages.myOrder',['order'=>$order]);
     }
