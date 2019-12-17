@@ -117,13 +117,189 @@ class FrontController extends Controller
 
          $ep_dateAvalible=explode ('"',$dateAvalible);
         
-         $weekday1 = date('l', strtotime($strDay7));
-         $weekday2 = date('l', strtotime($strDay8));
-         $weekday3 = date('l', strtotime($strDay9));
-         $weekday4 = date('l', strtotime($strDay10));
-         $weekday5 = date('l', strtotime($strDay11));
-         $weekday6 = date('l', strtotime($strDay12));
-         $weekday7 = date('l', strtotime($strDay13));
+         $weekday11 = date('l', strtotime($strDay7));
+         $weekday22 = date('l', strtotime($strDay8));
+         $weekday33 = date('l', strtotime($strDay9));
+         $weekday44 = date('l', strtotime($strDay10));
+         $weekday55 = date('l', strtotime($strDay11));
+         $weekday66 = date('l', strtotime($strDay12));
+         $weekday77 = date('l', strtotime($strDay13));
+         
+         switch($weekday11) {
+		  case 'Monday':  // if (x === 'value1')
+		    $weekday1='Thứ 2';
+		    break;
+
+		  case 'Tuesday':  // if (x === 'value2')
+		     $weekday1='Thứ 3';
+		    break;
+          case 'Wednesday':  // if (x === 'value2')
+		     $weekday1='Thứ 4';
+		    break;
+		  case 'Thursday':  // if (x === 'value2')
+		     $weekday1='Thứ 5';
+		    break;
+		  case 'Friday':  // if (x === 'value2')
+		     $weekday1='Thứ 6';
+		    break;
+          case 'Saturday':  // if (x === 'value2')
+		     $weekday1='Thứ 7';
+		    break;
+
+		  default:
+		     $weekday1='Chủ nhật';
+		    break;
+		}
+		 switch($weekday22) {
+		  case 'Monday':  // if (x === 'value1')
+		    $weekday2='Thứ 2';
+		    break;
+
+		  case 'Tuesday':  // if (x === 'value2')
+		     $weekday2='Thứ 3';
+		    break;
+          case 'Wednesday':  // if (x === 'value2')
+		     $weekday2='Thứ 4';
+		    break;
+		  case 'Thursday':  // if (x === 'value2')
+		     $weekday2='Thứ 5';
+		    break;
+		  case 'Friday':  // if (x === 'value2')
+		     $weekday2='Thứ 6';
+		    break;
+          case 'Saturday':  // if (x === 'value2')
+		     $weekday2='Thứ 7';
+		    break;
+
+		  default:
+		     $weekday2='Chủ nhật';
+		    break;
+		}
+		 switch($weekday33) {
+		  case 'Monday':  // if (x === 'value1')
+		    $weekday3='Thứ 2';
+		    break;
+
+		  case 'Tuesday':  // if (x === 'value2')
+		     $weekday3='Thứ 3';
+		    break;
+          case 'Wednesday':  // if (x === 'value2')
+		     $weekday3='Thứ 4';
+		    break;
+		  case 'Thursday':  // if (x === 'value2')
+		     $weekday3='Thứ 5';
+		    break;
+		  case 'Friday':  // if (x === 'value2')
+		     $weekday3='Thứ 6';
+		    break;
+          case 'Saturday':  // if (x === 'value2')
+		     $weekday3='Thứ 7';
+		    break;
+
+		  default:
+		     $weekday3='Chủ nhật';
+		    break;
+		}
+		 switch($weekday44) {
+		  case 'Monday':  // if (x === 'value1')
+		    $weekday4='Thứ 2';
+		    break;
+
+		  case 'Tuesday':  // if (x === 'value2')
+		     $weekday4='Thứ 3';
+		    break;
+          case 'Wednesday':  // if (x === 'value2')
+		     $weekday4='Thứ 4';
+		    break;
+		  case 'Thursday':  // if (x === 'value2')
+		     $weekday4='Thứ 5';
+		    break;
+		  case 'Friday':  // if (x === 'value2')
+		     $weekday4='Thứ 6';
+		    break;
+          case 'Saturday':  // if (x === 'value2')
+		     $weekday4='Thứ 7';
+		    break;
+
+		  default:
+		     $weekday4='Chủ nhật';
+		    break;
+		}
+		 switch($weekday55) {
+		  case 'Monday':  // if (x === 'value1')
+		    $weekday5='Thứ 2';
+		    break;
+
+		  case 'Tuesday':  // if (x === 'value2')
+		     $weekday5='Thứ 3';
+		    break;
+          case 'Wednesday':  // if (x === 'value2')
+		     $weekday5='Thứ 4';
+		    break;
+		  case 'Thursday':  // if (x === 'value2')
+		     $weekday5='Thứ 5';
+		    break;
+		  case 'Friday':  // if (x === 'value2')
+		     $weekday5='Thứ 6';
+		    break;
+          case 'Saturday':  // if (x === 'value2')
+		     $weekday5='Thứ 7';
+		    break;
+
+		  default:
+		     $weekday5='Chủ nhật';
+		    break;
+		}
+		 switch($weekday66) {
+		  case 'Monday':  // if (x === 'value1')
+		    $weekday6='Thứ 2';
+		    break;
+
+		  case 'Tuesday':  // if (x === 'value2')
+		     $weekday6='Thứ 3';
+		    break;
+          case 'Wednesday':  // if (x === 'value2')
+		     $weekday6='Thứ 4';
+		    break;
+		  case 'Thursday':  // if (x === 'value2')
+		     $weekday6='Thứ 5';
+		    break;
+		  case 'Friday':  // if (x === 'value2')
+		     $weekday6='Thứ 6';
+		    break;
+          case 'Saturday':  // if (x === 'value2')
+		     $weekday6='Thứ 7';
+		    break;
+
+		  default:
+		     $weekday6='Chủ nhật';
+		    break;
+		}
+		 switch($weekday77) {
+		  case 'Monday':  // if (x === 'value1')
+		    $weekday7='Thứ 2';
+		    break;
+
+		  case 'Tuesday':  // if (x === 'value2')
+		     $weekday7='Thứ 3';
+		    break;
+          case 'Wednesday':  // if (x === 'value2')
+		     $weekday7='Thứ 4';
+		    break;
+		  case 'Thursday':  // if (x === 'value2')
+		     $weekday7='Thứ 5';
+		    break;
+		  case 'Friday':  // if (x === 'value2')
+		     $weekday7='Thứ 6';
+		    break;
+          case 'Saturday':  // if (x === 'value2')
+		     $weekday7='Thứ 7';
+		    break;
+
+		  default:
+		     $weekday7='Chủ nhật';
+		    break;
+		}
 
          $detailAvalible1 = DB::table('orders')
                 ->join('restaurants','restaurants.id','=','orders.restaurant_id')
