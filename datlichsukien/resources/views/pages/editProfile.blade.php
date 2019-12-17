@@ -37,7 +37,7 @@
 					<input id="file-input" type="file"  name="avatar" style="display: none;" {{-- onchange="readURL(this);" --}} />
 				</div>
 					<div class="form-group row">
-						<label class="col-sm-3 col-form-label form-control-label">Name</label>
+						<label class="col-sm-3 col-form-label form-control-label">Tên</label>
 						<div class="col-sm-6">
 							<input class="form-control" type="text" value="{{Auth::user()->name}}" name ="name">
 						</div>
@@ -49,27 +49,27 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-sm-3 col-form-label form-control-label">Birthday</label>
+						<label class="col-sm-3 col-form-label form-control-label">Ngày sinh</label>
 						<div class="col-sm-6">
 							<input class="form-control" type="date" value="{{Auth::user()->birthday}}" id="example-date-input" name ="birthday">
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-sm-3 col-form-label form-control-label">Addess</label>
+						<label class="col-sm-3 col-form-label form-control-label">Địa chỉ</label>
 						<div class="col-sm-6">
 							<input class="form-control" type="text" value="{{Auth::user()->address}}" name ="address">
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-sm-3 col-form-label form-control-label">Phone</label>
+						<label class="col-sm-3 col-form-label form-control-label">Số điện thoại</label>
 						<div class="col-sm-6">
 							<input class="form-control" type="text" value="{{Auth::user()->phone}}" name ="phone">
 						</div>
 					</div>
 					<div class="form-group row" style="margin-bottom: 30px;">
 						<div class="col" style="display: flex;justify-content: center;">
-							<button class="btn btn-info" style="margin-right: 10px; width: 100px;">Update</button>
-							<a href="{{ url('profile') }}" title="" style="width: 100px;" id="edit_button"class="btn btn-danger">Cancel</a>
+							<button class="btn btn-info" style="margin-right: 10px; width: 100px;">Cập nhập</button>
+							<a href="{{ url('profile') }}" title="" style="width: 100px;" id="edit_button"class="btn btn-danger">Thoát</a>
 						</div>
 					</div>
 				</form>
