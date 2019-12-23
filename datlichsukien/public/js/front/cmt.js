@@ -62,7 +62,7 @@ $(document).ready(function(){
     for(var i = 0; i<bb.length-1; i++)
     {
       tem = bb[i].split(':')
-      aaa += ("<input  type='radio' name='detail_id' value = "+tem[0]+"> "+tem[1]+'<span style="width: 110px; margin-left:90px;">' +tem[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[3]+ '</span> '+"<br>")
+      aaa += ("<input  type='radio' name='detail_id' value = "+tem[0]+"> "+tem[1]+'<span style="width: 110px; margin-left:90px;">' +tem[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[3]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[4]+ '</span> '+"<br>")
     }
     $('#arrdetail').html(aaa)
 
@@ -73,7 +73,7 @@ $(document).ready(function(){
     for(var i = 0; i<bb1.length-1; i++)
     {
       tem1 = bb1[i].split(':')
-      aaa1 += ("<input   disabled type='radio' name='detail_id' value = "+tem1[0]+"> "+tem1[1]+'<span style="width: 110px; margin-left:90px;">' +tem1[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem1[3]+ '</span> '+"<br>")
+      aaa1 += ("<input   disabled type='radio' name='detail_id' value = "+tem1[0]+"> "+tem1[1]+'<span style="width: 110px; margin-left:90px;">' +tem1[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem1[3]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[4]+ '</span> '+"<br>")
     }
     $('#arrdetail1').html(aaa1)
   })
@@ -112,7 +112,7 @@ $(document).ready(function(){
     for(var i = 0; i<bb.length-1; i++)
     {
       tem = bb[i].split(':')
-      aaa += ("<input  type='radio' name='detail_id' value = "+tem[0]+"> "+tem[1]+'<span style="width: 110px; margin-left:90px;">' +tem[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[3]+ '</span> '+"<br>")
+      aaa += ("<input  type='radio' name='detail_id' value = "+tem[0]+"> "+tem[1]+'<span style="width: 110px; margin-left:90px;">' +tem[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[3]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[4]+ '</span> '+"<br>")
     }
     $('#arrdetail').html(aaa)
 
@@ -123,7 +123,7 @@ $(document).ready(function(){
     for(var i = 0; i<bb1.length-1; i++)
     {
       tem1 = bb1[i].split(':')
-      aaa1 += ("<input   disabled type='radio' name='detail_id' value = "+tem1[0]+"> "+tem1[1]+'<span style="width: 110px; margin-left:90px;">' +tem1[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem1[3]+ '</span> '+"<br>")
+      aaa1 += ("<input   disabled type='radio' name='detail_id' value = "+tem1[0]+"> "+tem1[1]+'<span style="width: 110px; margin-left:90px;">' +tem1[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem1[3]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[4]+ '</span> '+"<br>")
     }
     $('#arrdetail1').html(aaa1)
   })
@@ -137,7 +137,7 @@ $(document).ready(function(){
     for(var i = 0; i<bb.length-1; i++)
     {
       tem = bb[i].split(':')
-      aaa += ("<input  type='radio' name='detail_id' value = "+tem[0]+"> "+tem[1]+'<span style="width: 110px; margin-left:90px;">' +tem[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[3]+ '</span> '+"<br>")
+      aaa += ("<input  type='radio' name='detail_id' value = "+tem[0]+"> "+tem[1]+'<span style="width: 110px; margin-left:90px;">' +tem[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[3]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[4]+ '</span> '+"<br>")
     }
     $('#arrdetail').html(aaa)
 
@@ -148,7 +148,7 @@ $(document).ready(function(){
     for(var i = 0; i<bb1.length-1; i++)
     {
       tem1 = bb1[i].split(':')
-      aaa1 += ("<input   disabled type='radio' name='detail_id' value = "+tem1[0]+"> "+tem1[1]+'<span style="width: 110px; margin-left:90px;">' +tem1[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem1[3]+ '</span> '+"<br>")
+      aaa1 += ("<input   disabled type='radio' name='detail_id' value = "+tem1[0]+"> "+tem1[1]+'<span style="width: 110px; margin-left:90px;">' +tem1[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem1[3]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[4]+ '</span> '+"<br>")
     }
     $('#arrdetail1').html(aaa1)
   })
@@ -162,7 +162,7 @@ $(document).ready(function(){
     for(var i = 0; i<bb.length-1; i++)
     {
       tem = bb[i].split(':')
-      aaa += ("<input  type='radio' name='detail_id' value = "+tem[0]+"> "+tem[1]+'<span style="width: 110px; margin-left:90px;">' +tem[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[3]+ '</span> '+"<br>")
+      aaa += ("<input  type='radio' name='detail_id' value = "+tem[0]+"> "+tem[1]+'<span style="width: 110px; margin-left:90px;">' +tem[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[3]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[4]+ '</span> '+"<br>")
     }
     $('#arrdetail').html(aaa)
 
@@ -173,7 +173,7 @@ $(document).ready(function(){
     for(var i = 0; i<bb1.length-1; i++)
     {
       tem1 = bb1[i].split(':')
-      aaa1 += ("<input   disabled type='radio' name='detail_id' value = "+tem1[0]+"> "+tem1[1]+'<span style="width: 110px; margin-left:90px;">' +tem1[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem1[3]+ '</span> '+"<br>")
+      aaa1 += ("<input   disabled type='radio' name='detail_id' value = "+tem1[0]+"> "+tem1[1]+'<span style="width: 110px; margin-left:90px;">' +tem1[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem1[3]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[4]+ '</span> '+"<br>")
     }
     $('#arrdetail1').html(aaa1)
   })
@@ -187,7 +187,7 @@ $(document).ready(function(){
     for(var i = 0; i<bb.length-1; i++)
     {
       tem = bb[i].split(':')
-      aaa += ("<input  type='radio' name='detail_id' value = "+tem[0]+"> "+tem[1]+'<span style="width: 110px; margin-left:90px;">' +tem[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[3]+ '</span> '+"<br>")
+      aaa += ("<input  type='radio' name='detail_id' value = "+tem[0]+"> "+tem[1]+'<span style="width: 110px; margin-left:90px;">' +tem[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[3]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[4]+ '</span> '+"<br>")
     }
     $('#arrdetail').html(aaa)
 
@@ -198,7 +198,7 @@ $(document).ready(function(){
     for(var i = 0; i<bb1.length-1; i++)
     {
       tem1 = bb1[i].split(':')
-      aaa1 += ("<input   disabled type='radio' name='detail_id' value = "+tem1[0]+"> "+tem1[1]+'<span style="width: 110px; margin-left:90px;">' +tem1[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem1[3]+ '</span> '+"<br>")
+      aaa1 += ("<input   disabled type='radio' name='detail_id' value = "+tem1[0]+"> "+tem1[1]+'<span style="width: 110px; margin-left:90px;">' +tem1[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem1[3]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[4]+ '</span> '+"<br>")
     }
     $('#arrdetail1').html(aaa1)
   })
@@ -212,7 +212,7 @@ $(document).ready(function(){
     for(var i = 0; i<bb.length-1; i++)
     {
       tem = bb[i].split(':')
-      aaa += ("<input  type='radio' name='detail_id' value = "+tem[0]+"> "+tem[1]+'<span style="width: 110px; margin-left:90px;">' +tem[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[3]+ '</span> '+"<br>")
+      aaa += ("<input  type='radio' name='detail_id' value = "+tem[0]+"> "+tem[1]+'<span style="width: 110px; margin-left:90px;">' +tem[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[3]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[4]+ '</span> '+"<br>")
     }
     $('#arrdetail').html(aaa)
 
@@ -223,7 +223,7 @@ $(document).ready(function(){
     for(var i = 0; i<bb1.length-1; i++)
     {
       tem1 = bb1[i].split(':')
-      aaa1 += ("<input   disabled type='radio' name='detail_id' value = "+tem1[0]+"> "+tem1[1]+'<span style="width: 110px; margin-left:90px;">' +tem1[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem1[3]+ '</span> '+"<br>")
+      aaa1 += ("<input   disabled type='radio' name='detail_id' value = "+tem1[0]+"> "+tem1[1]+'<span style="width: 110px; margin-left:90px;">' +tem1[2]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem1[3]+ '</span> '+'<span style="width: 110px; margin-left:90px;">' +tem[4]+ '</span> '+"<br>")
     }
     $('#arrdetail1').html(aaa1)
   })

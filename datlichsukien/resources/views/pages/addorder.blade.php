@@ -27,20 +27,21 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label form-control-label">Thời gian tổ chức</label>
             
-              <div class="col-sm-6" >
+              <div class="col-sm-8" >
                  <input class="form-control" type="text" name="order_date" id="test" readonly>
               </div>    
           </div>
           <div class="form-group row">
             <label class="col-sm-3 col-form-label form-control-label">Chọn loại phòng</label>
-            <div class="col">
+            <div class="col-8">
               
-              <div class="col-sm-8">
+              <div class="col-sm-9">
                 <div > 
                   <label style="width: 110px; ">Tên khu</label> 
                   <label style="width: 110px;">Dịch vụ</label>
-                  <label style="width: 110px;">Sức chứa</label></div>
-                <div class="dropdown-divider"></div>
+                  <label style="width: 110px;">Sức chứa</label>
+                  <label style="width: 110px;">Giá của bàn</label></div>
+                <div class="dropdown-divider col-sm-8"></div>
                 <div id="arrdetail">
                   s
                 </div>
@@ -55,49 +56,49 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label form-control-label">Thời gian tổ chức</label>
             
-              <div class="col-sm-6" >
-                <input  type="text" class="form-control" name="time" required="" id="timepicker" >
+              <div class="col-sm-8" >
+                <input type="text" class="form-control" name="time" required="" id="timepicker" >
               </div>
            
           </div>
           
           <div class="form-group row">
             <label class="col-sm-3 col-form-label form-control-label">Số lượng người</label>
-            <div class="col-sm-6">
+            <div class="col-sm-8">
               <input class="form-control" type="text" name="people_number" value="" placeholder="Số lượng người tham dự" required="">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-3 col-form-label form-control-label">Mức giá mỗi bàn</label>
-            <div class="col-sm-6">
+            <div class="col-sm-8">
               <input class="form-control" type="text" value="" name="price_table" placeholder="VNĐ" required="">
             </div>
           </div>
           @if(Auth::check()) 
           <div class="form-group row">
             <label class="col-sm-3 col-form-label form-control-label">Địa chỉ</label>
-            <div class="col-sm-6">
+            <div class="col-sm-8">
               <input class="form-control" type="text" name="address" placeholder="Địa chỉ của bạn"  value="{{Auth::user()->address}}" required="" >
             </div>
           </div>
           
           <div class="form-group row">
             <label class="col-sm-3 col-form-label form-control-label">Số điện thoại</label>
-            <div class="col-sm-6">
+            <div class="col-sm-8">
               <input class="form-control" name="phone" type="text" placeholder="Số điện thoại "  value="{{Auth::user()->phone}}" required="">
             </div>
           </div>
           @else
           <div class="form-group row">
             <label class="col-sm-3 col-form-label form-control-label">Địa chỉ</label>
-            <div class="col-sm-6">
+            <div class="col-sm-8">
               <input class="form-control" type="text" name="address" placeholder="Địa chỉ của bạn" value="" required="" >
             </div>
           </div>
           
           <div class="form-group row">
             <label class="col-sm-3 col-form-label form-control-label">Số điện thoại</label>
-            <div class="col-sm-6">
+            <div class="col-sm-8">
               <input class="form-control" name="phone" type="text" placeholder="Số điện thoại " value="" required="">
             </div>
           </div>

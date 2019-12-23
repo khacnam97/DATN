@@ -27,17 +27,21 @@
        @foreach ($detail as $record)
         <div class="input-group control-group  form-row" >
       
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-3">
              <label>Tên khu</label>
             <input type="text"  class="form-control" name="room[]" value="{{$record->room}}" placeholder="Tên khu" required="" disabled="">
           </div>
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-3">
              <label>Dịch vụ</label>
             <input type="text" class="form-control" name="service[]" value="{{$record->service}}" placeholder="Dịch vụ" required="" disabled="">
           </div>
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-3">
              <label>Sức chứa</label>
             <input type="text"  class="form-control" name="peopleNumber[]" value="{{$record->people_number}}" placeholder="Sức chứa của phòng" required="" disabled="">
+          </div>
+          <div class="form-group col-md-3">
+             <label>Giá mỗi bàn</label>
+            <input type="text"  class="form-control" name="price[]" value="{{$record->price}}" placeholder="Giá mỗi bàn" required="" disabled="">
           </div>
         </div>
         @endforeach
