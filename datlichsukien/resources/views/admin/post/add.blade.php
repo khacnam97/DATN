@@ -75,7 +75,7 @@
         
         <div class="input-group control-group increment form-row" >
 
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-3">
         <input type="text"  class="form-control" name="room[]" placeholder="Tên khu" value="{{ old('room[]') }}" required="" >
       </div>
             <div class="form-group col-md-3">
@@ -84,6 +84,9 @@
             <div class="form-group col-md-3">
               <input type="text"  class="form-control" name="peopleNumber[]" placeholder="Sức chứa của phòng" required="" value="{{ old('peopleNumber[]') }}">
             </div>
+            <div class="form-group col-md-2">
+              <input type="text"  class="form-control" name="price[]" placeholder="Giá mỗi bàn" required="" value="{{ old('price[]') }}">
+            </div>
           
           <div class="input-group-btn">  
             <button class="btn btn-primary add" type="button"><i class="glyphicon glyphicon-plus" id="add"></i>Thêm </button>
@@ -91,7 +94,7 @@
         </div>
         <div class=" clone" style="overflow: hidden;">
           <div class="control-group input-group form-row" style="margin-top:10px">
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
         <input type="text" name="room[]" class="form-control"  placeholder="Tên khu"  >
       </div>
             <div class="form-group col-md-3">
@@ -99,6 +102,9 @@
             </div>
             <div class="form-group col-md-3">
               <input type="text" name="peopleNumber[]" class="form-control" placeholder="Sức chứa của phòng">
+            </div>
+            <div class="form-group col-md-2">
+              <input type="text" name="price[]" class="form-control" placeholder="Giá mỗi bàn">
             </div>
             <div class="input-group-btn"> 
               <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove" id="removed"></i> Xóa</button>

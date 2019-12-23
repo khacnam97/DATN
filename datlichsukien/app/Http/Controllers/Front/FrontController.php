@@ -466,7 +466,7 @@ class FrontController extends Controller
 				->join('restaurants','restaurants.id','=','orders.restaurant_id')
 				->join('posts','posts.restaurant_id','=','restaurants.id')
 				->join('details','details.id','=','orders.detail_id')
-				->select('orders.detail_id','details.id','details.room','details.service','details.people_number')
+				->select('orders.detail_id','details.id','details.room','details.service','details.people_number','details.price')
 				->where([
 					['order_date', '=', $strDay7],
 					['posts.id', '=', $id]
@@ -475,11 +475,11 @@ class FrontController extends Controller
 				$arrdetailorder = '';
 				foreach ($iddetailorder as $d ) {
 			// dd($d.id);	
-					$arrdetailorder = $arrdetailorder . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .','; 
+					$arrdetailorder = $arrdetailorder . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .':'. (string)$d->price .','; 
 				}
 		//dd($iddetailorder);
 				$iddetail =DB::table('details')
-				->select('details.id','details.room','details.service','details.people_number')
+				->select('details.id','details.room','details.service','details.people_number','details.price')
 				->where('details.restaurant_id', '=', $idrestaurant)
 				->whereNotIn('id', DB::table('orders')
 					->join('restaurants','restaurants.id','=','orders.restaurant_id')
@@ -491,14 +491,14 @@ class FrontController extends Controller
 				->get();
 				$arr = '';
 				foreach ($iddetail as $d ) {	
-					$arr = $arr . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .','; 
+					$arr = $arr . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .':'.(string)$d->price .','; 
 				}
 		
 				$iddetailorder1 = DB::table('orders')
 				->join('restaurants','restaurants.id','=','orders.restaurant_id')
 				->join('posts','posts.restaurant_id','=','restaurants.id')
 				->join('details','details.id','=','orders.detail_id')
-				->select('orders.detail_id','details.id','details.room','details.service','details.people_number')
+				->select('orders.detail_id','details.id','details.room','details.service','details.people_number','details.price')
 				->where([
 					['order_date', '=', $strDay8],
 					['posts.id', '=', $id]
@@ -507,10 +507,10 @@ class FrontController extends Controller
 	
 				$arrdetailorder1 = '';
 				foreach ($iddetailorder1 as $d ) {	
-					$arrdetailorder1 = $arrdetailorder1 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .','; 
+					$arrdetailorder1 = $arrdetailorder1 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .':'.(string)$d->price .','; 
 				}
 				$iddetail1 =DB::table('details')
-				->select('details.id','details.room','details.service','details.people_number')
+				->select('details.id','details.room','details.service','details.people_number','details.price')
 				->where('details.restaurant_id', '=', $idrestaurant)
 				->whereNotIn('id', DB::table('orders')
 					->join('restaurants','restaurants.id','=','orders.restaurant_id')
@@ -522,14 +522,14 @@ class FrontController extends Controller
 				->get();
 				$arr1 = '';
 				foreach ($iddetail1 as $d ) {	
-					$arr1 = $arr1 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .','; 
+					$arr1 = $arr1 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .':'.(string)$d->price .','; 
 				}
 
 				$iddetailorder2 = DB::table('orders')
 				->join('restaurants','restaurants.id','=','orders.restaurant_id')
 				->join('posts','posts.restaurant_id','=','restaurants.id')
 				->join('details','details.id','=','orders.detail_id')
-				->select('orders.detail_id','details.id','details.room','details.service','details.people_number')
+				->select('orders.detail_id','details.id','details.room','details.service','details.people_number','details.price')
 				->where([
 					['order_date', '=', $strDay9],
 					['posts.id', '=', $id]
@@ -538,10 +538,10 @@ class FrontController extends Controller
 	
 				$arrdetailorder2 = '';
 				foreach ($iddetailorder2 as $d ) {	
-					$arrdetailorder2 = $arrdetailorder2 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .','; 
+					$arrdetailorder2 = $arrdetailorder2 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .':'.(string)$d->price .','; 
 				}
 				$iddetail2 =DB::table('details')
-				->select('details.id','details.room','details.service','details.people_number')
+				->select('details.id','details.room','details.service','details.people_number','details.price')
 				->where('details.restaurant_id', '=', $idrestaurant)
 				->whereNotIn('id', DB::table('orders')
 					->join('restaurants','restaurants.id','=','orders.restaurant_id')
@@ -553,14 +553,14 @@ class FrontController extends Controller
 				->get();
 				$arr2 = '';
 				foreach ($iddetail2 as $d ) {	
-					$arr2 = $arr2 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .','; 
+					$arr2 = $arr2 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .':'.(string)$d->price .','; 
 				}
 
 				$iddetailorder3 = DB::table('orders')
 				->join('restaurants','restaurants.id','=','orders.restaurant_id')
 				->join('posts','posts.restaurant_id','=','restaurants.id')
 				->join('details','details.id','=','orders.detail_id')
-				->select('orders.detail_id','details.id','details.room','details.service','details.people_number')
+				->select('orders.detail_id','details.id','details.room','details.service','details.people_number','details.price')
 				->where([
 					['order_date', '=', $strDay10],
 					['posts.id', '=', $id]
@@ -569,10 +569,10 @@ class FrontController extends Controller
 	
 				$arrdetailorder3 = '';
 				foreach ($iddetailorder3 as $d ) {	
-					$arrdetailorder3 = $arrdetailorder3 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .','; 
+					$arrdetailorder3 = $arrdetailorder3 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .':'.(string)$d->price .','; 
 				}
 				$iddetail3 =DB::table('details')
-				->select('details.id','details.room','details.service','details.people_number')
+				->select('details.id','details.room','details.service','details.people_number','details.price')
 				->where('details.restaurant_id', '=', $idrestaurant)
 				->whereNotIn('id', DB::table('orders')
 					->join('restaurants','restaurants.id','=','orders.restaurant_id')
@@ -584,14 +584,14 @@ class FrontController extends Controller
 				->get();
 				$arr3 = '';
 				foreach ($iddetail3 as $d ) {	
-					$arr3 = $arr3 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .','; 
+					$arr3 = $arr3 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .':'.(string)$d->price .','; 
 				}
 
 				$iddetailorder4 = DB::table('orders')
 				->join('restaurants','restaurants.id','=','orders.restaurant_id')
 				->join('posts','posts.restaurant_id','=','restaurants.id')
 				->join('details','details.id','=','orders.detail_id')
-				->select('orders.detail_id','details.id','details.room','details.service','details.people_number')
+				->select('orders.detail_id','details.id','details.room','details.service','details.people_number','details.price')
 				->where([
 					['order_date', '=', $strDay11],
 					['posts.id', '=', $id]
@@ -600,10 +600,10 @@ class FrontController extends Controller
 	
 				$arrdetailorder4 = '';
 				foreach ($iddetailorder4 as $d ) {	
-					$arrdetailorder4 = $arrdetailorder4 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .','; 
+					$arrdetailorder4 = $arrdetailorder4 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .':'.(string)$d->price .','; 
 				}
 				$iddetail4 =DB::table('details')
-				->select('details.id','details.room','details.service','details.people_number')
+				->select('details.id','details.room','details.service','details.people_number','details.price')
 				->where('details.restaurant_id', '=', $idrestaurant)
 				->whereNotIn('id', DB::table('orders')
 					->join('restaurants','restaurants.id','=','orders.restaurant_id')
@@ -615,14 +615,14 @@ class FrontController extends Controller
 				->get();
 				$arr4 = '';
 				foreach ($iddetail4 as $d ) {	
-					$arr4 = $arr4 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .','; 
+					$arr4 = $arr4 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .':'.(string)$d->price .','; 
 				}
                 
                 $iddetailorder5 = DB::table('orders')
 				->join('restaurants','restaurants.id','=','orders.restaurant_id')
 				->join('posts','posts.restaurant_id','=','restaurants.id')
 				->join('details','details.id','=','orders.detail_id')
-				->select('orders.detail_id','details.id','details.room','details.service','details.people_number')
+				->select('orders.detail_id','details.id','details.room','details.service','details.people_number','details.price')
 				->where([
 					['order_date', '=', $strDay12],
 					['posts.id', '=', $id]
@@ -631,10 +631,10 @@ class FrontController extends Controller
 	
 				$arrdetailorder5 = '';
 				foreach ($iddetailorder5 as $d ) {	
-					$arrdetailorder5 = $arrdetailorder5 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .','; 
+					$arrdetailorder5 = $arrdetailorder5 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .':'.(string)$d->price .','; 
 				}
 				$iddetail5 =DB::table('details')
-				->select('details.id','details.room','details.service','details.people_number')
+				->select('details.id','details.room','details.service','details.people_number','details.price')
 				->where('details.restaurant_id', '=', $idrestaurant)
 				->whereNotIn('id', DB::table('orders')
 					->join('restaurants','restaurants.id','=','orders.restaurant_id')
@@ -646,14 +646,14 @@ class FrontController extends Controller
 				->get();
 				$arr5 = '';
 				foreach ($iddetail5 as $d ) {	
-					$arr5 = $arr5 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .','; 
+					$arr5 = $arr5 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .':'.(string)$d->price .','; 
 				}
 
 				$iddetailorder6 = DB::table('orders')
 				->join('restaurants','restaurants.id','=','orders.restaurant_id')
 				->join('posts','posts.restaurant_id','=','restaurants.id')
 				->join('details','details.id','=','orders.detail_id')
-				->select('orders.detail_id','details.id','details.room','details.service','details.people_number')
+				->select('orders.detail_id','details.id','details.room','details.service','details.people_number','details.price')
 				->where([
 					['order_date', '=', $strDay13],
 					['posts.id', '=', $id]
@@ -662,10 +662,10 @@ class FrontController extends Controller
 	
 				$arrdetailorder6 = '';
 				foreach ($iddetailorder6 as $d ) {	
-					$arrdetailorder6 = $arrdetailorder6 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .','; 
+					$arrdetailorder6 = $arrdetailorder6 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .':'.(string)$d->price .','; 
 				}
 				$iddetail6 =DB::table('details')
-				->select('details.id','details.room','details.service','details.people_number')
+				->select('details.id','details.room','details.service','details.people_number','details.price')
 				->where('details.restaurant_id', '=', $idrestaurant)
 				->whereNotIn('id', DB::table('orders')
 					->join('restaurants','restaurants.id','=','orders.restaurant_id')
@@ -677,7 +677,7 @@ class FrontController extends Controller
 				->get();
 				$arr6 = '';
 				foreach ($iddetail6 as $d ) {	
-					$arr6 = $arr6 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .','; 
+					$arr6 = $arr6 . (string)$d->id . ':' . (string)$d->room .':'. (string)$d->service .':'. (string)$d->people_number .':'.(string)$d->price .','; 
 				}
 
 		return view('pages/detail', ['data' => $data, 'rating' => $rating,'detail'=>$detail, 'user_rate' => $user_rate, 'strDay7' => $strDay7,'strDay8' => $strDay8,'strDay9' => $strDay9,'strDay10' => $strDay10,'strDay11' => $strDay11,'strDay12' => $strDay12,'strDay13' => $strDay13, 'dateAvalible' => $dateAvalible,'result'=>$result,'result2'=>$result2,'result3'=>$result3,'result4'=>$result4,'result5'=>$result5,'result6'=>$result6,'result7'=>$result7,'weekday1'=>$weekday1,'weekday2'=>$weekday2,'weekday3'=>$weekday3,'weekday4'=>$weekday4,'weekday5'=>$weekday5,'weekday6'=>$weekday6,'weekday7'=>$weekday7,'arr'=>$arr,'arrdetailorder'=>$arrdetailorder,'arr1'=>$arr1,'arrdetailorder1'=>$arrdetailorder1,'arr2'=>$arr2,'arrdetailorder2'=>$arrdetailorder2,'arr3'=>$arr3,'arrdetailorder3'=>$arrdetailorder3,'arr4'=>$arr4,'arrdetailorder4'=>$arrdetailorder4,'arr5'=>$arr5,'arrdetailorder5'=>$arrdetailorder5,'arr6'=>$arr6,'arrdetailorder6'=>$arrdetailorder6]);

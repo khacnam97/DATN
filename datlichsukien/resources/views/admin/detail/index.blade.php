@@ -34,6 +34,7 @@
 					<th>Phòng</th>
 					<th>Dịch vụ</th>
 					<th>Số chứa của phòng</th>
+					<th>Giá mỗi bàn</th>
 					<th>Thời gian tạo</th>
 					<th>Thời gian sửa</th>
 					<th>Khác</th>
@@ -46,6 +47,7 @@
 					<th>Phòng</th>
 					<th>Dịch vụ</th>
 					<th>Số chứa của phòng</th>
+					<th>Giá mỗi bàn</th>
 					<th>Thời gian tạo</th>
 					<th>Thời gian sửa</th>
 					<th>Khác</th>
@@ -60,6 +62,7 @@
 					<td>{!! $record->room !!}</td>
 					<td>{{$record->service}}</td>
 					<td>{{$record->people_number}}</td>
+					<td>{{$record->price}}</td>
 					<td>{{$record->created_at}}</td>
 					<td>{{$record->updated_at}}</td>
 					<td style="display: flex;">

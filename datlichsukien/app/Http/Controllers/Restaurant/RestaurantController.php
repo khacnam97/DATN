@@ -87,7 +87,7 @@ class RestaurantController extends Controller
      $detail =DB::table('details')
         ->join('restaurants', 'details.restaurant_id', '=', 'restaurants.id')
         ->where('restaurants.id', '=', $id)
-        ->select('details.room','details.service','details.people_number','details.id')
+        ->select('details.room','details.service','details.people_number','details.id','details.price')
         ->get();
      $district=District::all();
      return view('admin.restaurant.edit',['restaurant'=>$restaurant,'district'=>$district,'detail'=>$detail]);
@@ -114,6 +114,7 @@ class RestaurantController extends Controller
                     $newDetail->room=$request->room[$i];
                     $newDetail->people_number=$request->peopleNumber[$i];
                     $newDetail->service=$request->service[$i];
+                    $newDetail->price=$request->price[$i];
                     $newDetail ->restaurant_id = $id;
                     $newDetail ->save();
                 }
@@ -128,7 +129,7 @@ class RestaurantController extends Controller
      $detail =DB::table('details')
         ->join('restaurants', 'details.restaurant_id', '=', 'restaurants.id')
         ->where('restaurants.id', '=', $id)
-        ->select('details.room','details.service','details.people_number','details.id')
+        ->select('details.room','details.service','details.people_number','details.id','details.price')
         ->get();
      $district=District::all();
      return view('admin.restaurant.detail',['restaurant'=>$restaurant,'district'=>$district,'detail'=>$detail]);

@@ -62,11 +62,12 @@
 		                      <a   role="button"  style="color: white;text-decoration: none;" >Đã xác nhận</a>
 		                      </button>   
 		                    @else 
-		                    <button type="button" class="btn-success" data-toggle="modal" data-target="#detailModal2" data-date="{{$o->order_date}}"   data-address="{{$o->address}}" data-time="{{$o->order_time}}" data-id="{{$o->id}}" data-peonumber="{{$o->people_number}}" data-price="{{$o->price_table}}" data-email="{{$o->user->email}}" data-phone="{{$o->phone}}" data-namerestaurant="{{$o->restaurant->name}}" data-room="{{$o->room}}" data-service="{{$o->service}}" data-detailpeonumber="{{$o->detailpeonumber}}" data-name="{{$o->user->name}}"> 
+		                    <button type="button" class="btn-success" data-toggle="modal" data-target="#detailModal2" data-date="{{$o->order_date}}"   data-address="{{$o->address}}" data-time="{{$o->order_time}}" data-id="{{$o->id}}" data-peonumber="{{$o->people_number}}" data-price="{{$o->price_table}}" data-email="{{$o->user->email}}" data-phone="{{$o->phone}}" data-namerestaurant="{{$o->restaurant->name}}" data-room="{{$o->room}}" data-service="{{$o->service}}"
+		                    data-detailprice="{{$o->detailprice}}" data-detailpeonumber="{{$o->detailpeonumber}}" data-name="{{$o->user->name}}"> 
 								Xác nhận
 							</button>
                         @endif
-                        	<button type="button" class="btn-info" data-toggle="modal" data-target="#detailModal3" data-date="{{$o->order_date}}"   data-address="{{$o->address}}" data-time="{{$o->order_time}}" data-id="{{$o->id}}" data-peonumber="{{$o->people_number}}" data-price="{{$o->price_table}}" data-email="{{$o->user->email}}" data-phone="{{$o->phone}}" data-namerestaurant="{{$o->restaurant->name}}" data-room="{{$o->room}}" data-service="{{$o->service}}" data-detailpeonumber="{{$o->detailpeonumber}}" data-name="{{$o->user->name}}"> Chi tiết
+                        	<button type="button" class="btn-info" data-toggle="modal" data-target="#detailModal3" data-date="{{$o->order_date}}"   data-address="{{$o->address}}" data-time="{{$o->order_time}}" data-id="{{$o->id}}" data-peonumber="{{$o->people_number}}" data-price="{{$o->price_table}}" data-email="{{$o->user->email}}" data-phone="{{$o->phone}}" data-namerestaurant="{{$o->restaurant->name}}" data-room="{{$o->room}}" data-service="{{$o->service}}" data-detailpeonumber="{{$o->detailpeonumber}}" data-name="{{$o->user->name}}" data-detailprice="{{$o->detailprice}}"> Chi tiết
 							 </button>	
 						</td>
 					</tr>
@@ -101,17 +102,21 @@
       	<label for="address" class="col-form-label"> Địa chỉ người đặt </label>
       	<input type="text" name="address" class="form-control" id="address" readonly >
       	<div class="input-group control-group  form-row" >
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-3">
 			    <label>Tên khu</label>			
 				<input type="text"  class="form-control" name="room" id="room" placeholder="Tên khu" disabled="" >
 			</div>
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-3">
 			    <label>Dịch vụ</label>				
 				<input type="text" class="form-control" name="service" id="service" placeholder="Dịch vụ" disabled="">
 			</div>
-			<div class="form-group col-md-4">	
+			<div class="form-group col-md-3">	
 			    <label>Sức chứa</label>			
 				<input type="text"  class="form-control" name="detailpeonumber" id="detailpeonumber" placeholder="Sức chứa của phòng" disabled="">
+			</div>
+			<div class="form-group col-md-3">	
+			    <label>Giá mỗi bàn</label>			
+				<input type="text"  class="form-control" name="detailprice" id="detailprice" placeholder="Giá mỗi bàn" disabled="">
 			</div>
 		</div>
       	<div class="row">
@@ -175,17 +180,21 @@
       	<label for="address" class="col-form-label"> Địa chỉ người đặt </label>
       	<input type="text" name="address" class="form-control" id="address" readonly >
       	<div class="input-group control-group  form-row" >
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-3">
 			    <label>Tên khu</label>			
 				<input type="text"  class="form-control" name="room" id="room" placeholder="Tên khu" disabled="" >
 			</div>
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-3">
 			    <label>Dịch vụ</label>				
 				<input type="text" class="form-control" name="service" id="service" placeholder="Dịch vụ" disabled="">
 			</div>
-			<div class="form-group col-md-4">	
+			<div class="form-group col-md-3">	
 			    <label>Sức chứa</label>			
 				<input type="text"  class="form-control" name="detailpeonumber" id="detailpeonumber" placeholder="Sức chứa của phòng" disabled="">
+			</div>
+			<div class="form-group col-md-3">	
+			    <label>Giá mỗi bàn</label>			
+				<input type="text"  class="form-control" name="detailprice" id="detailprice" placeholder="Giá mỗi bàn" disabled="">
 			</div>
 		</div>
       	<div class="row">
@@ -241,6 +250,7 @@
 		var service = button.data('service')
 		var detailpeonumber= button.data('detailpeonumber')
 		var name = button.data('name')
+		var detailprice = button.data('detailprice')
 
 		var modal = $(this)
 		modal.find('#idedit').val(id);
@@ -258,6 +268,7 @@
 		modal.find('#service').val(service)
 		modal.find('#detailpeonumber').val(detailpeonumber)
 		modal.find('#name').val(name)
+		modal.find('#detailprice').val(detailprice)
 	})
 	$('#detailModal3').on('show.bs.modal', function(event) {
 		var button = $(event.relatedTarget)
@@ -275,6 +286,7 @@
 		var service = button.data('service')
 		var detailpeonumber= button.data('detailpeonumber')
 		var name= button.data('name')
+		var detailprice = button.data('detailprice')
 
 		var modal = $(this)
 		modal.find('#idedit').val(id);
@@ -292,6 +304,7 @@
 		modal.find('#service').val(service)
 		modal.find('#detailpeonumber').val(detailpeonumber)
 		modal.find('#name').val(name)
+		modal.find('#detailprice').val(detailprice)
 	})
 	})
 </script>

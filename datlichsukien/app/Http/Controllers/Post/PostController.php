@@ -98,6 +98,7 @@ class PostController extends Controller
                     $newDetail->room=$request->room[$i];
                     $newDetail->people_number=$request->peopleNumber[$i];
                     $newDetail->service=$request->service[$i];
+                    $newDetail->price=$request->price[$i];
                     $newDetail ->restaurant_id = $newRestaurant->id;
                     $newDetail ->save();
                 }      
@@ -156,7 +157,7 @@ class PostController extends Controller
         ->join('restaurants', 'details.restaurant_id', '=', 'restaurants.id')
         ->join('posts', 'posts.restaurant_id', '=', 'restaurants.id')
         ->where('posts.id', '=', $id)
-        ->select('details.room','details.service','details.people_number','details.id')
+        ->select('details.room','details.service','details.people_number','details.id','details.price')
         ->get();
         return view('admin.post.edit', ['post'=>$posts, 'user'=>$user ,'restaurant'=>$restaurant,'detail'=>$detail] );
     }
@@ -196,6 +197,7 @@ class PostController extends Controller
                     $newDetail->room=$request->room[$i];
                     $newDetail->people_number=$request->peopleNumber[$i];
                     $newDetail->service=$request->service[$i];
+                    $newDetail->price=$request->price[$i];
                     $newDetail ->restaurant_id = $newRestaurant;
                     $newDetail ->save();
                 }
@@ -329,7 +331,7 @@ class PostController extends Controller
         ->join('restaurants', 'details.restaurant_id', '=', 'restaurants.id')
         ->join('posts', 'posts.restaurant_id', '=', 'restaurants.id')
         ->where('posts.id', '=', $id)
-        ->select('details.room','details.service','details.people_number','details.id')
+        ->select('details.room','details.service','details.people_number','details.id','details.price')
         ->get();
         return view('admin.post.detail', ['post'=>$posts,'detail'=>$detail] );
   

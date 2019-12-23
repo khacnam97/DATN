@@ -48,7 +48,8 @@
 								    <div > 
 					                  <label style="width: 110px;">Tên khu</label> 
 					                  <label style="width: 100px;">Dịch vụ</label>
-					                  <label style="width: 90px;">Sức chứa</label></div>
+					                  <label style="width: 90px;">Sức chứa</label>
+					                  <label style="width: 90px;">Giá của mổi bàn</label></div>
 									<div class="dropdown-divider"></div>
 									@foreach ($iddetail as $record)
 									<div>
@@ -56,6 +57,7 @@
 										<label style="width: 110px;">{{$record->room}}</label> 
 										<label style="width: 100px;">{{$record->service}}</label>
 										<label style="width: 90px;">{{$record->people_number}}</label>
+										<label style="width: 90px;">{{$record->price}}</label>
 									</div>
 									<div class="dropdown-divider"></div>
 									@endforeach
@@ -65,6 +67,7 @@
 										<label style="width: 110px;">{{$record->room}}</label> 
 										<label style="width: 100px;">{{$record->service}}</label>
 										<label style="width: 90px;">{{$record->people_number}}</label>
+										<label style="width: 90px;">{{$record->price}}</label>
 									</div>
 									@endforeach
 

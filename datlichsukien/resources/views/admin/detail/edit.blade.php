@@ -29,30 +29,37 @@
     </div>
   </div>
       <div class="col-form-label  form-row" >
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-3">
             <label>Tên khu</label>
           </div>
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-3">
             <label>Dịch vụ</label>
           </div>
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-3">
             <label>Sức chứa</label>
+          </div>
+          <div class="form-group col-md-3">
+            <label>Giá mỗi bàn</label>
           </div>
           </div>
       
         <div class="input-group control-group  form-row" >
       
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-3">
             
             <input type="text"  class="form-control" name="room" value="{{$detail->room}}" placeholder="Tên khu" required="" >
           </div>
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-3">
             
             <input type="text" class="form-control" name="service" value="{{$detail->service}}" placeholder="Dịch vụ" required="" >
           </div>
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-3">
             
             <input type="text"  class="form-control" name="peopleNumber" value="{{$detail->people_number}}" placeholder="Sức chứa của phòng" required="" >
+          </div>
+          <div class="form-group col-md-3">
+            
+            <input type="text"  class="form-control" name="price" value="{{$detail->price}}" placeholder="Giá mỗi bàn" required="" >
           </div>
         </div>
        
