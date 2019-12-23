@@ -75,6 +75,7 @@ class PostController extends Controller
                     $newDetail->room=$request->room[$i];
                     $newDetail->people_number=$request->peopleNumber[$i];
                     $newDetail->service=$request->service[$i];
+                    $newDetail->price=$request->price[$i];
                     $newDetail ->restaurant_id = $newRestaurant->id;
                     $newDetail ->save();
                 }
@@ -188,6 +189,7 @@ class PostController extends Controller
                     $newDetail->room=$request->room[$i];
                     $newDetail->people_number=$request->peopleNumber[$i];
                     $newDetail->service=$request->service[$i];
+                    $newDetail->price=$request->price[$i];
                     $newDetail ->restaurant_id = $newRestaurant;
                     $newDetail ->save();
                 }

@@ -106,9 +106,8 @@ class OrderController extends Controller
                ->join('posts','posts.restaurant_id','=','restaurants.id')
                ->join('users','users.id','=','orders.user_id')
                ->join('details', 'details.id', '=', 'orders.detail_id')
-               ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','users.email','orders.address','orders.restaurant_id','details.room','details.service','details.people_number as detailpeonumber')
+               ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','users.email','orders.address','orders.restaurant_id','details.room','details.service','details.people_number as detailpeonumber','details.price as detailprice')
                ->where('posts.user_id','=',$id)->Paginate(10);
-      
 
        return view('pages.manageOrder',['order'=>$order]);
     }
@@ -226,7 +225,7 @@ class OrderController extends Controller
       ->join('restaurants', 'details.restaurant_id', '=', 'restaurants.id')
       ->join('posts', 'posts.restaurant_id', '=', 'restaurants.id')
       ->where('posts.id', '=', $post_id)
-      ->select('details.room','details.service','details.people_number','details.id')
+      ->select('details.room','details.service','details.people_number','details.id','details.price')
       ->get();
       $detailAvalible = DB::table('orders')
           ->join('restaurants','restaurants.id','=','orders.restaurant_id')
@@ -256,7 +255,7 @@ class OrderController extends Controller
                 ->join('restaurants','restaurants.id','=','orders.restaurant_id')
         ->join('posts','posts.restaurant_id','=','restaurants.id')
         ->join('details','details.id','=','orders.detail_id')
-        ->select('orders.detail_id','details.id','details.room','details.service','details.people_number')
+        ->select('orders.detail_id','details.id','details.room','details.service','details.people_number','details.price')
         ->where([
         ['order_date', '=', $orderdate],
         ['posts.id', '=', $post_id]
@@ -265,7 +264,7 @@ class OrderController extends Controller
     //dd($iddetailorder);
 
         $iddetail =DB::table('details')
-      ->select('details.id','details.room','details.service','details.people_number')
+      ->select('details.id','details.room','details.service','details.people_number','details.price')
       ->where('details.restaurant_id', '=', $idrestaurant)
       ->whereNotIn('id', DB::table('orders')
                 ->join('restaurants','restaurants.id','=','orders.restaurant_id')

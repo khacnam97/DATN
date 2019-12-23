@@ -36,17 +36,20 @@ class DetailController extends Controller
             [        
                 'room' =>'required',
                 'peopleNumber' =>'required',
-                'service' =>'required'
+                'service' =>'required',
+                 'price' =>'required'
             ],
             [
                 'room.required' =>'Bạn chưa nhập tên khu',
                 'service.required' =>'Bạn chưa nhập dịch vụ',
-                'peopleNumber.required' =>'Bạn chưa nhập sức chứa khu'
+                'peopleNumber.required' =>'Bạn chưa nhập sức chứa khu',
+                'price.required' =>'Bạn chưa nhập giá mỗi bàn'
             ]
         );
         $detail->room = $request->get('room');
         $detail->service = $request->get('service');
         $detail->people_number = $request->get('peopleNumber');
+        $detail->price = $request->get('price');
         
         $detail->save();
         return redirect()->back()->with('success','edit success');
