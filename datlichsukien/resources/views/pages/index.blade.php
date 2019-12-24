@@ -119,10 +119,22 @@
     @endif
     </div>
     <div class="col-3"  style="background-color:  #f8f9fa" >
-        <div id="map" style="width:97%; margin-right: 3%;height: 300px;margin-top: 10px;"  > 
+        <div id="map" style="width:97%; margin-right: 3%;height: 300px;margin-top: 10px;"  >  
         </div>       
         <div>
-          <button>< 20000000</button>
+          <div style="margin-top: 20px;"><h3>Tìm kiếm về sức chứa </h3></div>
+          <a class="btn btn-success" href="{{route('search.number.people')}}" type="button"><500 </a>
+          <a class="btn btn-success" href="{{route('search.numberpeople')}}" type="button">500-800 </a>
+          <a class="btn btn-success" href="{{route('search.numberPeople')}}" type="button">800-1000 </a>
+          <a class="btn btn-success" href="{{route('search.People')}}" type="button">>1000 </a>
+        </div>
+        <div>
+          <div style="margin-top: 20px;"><h3>Tìm kiếm về mức giá bàn tiệc </h3></div>
+          <a class="btn btn-success" href="{{route('search.number.people')}}" type="button"><2Tr </a>
+          <a class="btn btn-success" href="{{route('search.numberpeople')}}" type="button">2-5Tr </a>
+          <a class="btn btn-success" href="{{route('search.numberPeople')}}" type="button">5-10Tr </a>
+          <a class="btn btn-success" href="{{route('search.People')}}" type="button">>10Tr </a>
+>>>>>>> develop
         </div>
     </div>
  </div> 
@@ -191,4 +203,5 @@
       }
       
     </script>
+    
 @endsection
