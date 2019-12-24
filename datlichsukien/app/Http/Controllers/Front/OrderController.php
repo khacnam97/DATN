@@ -168,7 +168,7 @@ class OrderController extends Controller
                 ->join('posts', 'posts.restaurant_id', '=', 'orders.restaurant_id')
                 ->join('photos', 'posts.id', '=', 'photos.post_id')
                 ->join('details', 'details.id', '=', 'orders.detail_id')
-                ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','orders.restaurant_id','restaurants.name','posts.title','restaurants.address as addressrestaurant','photos.photo_path','details.room','details.service','details.people_number as detailpeonumber','orders.address')
+                ->select('orders.id','orders.user_id','orders.order_time','orders.phone','orders.people_number','orders.price_table','orders.order_date','orders.status','orders.restaurant_id','restaurants.name','posts.title','restaurants.address as addressrestaurant','photos.photo_path','details.room','details.service','details.people_number as detailpeonumber','orders.address','details.price as detailprice')
                 ->where([
                   ['orders.user_id','=',$id],
                   ['photos.flag', '=', '1'],

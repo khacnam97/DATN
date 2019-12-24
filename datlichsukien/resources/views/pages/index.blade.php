@@ -119,10 +119,11 @@
     @endif
     </div>
     <div class="col-3"  style="background-color:  #f8f9fa" >
-        <div id="map" style="width:97%; margin-right: 3%;height: 300px;margin-top: 10px;"  >
-          
+        <div id="map" style="width:97%; margin-right: 3%;height: 300px;margin-top: 10px;"  > 
         </div>       
-        
+        <div>
+          <button>< 20000000</button>
+        </div>
     </div>
  </div> 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>  

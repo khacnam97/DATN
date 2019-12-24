@@ -35,7 +35,7 @@
 				
 				<div> <p><i class="fas fa-map-marker-alt " style="color: blue;"></i> {{$record->addressrestaurant}}</p></div>
 				<p><i class="fa fa-calendar"></i> Thời gian {{$record->order_time}} Ngày {{$record->order_date}}</p>
-				<button type="button" class="btn-info" data-toggle="modal" data-target="#detailModal" data-date="{{$record->order_date}}" data-namerestaurant="{{$record->restaurant->name}}" data-phone="{{$record->restaurant->phone}}" data-address="{{$record->addressrestaurant}}" data-time="{{$record->order_time}}" data-id="{{$record->id}}" data-peonumber="{{$record->people_number}}" data-price="{{$record->price_table}}" data-room="{{$record->room}}" data-service="{{$record->service}}" data-detailpeonumber="{{$record->detailpeonumber}}" data-addressme="{{$record->address}}"> 
+				<button type="button" class="btn-info" data-toggle="modal" data-target="#detailModal" data-date="{{$record->order_date}}" data-namerestaurant="{{$record->restaurant->name}}" data-phone="{{$record->restaurant->phone}}" data-address="{{$record->addressrestaurant}}" data-time="{{$record->order_time}}" data-id="{{$record->id}}" data-peonumber="{{$record->people_number}}" data-price="{{$record->price_table}}" data-room="{{$record->room}}" data-service="{{$record->service}}" data-detailpeonumber="{{$record->detailpeonumber}}" data-addressme="{{$record->address}}" data-detailprice="{{$record->detailprice}}"> 
 					Chi tiết
 				</button>
 				@if($record->status ==1)
@@ -82,17 +82,21 @@
       	<label for="address" class="col-form-label"> Địa chỉ địa điểm tổ chức </label>
       	<input type="text" name="address" class="form-control" id="address" readonly>
       	<div class="input-group control-group  form-row" >
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-3">
 			    <label>Tên khu</label>			
 				<input type="text"  class="form-control" name="room" id="room" placeholder="Tên khu" disabled="" >
 			</div>
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-3">
 			    <label>Dịch vụ</label>				
 				<input type="text" class="form-control" name="service" id="service" placeholder="Dịch vụ" disabled="">
 			</div>
-			<div class="form-group col-md-4">	
+			<div class="form-group col-md-3">	
 			    <label>Sức chứa</label>			
 				<input type="text"  class="form-control" name="detailpeonumber" id="detailpeonumber" placeholder="Sức chứa của phòng" disabled="">
+			</div>
+			<div class="form-group col-md-3">	
+			    <label>Giá mỗi bàn</label>			
+				<input type="text"  class="form-control" name="detailprice" id="detailprice" placeholder="Giá mỗi bàn" disabled="">
 			</div>
 		</div>
 		<label for="address" class="col-form-label"> Địa chỉ của bạn </label>
@@ -152,6 +156,7 @@
 		var room = button.data('room')
 		var service = button.data('service')
 		var detailpeonumber= button.data('detailpeonumber')
+		var detailprice = button.data('detailprice')
 
 		var modal = $(this)
 		modal.find('#idedit').val(id);
@@ -167,6 +172,7 @@
 		modal.find('#room').val(room)
 		modal.find('#service').val(service)
 		modal.find('#detailpeonumber').val(detailpeonumber)
+		modal.find('#detailprice').val(detailprice)
 	})
 	})
 
