@@ -94,23 +94,7 @@ class SearchListController extends Controller
 		$post->appends([$search1=>$search]);
 		return view('pages.searchDate',['post' => $post],[$search=>$search]);
     }
-    public function search_numberpeople()
-    {
 
-      $post= DB::table('posts')
-      ->join('restaurants','posts.restaurant_id','=','restaurants.id')
-      ->join('details','details.restaurant_id','=','restaurants.id')
-      ->leftjoin('ratings', 'posts.id', '=', 'ratings.post_id')
-      ->join('photos', 'posts.id', '=', 'photos.post_id')->select('posts.id','posts.describer','restaurants.address', 'posts.title','photos.photo_path',\DB::raw('avg(ratings.rating) as avg_rating'))->groupBy('posts.id')->groupBy('posts.title')->groupBy('photos.photo_path')->groupBy('posts.describer')->groupBy('restaurants.address')
-      ->whereBetween('details.people_number', array(500, 800))
-      ->where([
-        ['photos.flag', '=', '1'],
-        ['is_approved','=','1']
-        
-      ])
-      ->Paginate(Config::get('constant.pagination'));
-      return view('pages.searchNumberpeople',['post' => $post]);
-    }
     public function search_number_people()
     {
 
@@ -136,7 +120,7 @@ class SearchListController extends Controller
       ->join('details','details.restaurant_id','=','restaurants.id')
       ->leftjoin('ratings', 'posts.id', '=', 'ratings.post_id')
       ->join('photos', 'posts.id', '=', 'photos.post_id')->select('posts.id','posts.describer','restaurants.address', 'posts.title','photos.photo_path',\DB::raw('avg(ratings.rating) as avg_rating'))->groupBy('posts.id')->groupBy('posts.title')->groupBy('photos.photo_path')->groupBy('posts.describer')->groupBy('restaurants.address')
-      ->whereBetween('details.people_number', array(800, 1000))
+      ->whereBetween('details.people_number', array(500, 1000))
       ->where([
         ['photos.flag', '=', '1'],
         ['is_approved','=','1']
@@ -161,5 +145,73 @@ class SearchListController extends Controller
       ])
       ->Paginate(Config::get('constant.pagination'));
       return view('pages.search_people',['post' => $post]);
+    }
+    public function search_pricetable()
+    {
+
+      $post= DB::table('posts')
+      ->join('restaurants','posts.restaurant_id','=','restaurants.id')
+      ->join('details','details.restaurant_id','=','restaurants.id')
+      ->leftjoin('ratings', 'posts.id', '=', 'ratings.post_id')
+      ->join('photos', 'posts.id', '=', 'photos.post_id')->select('posts.id','posts.describer','restaurants.address', 'posts.title','photos.photo_path',\DB::raw('avg(ratings.rating) as avg_rating'))->groupBy('posts.id')->groupBy('posts.title')->groupBy('photos.photo_path')->groupBy('posts.describer')->groupBy('restaurants.address')
+      ->where('details.price','<' ,2000000)
+      ->where([
+        ['photos.flag', '=', '1'],
+        ['is_approved','=','1']
+        
+      ])
+      ->Paginate(Config::get('constant.pagination'));
+      return view('pages.search_pricetable',['post' => $post]);
+    }
+    public function searchpricetable()
+    {
+
+      $post= DB::table('posts')
+      ->join('restaurants','posts.restaurant_id','=','restaurants.id')
+      ->join('details','details.restaurant_id','=','restaurants.id')
+      ->leftjoin('ratings', 'posts.id', '=', 'ratings.post_id')
+      ->join('photos', 'posts.id', '=', 'photos.post_id')->select('posts.id','posts.describer','restaurants.address', 'posts.title','photos.photo_path',\DB::raw('avg(ratings.rating) as avg_rating'))->groupBy('posts.id')->groupBy('posts.title')->groupBy('photos.photo_path')->groupBy('posts.describer')->groupBy('restaurants.address')
+      ->whereBetween('details.price', array(2000000, 5000000))
+      ->where([
+        ['photos.flag', '=', '1'],
+        ['is_approved','=','1']
+        
+      ])
+      ->Paginate(Config::get('constant.pagination'));
+      return view('pages.searchpricetable',['post' => $post]);
+    }
+    public function search_price_table()
+    {
+
+      $post= DB::table('posts')
+      ->join('restaurants','posts.restaurant_id','=','restaurants.id')
+      ->join('details','details.restaurant_id','=','restaurants.id')
+      ->leftjoin('ratings', 'posts.id', '=', 'ratings.post_id')
+      ->join('photos', 'posts.id', '=', 'photos.post_id')->select('posts.id','posts.describer','restaurants.address', 'posts.title','photos.photo_path',\DB::raw('avg(ratings.rating) as avg_rating'))->groupBy('posts.id')->groupBy('posts.title')->groupBy('photos.photo_path')->groupBy('posts.describer')->groupBy('restaurants.address')
+      ->whereBetween('details.price', array(5000000, 10000000))
+      ->where([
+        ['photos.flag', '=', '1'],
+        ['is_approved','=','1']
+        
+      ])
+      ->Paginate(Config::get('constant.pagination'));
+      return view('pages.search_price_table',['post' => $post]);
+    }
+    public function search_price()
+    {
+
+      $post= DB::table('posts')
+      ->join('restaurants','posts.restaurant_id','=','restaurants.id')
+      ->join('details','details.restaurant_id','=','restaurants.id')
+      ->leftjoin('ratings', 'posts.id', '=', 'ratings.post_id')
+      ->join('photos', 'posts.id', '=', 'photos.post_id')->select('posts.id','posts.describer','restaurants.address', 'posts.title','photos.photo_path',\DB::raw('avg(ratings.rating) as avg_rating'))->groupBy('posts.id')->groupBy('posts.title')->groupBy('photos.photo_path')->groupBy('posts.describer')->groupBy('restaurants.address')
+      ->where('details.price','>' ,10000000)
+      ->where([
+        ['photos.flag', '=', '1'],
+        ['is_approved','=','1']
+        
+      ])
+      ->Paginate(Config::get('constant.pagination'));
+      return view('pages.search_price',['post' => $post]);
     }
 }

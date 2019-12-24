@@ -7,14 +7,14 @@
 @if(count($post)==0)
 <div class="container" style="margin-top: 200px;">
 	<div style="margin-bottom: 200px; margin-top: 200px;">
-		<p style="font-size: 30px;text-align: center;">Không Tìm thấy địa điểm có sức chứa 500-800 người </p>
+		<p style="font-size: 30px;text-align: center;">Không Tìm thấy địa điểm có mức giá dưới 2 triệu </p>
 	</div>
 </div>
 @endif
 @if(count($post)!=0)
 <h1 style="margin-top:100px;margin-bottom: 50px; text-align: center;">Danh sách kết quả tìm kiếm </h1>
 	<div style="text-align: center;">
-		<span >Tìm thấy <strong>{{count($post)}}</strong> địa điểm có sức chứa 500-800 người </span>
+		<span >Tìm thấy <strong>{{count($post)}}</strong> địa điểm có mức giá dưới 2 triệu </span>
 	</div>
 @endif
 <div class="container" style="margin-top: 50px;">
