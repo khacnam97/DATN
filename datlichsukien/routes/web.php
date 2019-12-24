@@ -107,6 +107,12 @@ Route::get('/home', function(){
 	Route::get('/autocomplete', 'SearchListController@autocomplete')->name('autocomplete');
 	Route::get('/search_date', 'SearchListController@search_date')->name('search.date');
 
+    Route::get('/search_numberpeople', 'SearchListController@search_numberpeople')->name('search.numberpeople');
+    Route::get('/search_number.people', 'SearchListController@search_number_people')->name('search.number.people');
+    Route::get('/search_number_people', 'SearchListController@searchNumberpeople')->name('search.numberPeople');
+    Route::get('/searchNumberpeople', 'SearchListController@search_people')->name('search.People');
+    
+
 	Route::get('/mypost','ProfileController@mypost')->name('mypost');
 	Route::post('/mypost/{id}/delete','PostController@delete')->name('mypost.delete');
     
