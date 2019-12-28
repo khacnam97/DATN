@@ -74,31 +74,38 @@
 				</div>
 				<label  for="name" class="col-form-label" >Điền thông tin (<span style="color: red">*</span>) </label>
 				<div class="col-form-label  form-row" >
-					<div class="form-group col-md-4">
+					<div class="form-group col-md-3">
 						<label>Tên khu</label>
 					</div>
-					<div class="form-group col-md-4">
+					<div class="form-group col-md-3">
 						<label>Dịch vụ</label>
 					</div>
-					<div class="form-group col-md-4">
+					<div class="form-group col-md-3">
 						<label>Sức chứa</label>
+					</div>
+					<div class="form-group col-md-3">
+						<label>Giá mỗi bàn</label>
 					</div>
 			    </div>
 			    <div class="dropdown-divider"></div>
                 @foreach ($detail as $record)
 				<div class="input-group control-group  form-row" >
       
-					<div class="form-group col-md-4">
+					<div class="form-group col-md-3">
 						
 						<input type="text"  class="form-control" name="room[]" value="{{$record->room}}" placeholder="Tên khu" required="" >
 					</div>
-					<div class="form-group col-md-4">
+					<div class="form-group col-md-3">
 						
 						<input type="text" class="form-control" name="service[]" value="{{$record->service}}" placeholder="Dịch vụ" required="">
 					</div>
-					<div class="form-group col-md-4">
+					<div class="form-group col-md-3">
 						
 						<input type="text"  class="form-control" name="peopleNumber[]" value="{{$record->people_number}}" placeholder="Sức chứa của phòng" required="">
+					</div>
+					<div class="form-group col-md-3">
+						
+						<input type="text"  class="form-control" name="price[]" value="{{$record->price}}" placeholder="Giá mỗi bàn" required="">
 					</div>
 				</div>
 				@endforeach
@@ -111,14 +118,17 @@
 		        </div>
 		        <div class=" clone" style="overflow: hidden;">
 		          <div class="control-group input-group form-row" style="margin-top:10px">
-		            <div class="form-group col-md-4">
+		            <div class="form-group col-md-3">
 						<input type="text" name="room[]" class="form-control"  placeholder="Tên khu"  >
 					</div>
-		            <div class="form-group col-md-4">
+		            <div class="form-group col-md-3">
 		            	<input type="text" name="service[]" class="form-control" placeholder="Dịch vụ" >
 		            </div>
 		            <div class="form-group col-md-3">
 		            	<input type="text" name="peopleNumber[]" class="form-control" placeholder="Sức chứa của phòng">
+		            </div>
+		            <div class="form-group col-md-3">
+		            	<input type="text" name="price[]" class="form-control" placeholder="Giá mỗi bàn">
 		            </div>
 		            <div class="input-group-btn"> 
 		              <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove" id="removed"></i> Xóa</button>
