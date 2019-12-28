@@ -5,8 +5,9 @@
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 <div class="container"  id="show_profile" style="margin-top: 100px; margin-bottom: 50px;display:flex; justify-content: center;">
-	<div style="width: 800px; height: 800px;background-color: #ffffff; -webkit-box-shadow: 11px -8px 5px -2px rgba(0,0,0,1);-moz-box-shadow: 11px -8px 5px -2px rgba(0,0,0,1);
+	<div style="width: 800px; background-color: #ffffff; -webkit-box-shadow: 11px -8px 5px -2px rgba(0,0,0,1);-moz-box-shadow: 11px -8px 5px -2px rgba(0,0,0,1);
         box-shadow: 11px -8px 5px -2px rgba(0,0,0,1);">
+        <!-- <div style="width: 800px; border: black 2px double "> -->
 		
 		<div class="row" style="justify-content: center;">
 			<div class="col-9">
@@ -42,20 +43,20 @@
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-3 col-form-label form-control-label"  style="width: 150px; background-color: #e0e0e0; -webkit-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);-moz-box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);box-shadow: 7px -3px 5px 0px rgba(0,0,0,0.75);height: 40px;">Chọn loại phòng</label>
-						<div class="col">
+						<div class="col-sm-9">
 
-							<div class="col-sm-10">
+							<div class="col-sm-12">
 								    <div > 
 					                  <label style="width: 110px;">Tên khu</label> 
 					                  <label style="width: 100px;">Dịch vụ</label>
 					                  <label style="width: 90px;">Sức chứa</label>
-					                  <label style="width: 90px;">Giá của mổi bàn</label></div>
+					                  <label style="width: 90px;">Giá mổi bàn</label></div>
 									<div class="dropdown-divider"></div>
 									@foreach ($iddetail as $record)
 									<div>
 										<input type="radio" name="detail_id" required=""  value="{{$record->id}}">
-										<label style="width: 110px;">{{$record->room}}</label> 
-										<label style="width: 100px;">{{$record->service}}</label>
+										<label  style="width: 10px;">{{$record->room}}</label> 
+										<label style="width: 100px; margin-left: 80px;">{{$record->service}}</label>
 										<label style="width: 90px;">{{$record->people_number}}</label>
 										<label style="width: 90px;">{{$record->price}}</label>
 									</div>

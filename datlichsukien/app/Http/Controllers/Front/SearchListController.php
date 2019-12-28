@@ -53,15 +53,7 @@ class SearchListController extends Controller
         
        $search = $request ->date;
 
-       // SYY
-       // dd($search);
-       // dd(var_dump($search));
-   //     $finRestaurantNotOdder = DB::table('orders')
-   //     		->leftjoin('restaurants','orders.restaurant_id','=','restaurants.id')
- 		// 	->select('restaurants.id')
- 		// 	->whereDate('orders.order_date','=',date($search))
- 		// 	->distinct()
- 		// 	->get();
+    
  		$finRestaurantNotOdder =DB::table('restaurants')
  			->select('id')
  			->whereNotIn('id', DB::table('orders')->select('restaurant_id')->where('order_date', '=', $search))
@@ -70,14 +62,7 @@ class SearchListController extends Controller
     	foreach ($finRestaurantNotOdder as $finRestaurantNotOdder) {
                 $data[] = $finRestaurantNotOdder->id;
             }
-            // dd($data);
- 		// dd($data);
- 		// dd($finRestaurantNotOdder);
-
-       // $restaurantid = DB::table('orders')
-       // ->select('orders.restaurant_id')
-       // ->where('orders.order_date','=',$search)->get();
-       //dd($restaurantid);
+   
 		$post= DB::table('posts')
 		->join('restaurants','posts.restaurant_id','=','restaurants.id')
 		->join('orders','posts.restaurant_id','=','orders.restaurant_id')
@@ -97,7 +82,7 @@ class SearchListController extends Controller
 
     public function search_number_people()
     {
-
+     
       $post= DB::table('posts')
       ->join('restaurants','posts.restaurant_id','=','restaurants.id')
       ->join('details','details.restaurant_id','=','restaurants.id')
@@ -110,7 +95,7 @@ class SearchListController extends Controller
         
       ])
       ->Paginate(Config::get('constant.pagination'));
-      return view('pages.search_Numberpeople',['post' => $post]);
+      return view('pages.search_Number_People',['post' => $post]);
     }
     public function searchNumberPeople()
     {
@@ -144,7 +129,7 @@ class SearchListController extends Controller
         
       ])
       ->Paginate(Config::get('constant.pagination'));
-      return view('pages.search_people',['post' => $post]);
+      return view('pages.search_Number_People',['post' => $post]);
     }
     public function search_pricetable()
     {
@@ -161,7 +146,7 @@ class SearchListController extends Controller
         
       ])
       ->Paginate(Config::get('constant.pagination'));
-      return view('pages.search_pricetable',['post' => $post]);
+      return view('pages.searchpricetable',['post' => $post]);
     }
     public function searchpricetable()
     {
@@ -195,7 +180,7 @@ class SearchListController extends Controller
         
       ])
       ->Paginate(Config::get('constant.pagination'));
-      return view('pages.search_price_table',['post' => $post]);
+      return view('pages.searchpricetable',['post' => $post]);
     }
     public function search_price()
     {
@@ -212,6 +197,6 @@ class SearchListController extends Controller
         
       ])
       ->Paginate(Config::get('constant.pagination'));
-      return view('pages.search_price',['post' => $post]);
+      return view('pages.searchpricetable',['post' => $post]);
     }
 }

@@ -137,7 +137,7 @@ class PostController extends Controller
         ->join('restaurants', 'details.restaurant_id', '=', 'restaurants.id')
         ->join('posts', 'posts.restaurant_id', '=', 'restaurants.id')
         ->where('posts.id', '=', $idPost)
-        ->select('details.room','details.service','details.people_number','details.id')
+        ->select('details.room','details.service','details.people_number','details.id','details.price')
         ->get();
         //dd($detail);
         $restaurant = Restaurant::all();

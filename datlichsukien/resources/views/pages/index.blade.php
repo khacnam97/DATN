@@ -118,8 +118,8 @@
        <div style="display: inline-block;display: flex;justify-content: center;">{!!$all_post->links()!!}</div>
     @endif
     </div>
-    <div class="col-3"  style="background-color:  #f8f9fa" >
-        <div id="map" style="width:97%; margin-right: 3%;height: 300px;margin-top: 10px;"  >  
+    <div class="col-3"  style="background-color:  #f8f9fa;" >
+        <div  id="map" style="width:97%; margin-right: 3%;height: 300px;margin-top: 10px; "  >  
         </div>       
         <div>
           <div style="margin-top: 20px;"><h3>Tìm kiếm về sức chứa </h3></div>

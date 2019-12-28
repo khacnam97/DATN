@@ -69,7 +69,7 @@
       <input type="hidden" value="{{$restaurant->longt}}" class="form-control input-sm" name="lng" id="lng" required="" disabled="">
     </div>
   </div> 
-  <a href="/admin/restaurant"  class="btn btn-danger" style="color: white">Thoát</a>
+  <a href="/admin/restaurant"  class="btn btn-danger" style="color: white;  ">Thoát</a>
   
 </form>
 

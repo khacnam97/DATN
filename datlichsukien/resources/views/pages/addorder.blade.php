@@ -35,13 +35,13 @@
             <label class="col-sm-3 col-form-label form-control-label">Chọn loại phòng</label>
             <div class="col-8">
               
-              <div class="col-sm-9">
+              <div class="col-sm-12">
                 <div > 
                   <label style="width: 110px; ">Tên khu</label> 
                   <label style="width: 110px;">Dịch vụ</label>
                   <label style="width: 110px;">Sức chứa</label>
                   <label style="width: 110px;">Giá của bàn</label></div>
-                <div class="dropdown-divider col-sm-8"></div>
+                <div class="dropdown-divider col-sm-12"></div>
                 <div id="arrdetail">
                   s
                 </div>
