@@ -40,7 +40,7 @@
                   <label style="width: 110px; ">Tên khu</label> 
                   <label style="width: 110px;">Dịch vụ</label>
                   <label style="width: 110px;">Sức chứa</label>
-                  <label style="width: 110px;">Giá của bàn</label></div>
+                  <label style="width: 110px;">Giá mỗi bàn</label></div>
                 <div class="dropdown-divider col-sm-12"></div>
                 <div id="arrdetail">
                   s
