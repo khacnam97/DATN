@@ -50,7 +50,7 @@ class FrontController extends Controller
 			['photos.flag', '=', '1']
 		])
 		
-		->Paginate(9);
+		->Paginate(12);
 		$restaurant = DB::table('restaurants')->get();
         return view('pages.index',['top_rating'=>$top_rating,'restaurant'=>$restaurant,'all_post'=>$all_post]);
     }
